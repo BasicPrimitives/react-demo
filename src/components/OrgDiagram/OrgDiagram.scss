@@ -1,0 +1,49 @@
+.bpitem {
+	position: absolute;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	box-sizing:content-box;
+}
+
+.default_template {
+	width: 120px;
+	height: 100px;
+
+	.background {
+		top: 2px;
+		left: 2px;
+		width: 116px;
+		height: 20px;
+
+		.title {
+		top: 3px;
+		left: 6px;
+		width: 108px;
+		height: 16px;
+		}
+	}
+
+	.photo_frame {
+		top: 26px;
+		left: 2px;
+		width: 50px;
+		height: 60px;
+
+		.photo {
+		height:60px;
+		width:50px;
+		}
+	}
+
+	.description {
+		top: 26px;
+		left: 56px;
+		width: 62px;
+		height: 72px;
+		font-size: 12px;
+	}
+}

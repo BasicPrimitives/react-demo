@@ -1,0 +1,31 @@
+@import '../../theme/variables.scss';
+
+.chatWrapper {
+
+  .userColumn, .chatColumn {
+    height: calc(75vh - 50px); // - fixed top bar height
+    min-height: 400px;
+    padding-bottom: 10px;
+  }
+
+  .userColumn {
+    :global(ul.list-group) {
+      overflow: auto;
+      height: calc(100% - 63px); // - 'X User' header height
+    }
+  }
+
+  .chatColumn {
+    position: relative;
+
+    .messages {
+      overflow: auto;
+      height: calc(100% - 63px - 60px); // - 'X User' header height - form height
+    }
+
+    .controlBtn {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
