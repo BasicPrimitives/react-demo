@@ -4,6 +4,8 @@ import {
   App,
   Home,
   LargeHierarchy,
+  VerticalLayout,
+  CrossTeamGroup,
   UseCases,
   HardCodedOrganizationalChart,
   StateBoundOrganizationalChart,
@@ -41,6 +43,8 @@ const routes = [
       { path: '/', exact: true, component: Home },
       { path: '/introduction', component: Home },
       { path: '/largehierarchy', component: LargeHierarchy },
+      { path: '/verticallayout', component: VerticalLayout },
+      { path: '/crossteamgroup', component: CrossTeamGroup },
       {
         path: '/usecases',
         component: UseCases,

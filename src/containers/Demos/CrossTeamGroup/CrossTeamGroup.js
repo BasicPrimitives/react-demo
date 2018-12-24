@@ -41,7 +41,7 @@ import {
   setConfigOption,
   setTemplateOption,
   UserActionType
-} from 'redux/modules/demos/largeorganizationalchart';
+} from 'redux/modules/demos/crossteamgroup';
 
 @provideHooks({
   fetch: async ({ store: { dispatch, getState } }) => {
@@ -53,9 +53,9 @@ import {
 })
 @connect(
   state => ({
-    config: state.largeorganizationalchart.config,
-    userAction: state.largeorganizationalchart.userAction,
-    itemsHash: state.largeorganizationalchart.itemsHash
+    config: state.crossteamgroup.config,
+    userAction: state.crossteamgroup.userAction,
+    itemsHash: state.crossteamgroup.itemsHash
   }),
   dispatch => bindActionCreators({
     load,
@@ -68,7 +68,7 @@ import {
     UserActionType
   }, dispatch)
 )
-class LargeHierarchy extends Component {
+class CrossTeamGroup extends Component {
   static propTypes = {
     config: Config().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -112,7 +112,7 @@ class LargeHierarchy extends Component {
   }
 
   render() {
-    const styles = require('./LargeHierarchy.scss');
+    const styles = require('./CrossTeamGroup.scss');
     const {
       config,
       load, // eslint-disable-line no-shadow
@@ -126,14 +126,14 @@ class LargeHierarchy extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Large Organizational Chart Demo" />
+        <Helmet title="Cross Functional Team" />
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
               <Navbar fluid>
                 <Navbar.Header>
                   <Navbar.Brand>
-                    Large Hierarchy Diagram
+                    Cross Functional Team
                   </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
@@ -203,16 +203,13 @@ class LargeHierarchy extends Component {
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
               <p>
-                In order to make possible navigation of large hierarchies, widget folds as many nodes as needed in order to
-                fit chart into available screen space.
+                This Organization Chart shows members of cross functional team "General Audit" and their mutual positions in organization over general view of hierarchy.
               </p>
               <p>
-                Widget shows full size cursor item and its immediate children and parents, so user can click them and navigate
-                further around current cursor item.
+                Organization Chart provides options to show or hide items between root and cross team group members.
               </p>
               <p>
-                Widget supports selected (checked marked) items collection, all of them stay in full size so user can see
-                them all the time during navigation around hierarchy.
+                Chart demonstrates rotation of chart to the left side and labels options for minimized items as well.
               </p>
             </div>
           </Col>
@@ -297,4 +294,4 @@ class LargeHierarchy extends Component {
   }
 }
 
-export default LargeHierarchy;
+export default CrossTeamGroup;

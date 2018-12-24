@@ -7,10 +7,14 @@ import { push } from 'react-router-redux';
 import { renderRoutes } from 'react-router-config';
 import { provideHooks } from 'redial';
 import { LinkContainer } from 'react-router-bootstrap';
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
-import Alert from 'react-bootstrap/lib/Alert';
+import {
+  Navbar,
+  NavDropdown,
+  Nav,
+  NavItem,
+  MenuItem,
+  Alert
+} from 'react-bootstrap';
 import Helmet from 'react-helmet';
 import qs from 'qs';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout as logoutAction } from 'redux/modules/auth';
@@ -117,9 +121,17 @@ class App extends Component {
               <LinkContainer to="/introduction">
                 <NavItem>Introduction</NavItem>
               </LinkContainer>
-              <LinkContainer to="/largehierarchy">
-                <NavItem>Demos</NavItem>
-              </LinkContainer>
+              <NavDropdown eventKey={0} title="Demos" id="basic-nav-dropdown">
+                <LinkContainer to="/largehierarchy">
+                  <MenuItem eventKey={1}>Large Hierarchy</MenuItem>
+                </LinkContainer>
+                <LinkContainer to="/verticallayout">
+                  <MenuItem eventKey={2}>Vertical Layout</MenuItem>
+                </LinkContainer>
+                <LinkContainer to="/crossteamgroup">
+                  <MenuItem eventKey={3}>Cross Functional Team</MenuItem>
+                </LinkContainer>
+              </NavDropdown>
               <LinkContainer to="/usecases/hardcodedorganizationalchart">
                 <NavItem>Use Cases</NavItem>
               </LinkContainer>

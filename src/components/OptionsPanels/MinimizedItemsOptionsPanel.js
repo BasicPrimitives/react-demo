@@ -20,7 +20,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
       <div>
         <h4>Minimized Item (Dot, Marker)</h4>
         <p>
-          These options are defined per item template. So if you need to show individual
+          Minimized item options are defined per item template. So if you need to show individual
           markers per item, you have to define template for every marker type and assign
           it to items. Template is some sort of named property bag.
         </p>

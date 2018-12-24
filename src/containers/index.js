@@ -1,6 +1,9 @@
+/* eslint-disable */
 export App from './App/App';
 export Home from './Home/Home';
 export LargeHierarchy from './Demos/LargeHierarchy/LargeHierarchy';
+export VerticalLayout from './Demos/VerticalLayout/VerticalLayout';
+export CrossTeamGroup from './Demos/CrossTeamGroup/CrossTeamGroup';
 export UseCases from './UseCases/UseCases';
 export HardCodedOrganizationalChart from './UseCases/HardCodedOrganizationalChart/HardCodedOrganizationalChart';
 export StateBoundOrganizationalChart from './UseCases/StateBoundOrganizationalChart/StateBoundOrganizationalChart';

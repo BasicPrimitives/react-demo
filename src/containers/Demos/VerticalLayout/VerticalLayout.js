@@ -41,7 +41,7 @@ import {
   setConfigOption,
   setTemplateOption,
   UserActionType
-} from 'redux/modules/demos/largeorganizationalchart';
+} from 'redux/modules/demos/verticallayoutorganizationalchart';
 
 @provideHooks({
   fetch: async ({ store: { dispatch, getState } }) => {
@@ -53,9 +53,9 @@ import {
 })
 @connect(
   state => ({
-    config: state.largeorganizationalchart.config,
-    userAction: state.largeorganizationalchart.userAction,
-    itemsHash: state.largeorganizationalchart.itemsHash
+    config: state.verticallayoutorganizationalchart.config,
+    userAction: state.verticallayoutorganizationalchart.userAction,
+    itemsHash: state.verticallayoutorganizationalchart.itemsHash
   }),
   dispatch => bindActionCreators({
     load,
@@ -68,7 +68,7 @@ import {
     UserActionType
   }, dispatch)
 )
-class LargeHierarchy extends Component {
+class VerticalLayout extends Component {
   static propTypes = {
     config: Config().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -112,7 +112,7 @@ class LargeHierarchy extends Component {
   }
 
   render() {
-    const styles = require('./LargeHierarchy.scss');
+    const styles = require('./VerticalLayout.scss');
     const {
       config,
       load, // eslint-disable-line no-shadow
@@ -126,14 +126,14 @@ class LargeHierarchy extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Large Organizational Chart Demo" />
+        <Helmet title="Vertical Layout Organizational Chart" />
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
               <Navbar fluid>
                 <Navbar.Header>
                   <Navbar.Brand>
-                    Large Hierarchy Diagram
+                    Vertical Layout Organizational Chart
                   </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
@@ -177,7 +177,7 @@ class LargeHierarchy extends Component {
                         element
                       );
                       break;
-                    case 'contactTemplate':
+                    case 'managerTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
@@ -202,17 +202,24 @@ class LargeHierarchy extends Component {
               />
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
+              <h3>Chart has following children layouts:</h3>
+              <ul>
+                <li>Horizontal</li>
+                <li>Vertical</li>
+                <li>Matrix</li>
+              </ul>
               <p>
-                In order to make possible navigation of large hierarchies, widget folds as many nodes as needed in order to
-                fit chart into available screen space.
+                They can be set per node in item properties or globally for all chart nodes in chart configuration.
+                Chart supports two distinct properties for nodes children layout having and not having grand-children.
               </p>
               <p>
-                Widget shows full size cursor item and its immediate children and parents, so user can click them and navigate
-                further around current cursor item.
-              </p>
-              <p>
-                Widget supports selected (checked marked) items collection, all of them stay in full size so user can see
-                them all the time during navigation around hierarchy.
+                In order to change children alignment relative to its parent connection line use complimentary horizontal children alignment option.
+                Usually organizational charts grow horizontally more than vertically. So keeping nodes in squared shape saves horizontal space,
+                but at the same time we want to avoid unlimted grows in number of columns of our matrix, it is important to fit children
+                matrix into width of screen, it is fine to scroll nodes vertically or horizontally, but necessaty to scroll both ways creates usability issue,
+                so chart support extra option limiting number of columns. So for example when node has 4 children they are matrxied into 2 * 2 matrix,
+                9 children are matrixed into 3 * 3 matrix, 16 into 4 * 4 and so on, but if we put limitation for number of columns for example at
+                4 then 20 children would be matrixed into 4 * 5 matrix.
               </p>
             </div>
           </Col>
@@ -297,4 +304,4 @@ class LargeHierarchy extends Component {
   }
 }
 
-export default LargeHierarchy;
+export default VerticalLayout;

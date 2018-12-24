@@ -9,7 +9,9 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
   render() {
     const styles = require('./Home.scss');
     // require the logo image both from client and server
-    const largeHierarchyImage = require('./demo_large_hierarchy.png');
+    const largeHierarchyImage = require('./carousel/demo_large_hierarchy.png');
+    const verticalLayoutImage = require('./carousel/demo_vertical_layout.png');
+    const crossTeamGroupImage = require('./carousel/demo_cross_team_group.png');
     return (
       <Grid fluid>
         <Row>
@@ -24,6 +26,24 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 <Carousel.Caption className={styles.carouselCaption}>
                   <h3>Large Organizational Chart</h3>
                   <p>Demonstrates visualization and navigation between large number of nodes in diagram.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <Link to="/verticallayout">
+                  <img src={verticalLayoutImage} width={900} height={500} alt="Vertical Layout Organizational Diagram" />
+                </Link>
+                <Carousel.Caption className={styles.carouselCaption}>
+                  <h3>Vertical Layout</h3>
+                  <p>Organizational Diagram</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <Link to="/crossteamgroup">
+                  <img src={crossTeamGroupImage} width={900} height={500} alt="Cross Functional Team" />
+                </Link>
+                <Carousel.Caption className={styles.carouselCaption}>
+                  <h3>Cross Functional Team</h3>
+                  <p>Viewing cross functional group on organizational diagram</p>
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>

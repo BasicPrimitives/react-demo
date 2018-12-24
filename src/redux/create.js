@@ -4,7 +4,6 @@ import {
 import { routerMiddleware } from 'react-router-redux';
 import { createPersistoid, persistCombineReducers, REGISTER } from 'redux-persist';
 import clientMiddleware from './middleware/clientMiddleware';
-import { enableBatching } from './middleware/batchedActions';
 
 import createReducers from './reducer';
 
@@ -60,7 +59,7 @@ export default function createStore({
   const finalCreateStore = compose(...enhancers)(_createStore);
   const reducers = createReducers();
   const noopReducers = getNoopReducers(reducers, data);
-  const store = finalCreateStore(enableBatching(combine({ ...noopReducers, ...reducers }, persistConfig)), data);
+  const store = finalCreateStore(combine({ ...noopReducers, ...reducers }, persistConfig), data);
 
   store.asyncReducers = {};
   store.inject = _reducers => inject(store, _reducers, persistConfig);

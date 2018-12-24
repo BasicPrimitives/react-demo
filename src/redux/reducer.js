@@ -1,9 +1,12 @@
+// import multireducer from 'multireducer';
 import { routerReducer } from 'react-router-redux';
 import auth from './modules/auth';
 import notifs from './modules/notifs';
 import tutorialOrgDiagram from './modules/TutorialOrgDiagram';
 import preloadOrgDiagram from './modules/PreloadOrgDiagram';
-import demoOrganizationalChart from './modules/demoorganizationalchart';
+import largeorganizationalchart from './modules/demos/largeorganizationalchart';
+import verticallayoutorganizationalchart from './modules/demos/verticallayoutorganizationalchart';
+import crossteamgroup from './modules/demos/crossteamgroup';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -13,7 +16,9 @@ export default function createReducers(asyncReducers) {
     auth,
     tutorialOrgDiagram,
     preloadOrgDiagram,
-    demoOrganizationalChart,
+    largeorganizationalchart,
+    verticallayoutorganizationalchart,
+    crossteamgroup,
     ...asyncReducers
   };
 }
