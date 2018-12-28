@@ -299,7 +299,7 @@ function params(data) {
 }
 
 export function isLoaded(globalState) {
-  return globalState.largeorganizationalchart && globalState.largeorganizationalchart.loaded;
+  return globalState.dynamicloading && globalState.dynamicloading.loaded;
 }
 
 export function load() {
