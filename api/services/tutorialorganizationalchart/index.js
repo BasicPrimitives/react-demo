@@ -1,4 +1,3 @@
-import _ from 'lodash';
 const primitives = require('basicprimitives');
 
 export default function tutorialorganizationalchartService(app) {

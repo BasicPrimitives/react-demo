@@ -1,15 +1,15 @@
 const primitives = require('basicprimitives');
 
-const LOAD = 'redux-example/verticallayoutorganizationalchart/LOAD';
-const LOAD_SUCCESS = 'redux-example/verticallayoutorganizationalchart/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/verticallayoutorganizationalchart/LOAD_FAIL';
-const SETCURSORITEM = 'redux-example/verticallayoutorganizationalchart/setCursorItem';
-const SETSELECTEDITEMS = 'redux-example/verticallayoutorganizationalchart/setSelectedItems';
-const SETCLICKEDBUTTON = 'redux-example/verticallayoutorganizationalchart/setClickedButton';
-const SETCONFIGOPTION = 'redux-example/verticallayoutorganizationalchart/setConfigOption';
-const SETTEMPLATEOPTION = 'redux-example/verticallayoutorganizationalchart/setTemplateOption';
+const LOAD = 'redux-example/dynamicloading/LOAD';
+const LOAD_SUCCESS = 'redux-example/dynamicloading/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/dynamicloading/LOAD_FAIL';
+const SETCURSORITEM = 'redux-example/dynamicloading/setCursorItem';
+const SETSELECTEDITEMS = 'redux-example/dynamicloading/setSelectedItems';
+const SETCLICKEDBUTTON = 'redux-example/dynamicloading/setClickedButton';
+const SETCONFIGOPTION = 'redux-example/dynamicloading/setConfigOption';
+const SETTEMPLATEOPTION = 'redux-example/dynamicloading/setTemplateOption';
 
-const chartName = 'verticallayoutorganizationalchart';
+const chartName = 'largeorganizationalchart';
 
 export const UserActionType = {
   None: 0,
@@ -27,8 +27,6 @@ const initialState = {
   },
   config: {
     ...(new primitives.orgdiagram.Config()),
-    cursorItem: 0,
-    items: [],
     buttons: [
       {
         name: 'delete',
@@ -51,10 +49,11 @@ const initialState = {
       {
         ...(new primitives.orgdiagram.TemplateConfig()),
         name: 'defaultTemplate',
-        minimizedItemCornerRadius: null,
-        minimizedItemSize: new primitives.common.Size(4, 4),
-        highlightPadding: new primitives.common.Thickness(2, 2, 2, 2),
-        minimizedItemShapeType: primitives.common.ShapeType.None,
+        itemSize: new primitives.common.Size(180, 90),
+        minimizedItemCornerRadius: 10,
+        minimizedItemSize: new primitives.common.Size(10, 10),
+        highlightPadding: new primitives.common.Thickness(6, 6, 6, 6),
+        minimizedItemShapeType: primitives.common.ShapeType.Circle,
         minimizedItemLineWidth: 1,
         minimizedItemLineType: primitives.common.LineType.Solid,
         minimizedItemBorderColor: null,
@@ -63,16 +62,16 @@ const initialState = {
       },
       {
         ...(new primitives.orgdiagram.TemplateConfig()),
-        name: 'managerTemplate',
+        name: 'contactTemplate',
         itemSize: new primitives.common.Size(220, 120)
       }
     ],
-    /* Layout */
+
     pageFitMode: primitives.common.PageFitMode.FitToPage,
     orientationType: primitives.common.OrientationType.Top,
     verticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    horizontalAlignment: primitives.common.HorizontalAlignmentType.Left,
-    childrenPlacementType: primitives.common.ChildrenPlacementType.Vertical,
+    horizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
+    childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
     leavesPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
     maximumColumnsInMatrix: 6,
     minimalVisibility: primitives.common.Visibility.Dot,
@@ -100,12 +99,12 @@ const initialState = {
 
     /* Intervals */
     normalLevelShift: 20,
-    dotLevelShift: 30,
+    dotLevelShift: 20,
     lineLevelShift: 10,
     normalItemsInterval: 20,
-    dotItemsInterval: 12,
-    lineItemsInterval: 5,
-    cousinsIntervalMultiplier: 0,
+    dotItemsInterval: 6,
+    lineItemsInterval: 2,
+    cousinsIntervalMultiplier: 2,
 
     /* Connectors */
     arrowsDirection: primitives.common.GroupByType.None,
@@ -121,10 +120,10 @@ const initialState = {
 
     /* Labels */
     showLabels: primitives.common.Enabled.Auto,
-    labelSize: new primitives.common.Size(10, 14),
+    labelSize: new primitives.common.Size(80, 24),
     labelOrientation: primitives.text.TextOrientationType.Horizontal,
-    labelPlacement: primitives.common.PlacementType.Bottom,
-    labelOffset: 3,
+    labelPlacement: primitives.common.PlacementType.Top,
+    labelOffset: 2,
     labelFontSize: '10px',
     labelFontFamily: 'Arial',
     labelColor: primitives.common.Colors.Black,
@@ -148,10 +147,8 @@ const initialState = {
     highlightGravityRadius: 40,
     enablePanning: true,
 
-    /* Graphics */
-    graphicsType: primitives.common.GraphicsType.SVG,
-
-    scale: 1.0
+    cursorItem: 0,
+    items: []
   },
   itemsHash: {}
 };
@@ -182,6 +179,23 @@ function getCursorItem(config, cursorItem) {
     config: {
       ...config,
       cursorItem,
+      items: config.items.map(item => {
+        if (item.id === cursorItem) {
+          return {
+            ...item,
+            templateName: 'contactTemplate',
+            showCallout: primitives.common.Enabled.True
+          };
+        }
+        if (item.templateName != null) {
+          return {
+            ...item,
+            templateName: null,
+            showCallout: primitives.common.Enabled.Auto
+          };
+        }
+        return item;
+      })
     },
   };
 }
@@ -280,20 +294,35 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
+function params(data) {
+  return Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&');
+}
+
 export function isLoaded(globalState) {
-  return globalState.verticallayoutorganizationalchart && globalState.verticallayoutorganizationalchart.loaded;
+  return globalState.largeorganizationalchart && globalState.largeorganizationalchart.loaded;
 }
 
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: ({ client }) => client.get(`/load-demoorganizationalchart?name=${chartName}`)
+    promise: ({ client }) => client.get(`/load-demoorganizationalchart?name=${chartName}&depth=3`)
   };
 }
 
 export function setCursorItem(cursorItem) {
   return {
-    type: SETCURSORITEM,
+    types: [SETCURSORITEM, LOAD_SUCCESS, LOAD_FAIL],
+    promise: ({ client }, dispatch, getState) => {
+      const { dynamicloading } = getState();
+      const { selectedItems } = dynamicloading.config;
+      const data = {
+        name: chartName,
+        cursorItem,
+        depth: 3,
+        selectedItems: JSON.stringify(selectedItems)
+      };
+      return client.get(`/load-demoorganizationalchart?${params(data)}`);
+    },
     cursorItem
   };
 }

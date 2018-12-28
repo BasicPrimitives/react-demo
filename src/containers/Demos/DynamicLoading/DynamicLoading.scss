@@ -1,0 +1,204 @@
+.appContent {
+  margin: 70px 0; // for fixed navbar
+  position: relative;
+}
+
+.placeholder {
+  width: 100%;
+  height: 350px;
+  border-width: 1px;
+  border-style: dotted;
+}
+
+
+// find best combination of screen size / control size
+@media screen and (min-height: 600px) {
+  .placeholder {
+    height: 350px;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  .placeholder {
+    height: 450px;
+  }
+}
+
+@media screen and (min-height: 800px) {
+  .placeholder {
+    height: 550px;
+  }
+}
+
+@media screen and (min-height: 900px) {
+  .placeholder {
+    height: 650px;
+  }
+}
+
+@media screen and (min-height: 1000px) {
+  .placeholder {
+    height: 750px;
+  }
+}
+
+@media screen and (min-height: 1100px) {
+  .placeholder {
+    height: 850px;
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  .placeholder {
+    height: 950px;
+  }
+}
+
+@media screen and (min-height: 1300px) {
+  .placeholder {
+    height: 1050px;
+  }
+}
+
+@media screen and (min-height: 1400px) {
+  .placeholder {
+    height: 1150px;
+  }
+}
+
+@media screen and (min-height: 1500px) {
+  .placeholder {
+    height: 1250px;
+  }
+}
+
+.default_template {
+	width: 180px;
+	height: 90px;
+
+	.background {
+		top: 2px;
+		left: 2px;
+		width: 176px;
+    height: 18px;
+    text-align: center;
+
+		.title {
+      top: 2px;
+      left: 2px;
+      width: 172px;
+      height: 14px;
+      font-size: 12px;
+      overflow: hidden;
+		}
+	}
+
+	.photo_frame {
+		top: 22px;
+		left: 2px;
+		width: 50px;
+		height: 60px;
+
+		.photo {
+		height:60px;
+		width:50px;
+		}
+	}
+
+  .email {
+		top: 22px;
+		left: 56px;
+		width: 118px;
+		height: 13px;
+		font-size: 11px;
+  }
+
+	.description {
+		top: 37px;
+		left: 56px;
+		width: 118px;
+		height: 39px;
+		font-size: 11px;
+	}
+}
+
+.contact_template {
+  width: 220px;
+  height: 120px;
+
+  .background {
+    top: 2px;
+    left: 2px;
+    width: 216px;
+    height: 20px;
+
+    .title {
+      top: 3px;
+      left: 6px;
+      width: 208px;
+      height: 18px;
+      text-align: center;
+    }
+  }
+
+  .photo_frame {
+    top: 26px;
+    left: 2px;
+    width: 50px;
+    height: 60px;
+
+    .photo {
+      height:60px;
+      width:50px;
+    }
+  }
+
+  .phone {
+    top: 26px;
+    left: 56px;
+    width: 162px;
+    height: 18px;
+    font-size: 12px;
+  }
+
+  .email {
+    top: 44px;
+    left: 56px;
+    width: 162px;
+    height: 18px;
+    font-size: 12px;
+  }
+
+  .description {
+    top: 62px;
+    left: 56px;
+    width: 162px;
+    height: 36px;
+    font-size: 12px;
+  }
+}
+
+.bp_badge {
+  position: absolute;
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+	-khtml-border-radius: 16px;
+	border-radius: 16px;
+	font-size: 14px;
+	line-height: 14px;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	font-weight: bold;
+	font-family: Arial;
+  padding: 4px;
+  margin: 0px;
+	width:24px; 
+  height:24px;
+  top: 110px;
+  left: 84px;
+  z-index: 1000;
+  background-color:green;
+  color: white;
+}
+

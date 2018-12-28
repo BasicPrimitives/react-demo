@@ -26,7 +26,7 @@ const Config = () => PropTypes.shape({
   elbowDotSize: PropTypes.number,
   emptyDiagramMessage: PropTypes.string,
   items: PropTypes.arrayOf(ItemConfig()),
-  annotations: PropTypes.arrayOf(PropTypes.oneOf([
+  annotations: PropTypes.arrayOf(PropTypes.oneOfType([
     BackgroundAnnotationConfig(),
     ConnectorAnnotationConfig(),
     HighlightPathAnnotationConfig(),

@@ -1,6 +1,61 @@
+import primitives from 'basicprimitives';
+
+function filterData(items = [], cursorItem = null, selectedItems = [], depth = 3) {
+  const tree = primitives.common.tree();
+
+  // rebuild tree
+  for (let index = 0; index < items.length; index += 1) {
+    const item = items[index];
+    tree.add(item.parent, item.id, item);
+  }
+
+  // select nodes down to given depth
+  const hash = {};
+  const selected = [...selectedItems];
+  if (cursorItem !== null) {
+    selected.push(cursorItem);
+  }
+  // add selected items and their parents to hash
+  selected.forEach(itemid => {
+    hash[itemid] = true;
+
+    tree.loopParents(this, itemid, parentid => {
+      if (hash[parentid]) {
+        return true;
+      }
+      hash[parentid] = true;
+    });
+  });
+
+  if (cursorItem != null) {
+    const parent = tree.parent(cursorItem);
+    // add cursor item siblings to hash
+    if (parent !== null) {
+      tree.loopChildren(this, parent.id, nodeid => {
+        hash[nodeid] = true;
+      });
+    }
+    // add cursor item children to hash
+    tree.loopChildren(this, cursorItem, nodeid => {
+      hash[nodeid] = true;
+    });
+  }
+
+  const result = [];
+  tree.loopLevels(this, (nodeid, node, levelid) => {
+    if (levelid >= depth && hash.hasOwnProperty(nodeid) === false) {
+      return tree.SKIP;
+    }
+    node.childrencount = tree.countChildren(nodeid);
+    result.push(node);
+  });
+
+  return result;
+}
+
 /* eslint-disable */
- const Data = function () {
-  return [
+const Data = function (cursorItem, selected, depth) {
+  const items = [
     { id: 0, parent: null, description: "Chief Executive Officer (CEO)", email: "davidalt@name.com", groupTitleColor: "#4169e1", image: "/photos/q.png", itemTitleColor: "#4169e1", phone: "352-206-7599", title: "David Dalton", label: "David Dalton" },
     { id: 1, parent: 0, description: "Co-Presidents, Platform Products & Services Division", email: "jeanwhit@name.com", groupTitleColor: "#4169e1", image: "/photos/w.png", itemTitleColor: "#4b0082", phone: "505-791-1689", title: "Jeanna White", label: "Jeanna White" },
     { id: 2, parent: 1, description: "Sr. VP, Server & Tools Division", email: "jameholt@name.com", groupTitleColor: "#4169e1", image: "/photos/e.png", itemTitleColor: "#4b0082", phone: "262-215-7998", title: "James Holt", label: "James Holt" },
@@ -705,6 +760,17 @@
     { id: 701, parent: 691, description: "GM, HR", email: "terrwith@name.com", groupTitleColor: "#4169e1", image: "/photos/m.png", itemTitleColor: "#B800E6", phone: "231-924-8671", title: "Terry Witherspoon", label: "Terry Witherspoon" },
     { id: 702, parent: 691, description: "GM, HR", email: "cyntdens@name.com", groupTitleColor: "#4169e1", image: "/photos/q.png", itemTitleColor: "#B800E6", phone: "503-419-7674", title: "Cynthia Denson", label: "Cynthia Denson" }
   ];
+
+  if(depth != null) {
+    return {
+      items: filterData(items, cursorItem, selected, depth)
+    };
+  } else {
+    return {
+      items
+    }
+  }
 }
+
 
 export default Data;

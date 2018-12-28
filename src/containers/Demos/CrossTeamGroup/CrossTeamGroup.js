@@ -104,7 +104,7 @@ class CrossTeamGroup extends Component {
       }
       case UserActionType.ChangedCursor: {
         const item = itemsHash[config.cursorItem];
-        return `Use changed cursor to item ${item.title}`;
+        return `User changed cursor to item ${item.title}`;
       }
       default:
         return 'Unknown action.';

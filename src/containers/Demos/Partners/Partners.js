@@ -41,7 +41,7 @@ import {
   setConfigOption,
   setTemplateOption,
   UserActionType
-} from 'redux/modules/demos/verticallayoutorganizationalchart';
+} from 'redux/modules/demos/partners';
 
 @provideHooks({
   fetch: async ({ store: { dispatch, getState } }) => {
@@ -53,9 +53,9 @@ import {
 })
 @connect(
   state => ({
-    config: state.verticallayoutorganizationalchart.config,
-    userAction: state.verticallayoutorganizationalchart.userAction,
-    itemsHash: state.verticallayoutorganizationalchart.itemsHash
+    config: state.partners.config,
+    userAction: state.partners.userAction,
+    itemsHash: state.partners.itemsHash
   }),
   dispatch => bindActionCreators({
     load,
@@ -68,7 +68,7 @@ import {
     UserActionType
   }, dispatch)
 )
-class VerticalLayout extends Component {
+class Partners extends Component {
   static propTypes = {
     config: Config().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -112,7 +112,7 @@ class VerticalLayout extends Component {
   }
 
   render() {
-    const styles = require('./VerticalLayout.scss');
+    const styles = require('./Partners.scss');
     const {
       config,
       load, // eslint-disable-line no-shadow
@@ -126,14 +126,14 @@ class VerticalLayout extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Vertical Layout Organizational Chart" />
+        <Helmet title="Partners &amp; Annotations" />
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
               <Navbar fluid>
                 <Navbar.Header>
                   <Navbar.Brand>
-                    Vertical Layout Organizational Chart
+                    Partners &amp; Annotations
                   </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
@@ -177,7 +177,7 @@ class VerticalLayout extends Component {
                         element
                       );
                       break;
-                    case 'managerTemplate':
+                    case 'contactTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
@@ -202,24 +202,11 @@ class VerticalLayout extends Component {
               />
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
-              <h3>Chart has following children layouts:</h3>
-              <ul>
-                <li>Horizontal</li>
-                <li>Vertical</li>
-                <li>Matrix</li>
-              </ul>
               <p>
-                They can be set per node in item properties or globally for all chart nodes in chart configuration.
-                Chart supports two distinct properties for nodes children layout having and not having grand-children.
-              </p>
-              <p>
-                In order to change children alignment relative to its parent connection line use complimentary horizontal children alignment option.
-                Usually organizational charts grow horizontally more than vertically. So keeping nodes in squared shape saves horizontal space,
-                but at the same time we want to avoid unlimted grows in number of columns of our matrix, it is important to fit children
-                matrix into width of screen, it is fine to scroll nodes vertically or horizontally, but necessaty to scroll both ways creates usability issue,
-                so chart support extra option limiting number of columns. So for example when node has 4 children they are matrxied into 2 * 2 matrix,
-                9 children are matrixed into 3 * 3 matrix, 16 into 4 * 4 and so on, but if we put limitation for number of columns for example at
-                4 then 20 children would be matrixed into 4 * 5 matrix.
+                Organizational chart provides simplified support for multiple parents, multiple managers or multiple
+                co-heads in hierarchy. Child item defined as General partner added to the same level as its parent
+                item and logically shares children. General &amp; Limited item types cannot have their own children,
+                but may have Advisers &amp; Assistants. Limited partner has no connection to parent but it shares children in hierarchy.
               </p>
             </div>
           </Col>
@@ -304,4 +291,4 @@ class VerticalLayout extends Component {
   }
 }
 
-export default VerticalLayout;
+export default Partners;

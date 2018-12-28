@@ -10,8 +10,10 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
     const styles = require('./Home.scss');
     // require the logo image both from client and server
     const largeHierarchyImage = require('./carousel/demo_large_hierarchy.png');
+    const dynamicLoadingImage = require('./carousel/demo_dynamic_loading.png');
     const verticalLayoutImage = require('./carousel/demo_vertical_layout.png');
     const crossTeamGroupImage = require('./carousel/demo_cross_team_group.png');
+    const partnersImage = require('./carousel/demo_partners.png');
     return (
       <Grid fluid>
         <Row>
@@ -26,6 +28,15 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 <Carousel.Caption className={styles.carouselCaption}>
                   <h3>Large Organizational Chart</h3>
                   <p>Demonstrates visualization and navigation between large number of nodes in diagram.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <Link to="/dynamicloading">
+                  <img src={dynamicLoadingImage} width={900} height={500} alt="Dynamic Nodes Loading" />
+                </Link>
+                <Carousel.Caption className={styles.carouselCaption}>
+                  <h3>Dynamic Nodes Loading</h3>
+                  <p>Demonstrates navigation with dynamic diagram nodes loading.</p>
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item>
@@ -44,6 +55,15 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 <Carousel.Caption className={styles.carouselCaption}>
                   <h3>Cross Functional Team</h3>
                   <p>Viewing cross functional group on organizational diagram</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <Link to="/partners">
+                  <img src={partnersImage} width={900} height={500} alt="Partners &amp; Annotations" />
+                </Link>
+                <Carousel.Caption className={styles.carouselCaption}>
+                  <h3>Partners &amp; Annotations</h3>
+                  <p>Organizational chart provides simplified support for multiple parents, multiple managers or multiple co-heads in hierarchy</p>
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>
