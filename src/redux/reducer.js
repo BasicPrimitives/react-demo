@@ -5,6 +5,8 @@ import notifs from './modules/notifs';
 import tutorialOrgDiagram from './modules/TutorialOrgDiagram';
 import preloadOrgDiagram from './modules/PreloadOrgDiagram';
 import largeorganizationalchart from './modules/demos/largeorganizationalchart';
+import partners from './modules/demos/partners';
+import dynamicloading from './modules/demos/dynamicloading';
 import verticallayoutorganizationalchart from './modules/demos/verticallayoutorganizationalchart';
 import crossteamgroup from './modules/demos/crossteamgroup';
 
@@ -16,7 +18,9 @@ export default function createReducers(asyncReducers) {
     auth,
     tutorialOrgDiagram,
     preloadOrgDiagram,
+    partners,
     largeorganizationalchart,
+    dynamicloading,
     verticallayoutorganizationalchart,
     crossteamgroup,
     ...asyncReducers

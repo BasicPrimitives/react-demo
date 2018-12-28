@@ -228,9 +228,9 @@ export default function reducer(state = initialState, action = {}) {
         loaded: true,
         ...(getSelectedItems({
           ...config,
-          items: action.result
+          ...action.result
         }, config.selectedItems)),
-        ...(getItemsHash(action.result)),
+        ...(getItemsHash(action.result.items)),
         ...(getUserAction(UserActionType.SelectedItems))
       };
     }

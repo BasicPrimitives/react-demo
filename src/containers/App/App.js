@@ -122,14 +122,21 @@ class App extends Component {
                 <NavItem>Introduction</NavItem>
               </LinkContainer>
               <NavDropdown eventKey={0} title="Demos" id="basic-nav-dropdown">
+                <Navbar.Brand>Organizational Chart</Navbar.Brand>
                 <LinkContainer to="/largehierarchy">
                   <MenuItem eventKey={1}>Large Hierarchy</MenuItem>
+                </LinkContainer>
+                <LinkContainer to="/dynamicloading">
+                  <MenuItem eventKey={1}>Dynamic Loading</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/verticallayout">
                   <MenuItem eventKey={2}>Vertical Layout</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/crossteamgroup">
                   <MenuItem eventKey={3}>Cross Functional Team</MenuItem>
+                </LinkContainer>
+                <LinkContainer to="/partners">
+                  <MenuItem eventKey={3}>Partners &amp; Annotations</MenuItem>
                 </LinkContainer>
               </NavDropdown>
               <LinkContainer to="/usecases/hardcodedorganizationalchart">

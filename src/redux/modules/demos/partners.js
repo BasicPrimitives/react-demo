@@ -1,15 +1,16 @@
+
 const primitives = require('basicprimitives');
 
-const LOAD = 'redux-example/verticallayoutorganizationalchart/LOAD';
-const LOAD_SUCCESS = 'redux-example/verticallayoutorganizationalchart/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/verticallayoutorganizationalchart/LOAD_FAIL';
-const SETCURSORITEM = 'redux-example/verticallayoutorganizationalchart/setCursorItem';
-const SETSELECTEDITEMS = 'redux-example/verticallayoutorganizationalchart/setSelectedItems';
-const SETCLICKEDBUTTON = 'redux-example/verticallayoutorganizationalchart/setClickedButton';
-const SETCONFIGOPTION = 'redux-example/verticallayoutorganizationalchart/setConfigOption';
-const SETTEMPLATEOPTION = 'redux-example/verticallayoutorganizationalchart/setTemplateOption';
+const LOAD = 'redux-example/partners/LOAD';
+const LOAD_SUCCESS = 'redux-example/partners/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/partners/LOAD_FAIL';
+const SETCURSORITEM = 'redux-example/partners/setCursorItem';
+const SETSELECTEDITEMS = 'redux-example/partners/setSelectedItems';
+const SETCLICKEDBUTTON = 'redux-example/partners/setClickedButton';
+const SETCONFIGOPTION = 'redux-example/partners/setConfigOption';
+const SETTEMPLATEOPTION = 'redux-example/partners/setTemplateOption';
 
-const chartName = 'verticallayoutorganizationalchart';
+const chartName = 'partners';
 
 export const UserActionType = {
   None: 0,
@@ -28,7 +29,6 @@ const initialState = {
   config: {
     ...(new primitives.orgdiagram.Config()),
     cursorItem: 0,
-    items: [],
     buttons: [
       {
         name: 'delete',
@@ -51,28 +51,27 @@ const initialState = {
       {
         ...(new primitives.orgdiagram.TemplateConfig()),
         name: 'defaultTemplate',
-        minimizedItemCornerRadius: null,
-        minimizedItemSize: new primitives.common.Size(4, 4),
-        highlightPadding: new primitives.common.Thickness(2, 2, 2, 2),
-        minimizedItemShapeType: primitives.common.ShapeType.None,
-        minimizedItemLineWidth: 1,
+        minimizedItemCornerRadius: 8,
+        minimizedItemSize: new primitives.common.Size(16, 16),
+        highlightPadding: new primitives.common.Thickness(6, 6, 6, 6),
+        minimizedItemShapeType: primitives.common.ShapeType.Rhombus,
+        minimizedItemLineWidth: 0,
         minimizedItemLineType: primitives.common.LineType.Solid,
         minimizedItemBorderColor: null,
         minimizedItemFillColor: null,
-        minimizedItemOpacity: 1.0
+        minimizedItemOpacity: 1
       },
       {
         ...(new primitives.orgdiagram.TemplateConfig()),
-        name: 'managerTemplate',
+        name: 'contactTemplate',
         itemSize: new primitives.common.Size(220, 120)
       }
     ],
-    /* Layout */
     pageFitMode: primitives.common.PageFitMode.FitToPage,
     orientationType: primitives.common.OrientationType.Top,
     verticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    horizontalAlignment: primitives.common.HorizontalAlignmentType.Left,
-    childrenPlacementType: primitives.common.ChildrenPlacementType.Vertical,
+    horizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
+    childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
     leavesPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
     maximumColumnsInMatrix: 6,
     minimalVisibility: primitives.common.Visibility.Dot,
@@ -99,17 +98,17 @@ const initialState = {
     groupTitleFontStyle: 'normal',
 
     /* Intervals */
-    normalLevelShift: 20,
-    dotLevelShift: 30,
-    lineLevelShift: 10,
+    normalLevelShift: 30,
+    dotLevelShift: 24,
+    lineLevelShift: 24,
     normalItemsInterval: 20,
-    dotItemsInterval: 12,
+    dotItemsInterval: 10,
     lineItemsInterval: 5,
     cousinsIntervalMultiplier: 0,
 
     /* Connectors */
     arrowsDirection: primitives.common.GroupByType.None,
-    showExtraArrows: false,
+    showExtraArrows: true,
     extraArrowsMinimumSpace: 30,
     connectorType: primitives.common.ConnectorType.Squared,
     elbowType: primitives.common.ElbowType.None,
@@ -148,10 +147,7 @@ const initialState = {
     highlightGravityRadius: 40,
     enablePanning: true,
 
-    /* Graphics */
-    graphicsType: primitives.common.GraphicsType.SVG,
-
-    scale: 1.0
+    items: []
   },
   itemsHash: {}
 };
@@ -182,6 +178,23 @@ function getCursorItem(config, cursorItem) {
     config: {
       ...config,
       cursorItem,
+      items: config.items.map(item => {
+        if (item.id === cursorItem) {
+          return {
+            ...item,
+            templateName: 'contactTemplate',
+            showCallout: primitives.common.Enabled.True
+          };
+        }
+        if (item.templateName != null) {
+          return {
+            ...item,
+            templateName: null,
+            showCallout: primitives.common.Enabled.Auto
+          };
+        }
+        return item;
+      })
     },
   };
 }
@@ -281,7 +294,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  return globalState.verticallayoutorganizationalchart && globalState.verticallayoutorganizationalchart.loaded;
+  return globalState.partners && globalState.partners.loaded;
 }
 
 export function load() {

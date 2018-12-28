@@ -73,21 +73,35 @@ class OrgDiagram extends Component {
     className: 'placeholder'
   }
 
-  static addItemPlaceholders({ templates }) {
+  static addItemPlaceholders({ config, onItemRender, onHighlightRender }) {
+    const { templates } = config;
     const styles = require('./OrgDiagram.scss');
     if (templates != null) {
       for (let index = 0; index < templates.length; index += 1) {
         const template = templates[index];
         // We use React JSX to populate nodes, so we have to provide only empty DIV element
-        template.itemTemplate = template.itemTemplate || ['div',
-          {
-            style: {
-              width: `${template.itemSize.width}px`,
-              height: `${template.itemSize.height}px`,
-            },
-            class: [styles.bpitem]
-          }
-        ];
+        if (onItemRender != null) {
+          template.itemTemplate = ['div',
+            {
+              style: {
+                width: `${template.itemSize.width}px`,
+                height: `${template.itemSize.height}px`,
+              },
+              class: [styles.bpitem]
+            }
+          ];
+        }
+        if (onHighlightRender != null) {
+          template.highlightTemplate = ['div',
+            {
+              style: {
+                width: `${template.itemSize.width + template.highlightPadding.left + template.highlightPadding.right}px`,
+                height: `${template.itemSize.height + template.highlightPadding.top + template.highlightPadding.bottom}px`,
+              },
+              class: [styles.bp_item_overflow, 'bp-corner-all', 'bp-cursor-frame']
+            }
+          ];
+        }
       }
     }
   }
@@ -156,10 +170,10 @@ class OrgDiagram extends Component {
       onCursorRender,
     } = properties;
 
-    if (onItemRender != null) {
-      // Add control templates for items in form of empty div
-      OrgDiagram.addItemPlaceholders(config);
-    }
+
+    // Add control templates for items in form of empty div
+    OrgDiagram.addItemPlaceholders(properties);
+
 
     const options = {
       ...config,

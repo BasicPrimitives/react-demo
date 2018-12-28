@@ -138,9 +138,9 @@ export default function reducer(state = initialState, action = {}) {
         loaded: true,
         ...(getCursorItem({
           ...config,
-          items: action.result
+          ...action.result
         }, config.cursorItem)),
-        ...(getItemsHash(action.result))
+        ...(getItemsHash(action.result.items))
       };
     }
 
