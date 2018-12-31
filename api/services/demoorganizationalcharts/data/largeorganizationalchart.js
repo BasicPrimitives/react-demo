@@ -43,7 +43,7 @@ function filterData(items = [], cursorItem = null, selectedItems = [], depth = 3
 
   const result = [];
   tree.loopLevels(this, (nodeid, node, levelid) => {
-    if (levelid >= depth && hash.hasOwnProperty(nodeid) === false) {
+    if (levelid >= depth && hash[nodeid] !== true) {
       return tree.SKIP;
     }
     node.childrencount = tree.countChildren(nodeid);
@@ -761,7 +761,7 @@ const Data = function (cursorItem, selected, depth) {
     { id: 702, parent: 691, description: "GM, HR", email: "cyntdens@name.com", groupTitleColor: "#4169e1", image: "/photos/q.png", itemTitleColor: "#B800E6", phone: "503-419-7674", title: "Cynthia Denson", label: "Cynthia Denson" }
   ];
 
-  if(depth != null) {
+  if (depth != null) {
     return {
       items: filterData(items, cursorItem, selected, depth)
     };

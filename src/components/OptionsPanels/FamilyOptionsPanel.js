@@ -27,7 +27,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
         />
         <p>
           Group by option defines node placement in layout close to its parents or
-          children when node is linked across multiple levels in hierarchy. See \"alignment\" data set.
+          children when node is linked across multiple levels in hierarchy. See "alignment" data set.
         </p>
         <RadioGroupOption
           caption="Neighbours Selection Modes"

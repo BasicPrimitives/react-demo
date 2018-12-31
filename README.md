@@ -2,6 +2,7 @@
 It is designed to validate effortless integration of Basic Primitives diagramming controls with popular modern web development frameworks.
 * [Project Home](https://www.basicprimitives.com)
 * [NPM](https://www.npmjs.com/package/basicprimitives) package.
+* [GITHUB](https://github.com/BasicPrimitives) repo.
 
 ## Supported Diagrams
 
@@ -90,3 +91,8 @@ yarn start
 
 A demonstration of this app can be seen at [https://rect.basicprimitives.com]https://rect.basicprimitives.com).
 
+### License
+
+Copyright (c) 2013 - 2018 Basic Primitives Inc
+* [Non-commercial - Free](http://creativecommons.org/licenses/by-nc/3.0/)
+* [Commercial and government licenses](http://www.basicprimitives.com/pdf/license.pdf)

@@ -10,8 +10,10 @@ import {
 class RadioGroupOption extends Component {
   static propTypes = {
     caption: PropTypes.string.isRequired,
-    items: PropTypes.oneOfType([PropTypes.object,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]))]).isRequired, // eslint-disable-line react/forbid-prop-types
+    items: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]))
+    ]).isRequired, // eslint-disable-line react/forbid-prop-types
     propertyName: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]).isRequired,
@@ -61,7 +63,7 @@ class RadioGroupOption extends Component {
     const properties = Array.isArray(items) ? items.reduce((result, item) => { result[item] = item; return result; }, {}) : items;
     return (
       <div>
-        <FormGroup onChange={event => onChange(this.getValue(event.target.value))}>
+        <FormGroup>
           <ControlLabel>{caption}</ControlLabel>
           {
             Object.keys(properties).map(property => (
@@ -69,7 +71,8 @@ class RadioGroupOption extends Component {
                 name={propertyName}
                 key={property.toString()}
                 value={properties[property]}
-                defaultChecked={value === properties[property]}
+                checked={value === properties[property]}
+                onChange={event => onChange(this.getValue(event.target.value))}
               >
                 {property}
               </Radio>

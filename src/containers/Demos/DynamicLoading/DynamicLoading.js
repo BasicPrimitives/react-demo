@@ -18,7 +18,7 @@ import {
 } from 'react-bootstrap';
 import {
   OrgDiagram,
-  Config,
+  OrgDiagramConfig,
   AutoLayoutOptionsPanel,
   DefaultTemplateOptionsPanel,
   GroupTitlesOptionsPanel,
@@ -70,7 +70,7 @@ import {
 )
 class DynamicLoading extends Component {
   static propTypes = {
-    config: Config().isRequired,
+    config: OrgDiagramConfig().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
       type: PropTypes.oneOf(Object.values(UserActionType)),
@@ -133,7 +133,7 @@ class DynamicLoading extends Component {
               <Navbar fluid>
                 <Navbar.Header>
                   <Navbar.Brand>
-                  Dynamic Organizational Chart Nodes Loading
+                    Dynamic Organizational Chart Nodes Loading
                   </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
