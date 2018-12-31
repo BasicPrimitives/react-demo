@@ -61,7 +61,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Background Color"
           propertyName="groupTitleColor"
           value={config.groupTitleColor}
-          valueType={PropTypes.number}
+          valueType={PropTypes.string}
           items={primitives.common.Colors}
           onChange={value => setOption('groupTitleColor', value)}
         />

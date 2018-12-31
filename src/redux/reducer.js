@@ -9,6 +9,7 @@ import partners from './modules/demos/partners';
 import dynamicloading from './modules/demos/dynamicloading';
 import verticallayoutorganizationalchart from './modules/demos/verticallayoutorganizationalchart';
 import crossteamgroup from './modules/demos/crossteamgroup';
+import familychartwithannotations from './modules/demos/familychartwithannotations';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -23,6 +24,7 @@ export default function createReducers(asyncReducers) {
     dynamicloading,
     verticallayoutorganizationalchart,
     crossteamgroup,
+    familychartwithannotations,
     ...asyncReducers
   };
 }

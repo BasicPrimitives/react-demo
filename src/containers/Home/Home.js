@@ -14,6 +14,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
     const verticalLayoutImage = require('./carousel/demo_vertical_layout.png');
     const crossTeamGroupImage = require('./carousel/demo_cross_team_group.png');
     const partnersImage = require('./carousel/demo_partners.png');
+    const familyWithAnnotationsImage = require('./carousel/demo_family_with_annotations.png');
     return (
       <Grid fluid>
         <Row>
@@ -64,6 +65,15 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                 <Carousel.Caption className={styles.carouselCaption}>
                   <h3>Partners &amp; Annotations</h3>
                   <p>Organizational chart provides simplified support for multiple parents, multiple managers or multiple co-heads in hierarchy</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <Link to="/familychartwithannotations">
+                  <img src={familyWithAnnotationsImage} width={900} height={500} alt="Family &amp; Annotations" />
+                </Link>
+                <Carousel.Caption className={styles.carouselCaption}>
+                  <h3>Family &amp; Annotations</h3>
+                  <p>Visualizes multiple inheritance diagram, dependencies diagrams and graphs.</p>
                 </Carousel.Caption>
               </Carousel.Item>
             </Carousel>

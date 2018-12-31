@@ -7,7 +7,7 @@ import {
   Glyphicon
 } from 'react-bootstrap';
 import primitives from 'basicprimitives';
-import Config from './Schemas/Config';
+import OrgDiagramConfig from './Schemas/OrgDiagramConfig';
 
 primitives.common.ButtonsTemplate = () => {
   function template() {
@@ -42,7 +42,7 @@ primitives.common.ButtonsTemplate = () => {
 
 class OrgDiagram extends Component {
   static propTypes = {
-    config: Config().isRequired, // eslint-disable-line react/no-unused-prop-types
+    config: OrgDiagramConfig().isRequired, // eslint-disable-line react/no-unused-prop-types
 
     onHighlightChanging: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
     onHighlightChanged: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
@@ -75,7 +75,7 @@ class OrgDiagram extends Component {
 
   static addItemPlaceholders({ config, onItemRender, onHighlightRender }) {
     const { templates } = config;
-    const styles = require('./OrgDiagram.scss');
+    const styles = require('./Diagrams.scss');
     if (templates != null) {
       for (let index = 0; index < templates.length; index += 1) {
         const template = templates[index];
@@ -151,7 +151,7 @@ class OrgDiagram extends Component {
   }
 
   onSizeChanged() {
-    this.diagramControl.update(primitives.orgdiagram.UpdateMode.Refresh);
+    this.diagramControl.update(primitives.common.UpdateMode.Refresh);
   }
 
   updateDiagramOptions(properties) {

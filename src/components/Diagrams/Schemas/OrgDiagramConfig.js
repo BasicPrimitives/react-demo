@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import primitives from 'basicprimitives';
-import ItemConfig from './ItemConfig';
+import ItemConfig from './OrgDiagramItemConfig';
 import TemplateConfig from './TemplateConfig';
 import ButtonConfig from './ButtonConfig';
 import BackgroundAnnotationConfig from './BackgroundAnnotationConfig';

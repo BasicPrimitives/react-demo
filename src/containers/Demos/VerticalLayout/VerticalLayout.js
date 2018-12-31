@@ -18,7 +18,7 @@ import {
 } from 'react-bootstrap';
 import {
   OrgDiagram,
-  Config,
+  OrgDiagramConfig,
   AutoLayoutOptionsPanel,
   DefaultTemplateOptionsPanel,
   GroupTitlesOptionsPanel,
@@ -70,7 +70,7 @@ import {
 )
 class VerticalLayout extends Component {
   static propTypes = {
-    config: Config().isRequired,
+    config: OrgDiagramConfig().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
       type: PropTypes.oneOf(Object.values(UserActionType)),

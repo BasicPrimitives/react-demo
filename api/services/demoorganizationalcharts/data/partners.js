@@ -1,6 +1,6 @@
 const primitives = require('basicprimitives');
 
-const Data = () => ({
+export default {
   items: [
     {
       id: 0,
@@ -335,19 +335,162 @@ const Data = () => ({
       email: 'assistant29@name.com',
       phone: '648-123-12-40'
     },
-    { id: 30, parent: 7, description: "GM, Visual Studio Language and Data Tools", email: "maryruss@name.com", groupTitleColor: "#4169e1", image: "/photos/t.png", itemTitleColor: "#4b0082", phone: "443-271-9086", title: "Mary Russ", label: "Mary Russ" },
-    { id: 31, parent: 7, description: "Managing Dir., India Development Center", email: "stanweat@name.com", groupTitleColor: "#4169e1", image: "/photos/y.png", itemTitleColor: "#4b0082", phone: "734-482-1633", title: "Stanley Weathers", label: "Stanley Weathers" },
-    { id: 32, parent: 7, description: "GM, Real Time Collaboration & Home Entertainment Products", email: "melvwhit@name.com", groupTitleColor: "#4169e1", image: "/photos/u.png", itemTitleColor: "#4b0082", phone: "785-631-8548", title: "Melvin White", label: "Melvin White" },
-    { id: 33, parent: 7, description: "VP, Enterprise Access and Security Products Division (EASP)", email: "bonnwede@name.com", groupTitleColor: "#4169e1", image: "/photos/i.png", itemTitleColor: "#4b0082", phone: "412-265-2782", title: "Bonnie Wedel", label: "Bonnie Wedel" },
-    { id: 34, parent: 7, description: "GM, Haifa R&D Center", email: "normdalt@name.com", groupTitleColor: "#4169e1", image: "/photos/o.png", itemTitleColor: "#4b0082", phone: "316-334-6273", title: "Norman Dalton", label: "Norman Dalton" },
-    { id: 35, parent: 7, description: "GM, Core File Solutions", email: "melihous@name.com", groupTitleColor: "#4169e1", image: "/photos/p.png", itemTitleColor: "#4b0082", phone: "630-887-1188", title: "Melissa Houser", label: "Melissa Houser" },
-    { id: 36, parent: 7, description: "GM, Software Server Solutions Group", email: "abbilaws@name.com", groupTitleColor: "#4169e1", image: "/photos/a.png", itemTitleColor: "#4b0082", phone: "530-322-6413", title: "Abbie Lawson", label: "Abbie Lawson" },
-    { id: 37, parent: 7, description: "GM, Connected Systems Division", email: "erneputn@name.com", groupTitleColor: "#4169e1", image: "/photos/s.png", itemTitleColor: "#4b0082", phone: "626-831-0555", title: "Ernest Putnam", label: "Ernest Putnam" },
-    { id: 38, parent: 7, description: "GM, Connected Framework", email: "robelemi@name.com", groupTitleColor: "#4169e1", image: "/photos/d.png", itemTitleColor: "#4b0082", phone: "662-787-2600", title: "Robert Lemieux", label: "Robert Lemieux" },
-    { id: 39, parent: 7, description: "GM, XML Enterprise Services", email: "arthwood@name.com", groupTitleColor: "#4169e1", image: "/photos/f.png", itemTitleColor: "#4b0082", phone: "630-677-5265", title: "Arthur Wood", label: "Arthur Wood" },
-    { id: 40, parent: 7, description: "GM, BizTalk Server", email: "jonahitt@name.com", groupTitleColor: "#4169e1", image: "/photos/g.png", itemTitleColor: "#4b0082", phone: "443-591-0659", title: "Jonathan Hitt", label: "Jonathan Hitt" },
-    { id: 41, parent: 7, description: "CFO, Platforms Products & Services", email: "celecrum@name.com", groupTitleColor: "#4169e1", image: "/photos/h.png", itemTitleColor: "#4b0082", phone: "419-578-6479", title: "Celestina Crum", label: "Celestina Crum" },
-    { id: 42, parent: 7, description: "GM, Pricing", email: "cindturn@name.com", groupTitleColor: "#4169e1", image: "/photos/j.png", itemTitleColor: "#4b0082", phone: "530-934-4295", title: "Cindy Turner", label: "Cindy Turner" }
+    {
+      id: 30,
+      parent: 7,
+      description: 'GM, Visual Studio Language and Data Tools',
+      email: 'maryruss@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/t.png',
+      itemTitleColor: '#4b0082',
+      phone: '443-271-9086',
+      title: 'Mary Russ',
+      label: 'Mary Russ'
+    },
+    {
+      id: 31,
+      parent: 7,
+      description: 'Managing Dir., India Development Center',
+      email: 'stanweat@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/y.png',
+      itemTitleColor: '#4b0082',
+      phone: '734-482-1633',
+      title: 'Stanley Weathers',
+      label: 'Stanley Weathers'
+    },
+    {
+      id: 32,
+      parent: 7,
+      description: 'GM, Real Time Collaboration & Home Entertainment Products',
+      email: 'melvwhit@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/u.png',
+      itemTitleColor: '#4b0082',
+      phone: '785-631-8548',
+      title: 'Melvin White',
+      label: 'Melvin White'
+    },
+    {
+      id: 33,
+      parent: 7,
+      description: 'VP, Enterprise Access and Security Products Division (EASP)',
+      email: 'bonnwede@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/i.png',
+      itemTitleColor: '#4b0082',
+      phone: '412-265-2782',
+      title: 'Bonnie Wedel',
+      label: 'Bonnie Wedel'
+    },
+    {
+      id: 34,
+      parent: 7,
+      description: 'GM, Haifa R&D Center',
+      email: 'normdalt@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/o.png',
+      itemTitleColor: '#4b0082',
+      phone: '316-334-6273',
+      title: 'Norman Dalton',
+      label: 'Norman Dalton'
+    },
+    {
+      id: 35,
+      parent: 7,
+      description: 'GM, Core File Solutions',
+      email: 'melihous@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/p.png',
+      itemTitleColor: '#4b0082',
+      phone: '630-887-1188',
+      title: 'Melissa Houser',
+      label: 'Melissa Houser'
+    },
+    {
+      id: 36,
+      parent: 7,
+      description: 'GM, Software Server Solutions Group',
+      email: 'abbilaws@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/a.png',
+      itemTitleColor: '#4b0082',
+      phone: '530-322-6413',
+      title: 'Abbie Lawson',
+      label: 'Abbie Lawson'
+    },
+    {
+      id: 37,
+      parent: 7,
+      description: 'GM, Connected Systems Division',
+      email: 'erneputn@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/s.png',
+      itemTitleColor: '#4b0082',
+      phone: '626-831-0555',
+      title: 'Ernest Putnam',
+      label: 'Ernest Putnam'
+    },
+    {
+      id: 38,
+      parent: 7,
+      description: 'GM, Connected Framework',
+      email: 'robelemi@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/d.png',
+      itemTitleColor: '#4b0082',
+      phone: '662-787-2600',
+      title: 'Robert Lemieux',
+      label: 'Robert Lemieux'
+    },
+    {
+      id: 39,
+      parent: 7,
+      description: 'GM, XML Enterprise Services',
+      email: 'arthwood@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/f.png',
+      itemTitleColor: '#4b0082',
+      phone: '630-677-5265',
+      title: 'Arthur Wood',
+      label: 'Arthur Wood'
+    },
+    {
+      id: 40,
+      parent: 7,
+      description: 'GM, BizTalk Server',
+      email: 'jonahitt@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/g.png',
+      itemTitleColor: '#4b0082',
+      phone: '443-591-0659',
+      title: 'Jonathan Hitt',
+      label: 'Jonathan Hitt'
+    },
+    {
+      id: 41,
+      parent: 7,
+      description: 'CFO, Platforms Products & Services',
+      email: 'celecrum@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/h.png',
+      itemTitleColor: '#4b0082',
+      phone: '419-578-6479',
+      title: 'Celestina Crum',
+      label: 'Celestina Crum'
+    },
+    {
+      id: 42,
+      parent: 7,
+      description: 'GM, Pricing',
+      email: 'cindturn@name.com',
+      groupTitleColor: '#4169e1',
+      image: '/photos/j.png',
+      itemTitleColor: '#4b0082',
+      phone: '530-934-4295',
+      title: 'Cindy Turner',
+      label: 'Cindy Turner'
+    }
   ],
   annotations: [
     {
@@ -411,6 +554,4 @@ const Data = () => ({
       lineType: primitives.common.LineType.Solid
     }
   ]
-});
-
-export default Data;
+};

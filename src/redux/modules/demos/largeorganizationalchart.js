@@ -74,7 +74,7 @@ const initialState = {
   itemsHash: {}
 };
 
-function getItemsHash(items) {
+function getItemsHash(items = []) {
   const newItemsHash = {};
   items.reduce((agg, item) => {
     agg[item.id] = item;

@@ -9,8 +9,10 @@ export ReduxAsyncConnect from './ReduxAsyncConnect/ReduxAsyncConnect';
 // Basic Primitives helper Components
 export Version from './Version/Version';
 export TutorialOrgDiagram from './TutorialOrgDiagram/TutorialOrgDiagram';
-export OrgDiagram from './OrgDiagram/OrgDiagram';
-export Config from './OrgDiagram/Schemas/Config';
+export OrgDiagram from './Diagrams/OrgDiagram';
+export FamDiagram from './Diagrams/FamDiagram';
+export OrgDiagramConfig from './Diagrams/Schemas/OrgDiagramConfig';
+export FamDiagramConfig from './Diagrams/Schemas/FamDiagramConfig';
 
 // Options Editors
 export RadioGroupOption from './OptionsPanels/Components/RadioGroupOption';

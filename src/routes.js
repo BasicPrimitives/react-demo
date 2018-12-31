@@ -7,6 +7,7 @@ import {
   DynamicLoading,
   VerticalLayout,
   CrossTeamGroup,
+  FamilyChartWithAnnotations,
   Partners,
   UseCases,
   HardCodedOrganizationalChart,
@@ -48,6 +49,7 @@ const routes = [
       { path: '/dynamicloading', component: DynamicLoading },
       { path: '/verticallayout', component: VerticalLayout },
       { path: '/crossteamgroup', component: CrossTeamGroup },
+      { path: '/familychartwithannotations', component: FamilyChartWithAnnotations },
       { path: '/partners', component: Partners },
       {
         path: '/usecases',

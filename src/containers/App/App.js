@@ -122,7 +122,7 @@ class App extends Component {
                 <NavItem>Introduction</NavItem>
               </LinkContainer>
               <NavDropdown eventKey={0} title="Demos" id="basic-nav-dropdown">
-                <Navbar.Brand>Organizational Chart</Navbar.Brand>
+                <Navbar.Brand>&nbsp;<nobr>Organizational Chart</nobr></Navbar.Brand>
                 <LinkContainer to="/largehierarchy">
                   <MenuItem eventKey={1}>Large Hierarchy</MenuItem>
                 </LinkContainer>
@@ -136,7 +136,11 @@ class App extends Component {
                   <MenuItem eventKey={3}>Cross Functional Team</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/partners">
-                  <MenuItem eventKey={3}>Partners &amp; Annotations</MenuItem>
+                  <MenuItem eventKey={4}>Partners &amp; Annotations</MenuItem>
+                </LinkContainer>
+                <Navbar.Brand>&nbsp;<nobr>Family Chart</nobr></Navbar.Brand>
+                <LinkContainer to="/familychartwithannotations">
+                  <MenuItem eventKey={5}>Family Chart &amp; Annotations</MenuItem>
                 </LinkContainer>
               </NavDropdown>
               <LinkContainer to="/usecases/hardcodedorganizationalchart">
