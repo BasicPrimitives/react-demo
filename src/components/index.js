@@ -20,6 +20,7 @@ export ComboBoxOption from './OptionsPanels/Components/ComboBoxOption';
 export CheckboxOption from './OptionsPanels/Components/CheckboxOption';
 export SizeOption from './OptionsPanels/Components/SizeOption';
 export ThicknessOption from './OptionsPanels/Components/ThicknessOption';
+export TextOption from './OptionsPanels/Components/TextOption';
 
 // Options Panels
 export AutoLayoutOptionsPanel from './OptionsPanels/AutoLayoutOptionsPanel';
@@ -34,3 +35,15 @@ export InteractivityOptionsPanel from './OptionsPanels/InteractivityOptionsPanel
 export RenderingOptionsPanel from './OptionsPanels/RenderingOptionsPanel';
 export AnnotationOptionsPanel from './OptionsPanels/AnnotationOptionsPanel';
 export FamilyOptionsPanel from './OptionsPanels/FamilyOptionsPanel';
+export ItemOptionsPanel from './OptionsPanels/ItemOptionsPanel';
+export ItemLayoutOptionsPanel from './OptionsPanels/ItemLayoutOptionsPanel';
+export ItemsOrderPanel from './OptionsPanels/ItemsOrderPanel';
+
+// Final Form Field Adapters
+export TextFieldAdapter from './OptionsPanels/FieldAdapters/TextFieldAdapter';
+export ComboBoxFieldAdapter from './OptionsPanels/FieldAdapters/ComboBoxFieldAdapter';
+export RadioGroupFieldAdapter from './OptionsPanels/FieldAdapters/RadioGroupFieldAdapter';
+
+// Dialogs
+export SelectCursorItemDialog from './OptionsPanels/SelectCursorItemDialog';
+export AddNewItemDialog from './OptionsPanels/AddNewItemDialog';

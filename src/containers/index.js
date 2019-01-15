@@ -3,6 +3,7 @@ export App from './App/App';
 export Home from './Home/Home';
 export LargeHierarchy from './Demos/LargeHierarchy/LargeHierarchy';
 export DynamicLoading from './Demos/DynamicLoading/DynamicLoading';
+export OrgEditor from './Demos/OrgEditor/OrgEditor';
 export VerticalLayout from './Demos/VerticalLayout/VerticalLayout';
 export CrossTeamGroup from './Demos/CrossTeamGroup/CrossTeamGroup';
 export FamilyChartWithAnnotations from './Demos/FamilyChartWithAnnotations/FamilyChartWithAnnotations';

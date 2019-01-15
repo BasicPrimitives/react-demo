@@ -1,5 +1,6 @@
 import LargeOrganizationalChart from './data/largeorganizationalchart.js';
 import Partners from './data/partners.js';
+import MatrixLayout from './data/matrixlayout.js';
 import VerticalLayoutOrganizationalChart from './data/verticallayoutorganizationalchart.js';
 
 export default function service(app) {
@@ -11,8 +12,6 @@ export default function service(app) {
       case 'largeorganizationalchart': {
         const { cursorItem, selectedItems, depth } = req.query;
         const selected = selectedItems != null ? JSON.parse(selectedItems) : [];
-        // selecting all data from data source and filtering it in business layer is not optimal,
-        // you have to design your data base properly so you don't need to fetch all nodes to filter them
         result = LargeOrganizationalChart(cursorItem, selected, depth);
         break;
       }
@@ -21,6 +20,9 @@ export default function service(app) {
         break;
       case 'partners':
         result = Partners;
+        break;
+      case 'matrixlayout':
+        result = MatrixLayout;
         break;
       default:
         break;

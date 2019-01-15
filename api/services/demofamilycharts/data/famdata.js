@@ -31,7 +31,12 @@ export default {
       labelSize: { width: 120, height: 50 }, // new primitives.common.Size(120, 50)
       shapeType: primitives.common.ShapeType.CrossOut,
       borderColor: primitives.common.Colors.Red,
-      offset: { left: 6, top: 3, right: 6, bottom: 6 },
+      offset: {
+        left: 6,
+        top: 3,
+        right: 6,
+        bottom: 6
+      },
       lineWidth: 2,
       selectItems: false,
       lineType: primitives.common.LineType.Dashed
@@ -43,7 +48,12 @@ export default {
       labelSize: new primitives.common.Size(100, 50), // new primitives.common.Size(100, 50)
       shapeType: primitives.common.ShapeType.Oval,
       borderColor: primitives.common.Colors.Red,
-      offset: { left: 14, top: 14, right: 14, bottom: 14 },
+      offset: {
+        left: 14,
+        top: 14,
+        right: 14,
+        bottom: 14
+      },
       lineWidth: 2,
       selectItems: true,
       lineType: primitives.common.LineType.Dashed,
