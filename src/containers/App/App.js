@@ -8,12 +8,7 @@ import { renderRoutes } from 'react-router-config';
 import { provideHooks } from 'redial';
 import { LinkContainer } from 'react-router-bootstrap';
 import {
-  Navbar,
-  NavDropdown,
-  Nav,
-  NavItem,
-  MenuItem,
-  Alert
+  Navbar, NavDropdown, Nav, NavItem, MenuItem, Alert
 } from 'react-bootstrap';
 import Helmet from 'react-helmet';
 import qs from 'qs';
@@ -110,7 +105,9 @@ class App extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <div className={styles.appBrand}>
-                <span><a href="https://www.basicprimitives.com/">{config.app.title}</a></span>
+                <span>
+                  <a href="https://www.basicprimitives.com/">{config.app.title}</a>
+                </span>
               </div>
             </Navbar.Brand>
             <Navbar.Toggle />
@@ -122,25 +119,34 @@ class App extends Component {
                 <NavItem>Introduction</NavItem>
               </LinkContainer>
               <NavDropdown eventKey={0} title="Demos" id="basic-nav-dropdown">
-                <Navbar.Brand>&nbsp;<nobr>Organizational Chart</nobr></Navbar.Brand>
+                <Navbar.Brand>
+                  &nbsp;
+                  <nobr>Organizational Chart</nobr>
+                </Navbar.Brand>
                 <LinkContainer to="/largehierarchy">
                   <MenuItem eventKey={1}>Large Hierarchy</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/dynamicloading">
-                  <MenuItem eventKey={1}>Dynamic Loading</MenuItem>
+                  <MenuItem eventKey={2}>Dynamic Loading</MenuItem>
+                </LinkContainer>
+                <LinkContainer to="/orgeditor">
+                  <MenuItem eventKey={3}>Editor &amp; Matrix Layout</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/verticallayout">
-                  <MenuItem eventKey={2}>Vertical Layout</MenuItem>
+                  <MenuItem eventKey={4}>Vertical Layout</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/crossteamgroup">
-                  <MenuItem eventKey={3}>Cross Functional Team</MenuItem>
+                  <MenuItem eventKey={5}>Cross Functional Team</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/partners">
-                  <MenuItem eventKey={4}>Partners &amp; Annotations</MenuItem>
+                  <MenuItem eventKey={6}>Partners &amp; Annotations</MenuItem>
                 </LinkContainer>
-                <Navbar.Brand>&nbsp;<nobr>Family Chart</nobr></Navbar.Brand>
+                <Navbar.Brand>
+                  &nbsp;
+                  <nobr>Family Chart</nobr>
+                </Navbar.Brand>
                 <LinkContainer to="/familychartwithannotations">
-                  <MenuItem eventKey={5}>Family Chart &amp; Annotations</MenuItem>
+                  <MenuItem eventKey={7}>Family Chart &amp; Annotations</MenuItem>
                 </LinkContainer>
               </NavDropdown>
               <LinkContainer to="/usecases/hardcodedorganizationalchart">
@@ -175,11 +181,7 @@ class App extends Component {
               </p>
             )}
             <Nav navbar pullRight>
-              <NavItem
-                target="_blank"
-                title="View on Github"
-                href="https://github.com/BasicPrimitives/react-demo"
-              >
+              <NavItem target="_blank" title="View on Github" href="https://github.com/BasicPrimitives/react-demo">
                 <i className="fa fa-github" />
               </NavItem>
             </Nav>
@@ -187,22 +189,14 @@ class App extends Component {
         </Navbar>
         {notifs.global && (
           <div className="container">
-            <Notifs
-              className={styles.notifs}
-              namespace="global"
-              NotifComponent={props => <Alert bsStyle={props.kind}>{props.message}</Alert>}
-            />
+            <Notifs className={styles.notifs} namespace="global" NotifComponent={props => <Alert bsStyle={props.kind}>{props.message}</Alert>} />
           </div>
         )}
         {renderRoutes(route.routes)}
 
         <div className="well text-center">
           Have questions? Ask for help{' '}
-          <a
-            href="https://github.com/BasicPrimitives/react-demo/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://github.com/BasicPrimitives/react-demo/issues" target="_blank" rel="noopener noreferrer">
             on Github
           </a>
           .
