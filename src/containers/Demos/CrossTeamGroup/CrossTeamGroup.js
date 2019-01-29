@@ -53,6 +53,7 @@ import {
 })
 @connect(
   state => ({
+    centerOnCursor: state.crossteamgroup.centerOnCursor,
     config: state.crossteamgroup.config,
     userAction: state.crossteamgroup.userAction,
     itemsHash: state.crossteamgroup.itemsHash
@@ -70,6 +71,7 @@ import {
 )
 class CrossTeamGroup extends Component {
   static propTypes = {
+    centerOnCursor: PropTypes.bool.isRequired,
     config: OrgDiagramConfig().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
@@ -114,6 +116,7 @@ class CrossTeamGroup extends Component {
   render() {
     const styles = require('./CrossTeamGroup.scss');
     const {
+      centerOnCursor,
       config,
       load, // eslint-disable-line no-shadow
       setCursorItem, // eslint-disable-line no-shadow
@@ -145,6 +148,7 @@ class CrossTeamGroup extends Component {
               </Navbar>
               <OrgDiagram
                 className={styles.placeholder}
+                centerOnCursor={centerOnCursor}
                 config={config}
                 onCursorChanging={data => {
                   const { context } = data;

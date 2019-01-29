@@ -42,6 +42,8 @@ primitives.common.ButtonsTemplate = () => {
 
 class FamDiagram extends Component {
   static propTypes = {
+    updateMode: PropTypes.oneOf(Object.values(primitives.common.UpdateMode)), // eslint-disable-line react/no-unused-prop-types
+    centerOnCursor: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     config: FamDiagramConfig().isRequired, // eslint-disable-line react/no-unused-prop-types
 
     onHighlightChanging: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
@@ -59,6 +61,8 @@ class FamDiagram extends Component {
   };
 
   static defaultProps = {
+    updateMode: primitives.common.UpdateMode.Refresh,
+    centerOnCursor: true,
     onHighlightChanging: null,
     onHighlightChanged: null,
     onCursorChanging: null,
@@ -157,6 +161,8 @@ class FamDiagram extends Component {
   updateDiagramOptions(properties) {
     const self = this;
     const {
+      updateMode,
+      centerOnCursor,
       config,
       onHighlightChanging,
       onHighlightChanged,
@@ -234,7 +240,7 @@ class FamDiagram extends Component {
     }
 
     this.diagramControl.setOptions(options);
-    this.diagramControl.update(primitives.common.UpdateMode.Refresh);
+    this.diagramControl.update(updateMode, centerOnCursor);
   }
 
   render() {

@@ -5,6 +5,7 @@ import notifs from './modules/notifs';
 import tutorialOrgDiagram from './modules/TutorialOrgDiagram';
 import preloadOrgDiagram from './modules/PreloadOrgDiagram';
 import largeorganizationalchart from './modules/demos/largeorganizationalchart';
+import highlightannotations from './modules/demos/highlightannotations';
 import partners from './modules/demos/partners';
 import dynamicloading from './modules/demos/dynamicloading';
 import verticallayoutorganizationalchart from './modules/demos/verticallayoutorganizationalchart';
@@ -24,6 +25,7 @@ export default function createReducers(asyncReducers) {
     largeorganizationalchart,
     dynamicloading,
     verticallayoutorganizationalchart,
+    highlightannotations,
     crossteamgroup,
     familychartwithannotations,
     orgeditor,

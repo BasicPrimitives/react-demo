@@ -13,7 +13,7 @@ export default {
       color: primitives.common.Colors.Red,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed
+      lineType: primitives.common.LineType.Dashed,
     }
   ],
   items: [

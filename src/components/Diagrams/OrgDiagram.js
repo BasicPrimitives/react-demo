@@ -42,8 +42,9 @@ primitives.common.ButtonsTemplate = () => {
 
 class OrgDiagram extends Component {
   static propTypes = {
+    updateMode: PropTypes.oneOf(Object.values(primitives.common.UpdateMode)), // eslint-disable-line react/no-unused-prop-types
+    centerOnCursor: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     config: OrgDiagramConfig().isRequired, // eslint-disable-line react/no-unused-prop-types
-
     onHighlightChanging: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
     onHighlightChanged: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
     onCursorChanging: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
@@ -59,6 +60,8 @@ class OrgDiagram extends Component {
   };
 
   static defaultProps = {
+    updateMode: primitives.common.UpdateMode.Refresh,
+    centerOnCursor: true,
     onHighlightChanging: null,
     onHighlightChanged: null,
     onCursorChanging: null,
@@ -157,6 +160,8 @@ class OrgDiagram extends Component {
   updateDiagramOptions(properties) {
     const self = this;
     const {
+      updateMode,
+      centerOnCursor,
       config,
       onHighlightChanging,
       onHighlightChanged,
@@ -234,7 +239,7 @@ class OrgDiagram extends Component {
     }
 
     this.diagramControl.setOptions(options);
-    this.diagramControl.update(primitives.orgdiagram.UpdateMode.Refresh);
+    this.diagramControl.update(updateMode, centerOnCursor);
   }
 
   render() {

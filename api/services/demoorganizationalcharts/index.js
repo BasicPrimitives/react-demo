@@ -1,5 +1,6 @@
 import LargeOrganizationalChart from './data/largeorganizationalchart.js';
 import Partners from './data/partners.js';
+import SmallDataset from './data/smalldataset.js';
 import MatrixLayout from './data/matrixlayout.js';
 import VerticalLayoutOrganizationalChart from './data/verticallayoutorganizationalchart.js';
 
@@ -17,6 +18,9 @@ export default function service(app) {
       }
       case 'verticallayoutorganizationalchart':
         result = VerticalLayoutOrganizationalChart;
+        break;
+      case 'smalldataset':
+        result = SmallDataset;
         break;
       case 'partners':
         result = Partners;

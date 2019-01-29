@@ -25,6 +25,7 @@ const initialState = {
     buttonName: null,
     itemId: null
   },
+  centerOnCursor: true,
   config: {
     ...(new primitives.orgdiagram.Config()),
     buttons: [
@@ -176,6 +177,7 @@ function getUserAction(type, buttonName, itemId) {
 
 function getCursorItem(config, cursorItem) {
   return {
+    centerOnCursor: true,
     config: {
       ...config,
       cursorItem,
@@ -237,6 +239,7 @@ export default function reducer(state = initialState, action = {}) {
       newConfig[action.name] = action.value;
       return {
         ...restState,
+        centerOnCursor: false,
         config: newConfig
       };
     }
@@ -246,6 +249,7 @@ export default function reducer(state = initialState, action = {}) {
       const { templates, ...restConfig } = config;
       return {
         ...restState,
+        centerOnCursor: false,
         config: {
           ...restConfig,
           templates: templates.map(
@@ -275,6 +279,7 @@ export default function reducer(state = initialState, action = {}) {
       const { config, ...restState } = state;
       return {
         ...restState,
+        centerOnCursor: false,
         config: {
           ...config,
           selectedItems: action.selectedItems
@@ -286,6 +291,7 @@ export default function reducer(state = initialState, action = {}) {
     case SETCLICKEDBUTTON: {
       return {
         ...state,
+        centerOnCursor: false,
         ...(getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId))
       };
     }
