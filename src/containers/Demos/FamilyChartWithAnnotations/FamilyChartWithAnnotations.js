@@ -39,8 +39,10 @@ import {
   load,
   isLoaded,
   setCursorItem,
+  setHighlightAnnotations,
   setSelectedItems,
-  setClickedButton,
+  setAnnotationSource,
+  setAnnotationDestination,
   setConfigOption,
   setTemplateOption,
   setAnnotationOption,
@@ -62,6 +64,7 @@ const primitives = require('basicprimitives');
   state => ({
     datasetName: state.familychartwithannotations.datasetName,
     datasetNames: state.familychartwithannotations.datasetNames,
+    centerOnCursor: state.familychartwithannotations.centerOnCursor,
     config: state.familychartwithannotations.config,
     userAction: state.familychartwithannotations.userAction,
     itemsHash: state.familychartwithannotations.itemsHash
@@ -70,8 +73,10 @@ const primitives = require('basicprimitives');
     load,
     isLoaded,
     setCursorItem,
+    setHighlightAnnotations,
     setSelectedItems,
-    setClickedButton,
+    setAnnotationSource,
+    setAnnotationDestination,
     setConfigOption,
     setTemplateOption,
     setAnnotationOption,
@@ -82,6 +87,7 @@ class FamilyChartWithAnnotations extends Component {
   static propTypes = {
     datasetName: PropTypes.string.isRequired,
     datasetNames: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    centerOnCursor: PropTypes.bool.isRequired,
     config: FamDiagramConfig().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
@@ -91,8 +97,10 @@ class FamilyChartWithAnnotations extends Component {
     }).isRequired,
     load: PropTypes.func.isRequired,
     setCursorItem: PropTypes.func.isRequired,
+    setHighlightAnnotations: PropTypes.func.isRequired,
     setSelectedItems: PropTypes.func.isRequired,
-    setClickedButton: PropTypes.func.isRequired,
+    setAnnotationSource: PropTypes.func.isRequired,
+    setAnnotationDestination: PropTypes.func.isRequired,
     setConfigOption: PropTypes.func.isRequired,
     setTemplateOption: PropTypes.func.isRequired,
     setAnnotationOption: PropTypes.func.isRequired
@@ -129,11 +137,14 @@ class FamilyChartWithAnnotations extends Component {
     const {
       datasetName,
       datasetNames,
+      centerOnCursor,
       config,
       load, // eslint-disable-line no-shadow
       setCursorItem, // eslint-disable-line no-shadow
+      setHighlightAnnotations, // eslint-disable-line no-shadow
       setSelectedItems, // eslint-disable-line no-shadow
-      setClickedButton, // eslint-disable-line no-shadow
+      setAnnotationSource, // eslint-disable-line no-shadow
+      setAnnotationDestination, // eslint-disable-line no-shadow
       setConfigOption, // eslint-disable-line no-shadow
       setTemplateOption, // eslint-disable-line no-shadow
       setAnnotationOption // eslint-disable-line no-shadow
@@ -162,6 +173,7 @@ class FamilyChartWithAnnotations extends Component {
               </Navbar>
               <FamDiagram
                 className={styles.placeholder}
+                centerOnCursor={centerOnCursor}
                 config={config}
                 onCursorChanging={data => {
                   const { context } = data;
@@ -170,8 +182,21 @@ class FamilyChartWithAnnotations extends Component {
                   // it will be updated via subsequent state change and rendering event
                   data.cancel = true;
                 }}
+                onHighlightChanging={data => {
+                  const { context, parentItems, childrenItems } = data;
+                  setHighlightAnnotations(context.id, parentItems, childrenItems);
+                }}
                 onButtonClick={({ name, context }) => {
-                  setClickedButton(name, context.id);
+                  switch (name) {
+                    case 'out':
+                      setAnnotationSource(context.id);
+                      break;
+                    case 'in':
+                      setAnnotationDestination(context.id);
+                      break;
+                    default:
+                      break;
+                  }
                 }}
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);

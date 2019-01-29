@@ -138,6 +138,9 @@ class App extends Component {
                 <LinkContainer to="/crossteamgroup">
                   <MenuItem eventKey={5}>Cross Functional Team</MenuItem>
                 </LinkContainer>
+                <LinkContainer to="/highlightannotations">
+                  <MenuItem eventKey={5}>Highlight &amp; Connector Annotations</MenuItem>
+                </LinkContainer>
                 <LinkContainer to="/partners">
                   <MenuItem eventKey={6}>Partners &amp; Annotations</MenuItem>
                 </LinkContainer>

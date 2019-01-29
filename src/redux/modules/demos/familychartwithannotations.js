@@ -4,11 +4,12 @@ const LOAD = 'redux-example/familychartwithannotations/LOAD';
 const LOAD_SUCCESS = 'redux-example/familychartwithannotations/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/familychartwithannotations/LOAD_FAIL';
 const SETCURSORITEM = 'redux-example/familychartwithannotations/setCursorItem';
+const SETHIGHLIGHTANNOTATIONS = 'redux-example/familychartwithannotations/setHighlightAnnotations';
 const SETSELECTEDITEMS = 'redux-example/familychartwithannotations/setSelectedItems';
-const SETCLICKEDBUTTON = 'redux-example/familychartwithannotations/setClickedButton';
 const SETCONFIGOPTION = 'redux-example/familychartwithannotations/setConfigOption';
 const SETTEMPLATEOPTION = 'redux-example/familychartwithannotations/setTemplateOption';
 const SETANNOTATIONOPTION = 'redux-example/familychartwithannotations/setAnnotationOption';
+const SETANNOTATIONITEM = 'redux-example/familychartwithannotations/setAnnotationItem';
 
 export const UserActionType = {
   None: 0,
@@ -26,23 +27,19 @@ const initialState = {
     buttonName: null,
     itemId: null
   },
+  centerOnCursor: true,
   config: {
     ...(new primitives.famdiagram.Config()),
     buttons: [
       {
-        name: 'delete',
-        icon: 'remove',
-        tooltip: 'Delete'
+        name: 'in',
+        icon: 'log-in',
+        tooltip: 'Set as annotation distination'
       },
       {
-        name: 'properties',
-        icon: 'cog',
-        tooltip: 'Info'
-      },
-      {
-        name: 'add',
-        icon: 'user',
-        tooltip: 'Add'
+        name: 'out',
+        icon: 'log-out',
+        tooltip: 'Set as annotation source'
       }
     ],
     defaultTemplateName: 'defaultTemplate',
@@ -186,6 +183,7 @@ function getUserAction(type, buttonName, itemId) {
 
 function getCursorItem(config, cursorItem) {
   return {
+    centerOnCursor: true,
     config: {
       ...config,
       cursorItem,
@@ -265,6 +263,7 @@ export default function reducer(state = initialState, action = {}) {
       newConfig[action.name] = action.value;
       return {
         ...restState,
+        centerOnCursor: false,
         config: newConfig
       };
     }
@@ -274,6 +273,7 @@ export default function reducer(state = initialState, action = {}) {
       const { templates, ...restConfig } = config;
       return {
         ...restState,
+        centerOnCursor: false,
         config: {
           ...restConfig,
           templates: templates.map(
@@ -295,6 +295,7 @@ export default function reducer(state = initialState, action = {}) {
       const { annotations, ...restConfig } = config;
       return {
         ...restState,
+        centerOnCursor: false,
         config: {
           ...restConfig,
           annotations: annotations.map(
@@ -320,10 +321,45 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
+    case SETHIGHLIGHTANNOTATIONS: {
+      const { config, ...restState } = state;
+      const { annotations } = config;
+      const { id, parentItems, childrenItems } = action;
+
+      let newAnnotations = annotations.reduce((agg, annotation) => {
+        if (annotation.annotationType !== primitives.common.AnnotationType.HighlightPath) {
+          agg.push(annotation);
+        }
+        return agg;
+      }, []);
+
+      if (id !== null) {
+        const items = [...parentItems, ...childrenItems];
+        newAnnotations = newAnnotations.concat(items.map(item => new primitives.famdiagram.HighlightPathAnnotationConfig({
+          items: [id, item.id],
+          color: primitives.common.Colors.Navy,
+          opacity: 0.2,
+          lineWidth: 16,
+          zOrderType: primitives.common.ZOrderType.Background,
+          showArrows: false
+        })));
+      }
+      return {
+        ...restState,
+        centerOnCursor: false,
+        config: {
+          ...config,
+          highlightItem: id,
+          annotations: newAnnotations
+        }
+      };
+    }
+
     case SETSELECTEDITEMS: {
       const { config, ...restState } = state;
       return {
         ...restState,
+        centerOnCursor: false,
         config: {
           ...config,
           selectedItems: action.selectedItems
@@ -332,10 +368,25 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
-    case SETCLICKEDBUTTON: {
+    case SETANNOTATIONITEM: {
+      const { config, ...restState } = state;
+      const { annotations, ...restConfig } = config;
       return {
-        ...state,
-        ...(getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId))
+        ...restState,
+        centerOnCursor: false,
+        config: {
+          ...restConfig,
+          annotations: annotations.map(
+            annotation => {
+              if (annotation.annotationType === primitives.common.AnnotationType.Connector) {
+                const newAnnotation = { ...annotation };
+                newAnnotation[action.option] = action.itemId;
+                return newAnnotation;
+              }
+              return annotation;
+            }
+          )
+        }
       };
     }
     default:
@@ -375,10 +426,18 @@ export function setSelectedItems(selectedItems = []) {
   };
 }
 
-export function setClickedButton(buttonName, itemId) {
+export function setAnnotationSource(itemId) {
   return {
-    type: SETCLICKEDBUTTON,
-    buttonName,
+    type: SETANNOTATIONITEM,
+    option: 'fromItem',
+    itemId
+  };
+}
+
+export function setAnnotationDestination(itemId) {
+  return {
+    type: SETANNOTATIONITEM,
+    option: 'toItem',
     itemId
   };
 }
@@ -406,5 +465,14 @@ export function setAnnotationOption(annotationType, name, value) {
     name,
     value,
     annotationType
+  };
+}
+
+export function setHighlightAnnotations(id, parentItems, childrenItems) {
+  return {
+    type: SETHIGHLIGHTANNOTATIONS,
+    id,
+    parentItems,
+    childrenItems
   };
 }

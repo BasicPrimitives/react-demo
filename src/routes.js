@@ -8,6 +8,7 @@ import {
   OrgEditor,
   VerticalLayout,
   CrossTeamGroup,
+  HighlightAnnotations,
   FamilyChartWithAnnotations,
   Partners,
   UseCases,
@@ -51,6 +52,7 @@ const routes = [
       { path: '/orgeditor', component: OrgEditor },
       { path: '/verticallayout', component: VerticalLayout },
       { path: '/crossteamgroup', component: CrossTeamGroup },
+      { path: '/highlightannotations', component: HighlightAnnotations },
       { path: '/familychartwithannotations', component: FamilyChartWithAnnotations },
       { path: '/partners', component: Partners },
       {

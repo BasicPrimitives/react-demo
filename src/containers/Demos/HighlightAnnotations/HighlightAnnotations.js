@@ -1,14 +1,21 @@
-/* eslint-disable no-shadow */
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, Modal, Form, FormGroup
+  Grid,
+  Col,
+  Row,
+  Tab,
+  NavItem,
+  Nav,
+  Well,
+  NavDropdown,
+  MenuItem,
+  Button,
+  Navbar
 } from 'react-bootstrap';
-import Select from 'react-select';
 import {
   OrgDiagram,
   OrgDiagramConfig,
@@ -22,11 +29,6 @@ import {
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
   RenderingOptionsPanel,
-  ItemOptionsPanel,
-  ItemLayoutOptionsPanel,
-  ItemsOrderPanel,
-  SelectCursorItemDialog,
-  AddNewItemDialog
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -34,23 +36,13 @@ import {
   load,
   isLoaded,
   setCursorItem,
+  setHighlightItem,
   setSelectedItems,
   setClickedButton,
   setConfigOption,
-  setItemOption,
-  setItemParent,
-  setItemsOrder,
   setTemplateOption,
-  UserActionType,
-  deleteCursorItem,
-  addChildItem,
-  showConfirmDeleteDialog,
-  hideConfirmDeleteDialog,
-  showNewItemDialog,
-  hideNewItemDialog,
-  showReparentDialog,
-  hideReparentDialog
-} from 'redux/modules/demos/orgeditor';
+  UserActionType
+} from 'redux/modules/demos/highlightannotations';
 
 @provideHooks({
   fetch: async ({ store: { dispatch, getState } }) => {
@@ -62,49 +54,28 @@ import {
 })
 @connect(
   state => ({
-    centerOnCursor: state.orgeditor.centerOnCursor,
-    config: state.orgeditor.config,
-    userAction: state.orgeditor.userAction,
-    indexes: state.orgeditor.indexes,
-    children: state.orgeditor.children,
-    isConfirmDeleteDialogVisible: state.orgeditor.isConfirmDeleteDialogVisible,
-    isNewItemDialogVisible: state.orgeditor.isNewItemDialogVisible,
-    isReparentDialogVisible: state.orgeditor.isReparentDialogVisible
+    centerOnCursor: state.highlightannotations.centerOnCursor,
+    config: state.highlightannotations.config,
+    userAction: state.highlightannotations.userAction,
+    itemsHash: state.highlightannotations.itemsHash
   }),
-  dispatch => bindActionCreators(
-    {
-      load,
-      isLoaded,
-      setCursorItem,
-      setSelectedItems,
-      setClickedButton,
-      setConfigOption,
-      setItemOption,
-      setItemParent,
-      setItemsOrder,
-      setTemplateOption,
-      UserActionType,
-      deleteCursorItem,
-      addChildItem,
-      showConfirmDeleteDialog,
-      hideConfirmDeleteDialog,
-      showNewItemDialog,
-      hideNewItemDialog,
-      showReparentDialog,
-      hideReparentDialog
-    },
-    dispatch
-  )
+  dispatch => bindActionCreators({
+    load,
+    isLoaded,
+    setCursorItem,
+    setHighlightItem,
+    setSelectedItems,
+    setClickedButton,
+    setConfigOption,
+    setTemplateOption,
+    UserActionType
+  }, dispatch)
 )
-class OrgEditor extends Component {
+class HighlightAnnotations extends Component {
   static propTypes = {
-    isConfirmDeleteDialogVisible: PropTypes.bool.isRequired,
-    isNewItemDialogVisible: PropTypes.bool.isRequired,
-    isReparentDialogVisible: PropTypes.bool.isRequired,
     centerOnCursor: PropTypes.bool.isRequired,
     config: OrgDiagramConfig().isRequired,
-    indexes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    children: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
       type: PropTypes.oneOf(Object.values(UserActionType)),
       buttonName: PropTypes.string,
@@ -112,40 +83,33 @@ class OrgEditor extends Component {
     }).isRequired,
     load: PropTypes.func.isRequired,
     setCursorItem: PropTypes.func.isRequired,
+    setHighlightItem: PropTypes.func.isRequired,
     setSelectedItems: PropTypes.func.isRequired,
     setClickedButton: PropTypes.func.isRequired,
     setConfigOption: PropTypes.func.isRequired,
-    setItemOption: PropTypes.func.isRequired,
-    setItemParent: PropTypes.func.isRequired,
-    setItemsOrder: PropTypes.func.isRequired,
-    setTemplateOption: PropTypes.func.isRequired,
-    deleteCursorItem: PropTypes.func.isRequired,
-    addChildItem: PropTypes.func.isRequired,
-    showConfirmDeleteDialog: PropTypes.func.isRequired,
-    hideConfirmDeleteDialog: PropTypes.func.isRequired,
-    showNewItemDialog: PropTypes.func.isRequired,
-    hideNewItemDialog: PropTypes.func.isRequired,
-    showReparentDialog: PropTypes.func.isRequired,
-    hideReparentDialog: PropTypes.func.isRequired
+    setTemplateOption: PropTypes.func.isRequired
   };
 
   getActionMessage() {
-    const { config, indexes, userAction } = this.props;
-    const { cursorItem, selectedItems, items } = config;
+    const {
+      config,
+      itemsHash,
+      userAction,
+    } = this.props;
     switch (userAction.type) {
       case UserActionType.None:
         return 'No user actions yet.';
       case UserActionType.ContextButtonClick: {
-        const { title } = items[indexes[userAction.itemId]];
-        return `Use clicked context button ${userAction.buttonName} for item ${title}`;
+        const item = itemsHash[userAction.itemId];
+        return `Use clicked context button ${userAction.buttonName} for item ${item.title}`;
       }
       case UserActionType.SelectedItems: {
-        const selectedNames = selectedItems.map(itemid => items[indexes[itemid]].title);
+        const selectedNames = config.selectedItems.map(itemid => itemsHash[itemid].title);
         return `User selected following items ${selectedNames.join(', ')}`;
       }
       case UserActionType.ChangedCursor: {
-        const { title } = items[indexes[cursorItem]];
-        return `User changed cursor to item ${title}`;
+        const item = itemsHash[config.cursorItem];
+        return `User changed cursor to item ${item.title}`;
       }
       default:
         return 'Unknown action.';
@@ -153,67 +117,36 @@ class OrgEditor extends Component {
   }
 
   render() {
-    const styles = require('./OrgEditor.scss');
+    const styles = require('./HighlightAnnotations.scss');
     const {
-      isConfirmDeleteDialogVisible,
-      isNewItemDialogVisible,
-      isReparentDialogVisible,
       centerOnCursor,
       config,
-      indexes,
-      children,
-      load,
-      setCursorItem,
-      setSelectedItems,
-      setClickedButton,
-      setConfigOption,
-      setItemOption,
-      setItemParent,
-      setItemsOrder,
-      setTemplateOption,
-      deleteCursorItem,
-      addChildItem,
-      showConfirmDeleteDialog,
-      hideConfirmDeleteDialog,
-      showNewItemDialog,
-      hideNewItemDialog,
-      showReparentDialog,
-      hideReparentDialog
+      load, // eslint-disable-line no-shadow
+      setCursorItem, // eslint-disable-line no-shadow
+      setHighlightItem, // eslint-disable-line no-shadow
+      setSelectedItems, // eslint-disable-line no-shadow
+      setClickedButton, // eslint-disable-line no-shadow
+      setConfigOption, // eslint-disable-line no-shadow
+      setTemplateOption // eslint-disable-line no-shadow
     } = this.props;
-    const { items, cursorItem, templates } = config;
-
-    const templateConfig = templates.find(template => template.name === 'defaultTemplate');
-    const itemConfig = (cursorItem && items[indexes[cursorItem]]) || null;
-    const cursorChildren = (cursorItem && children[cursorItem] && children[cursorItem].map(id => items[indexes[id]])) || null;
+    const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Organizational Chart Editor Demo" />
+        <Helmet title="Highlight &amp; Connector Annotations" />
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>Organizational Chart Editor Demo</Navbar.Brand>
+                  <Navbar.Brand>
+                    Highlight &amp; Connector Annotations
+                  </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Navbar.Form pullRight>
-                    <Form inline>
-                      <FormGroup>
-                        <Select
-                          className={styles.cursor_search}
-                          value={cursorItem}
-                          getOptionValue={({ id }) => id}
-                          getOptionLabel={({ title }) => title}
-                          onChange={({ id }) => setCursorItem(id)}
-                          options={items}
-                        />
-                      </FormGroup>{' '}
-                      <FormGroup>
-                        <Button onClick={load}>Reset</Button>
-                      </FormGroup>
-                    </Form>
+                    <Button onClick={load}>Reset</Button>
                   </Navbar.Form>
                 </Navbar.Collapse>
               </Navbar>
@@ -228,33 +161,29 @@ class OrgEditor extends Component {
                   // it will be updated via subsequent state change and rendering event
                   data.cancel = true;
                 }}
+                onHighlightChanging={data => {
+                  const { context } = data;
+                  setHighlightItem(context.id);
+                  // Set data.cancel to true in order to suppress set cursor item in control
+                  // it will be updated via subsequent state change and rendering event
+                  data.cancel = true;
+                }}
                 onButtonClick={({ name, context }) => {
-                  switch (name) {
-                    case 'add':
-                      showNewItemDialog();
-                      break;
-                    case 'delete':
-                      showConfirmDeleteDialog();
-                      break;
-                    case 'move':
-                      showReparentDialog();
-                      break;
-                    default:
-                      setClickedButton(name, context.id);
-                      break;
-                  }
+                  setClickedButton(name, context.id);
                 }}
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);
                 }}
-                onItemRender={({ context, element, templateName }) => {
-                  // eslint-disable-line no-unused-vars
+                onItemRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
                   switch (templateName) {
                     case 'defaultTemplate':
+                    case 'defaultConnectedItemTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
+                            <div className={`bp-item bp-title ${styles.title}`}>
+                              {context.title}
+                            </div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -268,7 +197,9 @@ class OrgEditor extends Component {
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
+                            <div className={`bp-item bp-title ${styles.title}`}>
+                              {context.title}
+                            </div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -287,33 +218,10 @@ class OrgEditor extends Component {
               />
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
-              {itemConfig && (
-                <React.Fragment>
-                  <Col sm={12} md={4}>
-                    <ItemOptionsPanel config={itemConfig} setOption={setItemOption} />
-                  </Col>
-                  <Col sm={12} md={4}>
-                    <ItemLayoutOptionsPanel config={itemConfig} setOption={setItemOption} />
-                  </Col>
-                  {cursorChildren && (
-                    <Col sm={12} md={4}>
-                      <ItemsOrderPanel items={cursorChildren} setItemsOrder={items => setItemsOrder(items.map(item => item.id))} />
-                    </Col>
-                  )}
-                </React.Fragment>
-              )}
-              <Modal show={isConfirmDeleteDialogVisible} bsSize="small" aria-labelledby="contained-modal-title-lg">
-                <Modal.Header closeButton>
-                  <Modal.Title id="contained-modal-title-lg">Delete</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>{indexes[cursorItem] !== undefined && <h4>Confirm deletion of {items[indexes[cursorItem]].title} &amp; its children.</h4>}</Modal.Body>
-                <Modal.Footer>
-                  <Button onClick={deleteCursorItem}>Delete</Button>
-                  <Button onClick={hideConfirmDeleteDialog}>Cancel</Button>
-                </Modal.Footer>
-              </Modal>
-              <AddNewItemDialog isVisible={isNewItemDialogVisible} onSubmit={addChildItem} onClose={hideNewItemDialog} />
-              <SelectCursorItemDialog isVisible={isReparentDialogVisible} cursorItem={cursorItem} onCursorItem={setItemParent} onClose={hideReparentDialog} config={config} />
+              <p>
+                When chart annotations being updated on highlighted item change we disable center on cursor layout and full size drawing of annotated items,
+                so chart layout is not not flickering when we move mouse from item to item.
+              </p>
             </div>
           </Col>
           <Col smPull={8} sm={4} mdPull={9} md={3}>
@@ -365,9 +273,7 @@ class OrgEditor extends Component {
                     <Tab.Pane eventKey="minimizeditems">
                       <MinimizedItemsOptionsPanel
                         config={templateConfig}
-                        setOption={(name, value) => {
-                          setTemplateOption('defaultTemplate', name, value);
-                        }}
+                        setOption={(name, value) => { setTemplateOption('defaultTemplate', name, value); }}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="intervals">
@@ -399,4 +305,4 @@ class OrgEditor extends Component {
   }
 }
 
-export default OrgEditor;
+export default HighlightAnnotations;

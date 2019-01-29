@@ -53,6 +53,7 @@ import {
 })
 @connect(
   state => ({
+    centerOnCursor: state.dynamicloading.centerOnCursor,
     config: state.dynamicloading.config,
     userAction: state.dynamicloading.userAction,
     itemsHash: state.dynamicloading.itemsHash
@@ -70,6 +71,7 @@ import {
 )
 class DynamicLoading extends Component {
   static propTypes = {
+    centerOnCursor: PropTypes.bool.isRequired,
     config: OrgDiagramConfig().isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
@@ -114,6 +116,7 @@ class DynamicLoading extends Component {
   render() {
     const styles = require('./DynamicLoading.scss');
     const {
+      centerOnCursor,
       config,
       load, // eslint-disable-line no-shadow
       setCursorItem, // eslint-disable-line no-shadow
@@ -145,6 +148,7 @@ class DynamicLoading extends Component {
               </Navbar>
               <OrgDiagram
                 className={styles.placeholder}
+                centerOnCursor={centerOnCursor}
                 config={config}
                 onCursorChanging={data => {
                   const { context } = data;

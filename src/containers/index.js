@@ -6,6 +6,7 @@ export DynamicLoading from './Demos/DynamicLoading/DynamicLoading';
 export OrgEditor from './Demos/OrgEditor/OrgEditor';
 export VerticalLayout from './Demos/VerticalLayout/VerticalLayout';
 export CrossTeamGroup from './Demos/CrossTeamGroup/CrossTeamGroup';
+export HighlightAnnotations from './Demos/HighlightAnnotations/HighlightAnnotations';
 export FamilyChartWithAnnotations from './Demos/FamilyChartWithAnnotations/FamilyChartWithAnnotations';
 export Partners from './Demos/Partners/Partners';
 export UseCases from './UseCases/UseCases';

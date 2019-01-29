@@ -1,16 +1,16 @@
-
 const primitives = require('basicprimitives');
 
-const LOAD = 'redux-example/partners/LOAD';
-const LOAD_SUCCESS = 'redux-example/partners/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/partners/LOAD_FAIL';
-const SETCURSORITEM = 'redux-example/partners/setCursorItem';
-const SETSELECTEDITEMS = 'redux-example/partners/setSelectedItems';
-const SETCLICKEDBUTTON = 'redux-example/partners/setClickedButton';
-const SETCONFIGOPTION = 'redux-example/partners/setConfigOption';
-const SETTEMPLATEOPTION = 'redux-example/partners/setTemplateOption';
+const LOAD = 'redux-example/highlightannotations/LOAD';
+const LOAD_SUCCESS = 'redux-example/highlightannotations/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/highlightannotations/LOAD_FAIL';
+const SETCURSORITEM = 'redux-example/highlightannotations/setCursorItem';
+const SETHIGHLIGHTITEM = 'redux-example/highlightannotations/setHighlightItem';
+const SETSELECTEDITEMS = 'redux-example/highlightannotations/setSelectedItems';
+const SETCLICKEDBUTTON = 'redux-example/highlightannotations/setClickedButton';
+const SETCONFIGOPTION = 'redux-example/highlightannotations/setConfigOption';
+const SETTEMPLATEOPTION = 'redux-example/highlightannotations/setTemplateOption';
 
-const chartName = 'partners';
+const chartName = 'smalldataset';
 
 export const UserActionType = {
   None: 0,
@@ -29,7 +29,10 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...(new primitives.orgdiagram.Config()),
+    pageFitMode: primitives.common.PageFitMode.FitToPage,
     cursorItem: 0,
+    hasSelectorCheckbox: primitives.common.Enabled.True,
+    hasButtons: primitives.common.Enabled.Auto,
     buttons: [
       {
         name: 'delete',
@@ -53,14 +56,27 @@ const initialState = {
         ...(new primitives.orgdiagram.TemplateConfig()),
         name: 'defaultTemplate',
         minimizedItemCornerRadius: 8,
-        minimizedItemSize: new primitives.common.Size(16, 16),
+        minimizedItemSize: new primitives.common.Size(6, 6),
         highlightPadding: new primitives.common.Thickness(6, 6, 6, 6),
-        minimizedItemShapeType: primitives.common.ShapeType.Rhombus,
+        minimizedItemShapeType: primitives.common.ShapeType.None,
         minimizedItemLineWidth: 0,
         minimizedItemLineType: primitives.common.LineType.Solid,
         minimizedItemBorderColor: null,
         minimizedItemFillColor: null,
-        minimizedItemOpacity: 1
+        minimizedItemOpacity: 1.0
+      },
+      {
+        ...(new primitives.orgdiagram.TemplateConfig()),
+        name: 'defaultConnectedItemTemplate',
+        minimizedItemCornerRadius: 12,
+        minimizedItemSize: new primitives.common.Size(12, 12),
+        highlightPadding: new primitives.common.Thickness(6, 6, 6, 6),
+        minimizedItemShapeType: primitives.common.ShapeType.None,
+        minimizedItemLineWidth: 0,
+        minimizedItemLineType: primitives.common.LineType.Solid,
+        minimizedItemBorderColor: null,
+        minimizedItemFillColor: null,
+        minimizedItemOpacity: 1.0
       },
       {
         ...(new primitives.orgdiagram.TemplateConfig()),
@@ -68,90 +84,47 @@ const initialState = {
         itemSize: new primitives.common.Size(220, 120)
       }
     ],
-    pageFitMode: primitives.common.PageFitMode.FitToPage,
-    orientationType: primitives.common.OrientationType.Top,
-    verticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    horizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
-    childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
-    leavesPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
-    maximumColumnsInMatrix: 6,
-    minimalVisibility: primitives.common.Visibility.Dot,
-    selectionPathMode: primitives.common.SelectionPathMode.FullStack,
-
-    hasButtons: primitives.common.Enabled.Auto,
-    hasSelectorCheckbox: primitives.common.Enabled.True,
-    selectCheckBoxLabel: 'Selected',
-    itemTitleFirstFontColor: primitives.common.Colors.White,
-    itemTitleSecondFontColor: primitives.common.Colors.White,
-    buttonsPanelSize: 28,
-    groupTitlePanelSize: 24,
-    checkBoxPanelSize: 24,
-
-    /* group title options */
-    groupTitlePlacementType: primitives.common.AdviserPlacementType.Left,
-    groupTitleOrientation: primitives.text.TextOrientationType.RotateRight,
-    groupTitleVerticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    groupTitleHorizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
-    groupTitleFontSize: '12px',
-    groupTitleFontFamily: 'Arial',
-    groupTitleColor: primitives.common.Colors.RoyalBlue,
-    groupTitleFontWeight: 'normal',
-    groupTitleFontStyle: 'normal',
-
-    /* Intervals */
     normalLevelShift: 30,
-    dotLevelShift: 24,
-    lineLevelShift: 24,
-    normalItemsInterval: 20,
-    dotItemsInterval: 10,
-    lineItemsInterval: 5,
+    dotLevelShift: 20,
+    lineLevelShift: 10,
+    normalItemsInterval: 10,
+    dotItemsInterval: 4,
+    lineItemsInterval: 4,
     cousinsIntervalMultiplier: 0,
-
-    /* Connectors */
-    arrowsDirection: primitives.common.GroupByType.None,
-    showExtraArrows: true,
-    extraArrowsMinimumSpace: 30,
-    connectorType: primitives.common.ConnectorType.Squared,
-    elbowType: primitives.common.ElbowType.None,
-    bevelSize: 4,
-    elbowDotSize: 4,
-    linesType: primitives.common.LineType.Solid,
-    linesColor: primitives.common.Colors.Silver,
-    linesWidth: 1,
-
-    /* Labels */
-    showLabels: primitives.common.Enabled.Auto,
-    labelSize: new primitives.common.Size(10, 14),
-    labelOrientation: primitives.text.TextOrientationType.Horizontal,
-    labelPlacement: primitives.common.PlacementType.Bottom,
-    labelOffset: 3,
-    labelFontSize: '10px',
-    labelFontFamily: 'Arial',
-    labelColor: primitives.common.Colors.Black,
-    labelFontWeight: 'normal',
-    labelFontStyle: 'normal',
-
-    /* Callout */
-    calloutMaximumVisibility: primitives.common.Visibility.Dot,
-    showCallout: true,
-    calloutPlacementOffset: 100,
-    calloutfillColor: '#000000',
-    calloutBorderColor: null,
-    calloutOffset: 4,
-    calloutCornerRadius: 4,
-    calloutPointerWidth: '10%',
-    calloutLineWidth: 1,
-    calloutOpacity: 0.2,
-
-    /* Interactivity */
-    navigationMode: primitives.common.NavigationMode.Default,
-    highlightGravityRadius: 40,
-    enablePanning: true,
-
     items: []
   },
+  annotations: [],
+  annotationsHash: [],
   itemsHash: {}
 };
+
+function getAnnotationsHash(links = []) {
+  const annotationsHash = {};
+  const annotations = links.map(({
+    fromItem, toItem, lineType, color, connectorShapeType
+  }, index) => {
+    const annotation = new primitives.orgdiagram.ConnectorAnnotationConfig(fromItem, toItem);
+    annotation.id = index;
+    annotation.selectItems = true;
+    annotation.lineType = lineType;
+    annotation.color = color;
+    annotation.connectorPlacementType = primitives.common.ConnectorPlacementType.Straight;
+    annotation.connectorShapeType = connectorShapeType;
+
+    annotationsHash[fromItem] = annotationsHash[fromItem] || [];
+    annotationsHash[toItem] = annotationsHash[toItem] || [];
+    annotationsHash[fromItem].push(index);
+    annotationsHash[toItem].push(index);
+
+    return annotation;
+  });
+
+  return {
+    annotations,
+    annotationsHash
+  };
+}
+
 
 function getItemsHash(items = []) {
   const newItemsHash = {};
@@ -174,24 +147,50 @@ function getUserAction(type, buttonName, itemId) {
   };
 }
 
-function getCursorItem(config, cursorItem) {
+function getCursorItem(config, centerOnCursor, cursorItem, highlightItem, annotations, annotationsHash) {
+  const cursorAnnoattions = new Set(annotationsHash[cursorItem] || []);
+  const highlightAnnoattions = new Set(annotationsHash[highlightItem] || []);
+
   return {
-    centerOnCursor: true,
+    centerOnCursor,
     config: {
       ...config,
       cursorItem,
+      highlightItem,
+      annotations: annotations.reduce((agg, annotation) => {
+        if (cursorAnnoattions.has(annotation.id)) {
+          agg.push({
+            ...annotation,
+            selectItems: true
+          });
+        } else if (highlightAnnoattions.has(annotation.id)) {
+          agg.push({
+            ...annotation,
+            selectItems: false
+          });
+        }
+        return agg;
+      }, []),
       items: config.items.map(item => {
-        if (item.id === cursorItem) {
+        const { id, templateName, ...restItem } = item;
+        if (id === cursorItem) {
           return {
             ...item,
             templateName: 'contactTemplate',
             showCallout: primitives.common.Enabled.True
           };
         }
-        if (item.templateName != null) {
+        if (annotationsHash[id] != null) {
           return {
             ...item,
-            templateName: null,
+            templateName: 'defaultConnectedItemTemplate',
+            showCallout: primitives.common.Enabled.Auto
+          };
+        }
+        if (item.templateName != null) {
+          return {
+            id,
+            ...restItem,
             showCallout: primitives.common.Enabled.Auto
           };
         }
@@ -212,15 +211,20 @@ export default function reducer(state = initialState, action = {}) {
 
     case LOAD_SUCCESS: {
       const { config, ...restState } = state;
+      const { cursorItem, highlightItem } = config;
+      const { items, links } = action.result;
+      const { annotations, annotationsHash } = getAnnotationsHash(links);
       return {
         ...restState,
         loading: false,
         loaded: true,
         ...(getCursorItem({
           ...config,
-          ...action.result
-        }, config.cursorItem)),
-        ...(getItemsHash(action.result.items))
+          items,
+        }, true, cursorItem, highlightItem, annotations, annotationsHash)),
+        ...(getItemsHash(items)),
+        annotations,
+        annotationsHash
       };
     }
 
@@ -266,11 +270,23 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case SETCURSORITEM: {
-      const { config, ...restState } = state;
+      const { config, annotations, annotationsHash } = state;
+      const { cursorItem } = action;
+      const { highlightItem } = config;
       return {
-        ...restState,
-        ...(getCursorItem(config, action.cursorItem)),
+        ...state,
+        ...(getCursorItem(config, true, cursorItem, highlightItem, annotations, annotationsHash)),
         ...(getUserAction(UserActionType.ChangedCursor))
+      };
+    }
+
+    case SETHIGHLIGHTITEM: {
+      const { config, annotations, annotationsHash } = state;
+      const { cursorItem } = config;
+      const { highlightItem } = action;
+      return {
+        ...state,
+        ...(getCursorItem(config, false, cursorItem, highlightItem, annotations, annotationsHash))
       };
     }
 
@@ -300,7 +316,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  return globalState.partners && globalState.partners.loaded;
+  return globalState.highlightannotations && globalState.highlightannotations.loaded;
 }
 
 export function load() {
@@ -314,6 +330,13 @@ export function setCursorItem(cursorItem) {
   return {
     type: SETCURSORITEM,
     cursorItem
+  };
+}
+
+export function setHighlightItem(highlightItem) {
+  return {
+    type: SETHIGHLIGHTITEM,
+    highlightItem
   };
 }
 

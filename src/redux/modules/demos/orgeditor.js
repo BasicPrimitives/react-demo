@@ -43,6 +43,7 @@ const initialState = {
   isConfirmDeleteDialogVisible: false,
   isNewItemDialogVisible: false,
   isReparentDialogVisible: false,
+  centerOnCursor: true,
   config: {
     ...new primitives.orgdiagram.Config(),
     cursorItem: 0,
@@ -247,6 +248,7 @@ export default function reducer(state = initialState, action = {}) {
         ...restState,
         loading: false,
         loaded: true,
+        centerOnCursor: true,
         config: {
           ...config,
           ...action.result
@@ -268,6 +270,7 @@ export default function reducer(state = initialState, action = {}) {
       newConfig[action.name] = action.value;
       return {
         ...restState,
+        centerOnCursor: false,
         config: newConfig
       };
     }
@@ -277,6 +280,7 @@ export default function reducer(state = initialState, action = {}) {
       const { templates, ...restConfig } = config;
       return {
         ...restState,
+        centerOnCursor: false,
         config: {
           ...restConfig,
           templates: templates.map(template => {
@@ -296,6 +300,7 @@ export default function reducer(state = initialState, action = {}) {
       const { items, cursorItem } = config;
       return {
         ...state,
+        centerOnCursor: false,
         config: {
           ...config,
           items: items.map(item => {
@@ -316,6 +321,7 @@ export default function reducer(state = initialState, action = {}) {
       return getIndexes({
         ...state,
         isReparentDialogVisible: false,
+        centerOnCursor: true,
         config: {
           ...config,
           items: items.map(item => {
@@ -347,6 +353,7 @@ export default function reducer(state = initialState, action = {}) {
       }, []);
       return getIndexes({
         ...state,
+        centerOnCursor: false,
         config: {
           ...config,
           items: [...newItems, ...children]
@@ -358,6 +365,7 @@ export default function reducer(state = initialState, action = {}) {
       const { config, ...restState } = state;
       return {
         ...restState,
+        centerOnCursor: true,
         config: {
           ...config,
           cursorItem: action.cursorItem
@@ -370,6 +378,7 @@ export default function reducer(state = initialState, action = {}) {
       const { config, ...restState } = state;
       return {
         ...restState,
+        centerOnCursor: false,
         config: {
           ...config,
           selectedItems: action.selectedItems
@@ -381,6 +390,7 @@ export default function reducer(state = initialState, action = {}) {
     case SETCLICKEDBUTTON: {
       return {
         ...state,
+        centerOnCursor: false,
         ...getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId)
       };
     }
@@ -390,6 +400,7 @@ export default function reducer(state = initialState, action = {}) {
       return getIndexes({
         ...state,
         isConfirmDeleteDialogVisible: false,
+        centerOnCursor: true,
         config: {
           ...config,
           ...getDeletedCursorItem(items, cursorItem)
@@ -402,6 +413,7 @@ export default function reducer(state = initialState, action = {}) {
       const { items, cursorItem } = config;
       return getIndexes({
         ...state,
+        centerOnCursor: true,
         config: {
           ...config,
           ...getNewChildItem(items, cursorItem, action.config)
