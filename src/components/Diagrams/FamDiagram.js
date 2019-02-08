@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import {
   ButtonGroup,
   Button,
@@ -238,9 +239,28 @@ class FamDiagram extends Component {
         onCursorRender(data);
       };
     }
+    const currentOptions = this.diagramControl.getOptions();
+    if (!(_.isEqualWith(currentOptions, options, (objValue, othValue, key) => {
+      switch (key) {
+        case 'onHighlightChanging':
+        case 'onHighlightChanged':
+        case 'onCursorChanging':
+        case 'onCursorChanged':
+        case 'onSelectionChanging':
+        case 'onSelectionChanged':
+        case 'onButtonClick':
+        case 'onItemRender':
+        case 'onHighlightRender':
+        case 'onCursorRender':
+          return true;
 
-    this.diagramControl.setOptions(options);
-    this.diagramControl.update(updateMode, centerOnCursor);
+        default:
+          return undefined;
+      }
+    }))) {
+      this.diagramControl.setOptions(options);
+      this.diagramControl.update(updateMode, centerOnCursor);
+    }
   }
 
   render() {

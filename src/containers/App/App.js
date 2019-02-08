@@ -151,6 +151,9 @@ class App extends Component {
                 <LinkContainer to="/familychartwithannotations">
                   <MenuItem eventKey={7}>Family Chart &amp; Annotations</MenuItem>
                 </LinkContainer>
+                <LinkContainer to="/dependencies">
+                  <MenuItem eventKey={8}>Dependencies</MenuItem>
+                </LinkContainer>
               </NavDropdown>
               <LinkContainer to="/usecases/hardcodedorganizationalchart">
                 <NavItem>Use Cases</NavItem>

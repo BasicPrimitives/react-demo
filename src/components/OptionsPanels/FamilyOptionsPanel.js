@@ -30,7 +30,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           children when node is linked across multiple levels in hierarchy. See "alignment" data set.
         </p>
         <RadioGroupOption
-          caption="Neighbours Selection Modes"
+          caption="Group By"
           propertyName="groupByType"
           value={config.groupByType}
           valueType={PropTypes.number}
