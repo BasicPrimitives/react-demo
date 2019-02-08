@@ -11,6 +11,7 @@ import dynamicloading from './modules/demos/dynamicloading';
 import verticallayoutorganizationalchart from './modules/demos/verticallayoutorganizationalchart';
 import crossteamgroup from './modules/demos/crossteamgroup';
 import familychartwithannotations from './modules/demos/familychartwithannotations';
+import dependencies from './modules/demos/dependencies';
 import orgeditor from './modules/demos/orgeditor';
 
 export default function createReducers(asyncReducers) {
@@ -28,6 +29,7 @@ export default function createReducers(asyncReducers) {
     highlightannotations,
     crossteamgroup,
     familychartwithannotations,
+    dependencies,
     orgeditor,
     ...asyncReducers
   };

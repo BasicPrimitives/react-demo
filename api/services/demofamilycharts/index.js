@@ -18,6 +18,7 @@ import simpleSandClock from './data/simpleSandClock.js';
 import wFamily from './data/wFamily.js';
 import simpleFamily from './data/simpleFamily.js';
 import matrixLayout from './data/matrixLayout.js';
+import dependencies from './data/dependencies.js';
 
 export default function service(app) {
   app.use('/load-demofamilychartslist', (req, res) => {
@@ -111,6 +112,9 @@ export default function service(app) {
         break;
       case 'matrixLayout':
         result = matrixLayout;
+        break;
+      case 'dependencies':
+        result = dependencies;
         break;
       default:
         break;

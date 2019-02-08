@@ -8,6 +8,7 @@ export VerticalLayout from './Demos/VerticalLayout/VerticalLayout';
 export CrossTeamGroup from './Demos/CrossTeamGroup/CrossTeamGroup';
 export HighlightAnnotations from './Demos/HighlightAnnotations/HighlightAnnotations';
 export FamilyChartWithAnnotations from './Demos/FamilyChartWithAnnotations/FamilyChartWithAnnotations';
+export Dependencies from './Demos/Dependencies/Dependencies';
 export Partners from './Demos/Partners/Partners';
 export UseCases from './UseCases/UseCases';
 export HardCodedOrganizationalChart from './UseCases/HardCodedOrganizationalChart/HardCodedOrganizationalChart';

@@ -10,6 +10,7 @@ import {
   CrossTeamGroup,
   HighlightAnnotations,
   FamilyChartWithAnnotations,
+  Dependencies,
   Partners,
   UseCases,
   HardCodedOrganizationalChart,
@@ -54,6 +55,7 @@ const routes = [
       { path: '/crossteamgroup', component: CrossTeamGroup },
       { path: '/highlightannotations', component: HighlightAnnotations },
       { path: '/familychartwithannotations', component: FamilyChartWithAnnotations },
+      { path: '/dependencies', component: Dependencies },
       { path: '/partners', component: Partners },
       {
         path: '/usecases',

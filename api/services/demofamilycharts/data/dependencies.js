@@ -2,7 +2,7 @@ const primitives = require('basicprimitives');
 
 export default {
   cursorItem: 72,
-  items =[
+  items: [
     {
       id: 2,
       description: 'Sr. VP, Server & Tools Division',

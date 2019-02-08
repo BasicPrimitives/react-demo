@@ -32,6 +32,8 @@ class RadioGroupOption extends Component {
     switch (valueType) {
       case PropTypes.number:
         return parseInt(value, 10);
+      case PropTypes.bool:
+        return (value === 'true' || value === true);
       default:
         return value;
     }
