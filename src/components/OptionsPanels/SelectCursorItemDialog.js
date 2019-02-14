@@ -9,13 +9,13 @@ class SelectCursorItemDialog extends Component { // eslint-disable-line react/pr
   static propTypes = {
     onCursorItem: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    cursorItem: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), // eslint-disable-line react/no-unused-prop-types
+    itemsToReparent: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])), // eslint-disable-line react/no-unused-prop-types
     config: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types, react/no-unused-prop-types
     isVisible: PropTypes.bool.isRequired
   };
 
   static defaultProps = {
-    cursorItem: null
+    itemsToReparent: []
   };
 
   constructor(props, context) {
@@ -54,39 +54,66 @@ class SelectCursorItemDialog extends Component { // eslint-disable-line react/pr
     data.cancel = true;
   }
 
-  setConfig({ isVisible, cursorItem, config }) {
+  setConfig({ isVisible, itemsToReparent, config }) {
     if (isVisible) {
       const { items, buttons, ...rest } = config;
-      const tree = this.getTree(items || []);
-      const parent = tree.parentid(cursorItem);
-      const newItems = this.getItemsWithoutCursorItemSubTree(tree, cursorItem);
       return {
         ...rest,
-        items: newItems,
-        cursorItem: parent
+        ...(this.getDeletedSelectedItems(items || [], itemsToReparent))
       };
     }
   }
 
-  getItemsWithoutCursorItemSubTree(tree, cursorItem) {
-    const result = [];
-    tree.loopLevels(this, (nodeid, node) => {
-      if (nodeid === cursorItem) {
-        return tree.SKIP;
-      }
-      result.push(node);
-    });
-    return result;
-  }
-
-  getTree(items) { // eslint-disable-line class-methods-use-this
+  getTree(items = []) { // eslint-disable-line class-methods-use-this
     const tree = primitives.common.tree();
+  
     // rebuild tree
     for (let index = 0; index < items.length; index += 1) {
       const item = items[index];
       tree.add(item.parent, item.id, item);
     }
+  
     return tree;
+  }
+  
+  getDeletedItemsParent(tree, deletedItems, deletedHash) { // eslint-disable-line class-methods-use-this
+    let result = null;
+    const lca = primitives.common.LCA(tree);
+    result = deletedItems.reduce((agg, itemid) => {
+      if (agg == null) {
+        agg = itemid;
+      } else {
+        agg = lca.getLowestCommonAncestor(agg, itemid);
+      }
+      return agg;
+    }, null);
+  
+    if (deletedHash.has(result.toString())) {
+      result = tree.parentid(result);
+    }
+    return result;
+  }
+  
+  getDeletedSelectedItems(items = [], deletedItems = []) { // eslint-disable-line class-methods-use-this
+    const tree = this.getTree(items);
+    const hash = deletedItems.reduce((agg, itemid) => {
+      agg.add(itemid.toString());
+      return agg;
+    }, new Set());
+    const cursorParent = this.getDeletedItemsParent(tree, deletedItems, hash);
+    const result = [];
+    tree.loopLevels(this, (nodeid, node) => {
+      if (hash.has(nodeid.toString())) {
+        return tree.SKIP;
+      }
+      result.push(node);
+    });
+  
+    return {
+      items: result,
+      cursorItem: cursorParent,
+      selectedItems: []
+    };
   }
 
   getUsedOptions(props) { // eslint-disable-line class-methods-use-this
@@ -94,7 +121,7 @@ class SelectCursorItemDialog extends Component { // eslint-disable-line react/pr
     return {
       isVisible,
       config,
-      cursorItem
+      itemsToReparent
     };
   }
 

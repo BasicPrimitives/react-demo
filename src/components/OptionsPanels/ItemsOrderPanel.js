@@ -60,10 +60,10 @@ class ItemsOrderPanel extends Component {
   render() {
     const { items } = this.state;
     return (
-      <div>
+      <>
         <h4>Drag to order children</h4>
         <SortableList items={items} onSortEnd={this.onSortEnd} />
-      </div>
+      </>
     );
   }
 }
