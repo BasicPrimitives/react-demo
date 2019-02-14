@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, Modal, Form, FormGroup
+  Grid, Col, Row, Tab, NavItem, Nav, NavDropdown, MenuItem, Button, Navbar, Modal, Form, FormGroup, ButtonGroup
 } from 'react-bootstrap';
 import Select from 'react-select';
 import {
@@ -35,21 +35,23 @@ import {
   isLoaded,
   setCursorItem,
   setSelectedItems,
-  setClickedButton,
   setConfigOption,
   setItemOption,
   setItemParent,
+  setSelectedItemsParent,
   setItemsOrder,
   setTemplateOption,
-  UserActionType,
   deleteCursorItem,
+  deleteSelectedItems,
   addChildItem,
   showConfirmDeleteDialog,
   hideConfirmDeleteDialog,
   showNewItemDialog,
   hideNewItemDialog,
   showReparentDialog,
-  hideReparentDialog
+  hideReparentDialog,
+  showSelectedItemsReparentDialog,
+  hideSelectedItemsReparentDialog
 } from 'redux/modules/demos/orgeditor';
 
 @provideHooks({
@@ -64,12 +66,12 @@ import {
   state => ({
     centerOnCursor: state.orgeditor.centerOnCursor,
     config: state.orgeditor.config,
-    userAction: state.orgeditor.userAction,
     indexes: state.orgeditor.indexes,
     children: state.orgeditor.children,
     isConfirmDeleteDialogVisible: state.orgeditor.isConfirmDeleteDialogVisible,
     isNewItemDialogVisible: state.orgeditor.isNewItemDialogVisible,
-    isReparentDialogVisible: state.orgeditor.isReparentDialogVisible
+    isReparentDialogVisible: state.orgeditor.isReparentDialogVisible,
+    isSelectedItemsReparentDialogVisible: state.orgeditor.isSelectedItemsReparentDialogVisible
   }),
   dispatch => bindActionCreators(
     {
@@ -77,21 +79,23 @@ import {
       isLoaded,
       setCursorItem,
       setSelectedItems,
-      setClickedButton,
       setConfigOption,
       setItemOption,
       setItemParent,
+      setSelectedItemsParent,
       setItemsOrder,
       setTemplateOption,
-      UserActionType,
       deleteCursorItem,
+      deleteSelectedItems,
       addChildItem,
       showConfirmDeleteDialog,
       hideConfirmDeleteDialog,
       showNewItemDialog,
       hideNewItemDialog,
       showReparentDialog,
-      hideReparentDialog
+      hideReparentDialog,
+      showSelectedItemsReparentDialog,
+      hideSelectedItemsReparentDialog
     },
     dispatch
   )
@@ -101,56 +105,32 @@ class OrgEditor extends Component {
     isConfirmDeleteDialogVisible: PropTypes.bool.isRequired,
     isNewItemDialogVisible: PropTypes.bool.isRequired,
     isReparentDialogVisible: PropTypes.bool.isRequired,
+    isSelectedItemsReparentDialogVisible: PropTypes.bool.isRequired,
     centerOnCursor: PropTypes.bool.isRequired,
     config: OrgDiagramConfig().isRequired,
     indexes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     children: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    userAction: PropTypes.shape({
-      type: PropTypes.oneOf(Object.values(UserActionType)),
-      buttonName: PropTypes.string,
-      itemId: PropTypes.number
-    }).isRequired,
     load: PropTypes.func.isRequired,
     setCursorItem: PropTypes.func.isRequired,
     setSelectedItems: PropTypes.func.isRequired,
-    setClickedButton: PropTypes.func.isRequired,
     setConfigOption: PropTypes.func.isRequired,
     setItemOption: PropTypes.func.isRequired,
     setItemParent: PropTypes.func.isRequired,
+    setSelectedItemsParent: PropTypes.func.isRequired,
     setItemsOrder: PropTypes.func.isRequired,
     setTemplateOption: PropTypes.func.isRequired,
     deleteCursorItem: PropTypes.func.isRequired,
+    deleteSelectedItems: PropTypes.func.isRequired,
     addChildItem: PropTypes.func.isRequired,
     showConfirmDeleteDialog: PropTypes.func.isRequired,
     hideConfirmDeleteDialog: PropTypes.func.isRequired,
     showNewItemDialog: PropTypes.func.isRequired,
     hideNewItemDialog: PropTypes.func.isRequired,
     showReparentDialog: PropTypes.func.isRequired,
-    hideReparentDialog: PropTypes.func.isRequired
+    hideReparentDialog: PropTypes.func.isRequired,
+    showSelectedItemsReparentDialog: PropTypes.func.isRequired,
+    hideSelectedItemsReparentDialog: PropTypes.func.isRequired
   };
-
-  getActionMessage() {
-    const { config, indexes, userAction } = this.props;
-    const { cursorItem, selectedItems, items } = config;
-    switch (userAction.type) {
-      case UserActionType.None:
-        return 'No user actions yet.';
-      case UserActionType.ContextButtonClick: {
-        const { title } = items[indexes[userAction.itemId]];
-        return `Use clicked context button ${userAction.buttonName} for item ${title}`;
-      }
-      case UserActionType.SelectedItems: {
-        const selectedNames = selectedItems.map(itemid => items[indexes[itemid]].title);
-        return `User selected following items ${selectedNames.join(', ')}`;
-      }
-      case UserActionType.ChangedCursor: {
-        const { title } = items[indexes[cursorItem]];
-        return `User changed cursor to item ${title}`;
-      }
-      default:
-        return 'Unknown action.';
-    }
-  }
 
   render() {
     const styles = require('./OrgEditor.scss');
@@ -158,6 +138,7 @@ class OrgEditor extends Component {
       isConfirmDeleteDialogVisible,
       isNewItemDialogVisible,
       isReparentDialogVisible,
+      isSelectedItemsReparentDialogVisible,
       centerOnCursor,
       config,
       indexes,
@@ -165,22 +146,27 @@ class OrgEditor extends Component {
       load,
       setCursorItem,
       setSelectedItems,
-      setClickedButton,
       setConfigOption,
       setItemOption,
       setItemParent,
+      setSelectedItemsParent,
       setItemsOrder,
       setTemplateOption,
       deleteCursorItem,
+      deleteSelectedItems,
       addChildItem,
       showConfirmDeleteDialog,
       hideConfirmDeleteDialog,
       showNewItemDialog,
       hideNewItemDialog,
       showReparentDialog,
-      hideReparentDialog
+      hideReparentDialog,
+      showSelectedItemsReparentDialog,
+      hideSelectedItemsReparentDialog
     } = this.props;
-    const { items, cursorItem, templates } = config;
+    const {
+      items, cursorItem, templates, selectedItems
+    } = config;
 
     const templateConfig = templates.find(template => template.name === 'defaultTemplate');
     const itemConfig = (cursorItem && items[indexes[cursorItem]]) || null;
@@ -228,7 +214,7 @@ class OrgEditor extends Component {
                   // it will be updated via subsequent state change and rendering event
                   data.cancel = true;
                 }}
-                onButtonClick={({ name, context }) => {
+                onButtonClick={({ name }) => {
                   switch (name) {
                     case 'add':
                       showNewItemDialog();
@@ -240,7 +226,6 @@ class OrgEditor extends Component {
                       showReparentDialog();
                       break;
                     default:
-                      setClickedButton(name, context.id);
                       break;
                   }
                 }}
@@ -286,18 +271,31 @@ class OrgEditor extends Component {
                 }}
               />
               <br />
-              <Well bsSize="small">{this.getActionMessage()}</Well>
               {itemConfig && (
                 <React.Fragment>
-                  <Col sm={12} md={4}>
+                  <Col sm={12} md={3}>
                     <ItemOptionsPanel config={itemConfig} setOption={setItemOption} />
                   </Col>
-                  <Col sm={12} md={4}>
+                  <Col sm={12} md={3}>
                     <ItemLayoutOptionsPanel config={itemConfig} setOption={setItemOption} />
                   </Col>
                   {cursorChildren && (
-                    <Col sm={12} md={4}>
+                    <Col sm={12} md={3}>
                       <ItemsOrderPanel items={cursorChildren} setItemsOrder={items => setItemsOrder(items.map(item => item.id))} />
+                    </Col>
+                  )}
+                  {selectedItems.length > 0 && (
+                    <Col sm={12} md={3}>
+                      <h4>Selected Items</h4>
+                      <ul>
+                        {selectedItems.map(itemid => items[indexes[itemid]]).map(value => (
+                          <li key={`selected-item-${value.id}`}>{value.title}</li>
+                        ))}
+                      </ul>
+                      <ButtonGroup vertical>
+                        <Button onClick={() => showSelectedItemsReparentDialog()}>Reparent</Button>
+                        <Button onClick={() => deleteSelectedItems()}>Delete</Button>
+                      </ButtonGroup>
                     </Col>
                   )}
                 </React.Fragment>
@@ -313,7 +311,8 @@ class OrgEditor extends Component {
                 </Modal.Footer>
               </Modal>
               <AddNewItemDialog isVisible={isNewItemDialogVisible} onSubmit={addChildItem} onClose={hideNewItemDialog} />
-              <SelectCursorItemDialog isVisible={isReparentDialogVisible} cursorItem={cursorItem} onCursorItem={setItemParent} onClose={hideReparentDialog} config={config} />
+              <SelectCursorItemDialog isVisible={isReparentDialogVisible} itemsToReparent={[cursorItem]} onCursorItem={setItemParent} onClose={hideReparentDialog} config={config} />
+              <SelectCursorItemDialog isVisible={isSelectedItemsReparentDialogVisible} itemsToReparent={selectedItems} onCursorItem={setSelectedItemsParent} onClose={hideSelectedItemsReparentDialog} config={config} />
             </div>
           </Col>
           <Col smPull={8} sm={4} mdPull={9} md={3}>

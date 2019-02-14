@@ -12,6 +12,7 @@ const SETITEMOPTION = 'redux-example/orgeditor/setItemOption';
 const SETITEMSORDER = 'redux-example/orgeditor/setItemsOrder';
 
 const DELETECURSORITEM = 'redux-example/orgeditor/deleteCursorItem';
+const DELETESELECTEDITEMS = 'redux-example/orgeditor/deleteSelectedItems';
 const ADDCHILDITEM = 'redux-example/orgeditor/addChildItem';
 
 const SHOWCONFIRMDELETEDIALOG = 'redux-example/orgeditor/showConfirmDeleteDialog';
@@ -24,25 +25,18 @@ const SETITEMPARENT = 'redux-example/orgeditor/setItemParent';
 const SHOWREPARENTDIALOG = 'redux-example/orgeditor/showReparentDialog';
 const HIDEREPARENTDIALOG = 'redux-example/orgeditor/hideReparentDialog';
 
-const chartName = 'matrixlayout';
+const SETSELECTEDITEMSPARENT = 'redux-example/orgeditor/setSelectedItemsParent';
+const SHOWSELECTEDITEMSREPARENTDIALOG = 'redux-example/orgeditor/showSelectedItemsReparentDialog';
+const HIDESELECTEDITEMSREPARENTDIALOG = 'redux-example/orgeditor/hideSelectedItemsReparentDialog';
 
-export const UserActionType = {
-  None: 0,
-  ContextButtonClick: 1,
-  SelectedItems: 2,
-  ChangedCursor: 3
-};
+const chartName = 'matrixlayout';
 
 const initialState = {
   loaded: false,
-  userAction: {
-    type: UserActionType.None,
-    buttonName: null,
-    itemId: null
-  },
   isConfirmDeleteDialogVisible: false,
   isNewItemDialogVisible: false,
   isReparentDialogVisible: false,
+  isSelectedItemsReparentDialogVisible: false,
   centerOnCursor: true,
   config: {
     ...new primitives.orgdiagram.Config(),
@@ -101,7 +95,7 @@ const initialState = {
     elbowType: primitives.common.ElbowType.None,
     elbowDotSize: 4,
     highlightGravityRadius: 40,
-    hasSelectorCheckbox: primitives.common.Enabled.Auto,
+    hasSelectorCheckbox: primitives.common.Enabled.True,
     selectCheckBoxLabel: 'Selected',
     selectionPathMode: primitives.common.SelectionPathMode.FullStack,
     hasButtons: primitives.common.Enabled.Auto,
@@ -182,16 +176,6 @@ function getIndexes(state) {
   };
 }
 
-function getUserAction(type, buttonName, itemId) {
-  return {
-    userAction: {
-      type,
-      buttonName,
-      itemId
-    }
-  };
-}
-
 function getNewChildItem(items = [], cursorItem = null, config = null) {
   const maxid = items.reduce((max, item) => Math.max(item.id, max), 0);
   const newid = maxid + 1;
@@ -210,7 +194,7 @@ function getNewChildItem(items = [], cursorItem = null, config = null) {
   };
 }
 
-function getDeletedCursorItem(items = [], cursorItem = null) {
+function getTree(items = []) {
   const tree = primitives.common.tree();
 
   // rebuild tree
@@ -218,10 +202,38 @@ function getDeletedCursorItem(items = [], cursorItem = null) {
     const item = items[index];
     tree.add(item.parent, item.id, item);
   }
-  const cursorParent = tree.parentid(cursorItem);
+
+  return tree;
+}
+
+function getDeletedItemsParent(tree, deletedItems, deletedHash) {
+  let result = null;
+  const lca = primitives.common.LCA(tree);
+  result = deletedItems.reduce((agg, itemid) => {
+    if (agg == null) {
+      agg = itemid;
+    } else {
+      agg = lca.getLowestCommonAncestor(agg, itemid);
+    }
+    return agg;
+  }, null);
+
+  if (deletedHash.has(result.toString())) {
+    result = tree.parentid(result);
+  }
+  return result;
+}
+
+function getDeletedSelectedItems(items = [], deletedItems = []) {
+  const tree = getTree(items);
+  const hash = deletedItems.reduce((agg, itemid) => {
+    agg.add(itemid.toString());
+    return agg;
+  }, new Set());
+  const cursorParent = getDeletedItemsParent(tree, deletedItems, hash);
   const result = [];
   tree.loopLevels(this, (nodeid, node) => {
-    if (nodeid === cursorItem) {
+    if (hash.has(nodeid.toString())) {
       return tree.SKIP;
     }
     result.push(node);
@@ -229,7 +241,8 @@ function getDeletedCursorItem(items = [], cursorItem = null) {
 
   return {
     items: result,
-    cursorItem: cursorParent
+    cursorItem: cursorParent,
+    selectedItems: []
   };
 }
 
@@ -270,7 +283,7 @@ export default function reducer(state = initialState, action = {}) {
       newConfig[action.name] = action.value;
       return {
         ...restState,
-        centerOnCursor: false,
+        centerOnCursor: true,
         config: newConfig
       };
     }
@@ -336,6 +349,31 @@ export default function reducer(state = initialState, action = {}) {
       });
     }
 
+    case SETSELECTEDITEMSPARENT: {
+      const { config } = state;
+      const { items, selectedItems } = config;
+      const hash = selectedItems.reduce((agg, itemid) => {
+        agg.add(itemid.toString());
+        return agg;
+      }, new Set());
+      return getIndexes({
+        ...state,
+        isSelectedItemsReparentDialogVisible: false,
+        centerOnCursor: true,
+        config: {
+          ...config,
+          items: items.map(item => {
+            if (hash.has(item.id.toString())) {
+              const newItem = { ...item };
+              newItem.parent = action.parent;
+              return newItem;
+            }
+            return item;
+          })
+        }
+      });
+    }
+
     case SETITEMSORDER: {
       const { config, indexes } = state;
       const { items } = config;
@@ -369,8 +407,7 @@ export default function reducer(state = initialState, action = {}) {
         config: {
           ...config,
           cursorItem: action.cursorItem
-        },
-        ...getUserAction(UserActionType.ChangedCursor)
+        }
       };
     }
 
@@ -382,18 +419,10 @@ export default function reducer(state = initialState, action = {}) {
         config: {
           ...config,
           selectedItems: action.selectedItems
-        },
-        ...getUserAction(UserActionType.SelectedItems)
+        }
       };
     }
 
-    case SETCLICKEDBUTTON: {
-      return {
-        ...state,
-        centerOnCursor: false,
-        ...getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId)
-      };
-    }
     case DELETECURSORITEM: {
       const { config } = state;
       const { items, cursorItem } = config;
@@ -403,9 +432,21 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: true,
         config: {
           ...config,
-          ...getDeletedCursorItem(items, cursorItem)
-        },
-        ...getUserAction(UserActionType.None)
+          ...getDeletedSelectedItems(items, [cursorItem])
+        }
+      });
+    }
+    case DELETESELECTEDITEMS: {
+      const { config } = state;
+      const { items, selectedItems } = config;
+      return getIndexes({
+        ...state,
+        isConfirmDeleteDialogVisible: false,
+        centerOnCursor: true,
+        config: {
+          ...config,
+          ...getDeletedSelectedItems(items, selectedItems)
+        }
       });
     }
     case ADDCHILDITEM: {
@@ -418,7 +459,6 @@ export default function reducer(state = initialState, action = {}) {
           ...config,
           ...getNewChildItem(items, cursorItem, action.config)
         },
-        ...getUserAction(UserActionType.None),
         isNewItemDialogVisible: false
       });
     }
@@ -457,6 +497,18 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         isReparentDialogVisible: false
+      };
+    }
+    case SHOWSELECTEDITEMSREPARENTDIALOG: {
+      return {
+        ...state,
+        isSelectedItemsReparentDialogVisible: true
+      };
+    }
+    case HIDESELECTEDITEMSREPARENTDIALOG: {
+      return {
+        ...state,
+        isSelectedItemsReparentDialogVisible: false
       };
     }
     default:
@@ -536,6 +588,13 @@ export function setItemParent(parent) {
   };
 }
 
+export function setSelectedItemsParent(parent) {
+  return {
+    type: SETSELECTEDITEMSPARENT,
+    parent
+  };
+}
+
 export function setItemsOrder(ids) {
   return {
     type: SETITEMSORDER,
@@ -546,6 +605,12 @@ export function setItemsOrder(ids) {
 export function deleteCursorItem() {
   return {
     type: DELETECURSORITEM
+  };
+}
+
+export function deleteSelectedItems() {
+  return {
+    type: DELETESELECTEDITEMS
   };
 }
 
@@ -582,5 +647,17 @@ export function showReparentDialog() {
 export function hideReparentDialog() {
   return {
     type: HIDEREPARENTDIALOG
+  };
+}
+
+export function showSelectedItemsReparentDialog() {
+  return {
+    type: SHOWSELECTEDITEMSREPARENTDIALOG
+  };
+}
+
+export function hideSelectedItemsReparentDialog() {
+  return {
+    type: HIDESELECTEDITEMSREPARENTDIALOG
   };
 }

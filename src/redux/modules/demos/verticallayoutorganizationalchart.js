@@ -225,7 +225,7 @@ export default function reducer(state = initialState, action = {}) {
       newConfig[action.name] = action.value;
       return {
         ...restState,
-        centerOnCursor: false,
+        centerOnCursor: true,
         config: newConfig
       };
     }

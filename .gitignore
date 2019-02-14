@@ -13,3 +13,4 @@ api/**/*.nedb
 *.report.html
 coverage/
 .vscode
+.vs
