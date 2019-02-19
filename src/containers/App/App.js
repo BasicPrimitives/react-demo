@@ -154,6 +154,12 @@ class App extends Component {
                 <LinkContainer to="/dependencies">
                   <MenuItem eventKey={8}>Dependencies</MenuItem>
                 </LinkContainer>
+                <LinkContainer to="/patents">
+                  <MenuItem eventKey={9}>Patents</MenuItem>
+                </LinkContainer>
+                <LinkContainer to="/financialownership">
+                  <MenuItem eventKey={10}>Financial Ownership</MenuItem>
+                </LinkContainer>
               </NavDropdown>
               <LinkContainer to="/usecases/hardcodedorganizationalchart">
                 <NavItem>Use Cases</NavItem>

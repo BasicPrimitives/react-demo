@@ -12,6 +12,8 @@ import verticallayoutorganizationalchart from './modules/demos/verticallayoutorg
 import crossteamgroup from './modules/demos/crossteamgroup';
 import familychartwithannotations from './modules/demos/familychartwithannotations';
 import dependencies from './modules/demos/dependencies';
+import patents from './modules/demos/patents';
+import financialownership from './modules/demos/financialownership';
 import orgeditor from './modules/demos/orgeditor';
 
 export default function createReducers(asyncReducers) {
@@ -30,6 +32,8 @@ export default function createReducers(asyncReducers) {
     crossteamgroup,
     familychartwithannotations,
     dependencies,
+    patents,
+    financialownership,
     orgeditor,
     ...asyncReducers
   };

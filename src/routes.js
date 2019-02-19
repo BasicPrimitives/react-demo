@@ -11,6 +11,8 @@ import {
   HighlightAnnotations,
   FamilyChartWithAnnotations,
   Dependencies,
+  Patents,
+  FinancialOwnership,
   Partners,
   UseCases,
   HardCodedOrganizationalChart,
@@ -56,7 +58,9 @@ const routes = [
       { path: '/highlightannotations', component: HighlightAnnotations },
       { path: '/familychartwithannotations', component: FamilyChartWithAnnotations },
       { path: '/dependencies', component: Dependencies },
+      { path: '/patents', component: Patents },
       { path: '/partners', component: Partners },
+      { path: '/financialownership', component: FinancialOwnership },
       {
         path: '/usecases',
         component: UseCases,
