@@ -1,5 +1,3 @@
-const primitives = require('basicprimitives');
-
 export default {
   cursorItem: 72,
   items: [
@@ -5194,4 +5192,4 @@ export default {
       parents: [432, 82, 427, 167, 289, 438]
     }
   ]
-}
+};

@@ -8,7 +8,7 @@ export default {
       annotationType: primitives.common.AnnotationType.Connector,
       fromItem: 2,
       toItem: 31,
-      label: "<div class='bp-badge' style='width:16px; height:16px;background-color:red; color: white;'>1</div>Connector annotation",
+      label: "<div class='bp-badge' style='width:18px; height:18px;background-color:red; color: white;'>1</div>Connector annotation",
       labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
       connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
       color: primitives.common.Colors.Red,

@@ -311,8 +311,20 @@ class OrgEditor extends Component {
                 </Modal.Footer>
               </Modal>
               <AddNewItemDialog isVisible={isNewItemDialogVisible} onSubmit={addChildItem} onClose={hideNewItemDialog} />
-              <SelectCursorItemDialog isVisible={isReparentDialogVisible} itemsToReparent={[cursorItem]} onCursorItem={setItemParent} onClose={hideReparentDialog} config={config} />
-              <SelectCursorItemDialog isVisible={isSelectedItemsReparentDialogVisible} itemsToReparent={selectedItems} onCursorItem={setSelectedItemsParent} onClose={hideSelectedItemsReparentDialog} config={config} />
+              <SelectCursorItemDialog
+                isVisible={isReparentDialogVisible}
+                itemsToReparent={[cursorItem]}
+                onCursorItem={setItemParent}
+                onClose={hideReparentDialog}
+                config={config}
+              />
+              <SelectCursorItemDialog
+                isVisible={isSelectedItemsReparentDialogVisible}
+                itemsToReparent={selectedItems}
+                onCursorItem={setSelectedItemsParent}
+                onClose={hideSelectedItemsReparentDialog}
+                config={config}
+              />
             </div>
           </Col>
           <Col smPull={8} sm={4} mdPull={9} md={3}>

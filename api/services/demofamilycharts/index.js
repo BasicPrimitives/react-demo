@@ -19,6 +19,8 @@ import wFamily from './data/wFamily.js';
 import simpleFamily from './data/simpleFamily.js';
 import matrixLayout from './data/matrixLayout.js';
 import dependencies from './data/dependencies.js';
+import patents from './data/patents.js';
+import financialOwnership from './data/financialOwnership.js';
 
 export default function service(app) {
   app.use('/load-demofamilychartslist', (req, res) => {
@@ -115,6 +117,12 @@ export default function service(app) {
         break;
       case 'dependencies':
         result = dependencies;
+        break;
+      case 'patents':
+        result = patents;
+        break;
+      case 'financialownership':
+        result = financialOwnership;
         break;
       default:
         break;

@@ -91,7 +91,7 @@
     "@feathersjs/socketio-client": "^1.0.1",
     "axios": "^0.18.0",
     "babel-plugin-dynamic-import-node": "^2.0.0",
-    "basicprimitives": "^5.2.2",
+    "basicprimitives": "^5.2.4",
     "body-parser": "^1.16.1",
     "classnames": "^2.2.5",
     "compression": "^1.6.2",
