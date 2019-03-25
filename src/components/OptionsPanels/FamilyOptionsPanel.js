@@ -21,7 +21,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           caption="Neighbours Selection Modes"
           propertyName="neighboursSelectionMode"
           value={config.neighboursSelectionMode}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.NeighboursSelectionMode}
           onChange={value => setOption('neighboursSelectionMode', value)}
         />
@@ -33,7 +33,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           caption="Group By"
           propertyName="groupByType"
           value={config.groupByType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={{ Children: 2, Parents: 1 }}
           onChange={value => setOption('groupByType', value)}
         />
@@ -44,7 +44,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           caption="Align by levels"
           propertyName="alignBylevels"
           value={config.alignBylevels}
-          valueType={PropTypes.bool}
+          valueType="boolean"
           items={[true, false]}
           onChange={value => setOption('alignBylevels', value)}
         />
@@ -57,7 +57,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           caption="Hides grand parents connectors"
           propertyName="hideGrandParentsConnectors"
           value={config.hideGrandParentsConnectors}
-          valueType={PropTypes.bool}
+          valueType="boolean"
           items={[true, false]}
           onChange={value => setOption('hideGrandParentsConnectors', value)}
         />
@@ -69,7 +69,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           caption="Enable Matrix Layout"
           propertyName="enableMatrixLayout"
           value={config.enableMatrixLayout}
-          valueType={PropTypes.bool}
+          valueType="boolean"
           items={[true, false]}
           onChange={value => setOption('enableMatrixLayout', value)}
         />
@@ -78,7 +78,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           propertyName="minimumMatrixSize"
           value={config.minimumMatrixSize}
           isNullable
-          valueType={PropTypes.number}
+          valueType="number"
           items={[2, 3, 4, 5, 6, 7, 8, 9, 10]}
           onChange={value => setOption('minimumMatrixSize', value)}
         />
@@ -87,7 +87,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           propertyName="maximumColumnsInMatrix"
           value={config.maximumColumnsInMatrix}
           isNullable
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20]}
           onChange={value => setOption('maximumColumnsInMatrix', value)}
         />

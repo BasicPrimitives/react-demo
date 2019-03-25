@@ -21,7 +21,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Placement type"
           propertyName="connectorPlacementType"
           value={config.connectorPlacementType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ConnectorPlacementType}
           onChange={value => setOption('connectorPlacementType', value)}
         />
@@ -29,7 +29,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Connector shape type"
           propertyName="connectorShapeType"
           value={config.connectorShapeType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ConnectorShapeType}
           onChange={value => setOption('connectorShapeType', value)}
         />
@@ -37,7 +37,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Label Placement type"
           propertyName="labelPlacementType"
           value={config.labelPlacementType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ConnectorLabelPlacementType}
           onChange={value => setOption('labelPlacementType', value)}
         />
@@ -45,7 +45,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Line width"
           propertyName="lineWidth"
           value={config.lineWidth}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           onChange={value => setOption('lineWidth', value)}
         />
@@ -53,7 +53,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Line type"
           propertyName="lineType"
           value={config.lineType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.LineType}
           onChange={value => setOption('lineType', value)}
         />
@@ -61,7 +61,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Color"
           propertyName="color"
           value={config.color}
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('color', value)}
         />
@@ -69,7 +69,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Offset"
           propertyName="offset"
           value={config.offset}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[-50, -20, -10, -5, 0, 5, 10, 20, 50]}
           onChange={value => setOption('offset', value)}
         />
@@ -77,7 +77,7 @@ class AnnotationOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Connector Z order type"
           propertyName="zOrderType"
           value={config.zOrderType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ZOrderType}
           onChange={value => setOption('zOrderType', value)}
         />

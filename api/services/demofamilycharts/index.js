@@ -18,6 +18,7 @@ import simpleSandClock from './data/simpleSandClock.js';
 import wFamily from './data/wFamily.js';
 import simpleFamily from './data/simpleFamily.js';
 import matrixLayout from './data/matrixLayout.js';
+import familyOrdering from './data/familyOrdering.js';
 import dependencies from './data/dependencies.js';
 import patents from './data/patents.js';
 import financialOwnership from './data/financialOwnership.js';
@@ -45,7 +46,8 @@ export default function service(app) {
       'Simple Sand Clock': 'simpleSandClock',
       'W Shape Family': 'wFamily',
       'Simple Family': 'simpleFamily',
-      'Matrix Family Layout': 'matrixLayout'
+      'Matrix Family Layout': 'matrixLayout',
+      'Family Nodes Ordering': 'familyOrdering'
     };
     return res.json(names);
   });
@@ -114,6 +116,9 @@ export default function service(app) {
         break;
       case 'matrixLayout':
         result = matrixLayout;
+        break;
+      case 'familyOrdering':
+        result = familyOrdering;
         break;
       case 'dependencies':
         result = dependencies;

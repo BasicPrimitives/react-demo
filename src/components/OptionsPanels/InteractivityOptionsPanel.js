@@ -25,7 +25,7 @@ class InteractivityOptionsPanel extends Component { // eslint-disable-line react
           caption="Navigation mode"
           propertyName="navigationMode"
           value={config.navigationMode}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.NavigationMode}
           onChange={value => setOption('navigationMode', value)}
         />
@@ -37,7 +37,7 @@ class InteractivityOptionsPanel extends Component { // eslint-disable-line react
           caption="Highlight Gravity Radius"
           propertyName="highlightGravityRadius"
           value={config.highlightGravityRadius}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[0, 5, 10, 20, 30, 40, 50, 100, 200, 1000]}
           onChange={value => setOption('highlightGravityRadius', value)}
         />

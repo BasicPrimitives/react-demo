@@ -18,7 +18,7 @@ class ItemLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Item Type"
           propertyName="itemType"
           value={config.itemType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={{
             Regular: 0,
             Assistant: 1,
@@ -35,7 +35,7 @@ class ItemLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Placement"
           propertyName="adviserPlacementType"
           value={config.adviserPlacementType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.AdviserPlacementType}
           onChange={value => setOption('adviserPlacementType', value)}
         />
@@ -43,7 +43,7 @@ class ItemLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Children Layout"
           propertyName="childrenPlacementType"
           value={config.childrenPlacementType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ChildrenPlacementType}
           onChange={value => setOption('childrenPlacementType', value)}
         />

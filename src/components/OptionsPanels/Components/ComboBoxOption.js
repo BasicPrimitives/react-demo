@@ -15,7 +15,7 @@ class ComboBoxOption extends Component {
     propertyName: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
-    valueType: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+    valueType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
     isNullable: PropTypes.bool
   };
 
@@ -36,11 +36,11 @@ class ComboBoxOption extends Component {
     let floatValue = null;
     let intValue = null;
     switch (valueType) {
-      case PropTypes.number:
+      case 'number':
         floatValue = parseFloat(value, 10);
         intValue = parseInt(value, 10);
         return floatValue !== intValue ? floatValue : intValue;
-      case PropTypes.bool:
+      case 'boolean':
         return (value === 'true' || value === true);
       default:
         return value;
