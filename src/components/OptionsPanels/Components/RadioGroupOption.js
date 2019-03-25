@@ -17,7 +17,7 @@ class RadioGroupOption extends Component {
     propertyName: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]).isRequired,
-    valueType: PropTypes.any.isRequired // eslint-disable-line react/forbid-prop-types
+    valueType: PropTypes.string.isRequired // eslint-disable-line react/forbid-prop-types
   };
 
   shouldComponentUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
@@ -30,9 +30,9 @@ class RadioGroupOption extends Component {
   getValue(value) {
     const { valueType } = this.props;
     switch (valueType) {
-      case PropTypes.number:
+      case 'number':
         return parseInt(value, 10);
-      case PropTypes.bool:
+      case 'boolean':
         return (value === 'true' || value === true);
       default:
         return value;

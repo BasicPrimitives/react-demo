@@ -42,7 +42,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           propertyName="minimizedItemCornerRadius"
           value={config.minimizedItemCornerRadius}
           isNullable
-          valueType={PropTypes.number}
+          valueType="number"
           items={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20]}
           onChange={value => setOption('minimizedItemCornerRadius', value)}
         />
@@ -57,7 +57,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           caption="Marker Shape"
           propertyName="minimizedItemShapeType"
           value={config.minimizedItemShapeType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ShapeType}
           onChange={value => setOption('minimizedItemShapeType', value)}
         />
@@ -65,7 +65,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           caption="Marker border line width"
           propertyName="minimizedItemLineWidth"
           value={config.minimizedItemLineWidth}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           onChange={value => setOption('minimizedItemLineWidth', value)}
         />
@@ -73,7 +73,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           caption="Marker border line type"
           propertyName="minimizedItemLineType"
           value={config.minimizedItemLineType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.LineType}
           onChange={value => setOption('minimizedItemLineType', value)}
         />
@@ -86,7 +86,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           propertyName="minimizedItemBorderColor"
           value={config.minimizedItemBorderColor}
           isNullable
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('minimizedItemBorderColor', value)}
         />
@@ -95,7 +95,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           propertyName="minimizedItemFillColor"
           value={config.minimizedItemFillColor}
           isNullable
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('minimizedItemFillColor', value)}
         />
@@ -103,7 +103,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           caption="Opacity"
           propertyName="minimizedItemOpacity"
           value={config.minimizedItemOpacity}
-          valueType={PropTypes.string}
+          valueType="string"
           items={[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}
           onChange={value => setOption('minimizedItemOpacity', value)}
         />

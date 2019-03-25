@@ -8,11 +8,11 @@ function getValue(value, valueType) {
   let floatValue = null;
   let intValue = null;
   switch (valueType) {
-    case PropTypes.number:
+    case 'number':
       floatValue = parseFloat(value, 10);
       intValue = parseInt(value, 10);
       return floatValue !== intValue ? floatValue : intValue;
-    case PropTypes.bool:
+    case 'boolean':
       return value === 'true' || value === true;
     default:
       return value;
@@ -52,7 +52,7 @@ RadioGroupFieldAdapter.propTypes = {
   caption: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   meta: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  valueType: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+  valueType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
   items: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.arrayOf(PropTypes.oneOfType([
