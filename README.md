@@ -89,7 +89,7 @@ yarn start
 
 ### Live Demo
 
-A demonstration of this app can be seen at [https://rect.basicprimitives.com]https://rect.basicprimitives.com).
+A demonstration of this app can be seen at [http://rect.basicprimitives.com:8080]http://rect.basicprimitives.com:8080).
 
 ### License
 
