@@ -21,7 +21,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Placement"
           propertyName="groupTitlePlacementType"
           value={config.groupTitlePlacementType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.AdviserPlacementType}
           onChange={value => setOption('groupTitlePlacementType', value)}
         />
@@ -29,7 +29,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Group title panel width"
           propertyName="groupTitlePanelSize"
           value={config.groupTitlePanelSize}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[24, 48, 72]}
           onChange={value => setOption('groupTitlePanelSize', value)}
         />
@@ -37,7 +37,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Orientation"
           propertyName="groupTitleOrientation"
           value={config.groupTitleOrientation}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.text.TextOrientationType}
           onChange={value => setOption('groupTitleOrientation', value)}
         />
@@ -45,7 +45,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Vertical Alignment"
           propertyName="groupTitleVerticalAlignment"
           value={config.groupTitleVerticalAlignment}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.VerticalAlignmentType}
           onChange={value => setOption('groupTitleVerticalAlignment', value)}
         />
@@ -53,7 +53,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Horizontal Alignment"
           propertyName="groupTitleHorizontalAlignment"
           value={config.groupTitleHorizontalAlignment}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.HorizontalAlignmentType}
           onChange={value => setOption('groupTitleHorizontalAlignment', value)}
         />
@@ -61,7 +61,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Background Color"
           propertyName="groupTitleColor"
           value={config.groupTitleColor}
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('groupTitleColor', value)}
         />
@@ -72,7 +72,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Font size"
           propertyName="groupTitleFontSize"
           value={config.groupTitleFontSize}
-          valueType={PropTypes.string}
+          valueType="string"
           items={['8px', '10px', '12px', '14px', '16px', '18px', '20px']}
           onChange={value => setOption('groupTitleFontSize', value)}
         />
@@ -80,7 +80,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Font Weight"
           propertyName="groupTitleFontWeight"
           value={config.groupTitleFontWeight}
-          valueType={PropTypes.string}
+          valueType="string"
           items={['normal', 'bold']}
           onChange={value => setOption('groupTitleFontWeight', value)}
         />
@@ -88,7 +88,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Font Style"
           propertyName="groupTitleFontStyle"
           value={config.groupTitleFontStyle}
-          valueType={PropTypes.string}
+          valueType="string"
           items={['normal', 'italic']}
           onChange={value => setOption('groupTitleFontStyle', value)}
         />
@@ -96,7 +96,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           caption="Font Style"
           propertyName="groupTitleFontFamily"
           value={config.groupTitleFontFamily}
-          valueType={PropTypes.string}
+          valueType="string"
           items={['Arial', 'Verdana', 'Times New Roman', 'Serif', 'Courier']}
           onChange={value => setOption('groupTitleFontFamily', value)}
         />

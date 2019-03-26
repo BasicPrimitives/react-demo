@@ -22,7 +22,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Normal"
           propertyName="normalLevelShift"
           value={config.normalLevelShift}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40]}
           onChange={value => setOption('normalLevelShift', value)}
         />
@@ -33,7 +33,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Dotted"
           propertyName="dotLevelShift"
           value={config.dotLevelShift}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40, 80, 160, 240, 320]}
           onChange={value => setOption('dotLevelShift', value)}
         />
@@ -41,7 +41,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Lined"
           propertyName="lineLevelShift"
           value={config.lineLevelShift}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40, 80, 160, 240, 320]}
           onChange={value => setOption('lineLevelShift', value)}
         />
@@ -52,7 +52,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Normal"
           propertyName="normalItemsInterval"
           value={config.normalItemsInterval}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40]}
           onChange={value => setOption('normalItemsInterval', value)}
         />
@@ -60,7 +60,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Dotted"
           propertyName="dotItemsInterval"
           value={config.dotItemsInterval}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40]}
           onChange={value => setOption('dotItemsInterval', value)}
         />
@@ -68,7 +68,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Lined"
           propertyName="lineItemsInterval"
           value={config.lineItemsInterval}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40]}
           onChange={value => setOption('lineItemsInterval', value)}
         />
@@ -76,7 +76,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Additional interval multiplier between cousins, it creates extra space between hierarchies"
           propertyName="cousinsIntervalMultiplier"
           value={config.cousinsIntervalMultiplier}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40]}
           onChange={value => setOption('cousinsIntervalMultiplier', value)}
         />

@@ -21,7 +21,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Arrows Direction"
           propertyName="arrowsDirection"
           value={config.arrowsDirection}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.GroupByType}
           onChange={value => setOption('arrowsDirection', value)}
         />
@@ -29,7 +29,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Connectors"
           propertyName="connectorType"
           value={config.connectorType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ConnectorType}
           onChange={value => setOption('connectorType', value)}
         />
@@ -37,7 +37,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Elbows Type"
           propertyName="elbowType"
           value={config.elbowType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ElbowType}
           onChange={value => setOption('elbowType', value)}
         />
@@ -45,7 +45,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Bevel Size"
           propertyName="bevelSize"
           value={config.bevelSize}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           onChange={value => setOption('bevelSize', value)}
         />
@@ -53,7 +53,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Elbow dot Size"
           propertyName="elbowDotSize"
           value={config.elbowDotSize}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           onChange={value => setOption('elbowDotSize', value)}
         />
@@ -61,7 +61,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Line type"
           propertyName="linesType"
           value={config.linesType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.LineType}
           onChange={value => setOption('linesType', value)}
         />
@@ -69,7 +69,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Color"
           propertyName="linesColor"
           value={config.linesColor}
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('linesColor', value)}
         />
@@ -77,7 +77,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Line width"
           propertyName="linesWidth"
           value={config.linesWidth}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           onChange={value => setOption('linesWidth', value)}
         />
@@ -85,7 +85,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Show extra horizontal arrows on top of connectors for easy navigation between parents and children through connector lines"
           propertyName="showExtraArrows"
           value={config.showExtraArrows}
-          valueType={PropTypes.bool}
+          valueType="boolean"
           items={[true, false]}
           onChange={value => setOption('showExtraArrows', value)}
         />
@@ -93,7 +93,7 @@ class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Available minimum space to show horizontal arrow"
           propertyName="extraArrowsMinimumSpace"
           value={config.extraArrowsMinimumSpace}
-          valueType={PropTypes.bool}
+          valueType="boolean"
           items={[0, 5, 10, 20, 30, 40, 50, 100, 200, 1000]}
           onChange={value => setOption('extraArrowsMinimumSpace', value)}
         />

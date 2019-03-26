@@ -72,7 +72,7 @@ class AddNewItemDialog extends Component {
                           component={ComboBoxFieldAdapter}
                           caption="Title Color"
                           isNullable
-                          valueType={PropTypes.string}
+                          valueType="string"
                           items={primitives.common.Colors}
                         />
                         <Field
@@ -80,15 +80,15 @@ class AddNewItemDialog extends Component {
                           component={ComboBoxFieldAdapter}
                           caption="Group Title Color"
                           isNullable
-                          valueType={PropTypes.string}
+                          valueType="string"
                           items={primitives.common.Colors}
                         />
-                        <Field name="image" component={ComboBoxFieldAdapter} caption="Image" valueType={PropTypes.string} items={images} />
+                        <Field name="image" component={ComboBoxFieldAdapter} caption="Image" valueType="string" items={images} />
                         <Field
                           name="minimizedItemShapeType"
                           component={ComboBoxFieldAdapter}
                           caption="Marker Shape"
-                          valueType={PropTypes.number}
+                          valueType="number"
                           isNullable
                           items={primitives.common.ShapeType}
                         />
@@ -99,7 +99,7 @@ class AddNewItemDialog extends Component {
                           name="itemType"
                           component={RadioGroupFieldAdapter}
                           caption="Item Type"
-                          valueType={PropTypes.number}
+                          valueType="number"
                           items={{
                             Regular: 0,
                             Assistant: 1,
@@ -115,14 +115,14 @@ class AddNewItemDialog extends Component {
                           name="adviserPlacementType"
                           component={RadioGroupFieldAdapter}
                           caption="Placement"
-                          valueType={PropTypes.number}
+                          valueType="number"
                           items={primitives.common.AdviserPlacementType}
                         />
                         <Field
                           name="childrenPlacementType"
                           component={RadioGroupFieldAdapter}
                           caption="Children Layout"
-                          valueType={PropTypes.number}
+                          valueType="number"
                           items={primitives.common.ChildrenPlacementType}
                         />
                       </Col>

@@ -8,11 +8,11 @@ function getValue(value, valueType, isNullable) {
   let floatValue = null;
   let intValue = null;
   switch (valueType) {
-    case PropTypes.number:
+    case 'number':
       floatValue = parseFloat(value, 10);
       intValue = parseInt(value, 10);
       return floatValue !== intValue ? floatValue : intValue;
-    case PropTypes.bool:
+    case 'boolean':
       return value === 'true' || value === true;
     default:
       return isNullable && value === 'NULL' ? null : value;
@@ -62,7 +62,7 @@ ComboBoxFieldAdapter.propTypes = {
   placeholder: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   meta: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  valueType: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+  valueType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
   isNullable: PropTypes.bool,
   items: PropTypes.oneOfType([
     PropTypes.object,

@@ -22,7 +22,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Page Fit Mode"
           propertyName="pageFitMode"
           value={config.pageFitMode}
-          valueType={PropTypes.number}
+          valueType="number"
           items={{
             None: 0,
             PageWidth: 1,
@@ -36,7 +36,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Orientation Type"
           propertyName="orientationType"
           value={config.orientationType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.OrientationType}
           onChange={value => setOption('orientationType', value)}
         />
@@ -44,7 +44,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Items Vertical Alignment"
           propertyName="verticalAlignment"
           value={config.verticalAlignment}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.VerticalAlignmentType}
           onChange={value => setOption('verticalAlignment', value)}
         />
@@ -52,7 +52,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Items Horizontal Alignment"
           propertyName="horizontalAlignment"
           value={config.horizontalAlignment}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.HorizontalAlignmentType}
           onChange={value => setOption('horizontalAlignment', value)}
         />
@@ -60,7 +60,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Children placement"
           propertyName="childrenPlacementType"
           value={config.childrenPlacementType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ChildrenPlacementType}
           onChange={value => setOption('childrenPlacementType', value)}
         />
@@ -68,7 +68,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Leaves placement defines layout shape for items having no children"
           propertyName="leavesPlacementType"
           value={config.leavesPlacementType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ChildrenPlacementType}
           onChange={value => setOption('leavesPlacementType', value)}
         />
@@ -76,7 +76,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Minimal nodes visibility"
           propertyName="minimalVisibility"
           value={config.minimalVisibility}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.Visibility}
           onChange={value => setOption('minimalVisibility', value)}
         />
@@ -85,7 +85,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           propertyName="maximumColumnsInMatrix"
           value={config.maximumColumnsInMatrix}
           isNullable
-          valueType={PropTypes.number}
+          valueType="number"
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20]}
           onChange={value => setOption('maximumColumnsInMatrix', value)}
         />
@@ -93,7 +93,7 @@ class AutoLayoutOptionsPanel extends Component { // eslint-disable-line react/pr
           caption="Selection Path Mode sets visibility of items between cursor item and root"
           propertyName="selectionPathMode"
           value={config.selectionPathMode}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.SelectionPathMode}
           onChange={value => setOption('selectionPathMode', value)}
         />
