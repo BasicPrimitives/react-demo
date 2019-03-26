@@ -24,7 +24,7 @@ class RenderingOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="Graphics"
           propertyName="graphicsType"
           value={config.graphicsType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.GraphicsType}
           onChange={value => setOption('graphicsType', value)}
         />
@@ -35,7 +35,7 @@ class RenderingOptionsPanel extends Component { // eslint-disable-line react/pre
           caption="CSS Scale"
           propertyName="scale"
           value={config.scale}
-          valueType={PropTypes.number}
+          valueType="number"
           items={{
             '50%': 0.5,
             '60%': 0.6,

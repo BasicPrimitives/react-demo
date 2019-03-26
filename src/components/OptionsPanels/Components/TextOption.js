@@ -13,7 +13,7 @@ class TextOption extends Component {
     propertyName: PropTypes.string.isRequired,
     onValidate: PropTypes.func,
     onChange: PropTypes.func.isRequired,
-    valueType: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+    valueType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     isNullable: PropTypes.bool,
     debounce: PropTypes.number
@@ -103,7 +103,7 @@ class TextOption extends Component {
     let floatValue = null;
     let intValue = null;
     switch (valueType) {
-      case PropTypes.number:
+      case 'number':
         floatValue = parseFloat(value, 10);
         intValue = parseInt(value, 10);
         return floatValue !== intValue ? floatValue : intValue;

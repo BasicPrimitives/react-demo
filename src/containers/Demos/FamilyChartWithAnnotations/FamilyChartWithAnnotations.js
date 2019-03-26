@@ -317,7 +317,7 @@ class FamilyChartWithAnnotations extends Component {
                         caption="Names"
                         propertyName="datasetName"
                         value={datasetName}
-                        valueType={PropTypes.string}
+                        valueType="string"
                         items={datasetNames}
                         onChange={value => load(value)}
                       />

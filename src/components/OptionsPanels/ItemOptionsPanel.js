@@ -25,7 +25,7 @@ class ItemOptionsPanel extends Component {
           placeholder="Item Title"
           propertyName="title"
           value={config.title}
-          valueType={PropTypes.string}
+          valueType="string"
           onValidate={value => required(value)}
           onChange={value => setOption('title', value)}
         />
@@ -34,7 +34,7 @@ class ItemOptionsPanel extends Component {
           placeholder="Description"
           propertyName="description"
           value={config.description}
-          valueType={PropTypes.string}
+          valueType="string"
           onValidate={value => required(value)}
           onChange={value => setOption('description', value)}
         />
@@ -43,7 +43,7 @@ class ItemOptionsPanel extends Component {
           placeholder="(group title is not visible)"
           propertyName="groupTitle"
           value={config.groupTitle}
-          valueType={PropTypes.string}
+          valueType="string"
           isNullable
           onChange={value => setOption('groupTitle', value)}
         />
@@ -52,7 +52,7 @@ class ItemOptionsPanel extends Component {
           placeholder="(123) 123-12-12"
           propertyName="phone"
           value={config.phone}
-          valueType={PropTypes.string}
+          valueType="string"
           onValidate={value => phone(value)}
           onChange={value => setOption('phone', value)}
         />
@@ -61,7 +61,7 @@ class ItemOptionsPanel extends Component {
           placeholder="name@server.com"
           propertyName="email"
           value={config.email}
-          valueType={PropTypes.string}
+          valueType="string"
           onValidate={value => email(value)}
           onChange={value => setOption('email', value)}
         />
@@ -70,7 +70,7 @@ class ItemOptionsPanel extends Component {
           placeholder={config.title}
           propertyName="label"
           value={config.label}
-          valueType={PropTypes.string}
+          valueType="string"
           isNullable
           onChange={value => setOption('label', value)}
         />
@@ -78,7 +78,7 @@ class ItemOptionsPanel extends Component {
           caption="Title Color"
           propertyName="itemTitleColor"
           value={config.itemTitleColor}
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('itemTitleColor', value)}
         />
@@ -86,16 +86,16 @@ class ItemOptionsPanel extends Component {
           caption="Group Title Color"
           propertyName="groupTitleColor"
           value={config.groupTitleColor}
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('groupTitleColor', value)}
         />
-        <ComboBoxOption caption="Image" propertyName="image" value={config.image} valueType={PropTypes.string} items={images} onChange={value => setOption('image', value)} />
+        <ComboBoxOption caption="Image" propertyName="image" value={config.image} valueType="string" items={images} onChange={value => setOption('image', value)} />
         <ComboBoxOption
           caption="Marker Shape"
           propertyName="minimizedItemShapeType"
           value={config.minimizedItemShapeType}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.ShapeType}
           onChange={value => setOption('minimizedItemShapeType', value)}
         />

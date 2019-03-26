@@ -21,7 +21,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           caption="Show user buttons"
           propertyName="hasButtons"
           value={config.hasButtons}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.Enabled}
           onChange={value => setOption('hasButtons', value)}
         />
@@ -29,7 +29,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           caption="Show selection check box"
           propertyName="hasSelectorCheckbox"
           value={config.hasSelectorCheckbox}
-          valueType={PropTypes.number}
+          valueType="number"
           items={primitives.common.Enabled}
           onChange={value => setOption('hasSelectorCheckbox', value)}
         />
@@ -37,7 +37,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           caption="Selection checkbox label"
           propertyName="selectCheckBoxLabel"
           value={config.selectCheckBoxLabel}
-          valueType={PropTypes.string}
+          valueType="string"
           items={['Selected', 'Included', 'Pinned', 'Any label']}
           onChange={value => setOption('selectCheckBoxLabel', value)}
         />
@@ -48,7 +48,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           caption="Title first font color"
           propertyName="itemTitleFirstFontColor"
           value={config.itemTitleFirstFontColor}
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('itemTitleFirstFontColor', value)}
         />
@@ -56,7 +56,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           caption="Title second font color"
           propertyName="itemTitleSecondFontColor"
           value={config.itemTitleSecondFontColor}
-          valueType={PropTypes.string}
+          valueType="string"
           items={primitives.common.Colors}
           onChange={value => setOption('itemTitleSecondFontColor', value)}
         />
@@ -64,7 +64,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           caption="Buttons panel size"
           propertyName="buttonsPanelSize"
           value={config.buttonsPanelSize}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[28, 56, 84]}
           onChange={value => setOption('buttonsPanelSize', value)}
         />
@@ -72,7 +72,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           caption="Checkbox panel size"
           propertyName="checkBoxPanelSize"
           value={config.checkBoxPanelSize}
-          valueType={PropTypes.number}
+          valueType="number"
           items={[24, 48, 72]}
           onChange={value => setOption('checkBoxPanelSize', value)}
         />
