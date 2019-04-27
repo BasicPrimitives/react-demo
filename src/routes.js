@@ -19,6 +19,7 @@ import {
   StateBoundOrganizationalChart,
   ReduxStateBoundOrganizationalChart,
   ComponentSizingWithCssMedia,
+  HowToUse,
   ItemTemplate,
   ButtonsPanel,
   NotFound
@@ -99,7 +100,12 @@ const routes = [
             path: '/usecases/itemtemplate',
             exact: true,
             component: ItemTemplate
-          }
+          },
+          {
+            path: '/usecases/:fileName',
+            exact: true,
+            component: HowToUse
+          },
         ]
       },
       { path: '/chat', component: isAuthenticated(Chat) },

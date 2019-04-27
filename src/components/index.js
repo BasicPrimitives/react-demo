@@ -13,6 +13,8 @@ export OrgDiagram from './Diagrams/OrgDiagram';
 export FamDiagram from './Diagrams/FamDiagram';
 export OrgDiagramConfig from './Diagrams/Schemas/OrgDiagramConfig';
 export FamDiagramConfig from './Diagrams/Schemas/FamDiagramConfig';
+export Editor from './Editor/Editor';
+export TryMe from './TryMe/TryMe';
 
 // Options Editors
 export RadioGroupOption from './OptionsPanels/Components/RadioGroupOption';

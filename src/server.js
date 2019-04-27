@@ -66,6 +66,8 @@ app.use('/dist/dlls/:dllName.js', (req, res, next) => {
 
 app.use(express.static(path.join(__dirname, '..', 'static')));
 
+app.use('/primitives', express.static(path.join(__dirname, '..', '/node_modules/basicprimitives/')));
+
 app.use((req, res, next) => {
   res.setHeader('X-Forwarded-For', req.ip);
   return next();

@@ -161,7 +161,7 @@ class App extends Component {
                   <MenuItem eventKey={10}>Financial Ownership</MenuItem>
                 </LinkContainer>
               </NavDropdown>
-              <LinkContainer to="/usecases/hardcodedorganizationalchart">
+              <LinkContainer to="/usecases/firstorganizationalchart">
                 <NavItem>Use Cases</NavItem>
               </LinkContainer>
               {user && (

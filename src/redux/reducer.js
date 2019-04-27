@@ -1,4 +1,3 @@
-// import multireducer from 'multireducer';
 import { routerReducer } from 'react-router-redux';
 import auth from './modules/auth';
 import notifs from './modules/notifs';
@@ -15,6 +14,7 @@ import dependencies from './modules/demos/dependencies';
 import patents from './modules/demos/patents';
 import financialownership from './modules/demos/financialownership';
 import orgeditor from './modules/demos/orgeditor';
+import howtouse from './modules/howtouse';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -35,6 +35,7 @@ export default function createReducers(asyncReducers) {
     patents,
     financialownership,
     orgeditor,
+    howtouse,
     ...asyncReducers
   };
 }
