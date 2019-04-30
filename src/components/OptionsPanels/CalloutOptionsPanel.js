@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  RadioGroupOption,
-  ComboBoxOption,
-} from 'components';
+import { RadioGroupOption, ComboBoxOption } from 'components';
 import primitives from 'basicprimitives';
 
 class CalloutOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -17,9 +14,7 @@ class CalloutOptionsPanel extends Component { // eslint-disable-line react/prefe
     return (
       <div>
         <h4>Callout Style</h4>
-        <p>
-          By default callout displays item content, but it can be redefined with custom callout template.
-        </p>
+        <p>By default callout displays item content, but it can be redefined with custom callout template.</p>
         <RadioGroupOption
           caption="Maximum node type visibility"
           propertyName="calloutMaximumVisibility"

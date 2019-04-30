@@ -3,11 +3,7 @@ import { withRouter } from 'react-router';
 import { renderRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';
 import {
-  Grid,
-  Col,
-  Row,
-  Nav,
-  NavItem
+  Grid, Col, Row, Nav, NavItem
 } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Version } from 'components';
@@ -170,9 +166,7 @@ class UseCases extends Component {
             <Version />
           </Col>
           <Col sm={7} md={6}>
-            <div>
-              {renderRoutes(route.routes)}
-            </div>
+            <div>{renderRoutes(route.routes)}</div>
           </Col>
         </Row>
       </Grid>

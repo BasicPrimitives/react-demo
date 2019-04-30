@@ -5,8 +5,7 @@ import {
   FormGroup, ControlLabel, FormControl, HelpBlock
 } from 'react-bootstrap';
 
-class TextOption extends Component {
-  // eslint-disable-line react/prefer-stateless-function
+class TextOption extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     caption: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
@@ -54,8 +53,7 @@ class TextOption extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    // eslint-disable-line no-unused-vars
+  shouldComponentUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
     const { value } = this.state;

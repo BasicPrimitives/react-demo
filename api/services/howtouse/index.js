@@ -6,7 +6,8 @@ import cache from 'memory-cache';
 import uuid from 'uuid';
 
 function getMarkdownFiles() {
-  var files = fs.readdirSync(path.join(__dirname, '..', '..', 'static', 'samples'))
+  const files = fs
+    .readdirSync(path.join(__dirname, '..', '..', 'static', 'samples'))
     .filter(fileName => fileName.endsWith('.md'))
     .reduce((files, fileName) => {
       files[fileName.substr(0, fileName.length - 3).toLowerCase()] = path.join(__dirname, '..', '..', 'static', 'samples', fileName);
@@ -24,29 +25,21 @@ function getMarkdownFileContent(name) {
     result = fs.readFileSync(fileName).toString();
   }
   return result;
-};
+}
 
 function getSampleFileContent(link) {
   let fileContent = fs.readFileSync(path.join(__dirname, '..', '..', 'static', 'samples', `${link}`)).toString();
   // remove BOM mark from file
-  if (fileContent.charCodeAt(0) === 0xFEFF) {
+  if (fileContent.charCodeAt(0) === 0xfeff) {
     fileContent = fileContent.substr(1);
   }
   // remove SSI command used for package primary library development.
-  fileContent = fileContent.replace(/<!-- # include file="\.\.\/\.\.\/src\.primitives\/src\.primitives\.html"-->/g, (match) => {
-    return '';
-  });
-  fileContent = fileContent.replace(/(\.\.\/\.\.\/packages)/g, (match) => {
-    return '/packages';
-  });
-  fileContent = fileContent.replace(/(\.\.\/\.\.\/min)/g, (match) => {
-    return '/min';
-  });
-  fileContent = fileContent.replace(/(\.\.\/images\/photos)/g, (match) => {
-    return '/photos';
-  });
+  fileContent = fileContent.replace(/<!-- # include file="\.\.\/\.\.\/src\.primitives\/src\.primitives\.html"-->/g, match => '');
+  fileContent = fileContent.replace(/(\.\.\/\.\.\/packages)/g, match => '/packages');
+  fileContent = fileContent.replace(/(\.\.\/\.\.\/min)/g, match => '/min');
+  fileContent = fileContent.replace(/(\.\.\/images\/photos)/g, match => '/photos');
   return fileContent;
-};
+}
 
 function getStaticUrl(url) {
   return `/api/get-sample?name=${url}`;
@@ -58,8 +51,8 @@ export default function customService(app) {
   app.use('/load-markdown', (req, res) => {
     const groups = {};
     let index = 0;
-    let fileContent = getMarkdownFileContent(req.query.name);
-    const markdown = fileContent.replace(/(\[[\w ]+?\]\([\s\S]+?\)\s*)+/g, (match) => {
+    const fileContent = getMarkdownFileContent(req.query.name);
+    const markdown = fileContent.replace(/(\[[\w ]+?\]\([\s\S]+?\)\s*)+/g, match => {
       index += 1;
       const samples = [];
       match = match.replace(/\[([\w ]+?)\]\(([\s\S]+?)\)/g, (str, caption, url) => {
@@ -86,7 +79,7 @@ export default function customService(app) {
   });
 
   app.use('/get-sample', (req, res) => {
-    let fileContent = getSampleFileContent(req.query.name);
+    const fileContent = getSampleFileContent(req.query.name);
     return res.send(fileContent);
   });
 

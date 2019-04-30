@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 
 const ButtonConfig = () => PropTypes.shape({
@@ -9,8 +8,8 @@ const ButtonConfig = () => PropTypes.shape({
   tooltip: PropTypes.string,
   size: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-  }),
+    height: PropTypes.number.isRequired
+  })
 });
 
 export default ButtonConfig;

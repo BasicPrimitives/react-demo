@@ -397,7 +397,13 @@ export default {
       itemTitleColor: '#4b0082'
     },
     {
-      id: 43, parents: [35], title: '43', label: '43', description: '', image: '/photos/b.png', itemTitleColor: '#4b0082'
+      id: 43,
+      parents: [35],
+      title: '43',
+      label: '43',
+      description: '',
+      image: '/photos/b.png',
+      itemTitleColor: '#4b0082'
     },
     {
       id: 1001,

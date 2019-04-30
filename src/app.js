@@ -27,14 +27,13 @@ export function createApp(req) {
         axios.create({
           headers: {
             Cookie: req.get('cookie'),
-            authorization: req.header('authorization') || ''
+            Authorization: req.header('authorization')
           }
         })
       )
     );
 
-    const accessToken = req.header('authorization') || (req.cookies && req.cookies['feathers-jwt']);
-    app.set('accessToken', accessToken);
+    app.set('accessToken', req.cookies && req.cookies['feathers-jwt']);
 
     return app;
   }

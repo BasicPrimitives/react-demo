@@ -1,4 +1,3 @@
-
 import primitives from 'basicprimitives';
 import PropTypes from 'prop-types';
 

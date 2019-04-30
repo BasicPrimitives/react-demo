@@ -42,9 +42,7 @@ function ComboBoxFieldAdapter({
           <option key="NULL" value="NULL">
             NULL
           </option>
-        ) : (
-          ''
-        )}
+        ) : ('')}
         {Object.keys(properties).map(property => (
           <option key={property.toString()} value={properties[property]}>
             {property}
@@ -65,13 +63,13 @@ ComboBoxFieldAdapter.propTypes = {
   valueType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
   isNullable: PropTypes.bool,
   items: PropTypes.oneOfType([
-    PropTypes.object,
+    PropTypes.object, // eslint-disable-line react/forbid-prop-types
     PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
       PropTypes.bool
     ]))
-  ]).isRequired // eslint-disable-line react/forbid-prop-types
+  ]).isRequired
 };
 
 ComboBoxFieldAdapter.defaultProps = {

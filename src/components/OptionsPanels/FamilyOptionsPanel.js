@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  RadioGroupOption,
-  ComboBoxOption,
-} from 'components';
+import { RadioGroupOption, ComboBoxOption } from 'components';
 import primitives from 'basicprimitives';
 
 class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -25,10 +22,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           items={primitives.common.NeighboursSelectionMode}
           onChange={value => setOption('neighboursSelectionMode', value)}
         />
-        <p>
-          Group by option defines node placement in layout close to its parents or
-          children when node is linked across multiple levels in hierarchy. See "alignment" data set.
-        </p>
+        <p>Group by option defines node placement in layout close to its parents or children when node is linked across multiple levels in hierarchy. See "alignment" data set.</p>
         <RadioGroupOption
           caption="Group By"
           propertyName="groupByType"
@@ -37,9 +31,7 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           items={{ Children: 2, Parents: 1 }}
           onChange={value => setOption('groupByType', value)}
         />
-        <p>
-          The following option keeps items at the same levels after connections bundling.
-        </p>
+        <p>The following option keeps items at the same levels after connections bundling.</p>
         <RadioGroupOption
           caption="Align by levels"
           propertyName="alignBylevels"
@@ -49,9 +41,8 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           onChange={value => setOption('alignBylevels', value)}
         />
         <p>
-          The following option hides direct connectors to grand parents. It helps reduce diagrams connectors
-          layout complexity. This option should be used together with dynamic highlighting of
-          connectors to grandparents via immidiate parents, so information is not lost.
+          The following option hides direct connectors to grand parents. It helps reduce diagrams connectors layout complexity. This option should be used together with dynamic
+          highlighting of connectors to grandparents via immidiate parents, so information is not lost.
         </p>
         <RadioGroupOption
           caption="Hides grand parents connectors"
@@ -62,8 +53,8 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           onChange={value => setOption('hideGrandParentsConnectors', value)}
         />
         <p>
-          The following option enables natrix layout in family diagram. Nodes having the same set
-          of parents and children are grouped into square shaped matrix in order to keep them visualy together.
+          The following option enables natrix layout in family diagram. Nodes having the same set of parents and children are grouped into square shaped matrix in order to keep
+          them visualy together.
         </p>
         <RadioGroupOption
           caption="Enable Matrix Layout"

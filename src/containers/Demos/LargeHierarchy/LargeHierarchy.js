@@ -4,17 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid,
-  Col,
-  Row,
-  Tab,
-  NavItem,
-  Nav,
-  Well,
-  NavDropdown,
-  MenuItem,
-  Button,
-  Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
 } from 'react-bootstrap';
 import {
   OrgDiagram,
@@ -28,7 +18,7 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel,
+  RenderingOptionsPanel
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -58,16 +48,19 @@ import {
     userAction: state.largeorganizationalchart.userAction,
     itemsHash: state.largeorganizationalchart.itemsHash
   }),
-  dispatch => bindActionCreators({
-    load,
-    isLoaded,
-    setCursorItem,
-    setSelectedItems,
-    setClickedButton,
-    setConfigOption,
-    setTemplateOption,
-    UserActionType
-  }, dispatch)
+  dispatch => bindActionCreators(
+    {
+      load,
+      isLoaded,
+      setCursorItem,
+      setSelectedItems,
+      setClickedButton,
+      setConfigOption,
+      setTemplateOption,
+      UserActionType
+    },
+    dispatch
+  )
 )
 class LargeHierarchy extends Component {
   static propTypes = {
@@ -88,11 +81,7 @@ class LargeHierarchy extends Component {
   };
 
   getActionMessage() {
-    const {
-      config,
-      itemsHash,
-      userAction,
-    } = this.props;
+    const { config, itemsHash, userAction } = this.props;
     switch (userAction.type) {
       case UserActionType.None:
         return 'No user actions yet.';
@@ -135,9 +124,7 @@ class LargeHierarchy extends Component {
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>
-                    Large Hierarchy Diagram
-                  </Navbar.Brand>
+                  <Navbar.Brand>Large Hierarchy Diagram</Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
@@ -163,15 +150,14 @@ class LargeHierarchy extends Component {
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);
                 }}
-                onItemRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
+                onItemRender={({ context, element, templateName }) => {
+                  // eslint-disable-line no-unused-vars
                   switch (templateName) {
                     case 'defaultTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -185,9 +171,7 @@ class LargeHierarchy extends Component {
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -206,18 +190,9 @@ class LargeHierarchy extends Component {
               />
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
-              <p>
-                In order to make possible navigation of large hierarchies, widget folds as many nodes as needed in order to
-                fit chart into available screen space.
-              </p>
-              <p>
-                Widget shows full size cursor item and its immediate children and parents, so user can click them and navigate
-                further around current cursor item.
-              </p>
-              <p>
-                Widget supports selected (checked marked) items collection, all of them stay in full size so user can see
-                them all the time during navigation around hierarchy.
-              </p>
+              <p>In order to make possible navigation of large hierarchies, widget folds as many nodes as needed in order to fit chart into available screen space.</p>
+              <p>Widget shows full size cursor item and its immediate children and parents, so user can click them and navigate further around current cursor item.</p>
+              <p>Widget supports selected (checked marked) items collection, all of them stay in full size so user can see them all the time during navigation around hierarchy.</p>
             </div>
           </Col>
           <Col smPull={8} sm={4} mdPull={9} md={3}>
@@ -269,7 +244,9 @@ class LargeHierarchy extends Component {
                     <Tab.Pane eventKey="minimizeditems">
                       <MinimizedItemsOptionsPanel
                         config={templateConfig}
-                        setOption={(name, value) => { setTemplateOption('defaultTemplate', name, value); }}
+                        setOption={(name, value) => {
+                          setTemplateOption('defaultTemplate', name, value);
+                        }}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="intervals">

@@ -8,13 +8,15 @@ class TutorialOrgDiagram extends Component {
       pageFitMode: PropTypes.number.isRequired,
       cursorItem: PropTypes.number.isRequired,
       hasSelectorCheckbox: PropTypes.number.isRequired,
-      items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        parent: PropTypes.number,
-        title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        image: PropTypes.string,
-      })).isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          parent: PropTypes.number,
+          title: PropTypes.string.isRequired,
+          description: PropTypes.string.isRequired,
+          image: PropTypes.string
+        })
+      ).isRequired
     }).isRequired,
     onCursorChanged: PropTypes.func,
     className: PropTypes.string
@@ -23,7 +25,7 @@ class TutorialOrgDiagram extends Component {
   static defaultProps = {
     onCursorChanged: () => null,
     className: 'placeholder'
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -45,11 +47,14 @@ class TutorialOrgDiagram extends Component {
     // npm install resize-observer-polyfill --save-dev
     require('resize-observer-polyfill/dist/ResizeObserver.global');
     const self = this;
-    this.observer = new ResizeObserver(() => { self.onSizeChanged.call(self); });
+    this.observer = new ResizeObserver(() => {
+      self.onSizeChanged.call(self);
+    });
     this.observer.observe(this.placeholderRef.current);
   }
 
-  componentWillUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
+  shouldComponentUpdate(nextProps) {
+    // eslint-disable-line no-unused-vars
     // This method is not being called during component creation time
     // React calls it when component properties or state changed and component needs to be rendered again
     // We return false from this method, since we don't need "render" function to be called again,
@@ -77,9 +82,7 @@ class TutorialOrgDiagram extends Component {
 
   render() {
     const { className } = this.props;
-    return (
-      <div ref={this.placeholderRef} className={className} />
-    );
+    return <div ref={this.placeholderRef} className={className} />;
   }
 }
 

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Editor} from 'components';
-import {
-  Button,
-  Tabs,
-  Tab
-} from 'react-bootstrap';
+import { Editor } from 'components';
+import { Button, Tabs, Tab } from 'react-bootstrap';
 
 class TryMe extends Component {
   static propTypes = {
@@ -39,7 +35,7 @@ class TryMe extends Component {
 
   componentWillReceiveProps({ onCodeChange, samples }) {
     this.setState({
-      onCodeChange,
+      onCodeChange, // eslint-disable-line react/no-unused-state
       samples,
       activeKey: 0
     });
@@ -48,16 +44,14 @@ class TryMe extends Component {
   onEditorValueChange(text) {
     const { samples, activeKey } = this.state;
     this.setState({
-      samples: samples.map(
-        (sample, index) => {
-          if (index === activeKey) {
-            const newSample = { ...sample };
-            newSample.content = text;
-            return newSample;
-          }
-          return sample;
+      samples: samples.map((sample, index) => {
+        if (index === activeKey) {
+          const newSample = { ...sample };
+          newSample.content = text;
+          return newSample;
         }
-      )
+        return sample;
+      })
     });
   }
 
@@ -70,24 +64,22 @@ class TryMe extends Component {
   tryIt() {
     const { onCodeChange } = this.props;
     const { activeKey, samples } = this.state;
-    const {content} = samples[activeKey];
+    const { content } = samples[activeKey];
     onCodeChange(activeKey, content);
   }
 
   resetSample() {
     const { activeKey, samples } = this.state;
     this.setState({
-      samples: samples.map(
-        (sample, index) => {
-          if (index === activeKey) {
-            const newSample = { ...sample };
-            newSample.url = sample.defaultUrl;
-            newSample.content = sample.defaultContent;
-            return newSample;
-          }
-          return sample;
+      samples: samples.map((sample, index) => {
+        if (index === activeKey) {
+          const newSample = { ...sample };
+          newSample.url = sample.defaultUrl;
+          newSample.content = sample.defaultContent;
+          return newSample;
         }
-      )
+        return sample;
+      })
     });
   }
 
@@ -99,19 +91,18 @@ class TryMe extends Component {
     return (
       <div>
         <Tabs id={name} defaultActiveKey={activeKey} onSelect={key => this.setActiveSample(key)}>
-          {samples.map(({ caption }, index) => (
-            <Tab eventKey={index} generateChildId key={`tab${index}`} title={caption} />
+          {samples.map(({ caption }) => (
+            <Tab eventKey={caption.replace(/\s/g, '')} generateChildId key={caption.replace(/\s/g, '')} title={caption} />
           ))}
         </Tabs>
-        <Editor
-          content={content}
-          onCodeChange={this.onEditorValueChange}
-        />
+        <Editor content={content} onCodeChange={this.onEditorValueChange} />
         <div className={styles.buttonsgroup}>
-          <Button onClick={() => this.resetSample()}>Reset code value</Button>&nbsp;<Button onClick={() => this.tryIt()}>Try it >></Button>
+          <Button onClick={() => this.resetSample()}>Reset code value</Button>
+          &nbsp;
+          <Button onClick={() => this.tryIt()}>Try it >></Button>
         </div>
         <div>
-          <iframe title="placeholder" src={url} className={styles.placeholder}></iframe>
+          <iframe title="placeholder" src={url} className={styles.placeholder} />
         </div>
       </div>
     );

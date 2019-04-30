@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
 import {
-  Media,
-  Panel,
-  ButtonGroup,
-  Button
+  Media, Panel, ButtonGroup, Button
 } from 'react-bootstrap';
 import { TutorialOrgDiagram } from 'components';
 import { connect } from 'react-redux';
@@ -13,9 +10,7 @@ import { provideHooks } from 'redial';
 import { isLoaded, load, setCursorItem } from 'redux/modules/PreloadOrgDiagram';
 
 @provideHooks({
-  fetch: ({ store: { dispatch, getState } }) => !isLoaded(getState())
-    ? dispatch(load()).catch(() => null)
-    : Promise.resolve()
+  fetch: ({ store: { dispatch, getState } }) => (!isLoaded(getState()) ? dispatch(load()).catch(() => null) : Promise.resolve())
 })
 @connect(
   state => ({ config: state.preloadOrgDiagram }),
@@ -27,13 +22,15 @@ class ReduxStatePreloadOrganizationalChart extends Component {
       pageFitMode: PropTypes.number.isRequired,
       cursorItem: PropTypes.number.isRequired,
       hasSelectorCheckbox: PropTypes.number.isRequired,
-      items: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        parent: PropTypes.number,
-        title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        image: PropTypes.string,
-      })).isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          parent: PropTypes.number,
+          title: PropTypes.string.isRequired,
+          description: PropTypes.string.isRequired,
+          image: PropTypes.string
+        })
+      ).isRequired
     }).isRequired,
     setCursorItem: PropTypes.func.isRequired
   };
@@ -45,16 +42,16 @@ class ReduxStatePreloadOrganizationalChart extends Component {
       <div>
         <Helmet title="Redux State Bound Organizational Chart" />
         <Media>
-          <Media.Heading>
-            Redux State Bound Organizational Chart
-          </Media.Heading>
+          <Media.Heading>Redux State Bound Organizational Chart</Media.Heading>
           <Media.Body>
-            <p>In this example we move Organizational Chart configuration object
-              from component state to global Redux state, so functionality stays the same,
-              but control initial configuration migrated to Redux.
+            <p>
+              In this example we move Organizational Chart configuration object from component state to global Redux state, so functionality stays the same, but control initial
+              configuration migrated to Redux.
             </p>
             <ul>
-              <li>See <a href="https://redux.js.org/">React Redux</a></li>
+              <li>
+                See <a href="https://redux.js.org/">React Redux</a>
+              </li>
             </ul>
           </Media.Body>
         </Media>

@@ -4,17 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid,
-  Col,
-  Row,
-  Tab,
-  NavItem,
-  Nav,
-  Well,
-  NavDropdown,
-  MenuItem,
-  Button,
-  Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
 } from 'react-bootstrap';
 import {
   OrgDiagram,
@@ -28,19 +18,12 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel,
+  RenderingOptionsPanel
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import {
-  load,
-  isLoaded,
-  setCursorItem,
-  setSelectedItems,
-  setClickedButton,
-  setConfigOption,
-  setTemplateOption,
-  UserActionType
+  load, isLoaded, setCursorItem, setSelectedItems, setClickedButton, setConfigOption, setTemplateOption, UserActionType
 } from 'redux/modules/demos/dynamicloading';
 
 @provideHooks({
@@ -58,16 +41,19 @@ import {
     userAction: state.dynamicloading.userAction,
     itemsHash: state.dynamicloading.itemsHash
   }),
-  dispatch => bindActionCreators({
-    load,
-    isLoaded,
-    setCursorItem,
-    setSelectedItems,
-    setClickedButton,
-    setConfigOption,
-    setTemplateOption,
-    UserActionType
-  }, dispatch)
+  dispatch => bindActionCreators(
+    {
+      load,
+      isLoaded,
+      setCursorItem,
+      setSelectedItems,
+      setClickedButton,
+      setConfigOption,
+      setTemplateOption,
+      UserActionType
+    },
+    dispatch
+  )
 )
 class DynamicLoading extends Component {
   static propTypes = {
@@ -88,11 +74,7 @@ class DynamicLoading extends Component {
   };
 
   getActionMessage() {
-    const {
-      config,
-      itemsHash,
-      userAction,
-    } = this.props;
+    const { config, itemsHash, userAction } = this.props;
     switch (userAction.type) {
       case UserActionType.None:
         return 'No user actions yet.';
@@ -135,9 +117,7 @@ class DynamicLoading extends Component {
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>
-                    Dynamic Organizational Chart Nodes Loading
-                  </Navbar.Brand>
+                  <Navbar.Brand>Dynamic Organizational Chart Nodes Loading</Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
@@ -163,15 +143,14 @@ class DynamicLoading extends Component {
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);
                 }}
-                onItemRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
+                onItemRender={({ context, element, templateName }) => {
+                  // eslint-disable-line no-unused-vars
                   switch (templateName) {
                     case 'defaultTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -186,9 +165,7 @@ class DynamicLoading extends Component {
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -204,9 +181,10 @@ class DynamicLoading extends Component {
                       break;
                   }
                 }}
-                onHighlightRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
+                onHighlightRender={({ context, element, templateName }) => {
+                  // eslint-disable-line no-unused-vars
                   const inlineStyles = {
-                    backgroundColor: context.itemTitleColor,
+                    backgroundColor: context.itemTitleColor
                   };
                   switch (templateName) {
                     case 'defaultTemplate':
@@ -225,13 +203,10 @@ class DynamicLoading extends Component {
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
               <p>
-                This demo dynamically loads chart nodes as user navigates around diagram. The top 3 levels stay loaded permanently.
-                All other levels are loaded only as user browses down into them and they are discarded as
-                it navigates out to any other branch of the hierarchy.
+                This demo dynamically loads chart nodes as user navigates around diagram. The top 3 levels stay loaded permanently. All other levels are loaded only as user browses
+                down into them and they are discarded as it navigates out to any other branch of the hierarchy.
               </p>
-              <p>
-                If item is check marked then it stays loaded.
-              </p>
+              <p>If item is check marked then it stays loaded.</p>
             </div>
           </Col>
           <Col smPull={8} sm={4} mdPull={9} md={3}>
@@ -283,7 +258,9 @@ class DynamicLoading extends Component {
                     <Tab.Pane eventKey="minimizeditems">
                       <MinimizedItemsOptionsPanel
                         config={templateConfig}
-                        setOption={(name, value) => { setTemplateOption('defaultTemplate', name, value); }}
+                        setOption={(name, value) => {
+                          setTemplateOption('defaultTemplate', name, value);
+                        }}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="intervals">

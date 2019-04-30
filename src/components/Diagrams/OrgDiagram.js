@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import {
-  ButtonGroup,
-  Button,
-  Glyphicon
-} from 'react-bootstrap';
+import { ButtonGroup, Button, Glyphicon } from 'react-bootstrap';
 import primitives from 'basicprimitives';
 import OrgDiagramConfig from './Schemas/OrgDiagramConfig';
 
@@ -21,13 +17,11 @@ primitives.common.ButtonsTemplate = () => {
   function render(event, { element, buttons }) {
     ReactDOM.render(
       <ButtonGroup className="btn-group-vertical">
-        {
-          buttons.map(button => (
-            <Button bsSize="small" className="orgdiagrambutton" key={button.name} data-buttonname={button.name}>
-              <Glyphicon glyph={button.icon} />
-            </Button>
-          ))
-        }
+        {buttons.map(button => (
+          <Button bsSize="small" className="orgdiagrambutton" key={button.name} data-buttonname={button.name}>
+            <Glyphicon glyph={button.icon} />
+          </Button>
+        ))}
       </ButtonGroup>,
       element
     );
@@ -74,7 +68,7 @@ class OrgDiagram extends Component {
     onCursorRender: null,
 
     className: 'placeholder'
-  }
+  };
 
   static addItemPlaceholders({ config, onItemRender, onHighlightRender }) {
     const { templates } = config;
@@ -84,22 +78,24 @@ class OrgDiagram extends Component {
         const template = templates[index];
         // We use React JSX to populate nodes, so we have to provide only empty DIV element
         if (onItemRender != null) {
-          template.itemTemplate = ['div',
+          template.itemTemplate = [
+            'div',
             {
               style: {
                 width: `${template.itemSize.width}px`,
-                height: `${template.itemSize.height}px`,
+                height: `${template.itemSize.height}px`
               },
               class: [styles.bpitem]
             }
           ];
         }
         if (onHighlightRender != null) {
-          template.highlightTemplate = ['div',
+          template.highlightTemplate = [
+            'div',
             {
               style: {
                 width: `${template.itemSize.width + template.highlightPadding.left + template.highlightPadding.right}px`,
-                height: `${template.itemSize.height + template.highlightPadding.top + template.highlightPadding.bottom}px`,
+                height: `${template.itemSize.height + template.highlightPadding.top + template.highlightPadding.bottom}px`
               },
               class: [styles.bp_item_overflow, 'bp-corner-all', 'bp-cursor-frame']
             }
@@ -129,11 +125,13 @@ class OrgDiagram extends Component {
     // It is added to the rendered page to track size changes of control placeholder
     // npm install resize-observer-polyfill --save-dev
     require('resize-observer-polyfill/dist/ResizeObserver.global');
-    this.observer = new ResizeObserver(() => { self.onSizeChanged.call(self); });
+    this.observer = new ResizeObserver(() => {
+      self.onSizeChanged.call(self);
+    });
     this.observer.observe(this.placeholderRef.current);
   }
 
-  componentWillUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
+  shouldComponentUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
     // This method is not being called during component creation time
     // React calls it when component properties or state changed and component needs to be rendered again
     // We return false from this method, since we don't need "render" function to be called again,
@@ -172,13 +170,11 @@ class OrgDiagram extends Component {
       onButtonClick,
       onItemRender,
       onHighlightRender,
-      onCursorRender,
+      onCursorRender
     } = properties;
-
 
     // Add control templates for items in form of empty div
     OrgDiagram.addItemPlaceholders(properties);
-
 
     const options = {
       ...config,
@@ -244,9 +240,7 @@ class OrgDiagram extends Component {
 
   render() {
     const { className } = this.props;
-    return (
-      <div ref={this.placeholderRef} className={className} />
-    );
+    return <div ref={this.placeholderRef} className={className} />;
   }
 }
 

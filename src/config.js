@@ -18,7 +18,7 @@ const config = {
     title: 'Basic Primitives',
     description: 'Basic Primitives Diagramming Controls React integration demos and tutroials.',
     head: {
-      titleTemplate: 'Basic Primitives Example: %s',
+      titleTemplate: 'Basic Primitives: %s',
       meta: [
         { name: 'description', content: 'All the modern best practices in one example.' },
         { charset: 'utf-8' },

@@ -2,6 +2,13 @@ import _ from 'lodash';
 import { SOCKET_KEY } from '@feathersjs/socketio';
 
 export default function customService(app) {
+  app.use('/load-info', (req, res) => {
+    res.json({
+      message: 'This came from the api server',
+      time: Date.now()
+    });
+  });
+
   app.use('/visitors', (req, res) => {
     const { connections } = app.channel('chat');
     res.json({

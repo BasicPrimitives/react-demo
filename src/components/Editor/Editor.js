@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Controlled as CodeMirror} from 'react-codemirror2'
+import { Controlled as CodeMirror } from 'react-codemirror2';
 
 class Editor extends Component {
   static propTypes = {
     onCodeChange: PropTypes.func.isRequired,
-    content: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
   };
 
   constructor(props, context) {
@@ -15,16 +15,16 @@ class Editor extends Component {
     this.onContentChange = this.onContentChange.bind(this);
   }
 
+  shouldComponentUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
+    const { content: nextContent } = nextProps;
+    const content = this.instance != null ? this.instance.getValue() : '';
+
+    return !(nextContent === content);
+  }
+
   onContentChange(text) {
     const { onCodeChange } = this.props;
     onCodeChange(text);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
-    const {content: nextContent} = nextProps;
-    const content = this.instance != null ? this.instance.getValue() : '';
-
-    return !(nextContent == content);
   }
 
   render() {
@@ -40,15 +40,13 @@ class Editor extends Component {
           theme: 'material',
           lineNumbers: true
         }}
-        editorDidMount={editor => { this.instance = editor }}
-        // onChange={(editor, data, value) => {
-        //   this.onContentChange(value);
-        // }}
+        editorDidMount={editor => {
+          this.instance = editor;
+        }}
         onBeforeChange={(editor, data, value) => {
           this.onContentChange(value);
         }}
-        onChange={(editor, data, value) => {
-        }}
+        onChange={() => { }}
       />
     );
   }

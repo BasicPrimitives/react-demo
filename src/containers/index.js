@@ -1,4 +1,4 @@
-/* eslint-disable */
+// export About from './About/About';
 export App from './App/App';
 export Home from './Home/Home';
 export LargeHierarchy from './Demos/LargeHierarchy/LargeHierarchy';
@@ -24,5 +24,5 @@ export ButtonsPanel from './UseCases/ButtonsPanel/ButtonsPanel';
 // export ChatFeathers from './ChatFeathers/ChatFeathers';
 // export Login from './Login/Login';
 // export LoginSuccess from './LoginSuccess/LoginSuccess';
-// export Register from './Register/Register';
 export NotFound from './NotFound/NotFound';
+// export Register from './Register/Register';

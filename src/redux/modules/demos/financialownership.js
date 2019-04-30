@@ -26,7 +26,7 @@ const initialState = {
   },
   centerOnCursor: true,
   config: {
-    ...(new primitives.famdiagram.Config()),
+    ...new primitives.famdiagram.Config(),
     buttons: [
       {
         name: 'in',
@@ -43,7 +43,7 @@ const initialState = {
     defaulLabelAnnotationTemplate: 'LabelAnnotationTemplate',
     templates: [
       {
-        ...(new primitives.famdiagram.TemplateConfig()),
+        ...new primitives.famdiagram.TemplateConfig(),
         name: 'defaultTemplate',
         itemSize: new primitives.common.Size(220, 60),
         minimizedItemSize: new primitives.common.Size(30, 30),
@@ -56,14 +56,14 @@ const initialState = {
         highlightPadding: new primitives.common.Thickness(2, 2, 2, 2)
       },
       {
-        ...(new primitives.famdiagram.TemplateConfig()),
+        ...new primitives.famdiagram.TemplateConfig(),
         name: 'LabelAnnotationTemplate',
         itemSize: new primitives.common.Size(100, 20),
         minimizedItemSize: new primitives.common.Size(6, 6),
-        highlightPadding: new primitives.common.Thickness(2, 2, 2, 2),
+        highlightPadding: new primitives.common.Thickness(2, 2, 2, 2)
       },
       {
-        ...(new primitives.famdiagram.TemplateConfig()),
+        ...new primitives.famdiagram.TemplateConfig(),
         name: 'ShapeTemplate',
         itemSize: new primitives.common.Size(100, 100),
         minimizedItemLineWidth: 1,
@@ -191,7 +191,7 @@ const initialState = {
     /* Interactivity */
     navigationMode: primitives.common.NavigationMode.Default,
     highlightGravityRadius: 40,
-    enablePanning: true,
+    enablePanning: true
   },
   itemsHash: {},
   parents: {},
@@ -288,16 +288,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          templates: templates.map(
-            template => {
-              if (template.name === action.templateName) {
-                const newTemplate = { ...template };
-                newTemplate[action.name] = action.value;
-                return newTemplate;
-              }
-              return template;
+          templates: templates.map(template => {
+            if (template.name === action.templateName) {
+              const newTemplate = { ...template };
+              newTemplate[action.name] = action.value;
+              return newTemplate;
             }
-          )
+            return template;
+          })
         }
       };
     }
@@ -310,16 +308,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          annotations: annotations.map(
-            annotation => {
-              if (annotation.annotationType === action.annotationType) {
-                const newAnnotation = { ...annotation };
-                newAnnotation[action.name] = action.value;
-                return newAnnotation;
-              }
-              return annotation;
+          annotations: annotations.map(annotation => {
+            if (annotation.annotationType === action.annotationType) {
+              const newAnnotation = { ...annotation };
+              newAnnotation[action.name] = action.value;
+              return newAnnotation;
             }
-          )
+            return annotation;
+          })
         }
       };
     }
@@ -332,9 +328,9 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...config,
-          cursorItem,
+          cursorItem
         },
-        ...(getUserAction(UserActionType.ChangedCursor))
+        ...getUserAction(UserActionType.ChangedCursor)
       };
     }
 
@@ -347,7 +343,7 @@ export default function reducer(state = initialState, action = {}) {
           ...config,
           selectedItems: action.selectedItems
         },
-        ...(getUserAction(UserActionType.SelectedItems))
+        ...getUserAction(UserActionType.SelectedItems)
       };
     }
 
@@ -359,16 +355,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          annotations: annotations.map(
-            annotation => {
-              if (annotation.annotationType === primitives.common.AnnotationType.Connector) {
-                const newAnnotation = { ...annotation };
-                newAnnotation[action.option] = action.itemId;
-                return newAnnotation;
-              }
-              return annotation;
+          annotations: annotations.map(annotation => {
+            if (annotation.annotationType === primitives.common.AnnotationType.Connector) {
+              const newAnnotation = { ...annotation };
+              newAnnotation[action.option] = action.itemId;
+              return newAnnotation;
             }
-          )
+            return annotation;
+          })
         }
       };
     }

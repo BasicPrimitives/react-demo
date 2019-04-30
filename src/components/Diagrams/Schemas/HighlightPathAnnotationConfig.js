@@ -10,7 +10,7 @@ const HighlightPathAnnotationConfig = () => PropTypes.shape({
   lineType: PropTypes.oneOf(Object.values(primitives.common.LineType)),
   opacity: PropTypes.number,
   showArrows: PropTypes.bool,
-  selectItems: PropTypes.bool,
+  selectItems: PropTypes.bool
 });
 
 export default HighlightPathAnnotationConfig;

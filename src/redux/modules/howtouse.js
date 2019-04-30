@@ -38,20 +38,17 @@ export default function reducer(state = initialState, action = {}) {
             loading: false,
             loaded: true,
             markdown,
-            groups: Object.keys(groups).reduce(
-              (agg, groupKey) => {
-                agg[groupKey] = groups[groupKey].map(sample => {
-                  const { url, content } = sample;
-                  return {
-                    ...sample,
-                    defaultUrl: url,
-                    defaultContent: content
-                  };
-                });
-                return agg;
-              },
-              {}
-            )
+            groups: Object.keys(groups).reduce((agg, groupKey) => {
+              agg[groupKey] = groups[groupKey].map(sample => {
+                const { url, content } = sample;
+                return {
+                  ...sample,
+                  defaultUrl: url,
+                  defaultContent: content
+                };
+              });
+              return agg;
+            }, {})
           }
         }
       };
@@ -93,11 +90,7 @@ export default function reducer(state = initialState, action = {}) {
     case SETCODE_SUCCESS: {
       const { files } = state;
       const {
-        fileName,
-        groupKey,
-        sampleKey,
-        content,
-        result
+        fileName, groupKey, sampleKey, content, result
       } = action;
       const file = files[fileName];
       const { groups } = file;

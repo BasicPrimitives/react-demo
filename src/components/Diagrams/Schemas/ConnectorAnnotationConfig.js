@@ -9,12 +9,15 @@ const ConnectorAnnotationConfig = () => PropTypes.shape({
   connectorShapeType: PropTypes.oneOf(Object.values(primitives.common.ConnectorShapeType)),
   connectorPlacementType: PropTypes.oneOf(Object.values(primitives.common.ConnectorPlacementType)),
   labelPlacementType: PropTypes.oneOf(Object.values(primitives.common.ConnectorLabelPlacementType)),
-  offset: PropTypes.oneOfType([PropTypes.number, PropTypes.shape({
-    left: PropTypes.number.isRequired,
-    top: PropTypes.number.isRequired,
-    right: PropTypes.number.isRequired,
-    bottom: PropTypes.number.isRequired,
-  })]),
+  offset: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({
+      left: PropTypes.number.isRequired,
+      top: PropTypes.number.isRequired,
+      right: PropTypes.number.isRequired,
+      bottom: PropTypes.number.isRequired
+    })
+  ]),
   lineWidth: PropTypes.number,
   color: PropTypes.string,
   lineType: PropTypes.oneOf(Object.values(primitives.common.LineType)),
@@ -22,7 +25,7 @@ const ConnectorAnnotationConfig = () => PropTypes.shape({
   label: PropTypes.string,
   size: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
   })
 });
 

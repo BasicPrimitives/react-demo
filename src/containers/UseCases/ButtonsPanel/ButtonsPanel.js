@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import {
-  Media,
-  Well
-} from 'react-bootstrap';
+import { Media, Well } from 'react-bootstrap';
 import { OrgDiagram } from 'components';
 import primitives from 'basicprimitives';
 
@@ -71,35 +68,24 @@ class ButtonsPanel extends Component {
 
   render() {
     const styles = require('./ButtonsPanel.scss');
-    const {
-      clickedButtonInfo,
-      config
-    } = this.state;
+    const { clickedButtonInfo, config } = this.state;
 
     return (
       <div>
         <Helmet title="Buttons Panel" />
         <Media>
-          <Media.Heading>
-            Buttons Panel
-          </Media.Heading>
+          <Media.Heading>Buttons Panel</Media.Heading>
           <Media.Body>
             <p>
-              Basic Primitives diagrams provide simple API to create custom user buttons.
-              They are defined in primitives.orgdiagram.Config.buttons collection, of type primitives.orgdiagram.ButtonConfig.
-              Option primitives.orgdiagram.Config.hasButtons allows to make buttons visible only for current cursor item
-              or for all normal items in diagram. The same option primitives.orgdiagram.ItemConfig.hasButtons in
-              item controls buttons visibility for individual items.
+              Basic Primitives diagrams provide simple API to create custom user buttons. They are defined in primitives.orgdiagram.Config.buttons collection, of type
+              primitives.orgdiagram.ButtonConfig. Option primitives.orgdiagram.Config.hasButtons allows to make buttons visible only for current cursor item or for all normal items
+              in diagram. The same option primitives.orgdiagram.ItemConfig.hasButtons in item controls buttons visibility for individual items.
             </p>
           </Media.Body>
         </Media>
-        <Well>{ (clickedButtonInfo == null ? 'No clicked item' : `User clicked ${clickedButtonInfo.name} button for item ${clickedButtonInfo.title}`) }</Well>
+        <Well>{clickedButtonInfo == null ? 'No clicked item' : `User clicked ${clickedButtonInfo.name} button for item ${clickedButtonInfo.title}`}</Well>
         <div>
-          <OrgDiagram
-            className={styles.placeholder}
-            config={config}
-            onButtonClick={this.onButtonClick}
-          />
+          <OrgDiagram className={styles.placeholder} config={config} onButtonClick={this.onButtonClick} />
         </div>
       </div>
     );

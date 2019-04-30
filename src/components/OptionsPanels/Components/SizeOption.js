@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import {
-  FormControl,
-  ControlLabel,
-} from 'react-bootstrap';
+import { FormControl, ControlLabel } from 'react-bootstrap';
 import primitives from 'basicprimitives';
 
 class SizeOption extends Component {
@@ -16,7 +13,7 @@ class SizeOption extends Component {
     propertyName: PropTypes.string.isRequired,
     value: PropTypes.shape({
       width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired
     }).isRequired
   };
 
@@ -24,7 +21,7 @@ class SizeOption extends Component {
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !(_.isEqual(currentOptions, nextOptions));
+    return !_.isEqual(currentOptions, nextOptions);
   }
 
   onWidthChange(width) {
@@ -39,11 +36,7 @@ class SizeOption extends Component {
 
   getUsedOptions(props) { // eslint-disable-line class-methods-use-this
     const {
-      caption,
-      widths,
-      heights,
-      propertyName,
-      value
+      caption, widths, heights, propertyName, value
     } = props;
     return {
       caption,
@@ -56,11 +49,7 @@ class SizeOption extends Component {
 
   render() {
     const {
-      caption,
-      widths,
-      heights,
-      propertyName,
-      value
+      caption, widths, heights, propertyName, value
     } = this.props;
     return (
       <div>
@@ -73,13 +62,11 @@ class SizeOption extends Component {
           value={value.width}
           onChange={event => this.onWidthChange(parseInt(event.target.value, 10))}
         >
-          {
-            widths.map(width => (
-              <option name={`width${width}`} key={`width${width}`} value={width}>
-                {width}
-              </option>
-            ))
-          }
+          {widths.map(width => (
+            <option name={`width${width}`} key={`width${width}`} value={width}>
+              {width}
+            </option>
+          ))}
         </FormControl>
         <p>Height</p>
         <FormControl
@@ -89,15 +76,12 @@ class SizeOption extends Component {
           value={value.height}
           onChange={event => this.onHeightChange(parseInt(event.target.value, 10))}
         >
-          {
-            heights.map(height => (
-              <option name={`height${height}`} key={`width${height}`} value={height}>
-                {height}
-              </option>
-            ))
-          }
+          {heights.map(height => (
+            <option name={`height${height}`} key={`width${height}`} value={height}>
+              {height}
+            </option>
+          ))}
         </FormControl>
-
       </div>
     );
   }

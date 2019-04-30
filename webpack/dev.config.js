@@ -1,5 +1,3 @@
-require('@babel/polyfill');
-
 // Webpack config for development
 const fs = require('fs');
 const path = require('path');
@@ -9,8 +7,6 @@ const { ReactLoadablePlugin } = require('react-loadable/webpack');
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
-
-const helpers = require('./helpers');
 
 const assetsPath = path.resolve(__dirname, '../static/dist');
 const host = process.env.HOST || 'localhost';
@@ -33,12 +29,6 @@ const combinedPlugins = (babelrcObject.plugins || []).concat(babelrcObjectDevelo
 
 const babelLoaderQuery = Object.assign({}, babelrcObject, babelrcObjectDevelopment, { plugins: combinedPlugins });
 delete babelLoaderQuery.env;
-
-const validDLLs = helpers.isValidDLLs('vendor', assetsPath);
-if (process.env.WEBPACK_DLLS === '1' && !validDLLs) {
-  process.env.WEBPACK_DLLS = '0';
-  console.warn('webpack dlls disabled');
-}
 
 const webpackConfig = {
   mode: 'development',
@@ -63,24 +53,91 @@ const webpackConfig = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader'
+      },
+      {
         test: /\.jsx?$/,
-        loader: 'happypack/loader?id=jsx',
-        include: [path.resolve(__dirname, '../src')]
+        include: [path.resolve(__dirname, '../src')],
+        loader: 'babel-loader',
+        options: babelLoaderQuery
       },
       {
         test: /\.json$/,
-        loader: 'happypack/loader?id=json',
-        include: [path.resolve(__dirname, '../src')]
+        include: [path.resolve(__dirname, '../src')],
+        loader: 'json-loader'
       },
       {
         test: /\.less$/,
-        loader: 'happypack/loader?id=less',
-        include: [path.resolve(__dirname, '../src')]
+        include: [path.resolve(__dirname, '../src')],
+        loaders: [
+          {
+            loader: 'style-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 2,
+              sourceMap: true,
+              localIdentName: '[local]___[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                path: 'postcss.config.js'
+              }
+            }
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.scss$/,
-        loader: 'happypack/loader?id=sass',
-        include: [path.resolve(__dirname, '../src')]
+        include: [path.resolve(__dirname, '../src')],
+        loaders: [
+          {
+            loader: 'style-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 2,
+              sourceMap: true,
+              localIdentName: '[local]___[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                path: 'postcss.config.js'
+              }
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test:/\.css$/,
@@ -132,6 +189,9 @@ const webpackConfig = {
     // new webpack.LoaderOptionsPlugin({
     // }),
 
+    /* wepack build status - show webpack build progress in terminal */
+    new webpack.ProgressPlugin(),
+
     // hot reload
     new webpack.HotModuleReplacementPlugin(),
 
@@ -140,7 +200,7 @@ const webpackConfig = {
     new webpack.DefinePlugin({
       __CLIENT__: true,
       __SERVER__: false,
-      __DEVELOPMENT__: false,
+      __DEVELOPMENT__: true,
       __DEVTOOLS__: true // <-------- DISABLE redux-devtools HERE
     }),
 
@@ -148,86 +208,8 @@ const webpackConfig = {
 
     new ReactLoadablePlugin({
       filename: path.join(assetsPath, 'loadable-chunks.json')
-    }),
-
-    helpers.createHappyPlugin('jsx', [
-      {
-        loader: 'babel-loader',
-        exclude: /node_modules(\/|\\)(?!(@feathersjs))/,
-        options: babelLoaderQuery
-      },
-      {
-        loader: 'eslint-loader',
-        options: { emitWarning: true }
-      }
-    ]),
-    helpers.createHappyPlugin('less', [
-      {
-        loader: 'style-loader',
-        options: { sourceMap: true }
-      },
-      {
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          importLoaders: 2,
-          sourceMap: true,
-          localIdentName: '[local]___[hash:base64:5]'
-        }
-      },
-      {
-        loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-          config: {
-            path: 'postcss.config.js'
-          }
-        }
-      },
-      {
-        loader: 'less-loader',
-        options: {
-          outputStyle: 'expanded',
-          sourceMap: true
-        }
-      }
-    ]),
-    helpers.createHappyPlugin('sass', [
-      {
-        loader: 'style-loader',
-        options: { sourceMap: true }
-      },
-      {
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          importLoaders: 2,
-          sourceMap: true,
-          localIdentName: '[local]___[hash:base64:5]'
-        }
-      },
-      {
-        loader: 'postcss-loader',
-        options: {
-          sourceMap: true,
-          config: {
-            path: 'postcss.config.js'
-          }
-        }
-      },
-      {
-        loader: 'sass-loader',
-        options: {
-          outputStyle: 'expanded',
-          sourceMap: true
-        }
-      }
-    ])
+    })
   ]
 };
-
-if (process.env.WEBPACK_DLLS === '1' && validDLLs) {
-  helpers.installVendorDLL(webpackConfig, 'vendor');
-}
 
 module.exports = webpackConfig;
