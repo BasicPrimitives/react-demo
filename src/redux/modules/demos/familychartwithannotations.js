@@ -29,7 +29,7 @@ const initialState = {
   },
   centerOnCursor: true,
   config: {
-    ...(new primitives.famdiagram.Config()),
+    ...new primitives.famdiagram.Config(),
     buttons: [
       {
         name: 'in',
@@ -45,7 +45,7 @@ const initialState = {
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
-        ...(new primitives.famdiagram.TemplateConfig()),
+        ...new primitives.famdiagram.TemplateConfig(),
         name: 'defaultTemplate',
         minimizedItemCornerRadius: 8,
         minimizedItemSize: new primitives.common.Size(16, 16),
@@ -58,7 +58,7 @@ const initialState = {
         minimizedItemOpacity: 1.0
       },
       {
-        ...(new primitives.famdiagram.TemplateConfig()),
+        ...new primitives.famdiagram.TemplateConfig(),
         name: 'contactTemplate',
         itemSize: new primitives.common.Size(220, 120)
       }
@@ -155,7 +155,7 @@ const initialState = {
     /* Interactivity */
     navigationMode: primitives.common.NavigationMode.Default,
     highlightGravityRadius: 40,
-    enablePanning: true,
+    enablePanning: true
   },
   itemsHash: {}
 };
@@ -204,20 +204,20 @@ function getCursorItem(config, cursorItem) {
         }
         return item;
       })
-    },
+    }
   };
 }
 
 function getAnnotations(config) {
   const { annotations } = config;
   if (Array.isArray(annotations)) {
-    return ({
+    return {
       ...config,
       annotations: config.annotations.map(annotation => ({
-        ...(new primitives.famdiagram.ConnectorAnnotationConfig()),
+        ...new primitives.famdiagram.ConnectorAnnotationConfig(),
         ...annotation
       }))
-    });
+    };
   }
   return config;
 }
@@ -244,8 +244,8 @@ export default function reducer(state = initialState, action = {}) {
         loaded: true,
         datasetName,
         datasetNames,
-        ...(getCursorItem(getAnnotations(newConfig), newConfig.cursorItem)),
-        ...(getItemsHash(config.items))
+        ...getCursorItem(getAnnotations(newConfig), newConfig.cursorItem),
+        ...getItemsHash(config.items)
       };
     }
 
@@ -276,16 +276,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          templates: templates.map(
-            template => {
-              if (template.name === action.templateName) {
-                const newTemplate = { ...template };
-                newTemplate[action.name] = action.value;
-                return newTemplate;
-              }
-              return template;
+          templates: templates.map(template => {
+            if (template.name === action.templateName) {
+              const newTemplate = { ...template };
+              newTemplate[action.name] = action.value;
+              return newTemplate;
             }
-          )
+            return template;
+          })
         }
       };
     }
@@ -298,16 +296,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          annotations: annotations.map(
-            annotation => {
-              if (annotation.annotationType === action.annotationType) {
-                const newAnnotation = { ...annotation };
-                newAnnotation[action.name] = action.value;
-                return newAnnotation;
-              }
-              return annotation;
+          annotations: annotations.map(annotation => {
+            if (annotation.annotationType === action.annotationType) {
+              const newAnnotation = { ...annotation };
+              newAnnotation[action.name] = action.value;
+              return newAnnotation;
             }
-          )
+            return annotation;
+          })
         }
       };
     }
@@ -316,8 +312,8 @@ export default function reducer(state = initialState, action = {}) {
       const { config, ...restState } = state;
       return {
         ...restState,
-        ...(getCursorItem(config, action.cursorItem)),
-        ...(getUserAction(UserActionType.ChangedCursor))
+        ...getCursorItem(config, action.cursorItem),
+        ...getUserAction(UserActionType.ChangedCursor)
       };
     }
 
@@ -335,14 +331,18 @@ export default function reducer(state = initialState, action = {}) {
 
       if (id !== null) {
         const items = [...parentItems, ...childrenItems];
-        newAnnotations = newAnnotations.concat(items.map(item => new primitives.famdiagram.HighlightPathAnnotationConfig({
-          items: [id, item.id],
-          color: primitives.common.Colors.Navy,
-          opacity: 0.2,
-          lineWidth: 16,
-          zOrderType: primitives.common.ZOrderType.Background,
-          showArrows: false
-        })));
+        newAnnotations = newAnnotations.concat(
+          items.map(
+            item => new primitives.famdiagram.HighlightPathAnnotationConfig({
+              items: [id, item.id],
+              color: primitives.common.Colors.Navy,
+              opacity: 0.2,
+              lineWidth: 16,
+              zOrderType: primitives.common.ZOrderType.Background,
+              showArrows: false
+            })
+          )
+        );
       }
       return {
         ...restState,
@@ -364,7 +364,7 @@ export default function reducer(state = initialState, action = {}) {
           ...config,
           selectedItems: action.selectedItems
         },
-        ...(getUserAction(UserActionType.SelectedItems))
+        ...getUserAction(UserActionType.SelectedItems)
       };
     }
 
@@ -376,16 +376,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          annotations: annotations.map(
-            annotation => {
-              if (annotation.annotationType === primitives.common.AnnotationType.Connector) {
-                const newAnnotation = { ...annotation };
-                newAnnotation[action.option] = action.itemId;
-                return newAnnotation;
-              }
-              return annotation;
+          annotations: annotations.map(annotation => {
+            if (annotation.annotationType === primitives.common.AnnotationType.Connector) {
+              const newAnnotation = { ...annotation };
+              newAnnotation[action.option] = action.itemId;
+              return newAnnotation;
             }
-          )
+            return annotation;
+          })
         }
       };
     }
@@ -401,10 +399,7 @@ export function isLoaded(globalState) {
 export function load(datasetName) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: ({ client }) => Promise.all([
-      client.get('/load-demofamilychartslist'),
-      client.get(`/load-demofamilychart?name=${datasetName}`)
-    ]).then(results => ({
+    promise: ({ client }) => Promise.all([client.get('/load-demofamilychartslist'), client.get(`/load-demofamilychart?name=${datasetName}`)]).then(results => ({
       datasetName,
       datasetNames: results[0],
       config: results[1]

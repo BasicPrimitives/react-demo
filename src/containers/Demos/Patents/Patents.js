@@ -4,17 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid,
-  Col,
-  Row,
-  Tab,
-  NavItem,
-  Nav,
-  Well,
-  NavDropdown,
-  MenuItem,
-  Button,
-  Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
 } from 'react-bootstrap';
 import {
   FamDiagram,
@@ -30,7 +20,7 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel,
+  RenderingOptionsPanel
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -64,18 +54,21 @@ const primitives = require('basicprimitives');
     userAction: state.patents.userAction,
     itemsHash: state.patents.itemsHash
   }),
-  dispatch => bindActionCreators({
-    load,
-    isLoaded,
-    setCursorItem,
-    setSelectedItems,
-    setAnnotationSource,
-    setAnnotationDestination,
-    setConfigOption,
-    setTemplateOption,
-    setAnnotationOption,
-    UserActionType
-  }, dispatch)
+  dispatch => bindActionCreators(
+    {
+      load,
+      isLoaded,
+      setCursorItem,
+      setSelectedItems,
+      setAnnotationSource,
+      setAnnotationDestination,
+      setConfigOption,
+      setTemplateOption,
+      setAnnotationOption,
+      UserActionType
+    },
+    dispatch
+  )
 )
 class FamilyChartWithAnnotations extends Component {
   static propTypes = {
@@ -98,11 +91,7 @@ class FamilyChartWithAnnotations extends Component {
   };
 
   getActionMessage() {
-    const {
-      config,
-      itemsHash,
-      userAction,
-    } = this.props;
+    const { config, itemsHash, userAction } = this.props;
     switch (userAction.type) {
       case UserActionType.None:
         return 'No user actions yet.';
@@ -148,9 +137,7 @@ class FamilyChartWithAnnotations extends Component {
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>
-                    Patents Demo
-                  </Navbar.Brand>
+                  <Navbar.Brand>Patents Demo</Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
@@ -185,15 +172,14 @@ class FamilyChartWithAnnotations extends Component {
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);
                 }}
-                onItemRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
+                onItemRender={({ context, element, templateName }) => {
+                  // eslint-disable-line no-unused-vars
                   switch (templateName) {
                     case 'defaultTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -206,9 +192,7 @@ class FamilyChartWithAnnotations extends Component {
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -224,9 +208,7 @@ class FamilyChartWithAnnotations extends Component {
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.direct_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -244,12 +226,10 @@ class FamilyChartWithAnnotations extends Component {
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
               <p>
-                Patents data has massive number of references to grandparents, basically every patent has links to almost
-                every grandparent patent in database, in order to resolve this problem famDiagram control provides option
-                to hide direct grand parents connectors. So this demo instead of visualizing direct connections to grandparents
-                shows them with custom template and highlights connection going via intermediate parents with highlight
-                path annotation, so if some grandparent is outside of the current view, end user has indication that
-                there are grandparents directly connected to the current cursor item outside of the screen view.
+                Patents data has massive number of references to grandparents, basically every patent has links to almost every grandparent patent in database, in order to resolve
+                this problem famDiagram control provides option to hide direct grand parents connectors. So this demo instead of visualizing direct connections to grandparents
+                shows them with custom template and highlights connection going via intermediate parents with highlight path annotation, so if some grandparent is outside of the
+                current view, end user has indication that there are grandparents directly connected to the current cursor item outside of the screen view.
               </p>
               <p>Try to switch hideGrandParentsConnectors to false/true</p>
             </div>
@@ -310,19 +290,22 @@ class FamilyChartWithAnnotations extends Component {
                     <Tab.Pane eventKey="minimizeditems">
                       <MinimizedItemsOptionsPanel
                         config={templateConfig}
-                        setOption={(name, value) => { setTemplateOption('defaultTemplate', name, value); }}
+                        setOption={(name, value) => {
+                          setTemplateOption('defaultTemplate', name, value);
+                        }}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="annotation">
-                      {annotationConfig == null
-                        ? <p>No connector annotations found to set options for. Choose another data set.</p>
-                        : (
-                          <AnnotationOptionsPanel
-                            config={annotationConfig}
-                            setOption={(name, value) => { setAnnotationOption(primitives.common.AnnotationType.Connector, name, value); }}
-                          />
-                        )
-                      }
+                      {annotationConfig == null ? (
+                        <p>No connector annotations found to set options for. Choose another data set.</p>
+                      ) : (
+                        <AnnotationOptionsPanel
+                          config={annotationConfig}
+                          setOption={(name, value) => {
+                            setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
+                          }}
+                        />
+                      )}
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="intervals">

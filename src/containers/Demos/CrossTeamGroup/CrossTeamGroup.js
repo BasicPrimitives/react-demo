@@ -4,17 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid,
-  Col,
-  Row,
-  Tab,
-  NavItem,
-  Nav,
-  Well,
-  NavDropdown,
-  MenuItem,
-  Button,
-  Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
 } from 'react-bootstrap';
 import {
   OrgDiagram,
@@ -28,19 +18,12 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel,
+  RenderingOptionsPanel
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
 import {
-  load,
-  isLoaded,
-  setCursorItem,
-  setSelectedItems,
-  setClickedButton,
-  setConfigOption,
-  setTemplateOption,
-  UserActionType
+  load, isLoaded, setCursorItem, setSelectedItems, setClickedButton, setConfigOption, setTemplateOption, UserActionType
 } from 'redux/modules/demos/crossteamgroup';
 
 @provideHooks({
@@ -58,16 +41,19 @@ import {
     userAction: state.crossteamgroup.userAction,
     itemsHash: state.crossteamgroup.itemsHash
   }),
-  dispatch => bindActionCreators({
-    load,
-    isLoaded,
-    setCursorItem,
-    setSelectedItems,
-    setClickedButton,
-    setConfigOption,
-    setTemplateOption,
-    UserActionType
-  }, dispatch)
+  dispatch => bindActionCreators(
+    {
+      load,
+      isLoaded,
+      setCursorItem,
+      setSelectedItems,
+      setClickedButton,
+      setConfigOption,
+      setTemplateOption,
+      UserActionType
+    },
+    dispatch
+  )
 )
 class CrossTeamGroup extends Component {
   static propTypes = {
@@ -88,11 +74,7 @@ class CrossTeamGroup extends Component {
   };
 
   getActionMessage() {
-    const {
-      config,
-      itemsHash,
-      userAction,
-    } = this.props;
+    const { config, itemsHash, userAction } = this.props;
     switch (userAction.type) {
       case UserActionType.None:
         return 'No user actions yet.';
@@ -135,9 +117,7 @@ class CrossTeamGroup extends Component {
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>
-                    Cross Functional Team
-                  </Navbar.Brand>
+                  <Navbar.Brand>Cross Functional Team</Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
@@ -163,15 +143,14 @@ class CrossTeamGroup extends Component {
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);
                 }}
-                onItemRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
+                onItemRender={({ context, element, templateName }) => {
+                  // eslint-disable-line no-unused-vars
                   switch (templateName) {
                     case 'defaultTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -185,9 +164,7 @@ class CrossTeamGroup extends Component {
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -206,15 +183,9 @@ class CrossTeamGroup extends Component {
               />
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
-              <p>
-                This Organization Chart shows members of cross functional team "General Audit" and their mutual positions in organization over general view of hierarchy.
-              </p>
-              <p>
-                Organization Chart provides options to show or hide items between root and cross team group members.
-              </p>
-              <p>
-                Chart demonstrates rotation of chart to the left side and labels options for minimized items as well.
-              </p>
+              <p>This Organization Chart shows members of cross functional team "General Audit" and their mutual positions in organization over general view of hierarchy.</p>
+              <p>Organization Chart provides options to show or hide items between root and cross team group members.</p>
+              <p>Chart demonstrates rotation of chart to the left side and labels options for minimized items as well.</p>
             </div>
           </Col>
           <Col smPull={8} sm={4} mdPull={9} md={3}>
@@ -266,7 +237,9 @@ class CrossTeamGroup extends Component {
                     <Tab.Pane eventKey="minimizeditems">
                       <MinimizedItemsOptionsPanel
                         config={templateConfig}
-                        setOption={(name, value) => { setTemplateOption('defaultTemplate', name, value); }}
+                        setOption={(name, value) => {
+                          setTemplateOption('defaultTemplate', name, value);
+                        }}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="intervals">

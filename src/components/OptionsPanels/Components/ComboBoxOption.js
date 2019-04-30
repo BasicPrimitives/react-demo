@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import {
-  FormGroup,
-  FormControl,
-  ControlLabel,
-} from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class ComboBoxOption extends Component {
   static propTypes = {
     caption: PropTypes.string.isRequired,
-    items: PropTypes.oneOfType([PropTypes.object,
-      PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]))]).isRequired, // eslint-disable-line react/forbid-prop-types
+    items: PropTypes.oneOfType([
+      PropTypes.object, // eslint-disable-line react/forbid-prop-types
+      PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+        PropTypes.bool
+      ]))
+    ]).isRequired,
     propertyName: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]),
@@ -28,7 +30,7 @@ class ComboBoxOption extends Component {
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !(_.isEqual(currentOptions, nextOptions));
+    return !_.isEqual(currentOptions, nextOptions);
   }
 
   getValue(value) {
@@ -41,7 +43,7 @@ class ComboBoxOption extends Component {
         intValue = parseInt(value, 10);
         return floatValue !== intValue ? floatValue : intValue;
       case 'boolean':
-        return (value === 'true' || value === true);
+        return value === 'true' || value === true;
       default:
         return value;
     }
@@ -49,11 +51,7 @@ class ComboBoxOption extends Component {
 
   getUsedOptions(props) { // eslint-disable-line class-methods-use-this
     const {
-      caption,
-      items,
-      propertyName,
-      value,
-      isNullable
+      caption, items, propertyName, value, isNullable
     } = props;
     return {
       caption,
@@ -66,14 +64,14 @@ class ComboBoxOption extends Component {
 
   render() {
     const {
-      caption,
-      items,
-      propertyName,
-      onChange,
-      value,
-      isNullable
+      caption, items, propertyName, onChange, value, isNullable
     } = this.props;
-    const properties = Array.isArray(items) ? items.reduce((result, item) => { result[item] = item; return result; }, {}) : items;
+    const properties = Array.isArray(items)
+      ? items.reduce((result, item) => {
+        result[item] = item;
+        return result;
+      }, {})
+      : items;
     return (
       <div>
         <FormGroup>
@@ -85,20 +83,16 @@ class ComboBoxOption extends Component {
             value={value === null ? 'NULL' : value}
             onChange={event => onChange(this.getValue(event.target.value))}
           >
-            {
-              isNullable ? (
-                <option key="NULL" value="NULL">
-                  NULL
-                </option>
-              ) : ''
-            }
-            {
-              Object.keys(properties).map(property => (
-                <option key={property.toString()} value={properties[property]}>
-                  {property}
-                </option>
-              ))
-            }
+            {isNullable ? (
+              <option key="NULL" value="NULL">
+                NULL
+              </option>
+            ) : ('')}
+            {Object.keys(properties).map(property => (
+              <option key={property.toString()} value={properties[property]}>
+                {property}
+              </option>
+            ))}
           </FormControl>
         </FormGroup>
       </div>

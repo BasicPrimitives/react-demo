@@ -4,17 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid,
-  Col,
-  Row,
-  Tab,
-  NavItem,
-  Nav,
-  Well,
-  NavDropdown,
-  MenuItem,
-  Button,
-  Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
 } from 'react-bootstrap';
 import {
   FamDiagram,
@@ -30,7 +20,7 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel,
+  RenderingOptionsPanel
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -64,18 +54,21 @@ const primitives = require('basicprimitives');
     userAction: state.financialownership.userAction,
     itemsHash: state.financialownership.itemsHash
   }),
-  dispatch => bindActionCreators({
-    load,
-    isLoaded,
-    setCursorItem,
-    setSelectedItems,
-    setAnnotationSource,
-    setAnnotationDestination,
-    setConfigOption,
-    setTemplateOption,
-    setAnnotationOption,
-    UserActionType
-  }, dispatch)
+  dispatch => bindActionCreators(
+    {
+      load,
+      isLoaded,
+      setCursorItem,
+      setSelectedItems,
+      setAnnotationSource,
+      setAnnotationDestination,
+      setConfigOption,
+      setTemplateOption,
+      setAnnotationOption,
+      UserActionType
+    },
+    dispatch
+  )
 )
 class FinancialOwnership extends Component {
   static propTypes = {
@@ -98,11 +91,7 @@ class FinancialOwnership extends Component {
   };
 
   getActionMessage() {
-    const {
-      config,
-      itemsHash,
-      userAction,
-    } = this.props;
+    const { config, itemsHash, userAction } = this.props;
     switch (userAction.type) {
       case UserActionType.None:
         return 'No user actions yet.';
@@ -148,9 +137,7 @@ class FinancialOwnership extends Component {
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>
-                    Financial Ownership Demo
-                  </Navbar.Brand>
+                  <Navbar.Brand>Financial Ownership Demo</Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
@@ -185,15 +172,14 @@ class FinancialOwnership extends Component {
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);
                 }}
-                onItemRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
+                onItemRender={({ context, element, templateName }) => {
+                  // eslint-disable-line no-unused-vars
                   switch (templateName) {
                     case 'defaultTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.unit_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item ${styles.description}`}>{context.description}</div>
                         </div>,
@@ -206,9 +192,7 @@ class FinancialOwnership extends Component {
                           <div className={`bp-item ${styles.shape_frame}`}>
                             <img className={styles.shape} src={context.shapeType} alt={context.title} />
                           </div>
-                          <div className={`bp-item ${styles.title}`}>
-                            {context.title}
-                          </div>
+                          <div className={`bp-item ${styles.title}`}>{context.title}</div>
                         </div>,
                         element
                       );
@@ -216,9 +200,7 @@ class FinancialOwnership extends Component {
                     case 'LabelAnnotationTemplate':
                       ReactDOM.render(
                         <div className={`bp-item ${styles.label_annotation_template}`}>
-                          <div className={`bp-item ${styles.title}`}>
-                            {context.title}
-                          </div>
+                          <div className={`bp-item ${styles.title}`}>{context.title}</div>
                         </div>,
                         element
                       );
@@ -230,22 +212,20 @@ class FinancialOwnership extends Component {
               />
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
-              <p>
-                Multiple inheritance diagram visualizing financial ownership. Chart supports following features:
-              </p>
+              <p>Multiple inheritance diagram visualizing financial ownership. Chart supports following features:</p>
               <ul>
                 <li>
                   <b>Label annotations placed over connection lines.</b>
-                  They are used to show percentage of ownership and form cascades of labels when
-                  total value label for several children or parents needs to be shown over individual labels
+                  They are used to show percentage of ownership and form cascades of labels when total value label for several children or parents needs to be shown over individual
+                  labels
                 </li>
                 <li>
                   <b>Custom item templates to show geometrical figures</b>
                   This feature allows to show small multiples or regular bar or line charts inside nodes
                 </li>
                 <li>
-                  <b>Inective items</b> are used to show templated nodes in layout having no user interactivity.
-                  They are transarent to cursor node neighbourhood visualization and they are not clickable or selectable.
+                  <b>Inective items</b> are used to show templated nodes in layout having no user interactivity. They are transarent to cursor node neighbourhood visualization and
+                  they are not clickable or selectable.
                 </li>
                 <li>
                   <b>Nodes may have mutial ownership</b>, so control supports loops in parent child relations. See Family demo sample data sets as well.
@@ -309,19 +289,22 @@ class FinancialOwnership extends Component {
                     <Tab.Pane eventKey="minimizeditems">
                       <MinimizedItemsOptionsPanel
                         config={templateConfig}
-                        setOption={(name, value) => { setTemplateOption('defaultTemplate', name, value); }}
+                        setOption={(name, value) => {
+                          setTemplateOption('defaultTemplate', name, value);
+                        }}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="annotation">
-                      {annotationConfig == null
-                        ? <p>No connector annotations found to set options for. Choose another data set.</p>
-                        : (
-                          <AnnotationOptionsPanel
-                            config={annotationConfig}
-                            setOption={(name, value) => { setAnnotationOption(primitives.common.AnnotationType.Connector, name, value); }}
-                          />
-                        )
-                      }
+                      {annotationConfig == null ? (
+                        <p>No connector annotations found to set options for. Choose another data set.</p>
+                      ) : (
+                        <AnnotationOptionsPanel
+                          config={annotationConfig}
+                          setOption={(name, value) => {
+                            setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
+                          }}
+                        />
+                      )}
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="intervals">

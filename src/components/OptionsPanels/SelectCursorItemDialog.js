@@ -5,7 +5,8 @@ import { OrgDiagram } from 'components';
 import { Button, Modal } from 'react-bootstrap';
 import primitives from 'basicprimitives';
 
-class SelectCursorItemDialog extends Component { // eslint-disable-line react/prefer-stateless-function
+class SelectCursorItemDialog extends Component {
+  // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     onCursorItem: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
@@ -59,7 +60,7 @@ class SelectCursorItemDialog extends Component { // eslint-disable-line react/pr
       const { items, buttons, ...rest } = config;
       return {
         ...rest,
-        ...(this.getDeletedSelectedItems(items || [], itemsToReparent))
+        ...this.getDeletedSelectedItems(items || [], itemsToReparent)
       };
     }
   }

@@ -4,17 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {
-  Grid,
-  Col,
-  Row,
-  Tab,
-  NavItem,
-  Nav,
-  Well,
-  NavDropdown,
-  MenuItem,
-  Button,
-  Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
 } from 'react-bootstrap';
 import {
   OrgDiagram,
@@ -28,7 +18,7 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel,
+  RenderingOptionsPanel
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -58,16 +48,19 @@ import {
     userAction: state.verticallayoutorganizationalchart.userAction,
     itemsHash: state.verticallayoutorganizationalchart.itemsHash
   }),
-  dispatch => bindActionCreators({
-    load,
-    isLoaded,
-    setCursorItem,
-    setSelectedItems,
-    setClickedButton,
-    setConfigOption,
-    setTemplateOption,
-    UserActionType
-  }, dispatch)
+  dispatch => bindActionCreators(
+    {
+      load,
+      isLoaded,
+      setCursorItem,
+      setSelectedItems,
+      setClickedButton,
+      setConfigOption,
+      setTemplateOption,
+      UserActionType
+    },
+    dispatch
+  )
 )
 class VerticalLayout extends Component {
   static propTypes = {
@@ -88,11 +81,7 @@ class VerticalLayout extends Component {
   };
 
   getActionMessage() {
-    const {
-      config,
-      itemsHash,
-      userAction,
-    } = this.props;
+    const { config, itemsHash, userAction } = this.props;
     switch (userAction.type) {
       case UserActionType.None:
         return 'No user actions yet.';
@@ -135,9 +124,7 @@ class VerticalLayout extends Component {
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>
-                    Vertical Layout Organizational Chart
-                  </Navbar.Brand>
+                  <Navbar.Brand>Vertical Layout Organizational Chart</Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
@@ -163,15 +150,14 @@ class VerticalLayout extends Component {
                 onSelectionChanged={(data, selectedItems) => {
                   setSelectedItems(selectedItems);
                 }}
-                onItemRender={({ context, element, templateName }) => { // eslint-disable-line no-unused-vars
+                onItemRender={({ context, element, templateName }) => {
+                  // eslint-disable-line no-unused-vars
                   switch (templateName) {
                     case 'defaultTemplate':
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -185,9 +171,7 @@ class VerticalLayout extends Component {
                       ReactDOM.render(
                         <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
                           <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>
-                              {context.title}
-                            </div>
+                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
                           </div>
                           <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
                             <img className={styles.photo} src={context.image} alt={context.title} />
@@ -213,17 +197,16 @@ class VerticalLayout extends Component {
                 <li>Matrix</li>
               </ul>
               <p>
-                They can be set per node in item properties or globally for all chart nodes in chart configuration.
-                Chart supports two distinct properties for nodes children layout having and not having grand-children.
+                They can be set per node in item properties or globally for all chart nodes in chart configuration. Chart supports two distinct properties for nodes children layout
+                having and not having grand-children.
               </p>
               <p>
-                In order to change children alignment relative to its parent connection line use complimentary horizontal children alignment option.
-                Usually organizational charts grow horizontally more than vertically. So keeping nodes in squared shape saves horizontal space,
-                but at the same time we want to avoid unlimted grows in number of columns of our matrix, it is important to fit children
-                matrix into width of screen, it is fine to scroll nodes vertically or horizontally, but necessaty to scroll both ways creates usability issue,
-                so chart support extra option limiting number of columns. So for example when node has 4 children they are matrxied into 2 * 2 matrix,
-                9 children are matrixed into 3 * 3 matrix, 16 into 4 * 4 and so on, but if we put limitation for number of columns for example at
-                4 then 20 children would be matrixed into 4 * 5 matrix.
+                In order to change children alignment relative to its parent connection line use complimentary horizontal children alignment option. Usually organizational charts
+                grow horizontally more than vertically. So keeping nodes in squared shape saves horizontal space, but at the same time we want to avoid unlimted grows in number of
+                columns of our matrix, it is important to fit children matrix into width of screen, it is fine to scroll nodes vertically or horizontally, but necessaty to scroll
+                both ways creates usability issue, so chart support extra option limiting number of columns. So for example when node has 4 children they are matrxied into 2 * 2
+                matrix, 9 children are matrixed into 3 * 3 matrix, 16 into 4 * 4 and so on, but if we put limitation for number of columns for example at 4 then 20 children would
+                be matrixed into 4 * 5 matrix.
               </p>
             </div>
           </Col>
@@ -276,7 +259,9 @@ class VerticalLayout extends Component {
                     <Tab.Pane eventKey="minimizeditems">
                       <MinimizedItemsOptionsPanel
                         config={templateConfig}
-                        setOption={(name, value) => { setTemplateOption('defaultTemplate', name, value); }}
+                        setOption={(name, value) => {
+                          setTemplateOption('defaultTemplate', name, value);
+                        }}
                       />
                     </Tab.Pane>
                     <Tab.Pane eventKey="intervals">

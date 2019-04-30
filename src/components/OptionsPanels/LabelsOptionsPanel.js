@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  RadioGroupOption,
-  ComboBoxOption,
-  SizeOption
-} from 'components';
+import { RadioGroupOption, ComboBoxOption, SizeOption } from 'components';
 import primitives from 'basicprimitives';
 
 class LabelsOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -19,9 +15,8 @@ class LabelsOptionsPanel extends Component { // eslint-disable-line react/prefer
       <div>
         <h4>Labels</h4>
         <p>
-          Label property should be defined for every item first, otherwise chart has nothiong to show.
-          Labels are visible only for markers. If you need to add labels to normal size items you have
-          to modify default item template and place text outside item boundaries.
+          Label property should be defined for every item first, otherwise chart has nothiong to show. Labels are visible only for markers. If you need to add labels to normal size
+          items you have to modify default item template and place text outside item boundaries.
         </p>
         <RadioGroupOption
           caption="Show labels"
@@ -32,10 +27,8 @@ class LabelsOptionsPanel extends Component { // eslint-disable-line react/prefer
           onChange={value => setOption('showLabels', value)}
         />
         <p>
-          Size: Use this property to define labels bounding rectangle.
-          Labels placed relative to markers(dots), so when they overlap in auto show mode
-          one of them would be hidden. Set appropriate intervals between levels of markers
-          in order to fit and make all labels visible.
+          Size: Use this property to define labels bounding rectangle. Labels placed relative to markers(dots), so when they overlap in auto show mode one of them would be hidden.
+          Set appropriate intervals between levels of markers in order to fit and make all labels visible.
         </p>
         <SizeOption
           caption="Label Size"

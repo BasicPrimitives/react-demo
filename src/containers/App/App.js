@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { push } from 'react-router-redux';
 import { renderRoutes } from 'react-router-config';
 import { provideHooks } from 'redial';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -12,14 +11,18 @@ import {
 } from 'react-bootstrap';
 import Helmet from 'react-helmet';
 import qs from 'qs';
+import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout as logoutAction } from 'redux/modules/auth';
-import { Notifs } from 'components';
+import { Notifs, InfoBar } from 'components';
 import config from 'config';
 
 @provideHooks({
   fetch: async ({ store: { dispatch, getState } }) => {
     if (!isAuthLoaded(getState())) {
       await dispatch(loadAuth()).catch(() => null);
+    }
+    if (!isInfoLoaded(getState())) {
+      await dispatch(loadInfo()).catch(() => null);
     }
   }
 })
@@ -28,7 +31,7 @@ import config from 'config';
     notifs: state.notifs,
     user: state.auth.user
   }),
-  { logout: logoutAction, pushState: push }
+  { logout: logoutAction }
 )
 @withRouter
 class App extends Component {
@@ -41,12 +44,7 @@ class App extends Component {
     notifs: PropTypes.shape({
       global: PropTypes.array
     }).isRequired,
-    logout: PropTypes.func.isRequired,
-    pushState: PropTypes.func.isRequired
-  };
-
-  static contextTypes = {
-    store: PropTypes.objectOf(PropTypes.any).isRequired
+    logout: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -61,7 +59,7 @@ class App extends Component {
   componentDidUpdate(prevProps) {
     const { location } = this.props;
 
-    if (location !== prevProps.location) {
+    if (location.pathname !== prevProps.location.pathname) {
       window.scrollTo(0, 0);
     }
   }
@@ -73,10 +71,10 @@ class App extends Component {
 
     if (!prevProps.user && props.user) {
       const query = qs.parse(props.location.search, { ignoreQueryPrefix: true });
-      props.pushState(query.redirect || '/login-success');
+      props.history.push(query.redirect || '/login-success');
     } else if (prevProps.user && !props.user) {
       // logout
-      props.pushState('/');
+      props.history.push('/');
     }
 
     return {
@@ -161,14 +159,20 @@ class App extends Component {
                   <MenuItem eventKey={10}>Financial Ownership</MenuItem>
                 </LinkContainer>
               </NavDropdown>
-              <LinkContainer to="/usecases/hardcodedorganizationalchart">
+              <LinkContainer to="/usecases/firstorganizationalchart">
                 <NavItem>Use Cases</NavItem>
               </LinkContainer>
               {user && (
-                <LinkContainer to="/chat">
-                  <NavItem>Chat</NavItem>
-                </LinkContainer>
+                <>
+                  <LinkContainer to="/chat">
+                    <NavItem>Chat</NavItem>
+                  </LinkContainer>
+                  <LinkContainer to="/about">
+                    <NavItem>About Us</NavItem>
+                  </LinkContainer>
+                </>
               )}
+
               {!user && (
                 <LinkContainer to="/login">
                   <NavItem>Login</NavItem>
@@ -199,12 +203,17 @@ class App extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {notifs.global && (
-          <div className="container">
-            <Notifs className={styles.notifs} namespace="global" NotifComponent={props => <Alert bsStyle={props.kind}>{props.message}</Alert>} />
-          </div>
-        )}
-        {renderRoutes(route.routes)}
+
+        <div className={styles.appContent}>
+          {notifs.global && (
+            <div className="container">
+              <Notifs className={styles.notifs} namespace="global" NotifComponent={props => <Alert bsStyle={props.kind}>{props.message}</Alert>} />
+            </div>
+          )}
+
+          {renderRoutes(route.routes)}
+        </div>
+        <InfoBar />
 
         <div className="well text-center">
           Have questions? Ask for help{' '}

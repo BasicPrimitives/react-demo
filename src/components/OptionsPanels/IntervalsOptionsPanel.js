@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  ComboBoxOption
-} from 'components';
+import { ComboBoxOption } from 'components';
 
 class IntervalsOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -15,9 +13,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
     return (
       <div>
         <h4>Intervals</h4>
-        <p>
-          Vertical Intervals Between Rows
-        </p>
+        <p>Vertical Intervals Between Rows</p>
         <ComboBoxOption
           caption="Normal"
           propertyName="normalLevelShift"
@@ -26,9 +22,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40]}
           onChange={value => setOption('normalLevelShift', value)}
         />
-        <p>
-          If you enable labels for dots, use the following interval to fit them between levels
-        </p>
+        <p>If you enable labels for dots, use the following interval to fit them between levels</p>
         <ComboBoxOption
           caption="Dotted"
           propertyName="dotLevelShift"
@@ -45,9 +39,7 @@ class IntervalsOptionsPanel extends Component { // eslint-disable-line react/pre
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40, 80, 160, 240, 320]}
           onChange={value => setOption('lineLevelShift', value)}
         />
-        <p>
-          Horizontal Intervals Between Items in Row
-        </p>
+        <p>Horizontal Intervals Between Items in Row</p>
         <ComboBoxOption
           caption="Normal"
           propertyName="normalItemsInterval"

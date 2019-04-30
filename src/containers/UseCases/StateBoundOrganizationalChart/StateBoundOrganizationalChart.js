@@ -43,27 +43,23 @@ class StateBoundOrganizationalChart extends Component {
   render() {
     const styles = require('./StateBoundOrganizationalChart.scss');
     const {
-      pageFitMode,
-      cursorItem,
-      hasSelectorCheckbox,
-      items
+      pageFitMode, cursorItem, hasSelectorCheckbox, items
     } = this.state;
 
     return (
       <div>
         <Helmet title="State Bound Organizational Chart" />
         <Media>
-          <Media.Heading>
-            State Bound Organizational Chart
-          </Media.Heading>
+          <Media.Heading>State Bound Organizational Chart</Media.Heading>
           <Media.Body>
-            <p>In this example instead of passing configuration object as a hardcoded
-              JSON object to diagram property we put its properties into component state,
-              so React rerenders content every time we make changes in it. We added 4 buttons
-              to change cursorItem property in state object to different values.
+            <p>
+              In this example instead of passing configuration object as a hardcoded JSON object to diagram property we put its properties into component state, so React rerenders
+              content every time we make changes in it. We added 4 buttons to change cursorItem property in state object to different values.
             </p>
             <ul>
-              <li>See React reference on how to work with <a href="https://reactjs.org/docs/faq-state.html">Component State</a></li>
+              <li>
+                See React reference on how to work with <a href="https://reactjs.org/docs/faq-state.html">Component State</a>
+              </li>
             </ul>
           </Media.Body>
         </Media>

@@ -7,14 +7,14 @@ const TemplateConfig = () => PropTypes.shape({
   isActive: PropTypes.bool,
   itemSize: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
   }),
   itemBorderWidth: PropTypes.number,
   itemTemplate: PropTypes.any,
   minimizedItemShapeType: PropTypes.oneOf(Object.values(primitives.common.ShapeType)),
   minimizedItemSize: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
   }),
   minimizedItemCornerRadius: PropTypes.number,
   minimizedItemLineWidth: PropTypes.number,
@@ -26,7 +26,7 @@ const TemplateConfig = () => PropTypes.shape({
     left: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired,
     right: PropTypes.number.isRequired,
-    bottom: PropTypes.number.isRequired,
+    bottom: PropTypes.number.isRequired
   }),
   highlightBorderWidth: PropTypes.number,
   highlightTemplate: PropTypes.any,
@@ -34,7 +34,7 @@ const TemplateConfig = () => PropTypes.shape({
     left: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired,
     right: PropTypes.number.isRequired,
-    bottom: PropTypes.number.isRequired,
+    bottom: PropTypes.number.isRequired
   }),
   cursorBorderWidth: PropTypes.number,
   cursorTemplate: PropTypes.any,

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  RadioGroupOption,
-  ComboBoxOption,
-} from 'components';
+import { RadioGroupOption, ComboBoxOption } from 'components';
 import primitives from 'basicprimitives';
 
 class RenderingOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -17,9 +14,7 @@ class RenderingOptionsPanel extends Component { // eslint-disable-line react/pre
     return (
       <div>
         <h4>Rendering</h4>
-        <p>
-          By default widget preferes SVG graphics mode. Use this property to enforce graphics mode programmatically.
-        </p>
+        <p>By default widget preferes SVG graphics mode. Use this property to enforce graphics mode programmatically.</p>
         <RadioGroupOption
           caption="Graphics"
           propertyName="graphicsType"
@@ -28,9 +23,7 @@ class RenderingOptionsPanel extends Component { // eslint-disable-line react/pre
           items={primitives.common.GraphicsType}
           onChange={value => setOption('graphicsType', value)}
         />
-        <p>
-          In order to achive better greacefull degradation of your diagram use item templates of various sizes instead of CSS scale.
-        </p>
+        <p>In order to achive better greacefull degradation of your diagram use item templates of various sizes instead of CSS scale.</p>
         <ComboBoxOption
           caption="CSS Scale"
           propertyName="scale"

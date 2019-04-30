@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  RadioGroupOption,
-  ComboBoxOption
-} from 'components';
+import { RadioGroupOption, ComboBoxOption } from 'components';
 import primitives from 'basicprimitives';
 
 class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -65,9 +62,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           items={primitives.common.Colors}
           onChange={value => setOption('groupTitleColor', value)}
         />
-        <p>
-          For group title color, see title first and second font colors in default template options.
-        </p>
+        <p>For group title color, see title first and second font colors in default template options.</p>
         <ComboBoxOption
           caption="Font size"
           propertyName="groupTitleFontSize"

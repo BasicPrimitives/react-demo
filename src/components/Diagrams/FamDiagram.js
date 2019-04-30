@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import {
-  ButtonGroup,
-  Button,
-  Glyphicon
-} from 'react-bootstrap';
+import { ButtonGroup, Button, Glyphicon } from 'react-bootstrap';
 import primitives from 'basicprimitives';
 import FamDiagramConfig from './Schemas/FamDiagramConfig';
 
@@ -22,13 +18,11 @@ primitives.common.ButtonsTemplate = () => {
   function render(event, { element, buttons }) {
     ReactDOM.render(
       <ButtonGroup className="btn-group-vertical">
-        {
-          buttons.map(button => (
-            <Button bsSize="small" className="orgdiagrambutton" key={button.name} data-buttonname={button.name}>
-              <Glyphicon glyph={button.icon} />
-            </Button>
-          ))
-        }
+        {buttons.map(button => (
+          <Button bsSize="small" className="orgdiagrambutton" key={button.name} data-buttonname={button.name}>
+            <Glyphicon glyph={button.icon} />
+          </Button>
+        ))}
       </ButtonGroup>,
       element
     );
@@ -76,7 +70,7 @@ class FamDiagram extends Component {
     onCursorRender: null,
 
     className: 'placeholder'
-  }
+  };
 
   static addItemPlaceholders({ config, onItemRender, onHighlightRender }) {
     const { templates } = config;
@@ -86,22 +80,24 @@ class FamDiagram extends Component {
         const template = templates[index];
         // We use React JSX to populate nodes, so we have to provide only empty DIV element
         if (onItemRender != null) {
-          template.itemTemplate = ['div',
+          template.itemTemplate = [
+            'div',
             {
               style: {
                 width: `${template.itemSize.width}px`,
-                height: `${template.itemSize.height}px`,
+                height: `${template.itemSize.height}px`
               },
               class: [styles.bpitem]
             }
           ];
         }
         if (onHighlightRender != null) {
-          template.highlightTemplate = ['div',
+          template.highlightTemplate = [
+            'div',
             {
               style: {
                 width: `${template.itemSize.width + template.highlightPadding.left + template.highlightPadding.right}px`,
-                height: `${template.itemSize.height + template.highlightPadding.top + template.highlightPadding.bottom}px`,
+                height: `${template.itemSize.height + template.highlightPadding.top + template.highlightPadding.bottom}px`
               },
               class: [styles.bp_item_overflow, 'bp-corner-all', 'bp-cursor-frame']
             }
@@ -131,11 +127,13 @@ class FamDiagram extends Component {
     // It is added to the rendered page to track size changes of control placeholder
     // npm install resize-observer-polyfill --save-dev
     require('resize-observer-polyfill/dist/ResizeObserver.global');
-    this.observer = new ResizeObserver(() => { self.onSizeChanged.call(self); });
+    this.observer = new ResizeObserver(() => {
+      self.onSizeChanged.call(self);
+    });
     this.observer.observe(this.placeholderRef.current);
   }
 
-  componentWillUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
+  shouldComponentUpdate(nextProps, nextState) { // eslint-disable-line no-unused-vars
     // This method is not being called during component creation time
     // React calls it when component properties or state changed and component needs to be rendered again
     // We return false from this method, since we don't need "render" function to be called again,
@@ -174,13 +172,11 @@ class FamDiagram extends Component {
       onButtonClick,
       onItemRender,
       onHighlightRender,
-      onCursorRender,
+      onCursorRender
     } = properties;
-
 
     // Add control templates for items in form of empty div
     FamDiagram.addItemPlaceholders(properties);
-
 
     const options = {
       ...config,
@@ -240,24 +236,26 @@ class FamDiagram extends Component {
       };
     }
     const currentOptions = this.diagramControl.getOptions();
-    if (!(_.isEqualWith(currentOptions, options, (objValue, othValue, key) => {
-      switch (key) {
-        case 'onHighlightChanging':
-        case 'onHighlightChanged':
-        case 'onCursorChanging':
-        case 'onCursorChanged':
-        case 'onSelectionChanging':
-        case 'onSelectionChanged':
-        case 'onButtonClick':
-        case 'onItemRender':
-        case 'onHighlightRender':
-        case 'onCursorRender':
-          return true;
+    if (
+      !_.isEqualWith(currentOptions, options, (objValue, othValue, key) => {
+        switch (key) {
+          case 'onHighlightChanging':
+          case 'onHighlightChanged':
+          case 'onCursorChanging':
+          case 'onCursorChanged':
+          case 'onSelectionChanging':
+          case 'onSelectionChanged':
+          case 'onButtonClick':
+          case 'onItemRender':
+          case 'onHighlightRender':
+          case 'onCursorRender':
+            return true;
 
-        default:
-          return undefined;
-      }
-    }))) {
+          default:
+            return undefined;
+        }
+      })
+    ) {
       this.diagramControl.setOptions(options);
       this.diagramControl.update(updateMode, centerOnCursor);
     }
@@ -265,9 +263,7 @@ class FamDiagram extends Component {
 
   render() {
     const { className } = this.props;
-    return (
-      <div ref={this.placeholderRef} className={className} />
-    );
+    return <div ref={this.placeholderRef} className={className} />;
   }
 }
 

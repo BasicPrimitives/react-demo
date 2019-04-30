@@ -23,7 +23,7 @@ const ItemConfig = () => PropTypes.shape({
   showLabel: PropTypes.oneOf(Object.values(primitives.common.Enabled)),
   labelSize: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
   }),
   labelOrientation: PropTypes.oneOf(Object.values(primitives.text.TextOrientationType)),
   labelPlacement: PropTypes.oneOf(Object.values(primitives.common.PlacementType))

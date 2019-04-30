@@ -115,8 +115,7 @@ export default {
       id: 5,
       parents: [10],
       title: 'Steven',
-      label:
-        'Steven',
+      label: 'Steven',
       description: 'Child of James',
       phone: '805-800-7397',
       email: 'stevlaco@name.com',

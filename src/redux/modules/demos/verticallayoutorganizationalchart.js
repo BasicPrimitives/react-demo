@@ -27,7 +27,7 @@ const initialState = {
   },
   centerOnCursor: true,
   config: {
-    ...(new primitives.orgdiagram.Config()),
+    ...new primitives.orgdiagram.Config(),
     cursorItem: 0,
     items: [],
     buttons: [
@@ -50,7 +50,7 @@ const initialState = {
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
-        ...(new primitives.orgdiagram.TemplateConfig()),
+        ...new primitives.orgdiagram.TemplateConfig(),
         name: 'defaultTemplate',
         minimizedItemCornerRadius: null,
         minimizedItemSize: new primitives.common.Size(4, 4),
@@ -63,7 +63,7 @@ const initialState = {
         minimizedItemOpacity: 1.0
       },
       {
-        ...(new primitives.orgdiagram.TemplateConfig()),
+        ...new primitives.orgdiagram.TemplateConfig(),
         name: 'managerTemplate',
         itemSize: new primitives.common.Size(220, 120)
       }
@@ -183,8 +183,8 @@ function getCursorItem(config, cursorItem) {
     centerOnCursor: true,
     config: {
       ...config,
-      cursorItem,
-    },
+      cursorItem
+    }
   };
 }
 
@@ -203,11 +203,14 @@ export default function reducer(state = initialState, action = {}) {
         ...restState,
         loading: false,
         loaded: true,
-        ...(getCursorItem({
-          ...config,
-          ...action.result
-        }, config.cursorItem)),
-        ...(getItemsHash(action.result.items))
+        ...getCursorItem(
+          {
+            ...config,
+            ...action.result
+          },
+          config.cursorItem
+        ),
+        ...getItemsHash(action.result.items)
       };
     }
 
@@ -238,16 +241,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          templates: templates.map(
-            template => {
-              if (template.name === action.templateName) {
-                const newTemplate = { ...template };
-                newTemplate[action.name] = action.value;
-                return newTemplate;
-              }
-              return template;
+          templates: templates.map(template => {
+            if (template.name === action.templateName) {
+              const newTemplate = { ...template };
+              newTemplate[action.name] = action.value;
+              return newTemplate;
             }
-          )
+            return template;
+          })
         }
       };
     }
@@ -256,8 +257,8 @@ export default function reducer(state = initialState, action = {}) {
       const { config, ...restState } = state;
       return {
         ...restState,
-        ...(getCursorItem(config, action.cursorItem)),
-        ...(getUserAction(UserActionType.ChangedCursor))
+        ...getCursorItem(config, action.cursorItem),
+        ...getUserAction(UserActionType.ChangedCursor)
       };
     }
 
@@ -270,7 +271,7 @@ export default function reducer(state = initialState, action = {}) {
           ...config,
           selectedItems: action.selectedItems
         },
-        ...(getUserAction(UserActionType.SelectedItems))
+        ...getUserAction(UserActionType.SelectedItems)
       };
     }
 
@@ -278,7 +279,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         centerOnCursor: false,
-        ...(getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId))
+        ...getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId)
       };
     }
     default:

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  RadioGroupOption,
-  ComboBoxOption
-} from 'components';
+import { RadioGroupOption, ComboBoxOption } from 'components';
 import primitives from 'basicprimitives';
 
 class ConnectorsOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function

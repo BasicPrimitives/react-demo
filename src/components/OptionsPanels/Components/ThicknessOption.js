@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import {
-  FormControl,
-  ControlLabel,
-} from 'react-bootstrap';
+import { FormControl, ControlLabel } from 'react-bootstrap';
 import primitives from 'basicprimitives';
 
 class ThicknessOption extends Component {
@@ -17,7 +14,7 @@ class ThicknessOption extends Component {
       left: PropTypes.number.isRequired,
       top: PropTypes.number.isRequired,
       right: PropTypes.number.isRequired,
-      bottom: PropTypes.number.isRequired,
+      bottom: PropTypes.number.isRequired
     }).isRequired
   };
 
@@ -25,7 +22,7 @@ class ThicknessOption extends Component {
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !(_.isEqual(currentOptions, nextOptions));
+    return !_.isEqual(currentOptions, nextOptions);
   }
 
   onPaddingChange(padding) {
@@ -35,10 +32,7 @@ class ThicknessOption extends Component {
 
   getUsedOptions(props) { // eslint-disable-line class-methods-use-this
     const {
-      caption,
-      items,
-      propertyName,
-      value
+      caption, items, propertyName, value
     } = props;
     return {
       caption,
@@ -50,10 +44,7 @@ class ThicknessOption extends Component {
 
   render() {
     const {
-      caption,
-      items,
-      propertyName,
-      value
+      caption, items, propertyName, value
     } = this.props;
     return (
       <div>
@@ -66,13 +57,11 @@ class ThicknessOption extends Component {
           value={value.left}
           onChange={event => this.onPaddingChange(parseInt(event.target.value, 10))}
         >
-          {
-            items.map(item => (
-              <option name={item} key={item} value={item}>
-                {item}
-              </option>
-            ))
-          }
+          {items.map(item => (
+            <option name={item} key={item} value={item}>
+              {item}
+            </option>
+          ))}
         </FormControl>
       </div>
     );

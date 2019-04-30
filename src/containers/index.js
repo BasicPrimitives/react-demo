@@ -1,4 +1,4 @@
-/* eslint-disable */
+// export About from './About/About';
 export App from './App/App';
 export Home from './Home/Home';
 export LargeHierarchy from './Demos/LargeHierarchy/LargeHierarchy';
@@ -18,10 +18,11 @@ export StateBoundOrganizationalChart from './UseCases/StateBoundOrganizationalCh
 export ReduxStateBoundOrganizationalChart from './UseCases/ReduxStateBoundOrganizationalChart/ReduxStateBoundOrganizationalChart';
 export ReduxStatePreloadOrganizationalChart from './UseCases/ReduxStatePreloadOrganizationalChart/ReduxStatePreloadOrganizationalChart';
 export ComponentSizingWithCssMedia from './UseCases/ComponentSizingWithCssMedia/ComponentSizingWithCssMedia';
+export HowToUse from './UseCases/HowToUse/HowToUse';
 export ItemTemplate from './UseCases/ItemTemplate/ItemTemplate';
 export ButtonsPanel from './UseCases/ButtonsPanel/ButtonsPanel';
 // export ChatFeathers from './ChatFeathers/ChatFeathers';
 // export Login from './Login/Login';
 // export LoginSuccess from './LoginSuccess/LoginSuccess';
-// export Register from './Register/Register';
 export NotFound from './NotFound/NotFound';
+// export Register from './Register/Register';

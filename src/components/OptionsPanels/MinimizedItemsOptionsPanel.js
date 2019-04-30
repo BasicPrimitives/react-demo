@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  RadioGroupOption,
-  ComboBoxOption,
-  SizeOption,
-  ThicknessOption
+  RadioGroupOption, ComboBoxOption, SizeOption, ThicknessOption
 } from 'components';
 import primitives from 'basicprimitives';
 
@@ -20,13 +17,11 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
       <div>
         <h4>Minimized Item (Dot, Marker)</h4>
         <p>
-          Minimized item options are defined per item template. So if you need to show individual
-          markers per item, you have to define template for every marker type and assign
-          it to items. Template is some sort of named property bag.
+          Minimized item options are defined per item template. So if you need to show individual markers per item, you have to define template for every marker type and assign it
+          to items. Template is some sort of named property bag.
         </p>
         <p>
-          By default marker has color of itemTitleColor property, download demos and check
-          samples source data. If item has no title color set, then be sure that you set border
+          By default marker has color of itemTitleColor property, download demos and check samples source data. If item has no title color set, then be sure that you set border
           line width and color for markers having no fill, othewise you are not going to see them.
         </p>
         <SizeOption
@@ -77,10 +72,7 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           items={primitives.common.LineType}
           onChange={value => setOption('minimizedItemLineType', value)}
         />
-        <p>
-          Following Border and Fill colors properties work only for items having
-          no title color property set. See Parners &amp; Annotations Demo to try them.
-        </p>
+        <p>Following Border and Fill colors properties work only for items having no title color property set. See Parners &amp; Annotations Demo to try them.</p>
         <ComboBoxOption
           caption="Marker border line color"
           propertyName="minimizedItemBorderColor"

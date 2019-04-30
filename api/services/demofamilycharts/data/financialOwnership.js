@@ -13,13 +13,16 @@ export default {
       color: primitives.common.Colors.Red,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed,
+      lineType: primitives.common.LineType.Dashed
     },
     new primitives.famdiagram.HighlightPathAnnotationConfig({ items: [3, 5] }),
     new primitives.famdiagram.HighlightPathAnnotationConfig({ items: [3, 6] }),
 
     new primitives.famdiagram.LabelAnnotationConfig({
-      fromItem: 4, toItems: [5], title: '30%', templateName: 'LabelAnnotationTemplate'
+      fromItem: 4,
+      toItems: [5],
+      title: '30%',
+      templateName: 'LabelAnnotationTemplate'
     }),
     new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 4, toItems: [5, 7], title: '100%' }),
     new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 4, toItems: [7], title: '70%' }),

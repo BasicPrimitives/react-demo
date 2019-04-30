@@ -67,22 +67,8 @@ class AddNewItemDialog extends Component {
                         <Field name="phone" component={TextFieldAdapter} placeholder="(123) 123-12-12" caption="phone" />
                         <Field name="email" component={TextFieldAdapter} placeholder="E-mail" caption="E-mail" />
                         <Field name="label" component={TextFieldAdapter} placeholder={values.title || 'Marker Label'} caption="Marker Label" />
-                        <Field
-                          name="itemTitleColor"
-                          component={ComboBoxFieldAdapter}
-                          caption="Title Color"
-                          isNullable
-                          valueType="string"
-                          items={primitives.common.Colors}
-                        />
-                        <Field
-                          name="groupTitleColor"
-                          component={ComboBoxFieldAdapter}
-                          caption="Group Title Color"
-                          isNullable
-                          valueType="string"
-                          items={primitives.common.Colors}
-                        />
+                        <Field name="itemTitleColor" component={ComboBoxFieldAdapter} caption="Title Color" isNullable valueType="string" items={primitives.common.Colors} />
+                        <Field name="groupTitleColor" component={ComboBoxFieldAdapter} caption="Group Title Color" isNullable valueType="string" items={primitives.common.Colors} />
                         <Field name="image" component={ComboBoxFieldAdapter} caption="Image" valueType="string" items={images} />
                         <Field
                           name="minimizedItemShapeType"

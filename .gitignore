@@ -4,11 +4,13 @@ package-lock.json
 npm-debug.log
 yarn-error.log
 static/dist/
+static/packages/
+static/min/
+static/images/
+api/static/samples/
 *.iml
 webpack-assets.json
 webpack-stats.json
-.happypack/
-webpack/dlls/*.json
 api/**/*.nedb
 *.report.html
 coverage/

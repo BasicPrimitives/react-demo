@@ -26,12 +26,7 @@ const Config = () => PropTypes.shape({
   elbowDotSize: PropTypes.number,
   emptyDiagramMessage: PropTypes.string,
   items: PropTypes.arrayOf(ItemConfig()),
-  annotations: PropTypes.arrayOf(PropTypes.oneOfType([
-    BackgroundAnnotationConfig(),
-    ConnectorAnnotationConfig(),
-    HighlightPathAnnotationConfig(),
-    ShapeAnnotationConfig()
-  ])),
+  annotations: PropTypes.arrayOf(PropTypes.oneOfType([BackgroundAnnotationConfig(), ConnectorAnnotationConfig(), HighlightPathAnnotationConfig(), ShapeAnnotationConfig()])),
   cursorItem: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   highlightItem: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   highlightGravityRadius: PropTypes.number,
@@ -94,7 +89,7 @@ const Config = () => PropTypes.shape({
   showLabels: PropTypes.oneOf(Object.values(primitives.common.Enabled)),
   labelSize: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
   }),
   labelOffset: PropTypes.number,
   labelOrientation: PropTypes.oneOf(Object.values(primitives.text.TextOrientationType)),
@@ -107,12 +102,12 @@ const Config = () => PropTypes.shape({
   enablePanning: PropTypes.bool,
   autoSizeMinimum: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
   }),
   autoSizeMaximum: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
-  }),
+    height: PropTypes.number.isRequired
+  })
 });
 
 export default Config;

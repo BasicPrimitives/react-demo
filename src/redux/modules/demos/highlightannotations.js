@@ -28,7 +28,7 @@ const initialState = {
   },
   centerOnCursor: true,
   config: {
-    ...(new primitives.orgdiagram.Config()),
+    ...new primitives.orgdiagram.Config(),
     pageFitMode: primitives.common.PageFitMode.FitToPage,
     cursorItem: 0,
     hasSelectorCheckbox: primitives.common.Enabled.True,
@@ -53,7 +53,7 @@ const initialState = {
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
-        ...(new primitives.orgdiagram.TemplateConfig()),
+        ...new primitives.orgdiagram.TemplateConfig(),
         name: 'defaultTemplate',
         minimizedItemCornerRadius: 8,
         minimizedItemSize: new primitives.common.Size(6, 6),
@@ -66,7 +66,7 @@ const initialState = {
         minimizedItemOpacity: 1.0
       },
       {
-        ...(new primitives.orgdiagram.TemplateConfig()),
+        ...new primitives.orgdiagram.TemplateConfig(),
         name: 'defaultConnectedItemTemplate',
         minimizedItemCornerRadius: 12,
         minimizedItemSize: new primitives.common.Size(12, 12),
@@ -79,7 +79,7 @@ const initialState = {
         minimizedItemOpacity: 1.0
       },
       {
-        ...(new primitives.orgdiagram.TemplateConfig()),
+        ...new primitives.orgdiagram.TemplateConfig(),
         name: 'contactTemplate',
         itemSize: new primitives.common.Size(220, 120)
       }
@@ -124,7 +124,6 @@ function getAnnotationsHash(links = []) {
     annotationsHash
   };
 }
-
 
 function getItemsHash(items = []) {
   const newItemsHash = {};
@@ -196,7 +195,7 @@ function getCursorItem(config, centerOnCursor, cursorItem, highlightItem, annota
         }
         return item;
       })
-    },
+    }
   };
 }
 
@@ -218,11 +217,18 @@ export default function reducer(state = initialState, action = {}) {
         ...restState,
         loading: false,
         loaded: true,
-        ...(getCursorItem({
-          ...config,
-          items,
-        }, true, cursorItem, highlightItem, annotations, annotationsHash)),
-        ...(getItemsHash(items)),
+        ...getCursorItem(
+          {
+            ...config,
+            items
+          },
+          true,
+          cursorItem,
+          highlightItem,
+          annotations,
+          annotationsHash
+        ),
+        ...getItemsHash(items),
         annotations,
         annotationsHash
       };
@@ -255,16 +261,14 @@ export default function reducer(state = initialState, action = {}) {
         centerOnCursor: false,
         config: {
           ...restConfig,
-          templates: templates.map(
-            template => {
-              if (template.name === action.templateName) {
-                const newTemplate = { ...template };
-                newTemplate[action.name] = action.value;
-                return newTemplate;
-              }
-              return template;
+          templates: templates.map(template => {
+            if (template.name === action.templateName) {
+              const newTemplate = { ...template };
+              newTemplate[action.name] = action.value;
+              return newTemplate;
             }
-          )
+            return template;
+          })
         }
       };
     }
@@ -275,8 +279,8 @@ export default function reducer(state = initialState, action = {}) {
       const { highlightItem } = config;
       return {
         ...state,
-        ...(getCursorItem(config, true, cursorItem, highlightItem, annotations, annotationsHash)),
-        ...(getUserAction(UserActionType.ChangedCursor))
+        ...getCursorItem(config, true, cursorItem, highlightItem, annotations, annotationsHash),
+        ...getUserAction(UserActionType.ChangedCursor)
       };
     }
 
@@ -286,7 +290,7 @@ export default function reducer(state = initialState, action = {}) {
       const { highlightItem } = action;
       return {
         ...state,
-        ...(getCursorItem(config, false, cursorItem, highlightItem, annotations, annotationsHash))
+        ...getCursorItem(config, false, cursorItem, highlightItem, annotations, annotationsHash)
       };
     }
 
@@ -299,7 +303,7 @@ export default function reducer(state = initialState, action = {}) {
           ...config,
           selectedItems: action.selectedItems
         },
-        ...(getUserAction(UserActionType.SelectedItems))
+        ...getUserAction(UserActionType.SelectedItems)
       };
     }
 
@@ -307,7 +311,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         centerOnCursor: false,
-        ...(getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId))
+        ...getUserAction(UserActionType.ContextButtonClick, action.buttonName, action.itemId)
       };
     }
     default:

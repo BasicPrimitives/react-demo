@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import {
-  Checkbox
-} from 'react-bootstrap';
+import { Checkbox } from 'react-bootstrap';
 
 class CheckboxOption extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
@@ -17,15 +15,11 @@ class CheckboxOption extends Component { // eslint-disable-line react/prefer-sta
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !(_.isEqual(currentOptions, nextOptions));
+    return !_.isEqual(currentOptions, nextOptions);
   }
 
   getUsedOptions(props) { // eslint-disable-line class-methods-use-this
-    const {
-      caption,
-      propertyName,
-      value
-    } = props;
+    const { caption, propertyName, value } = props;
     return {
       caption,
       propertyName,
@@ -35,10 +29,7 @@ class CheckboxOption extends Component { // eslint-disable-line react/prefer-sta
 
   render() {
     const {
-      caption,
-      propertyName,
-      onChange,
-      value
+      caption, propertyName, onChange, value
     } = this.props;
     return (
       <div>

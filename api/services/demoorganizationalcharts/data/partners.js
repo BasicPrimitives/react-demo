@@ -4,7 +4,7 @@ export default {
   items: [
     {
       id: 0,
-      parent: null, /* if parent set to null, it is shown at the root of hierarchy */
+      parent: null /* if parent set to null, it is shown at the root of hierarchy */,
       title: 'Root',
       description: 'Regular root item',
       image: '/photos/r.png',
@@ -96,7 +96,8 @@ export default {
       groupTitleColor: primitives.common.Colors.Red,
       email: 'regular7@name.com',
       phone: '648-123-12-19'
-    }, {
+    },
+    {
       id: 8,
       parent: 7,
       title: 'LP 8',
@@ -107,7 +108,8 @@ export default {
       groupTitle: 'Partner',
       email: 'lp8@name.com',
       phone: '648-123-12-20'
-    }, {
+    },
+    {
       id: 9,
       parent: 8,
       title: 'Assistant 9',
@@ -117,7 +119,8 @@ export default {
       adviserPlacementType: primitives.common.AdviserPlacementType.Left,
       email: 'assistant9@name.com',
       phone: '648-123-12-21'
-    }, {
+    },
+    {
       id: 10,
       parent: 9,
       title: 'Adviser 10',
@@ -129,7 +132,8 @@ export default {
       groupTitle: 'Has Partners',
       email: 'adviser10@name.com',
       phone: '648-123-12-22'
-    }, {
+    },
+    {
       id: 11,
       parent: 10,
       title: 'GP 11',
@@ -201,13 +205,14 @@ export default {
       childrenPlacementType: primitives.common.ChildrenPlacementType.Matrix,
       email: 'regular16@name.com',
       phone: '648-123-12-28'
-    }, {
+    },
+    {
       id: 17,
       parent: 16,
       title: 'Regular 17',
       description: 'Regular',
       image: '/photos/r.png',
-      itemType: primitives.orgdiagram.ItemType.Regular, /* We explisitly set iteType of regular item */
+      itemType: primitives.orgdiagram.ItemType.Regular /* We explisitly set iteType of regular item */,
       email: 'regular17@name.com',
       phone: '648-123-12-29'
     },
@@ -245,7 +250,8 @@ export default {
       groupTitle: 'Partner',
       email: 'gp20@name.com',
       phone: '648-123-12-32'
-    }, {
+    },
+    {
       id: 21,
       parent: 20,
       title: 'Assistant 21',
@@ -255,7 +261,8 @@ export default {
       adviserPlacementType: primitives.common.AdviserPlacementType.Right,
       email: 'assistant21@name.com',
       phone: '648-123-12-32'
-    }, {
+    },
+    {
       id: 22,
       parent: 20,
       title: 'Regular 22',
@@ -264,7 +271,8 @@ export default {
       itemType: primitives.orgdiagram.ItemType.Regular,
       email: 'regular22@name.com',
       phone: '648-123-12-33'
-    }, {
+    },
+    {
       id: 23,
       parent: 21,
       title: 'Regular 23',
@@ -273,7 +281,8 @@ export default {
       itemType: primitives.orgdiagram.ItemType.Regular,
       email: 'regular23@name.com',
       phone: '648-123-12-34'
-    }, {
+    },
+    {
       id: 24,
       parent: 21,
       title: 'Regular 24',
@@ -282,7 +291,8 @@ export default {
       itemType: primitives.orgdiagram.ItemType.Regular,
       email: 'regular24@name.com',
       phone: '648-123-12-35'
-    }, {
+    },
+    {
       id: 25,
       parent: 21,
       title: 'Regular 25',
@@ -304,7 +314,8 @@ export default {
       adviserPlacementType: primitives.common.AdviserPlacementType.Left,
       email: 'regular26@name.com',
       phone: '648-123-12-37'
-    }, {
+    },
+    {
       id: 27,
       parent: 7,
       title: 'Adviser 27',
@@ -314,7 +325,8 @@ export default {
       adviserPlacementType: primitives.common.AdviserPlacementType.Right,
       email: 'regular27@name.com',
       phone: '648-123-12-38'
-    }, {
+    },
+    {
       id: 28,
       parent: 7,
       title: 'Assistant 28',
@@ -324,7 +336,8 @@ export default {
       adviserPlacementType: primitives.common.AdviserPlacementType.Right,
       email: 'assistant28@name.com',
       phone: '648-123-12-39'
-    }, {
+    },
+    {
       id: 29,
       parent: 7,
       title: 'Assistant 29',
@@ -516,7 +529,7 @@ export default {
       fillColor: '#e5f9f8',
       lineWidth: 2,
       selectItems: true,
-      lineType: primitives.common.LineType.Solid,
+      lineType: primitives.common.LineType.Solid
     },
     {
       annotationType: primitives.common.AnnotationType.Background,
@@ -525,7 +538,7 @@ export default {
       fillColor: '#effda4',
       lineWidth: 2,
       selectItems: false,
-      lineType: primitives.common.LineType.Solid,
+      lineType: primitives.common.LineType.Solid
     },
     {
       annotationType: primitives.common.AnnotationType.Background,

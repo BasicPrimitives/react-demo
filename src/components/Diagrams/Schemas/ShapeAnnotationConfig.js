@@ -10,7 +10,7 @@ const ShapeAnnotationConfig = () => PropTypes.shape({
     left: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired,
     right: PropTypes.number.isRequired,
-    bottom: PropTypes.number.isRequired,
+    bottom: PropTypes.number.isRequired
   }),
   lineWidth: PropTypes.number,
   cornerRadius: PropTypes.string,
@@ -22,7 +22,7 @@ const ShapeAnnotationConfig = () => PropTypes.shape({
   label: PropTypes.string,
   labelSize: PropTypes.shape({
     width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired
   }),
   labelPlacement: PropTypes.oneOf(Object.values(primitives.common.PlacementType)),
   labelOffset: PropTypes.number

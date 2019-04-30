@@ -54,13 +54,13 @@ RadioGroupFieldAdapter.propTypes = {
   meta: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   valueType: PropTypes.string.isRequired, // eslint-disable-line react/forbid-prop-types
   items: PropTypes.oneOfType([
-    PropTypes.object,
+    PropTypes.object, // eslint-disable-line react/forbid-prop-types
     PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.number,
       PropTypes.string,
       PropTypes.bool
     ]))
-  ]).isRequired // eslint-disable-line react/forbid-prop-types
+  ]).isRequired
 };
 
 export default RadioGroupFieldAdapter;

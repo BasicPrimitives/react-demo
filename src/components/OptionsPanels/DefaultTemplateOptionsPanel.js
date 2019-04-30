@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  RadioGroupOption,
-  ComboBoxOption
-} from 'components';
+import { RadioGroupOption, ComboBoxOption } from 'components';
 import primitives from 'basicprimitives';
 
 class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -41,9 +38,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           items={['Selected', 'Included', 'Pinned', 'Any label']}
           onChange={value => setOption('selectCheckBoxLabel', value)}
         />
-        <p>
-          Default chart item template tries to select the best matching font color for current title background.
-        </p>
+        <p>Default chart item template tries to select the best matching font color for current title background.</p>
         <ComboBoxOption
           caption="Title first font color"
           propertyName="itemTitleFirstFontColor"

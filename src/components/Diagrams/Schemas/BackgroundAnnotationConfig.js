@@ -10,7 +10,7 @@ const BackgroundAnnotationConfig = () => PropTypes.shape({
     left: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired,
     right: PropTypes.number.isRequired,
-    bottom: PropTypes.number.isRequired,
+    bottom: PropTypes.number.isRequired
   }),
   lineWidth: PropTypes.number,
   opacity: PropTypes.number,

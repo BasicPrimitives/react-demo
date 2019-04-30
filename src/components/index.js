@@ -1,9 +1,19 @@
-// The original boilerplate demos and components
+/**
+ *  Point of contact for component modules
+ *
+ *  ie: import { CounterButton, InfoBar } from 'components';
+ *
+ */
+
+export CounterButton from './CounterButton/CounterButton';
 // export FacebookLogin from './FacebookLogin/FacebookLogin';
+export GithubButton from './GithubButton/GithubButton';
+export InfoBar from './InfoBar/InfoBar';
 // export LoginForm from './LoginForm/LoginForm';
+// export MiniInfoBar from './MiniInfoBar/MiniInfoBar';
 export Notifs from './Notifs/Notifs';
 export Provider from './Provider/Provider';
-export ReduxAsyncConnect from './ReduxAsyncConnect/ReduxAsyncConnect';
+export RouterTrigger from './RouterTrigger/RouterTrigger';
 // export RegisterForm from './RegisterForm/RegisterForm';
 
 // Basic Primitives helper Components
@@ -13,6 +23,8 @@ export OrgDiagram from './Diagrams/OrgDiagram';
 export FamDiagram from './Diagrams/FamDiagram';
 export OrgDiagramConfig from './Diagrams/Schemas/OrgDiagramConfig';
 export FamDiagramConfig from './Diagrams/Schemas/FamDiagramConfig';
+export Editor from './Editor/Editor';
+export TryMe from './TryMe/TryMe';
 
 // Options Editors
 export RadioGroupOption from './OptionsPanels/Components/RadioGroupOption';

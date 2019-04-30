@@ -26,7 +26,7 @@ export default {
       fromItem: 1,
       toItems: [2],
       title: '1->2'
-    },
+    }
     // { annotationType: primitives.common.AnnotationType.Label, fromItem: 1, toItems: [6], title: "1->6" },
     // { annotationType: primitives.common.AnnotationType.Label, fromItem: 1, toItems: [2, 6], title: "1->2,6" },
 
@@ -53,7 +53,7 @@ export default {
       description: '2',
       image: '/photos/b.png',
       itemTitleColor: '#4b0082'
-    },
+    }
     // { id: 5, parents: [7], title: "5", label: "5", description: "5", image: "/photos/j.png", itemTitleColor: "#ff0000" },
     // { id: 6, parents: [], title: "6", label: "6", description: "6", image: "/photos/b.png", itemTitleColor: "#4b0082" },
     // { id: 7, parents: [8], title: "7", label: "7", description: "7", image: "/photos/b.png", itemTitleColor: "#4b0082" },
