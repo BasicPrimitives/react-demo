@@ -91,8 +91,8 @@ class TryMe extends Component {
     return (
       <div>
         <Tabs id={name} defaultActiveKey={activeKey} onSelect={key => this.setActiveSample(key)}>
-          {samples.map(({ caption }) => (
-            <Tab eventKey={caption.replace(/\s/g, '')} generateChildId key={caption.replace(/\s/g, '')} title={caption} />
+          {samples.map(({ caption }, index) => (
+            <Tab eventKey={index} generateChildId key={`tab${index}`} title={caption} />
           ))}
         </Tabs>
         <Editor content={content} onCodeChange={this.onEditorValueChange} />
