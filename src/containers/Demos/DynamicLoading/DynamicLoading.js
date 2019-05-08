@@ -18,7 +18,8 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel
+  RenderingOptionsPanel,
+  PdfkitHelper
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -122,6 +123,7 @@ class DynamicLoading extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Navbar.Form pullRight>
+                    <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'dynamicloading.pdf', 'Dynamic Organizational Chart Nodes Loading') }>Download PDF</Button>&nbsp;
                     <Button onClick={load}>Reset</Button>
                   </Navbar.Form>
                 </Navbar.Collapse>
