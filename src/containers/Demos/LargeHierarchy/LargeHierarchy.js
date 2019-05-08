@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+
 import {
   Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
 } from 'react-bootstrap';
@@ -18,7 +19,8 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel
+  RenderingOptionsPanel,
+  PdfkitHelper
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -129,6 +131,7 @@ class LargeHierarchy extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Navbar.Form pullRight>
+                    <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'largehierarchy.pdf', 'Large Hierarchy Diagram Demo') }>Download PDF</Button>&nbsp;
                     <Button onClick={load}>Reset</Button>
                   </Navbar.Form>
                 </Navbar.Collapse>

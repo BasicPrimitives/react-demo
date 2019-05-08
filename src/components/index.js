@@ -25,6 +25,7 @@ export OrgDiagramConfig from './Diagrams/Schemas/OrgDiagramConfig';
 export FamDiagramConfig from './Diagrams/Schemas/FamDiagramConfig';
 export Editor from './Editor/Editor';
 export TryMe from './TryMe/TryMe';
+export PdfkitHelper from './PdfkitHelper/PdfkitHelper';
 
 // Options Editors
 export RadioGroupOption from './OptionsPanels/Components/RadioGroupOption';

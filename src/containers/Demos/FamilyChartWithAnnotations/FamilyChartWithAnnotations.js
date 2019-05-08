@@ -21,7 +21,8 @@ import {
   LabelsOptionsPanel,
   CalloutOptionsPanel,
   InteractivityOptionsPanel,
-  RenderingOptionsPanel
+  RenderingOptionsPanel,
+  PdfkitHelper
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -154,6 +155,7 @@ class FamilyChartWithAnnotations extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Navbar.Form pullRight>
+                    <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'familychartwithannotations.pdf', 'Family Chart with Annotations Demo') }>Download PDF</Button>&nbsp;
                     <Button onClick={() => load(datasetName)}>Reset</Button>
                   </Navbar.Form>
                 </Navbar.Collapse>

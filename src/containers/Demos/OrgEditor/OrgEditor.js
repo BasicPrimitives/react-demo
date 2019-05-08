@@ -26,7 +26,8 @@ import {
   ItemLayoutOptionsPanel,
   ItemsOrderPanel,
   SelectCursorItemDialog,
-  AddNewItemDialog
+  AddNewItemDialog,
+  PdfkitHelper
 } from 'components';
 import { connect } from 'react-redux';
 import { provideHooks } from 'redial';
@@ -197,6 +198,7 @@ class OrgEditor extends Component {
                         />
                       </FormGroup>{' '}
                       <FormGroup>
+                      <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'orgeditor.pdf', 'Organizational Chart Editor Demo') }>Download PDF</Button>&nbsp;
                         <Button onClick={load}>Reset</Button>
                       </FormGroup>
                     </Form>
