@@ -97,6 +97,7 @@
     "nedb": "^1.8.0",
     "nprogress": "^0.2.0",
     "passport-facebook-token": "^3.3.0",
+    "pdfkit-nodejs-webpack": "^0.0.2",
     "pretty-error": "^2.0.2",
     "prop-types": "^15.5.8",
     "qs": "^6.5.2",
