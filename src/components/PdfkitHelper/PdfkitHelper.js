@@ -1,9 +1,9 @@
 const primitives = require('basicprimitives');
-import Photos from './Photos'
+import Photos from './Photos';
 
 const downloadDiagram = (config, fileName, caption, plugin) => {
-  const PDFDocument = require('../../../lib/pdfkit');
-  const blobStream  = require('blob-stream');
+  const PDFDocument = require('pdfkit-nodejs-webpack');
+  const blobStream = require('blob-stream');
   const FileSaver = require('file-saver');
 
   let { items } = config;
@@ -45,11 +45,11 @@ const downloadDiagram = (config, fileName, caption, plugin) => {
   });
 };
 
-const downloadOrgDiagram = (config, fileName, caption) => { 
+const downloadOrgDiagram = (config, fileName, caption) => {
   downloadDiagram(config, fileName, caption, primitives.pdf.orgdiagram.Plugin);
 }
 
-const downloadFamDiagram = (config, fileName, caption) => { 
+const downloadFamDiagram = (config, fileName, caption) => {
   downloadDiagram(config, fileName, caption, primitives.pdf.famdiagram.Plugin);
 }
 
