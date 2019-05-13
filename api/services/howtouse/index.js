@@ -56,7 +56,7 @@ export default function customService(app) {
       index += 1;
       const samples = [];
       match = match.replace(/\[([\w ]+?)\]\(([\s\S]+?)\)/g, (str, caption, url) => {
-        if (url.endsWith('.html')) {
+        if (url.endsWith('.html') && !url.startsWith('http')) {
           samples.push({
             caption,
             url: getStaticUrl(url),
@@ -93,7 +93,7 @@ export default function customService(app) {
 
   app.use('/save-code', (req, res) => {
     const id = uuid.v1();
-    cache.put(id, req.body.content, 30000);
+    cache.put(id, req.body.content, 600000);
     return res.json({
       url: `/api/get-saved-sample?name=${id}`
     });

@@ -44,6 +44,9 @@ class UseCases extends Component {
               <LinkContainer to="/usecases/angularjsfirstorganizationalchartdirective">
                 <NavItem>AngularJS Organizational Chart Directive</NavItem>
               </LinkContainer>
+              <LinkContainer to="/usecases/pdfkitspecific">
+                <NavItem>PDFkit Specific Use Cases</NavItem>
+              </LinkContainer>
               <LinkContainer to="/usecases/jqueryspecific">
                 <NavItem>jQuery Specific Use Cases</NavItem>
               </LinkContainer>

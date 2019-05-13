@@ -7,6 +7,7 @@ class TryMe extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     onCodeChange: PropTypes.func.isRequired,
+    activeKey: PropTypes.number.isRequired,
     samples: PropTypes.arrayOf(
       PropTypes.shape({
         caption: PropTypes.string.isRequired,
@@ -26,18 +27,18 @@ class TryMe extends Component {
     this.resetSample = this.resetSample.bind(this);
     this.onEditorValueChange = this.onEditorValueChange.bind(this);
 
-    const { samples } = props;
+    const { samples, activeKey } = props;
     this.state = {
       samples,
-      activeKey: 0
+      activeKey
     };
   }
 
-  componentWillReceiveProps({ onCodeChange, samples }) {
+  componentWillReceiveProps({ onCodeChange, samples, activeKey }) {
     this.setState({
       onCodeChange, // eslint-disable-line react/no-unused-state
       samples,
-      activeKey: 0
+      activeKey
     });
   }
 

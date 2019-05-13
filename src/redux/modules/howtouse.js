@@ -39,14 +39,17 @@ export default function reducer(state = initialState, action = {}) {
             loaded: true,
             markdown,
             groups: Object.keys(groups).reduce((agg, groupKey) => {
-              agg[groupKey] = groups[groupKey].map(sample => {
-                const { url, content } = sample;
-                return {
-                  ...sample,
-                  defaultUrl: url,
-                  defaultContent: content
-                };
-              });
+              agg[groupKey] = {
+                activeKey: 0,
+                samples: groups[groupKey].map(sample => {
+                  const { url, content } = sample;
+                  return {
+                    ...sample,
+                    defaultUrl: url,
+                    defaultContent: content
+                  };
+                })
+              };
               return agg;
             }, {})
           }
@@ -94,7 +97,8 @@ export default function reducer(state = initialState, action = {}) {
       } = action;
       const file = files[fileName];
       const { groups } = file;
-      const samples = groups[groupKey];
+      const group = groups[groupKey];
+      const { samples } = group;
       const { url } = result;
       return {
         ...state,
@@ -106,16 +110,19 @@ export default function reducer(state = initialState, action = {}) {
             loaded: true,
             groups: {
               ...groups,
-              [groupKey]: samples.map((sample, index) => {
-                if (index === sampleKey) {
-                  return {
-                    ...sample,
-                    url,
-                    content
-                  };
-                }
-                return sample;
-              })
+              [groupKey]: {
+                activeKey: sampleKey,
+                samples: (samples.map((sample, index) => {
+                  if (index === sampleKey) {
+                    return {
+                      ...sample,
+                      url,
+                      content
+                    };
+                  }
+                  return sample;
+                }))
+              }
             }
           }
         }
