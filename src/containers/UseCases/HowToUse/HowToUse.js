@@ -57,13 +57,15 @@ class HowToUse extends Component {
     if (Tag === 'a') {
       const [caption] = children;
       const groupKey = props.href;
-      const samples = groups[groupKey];
-      if (caption === 'group' && samples != null) {
+      const group = groups[groupKey];
+      if (caption === 'group' && group != null) {
+        const { activeKey, samples } = group;
         props = {
           ...props,
           className: styles.placeholder,
           name: `group${groupKey}`,
-          samples
+          samples,
+          activeKey
         };
         return <TryMe {...props} onCodeChange={(sampleKey, text) => setCode(fileName, props.href, sampleKey, text)} />;
       }

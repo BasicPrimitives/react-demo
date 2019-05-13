@@ -20,7 +20,8 @@ const downloadDiagram = (config, fileName, caption, plugin) => {
     ...config,
     items,
     cursorItem: null,
-    hasSelectorCheckbox: primitives.common.Enabled.False
+    hasSelectorCheckbox: primitives.common.Enabled.False,
+    templates: {}
   });
 
   var diagramSize = orgDiagramPlugin.getSize();
