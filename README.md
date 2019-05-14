@@ -93,6 +93,6 @@ A demonstration of this app can be seen at [http://react.basicprimitives.com:808
 
 ### License
 
-Copyright (c) 2013 - 2018 Basic Primitives Inc
+Copyright (c) 2013 - 2019 Basic Primitives Inc
 * [Non-commercial - Free](http://creativecommons.org/licenses/by-nc/3.0/)
 * [Commercial and government licenses](http://www.basicprimitives.com/pdf/license.pdf)
