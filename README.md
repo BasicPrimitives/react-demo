@@ -3,8 +3,9 @@ It is designed to validate effortless integration of Basic Primitives diagrammin
 * [http://www.basicprimitives.com](https://www.basicprimitives.com) project home.
 * [NPM](https://www.npmjs.com/package/basicprimitives) official release package.
 * [GitHub](https://github.com/BasicPrimitives) repositories.
-* [JavaScript, jQUery and PDFkit Demos & Samples](https://basicprimitives.github.io/javascript/), clone this repository for sources.
-* [React Live Demos](http://react.basicprimitives.com:8080), clone [ReactJS Demo repository](https://github.com/BasicPrimitives/react-demo) for sources.
+* [ReactJS Live Demos](http://react.basicprimitives.com:8080), clone this repository for sources.
+* [JavaScript, jQUery and PDFkit Demos & Samples](https://basicprimitives.github.io/javascript/), clone [JavaScript repository](https://github.com/BasicPrimitives/javascript) for sources.
+
 
 ## Supported Diagrams
 
