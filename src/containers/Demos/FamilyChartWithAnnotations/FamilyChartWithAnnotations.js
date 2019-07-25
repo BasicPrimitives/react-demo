@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { FamDiagram, FamDiagramConfig } from 'basicprimitivesreact';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
 import {
-  FamDiagram,
-  FamDiagramConfig,
   RadioGroupOption,
   FamilyOptionsPanel,
   AutoLayoutOptionsPanel,
@@ -82,7 +80,7 @@ class FamilyChartWithAnnotations extends Component {
     datasetName: PropTypes.string.isRequired,
     datasetNames: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     centerOnCursor: PropTypes.bool.isRequired,
-    config: FamDiagramConfig().isRequired,
+    config: FamDiagramConfig.isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
       type: PropTypes.oneOf(Object.values(UserActionType)),
@@ -140,6 +138,7 @@ class FamilyChartWithAnnotations extends Component {
       setAnnotationOption // eslint-disable-line no-shadow
     } = this.props;
     const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
+    const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
     const annotationConfig = config.annotations.find(annotation => annotation.annotationType === primitives.common.AnnotationType.Connector);
 
     return (
@@ -155,79 +154,86 @@ class FamilyChartWithAnnotations extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Navbar.Form pullRight>
-                    <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'familychartwithannotations.pdf', 'Family Chart with Annotations Demo') }>Download PDF</Button>&nbsp;
+                    <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'familychartwithannotations.pdf', 'Family Chart with Annotations Demo')}>Download PDF</Button>&nbsp;
                     <Button onClick={() => load(datasetName)}>Reset</Button>
                   </Navbar.Form>
                 </Navbar.Collapse>
               </Navbar>
-              <FamDiagram
-                className={styles.placeholder}
-                centerOnCursor={centerOnCursor}
-                config={config}
-                onCursorChanging={data => {
-                  const { context } = data;
-                  setCursorItem(context.id);
-                  // Set data.cancel to true in order to suppress set cursor item in control
-                  // it will be updated via subsequent state change and rendering event
-                  data.cancel = true;
-                }}
-                onHighlightChanging={data => {
-                  const { context, parentItems, childrenItems } = data;
-                  setHighlightAnnotations(context.id, parentItems, childrenItems);
-                }}
-                onButtonClick={({ name, context }) => {
-                  switch (name) {
-                    case 'out':
-                      setAnnotationSource(context.id);
-                      break;
-                    case 'in':
-                      setAnnotationDestination(context.id);
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-                onSelectionChanged={(data, selectedItems) => {
-                  setSelectedItems(selectedItems);
-                }}
-                onItemRender={({ context, element, templateName }) => {
-                  // eslint-disable-line no-unused-vars
-                  switch (templateName) {
-                    case 'defaultTemplate':
-                      ReactDOM.render(
-                        <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
-                          <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                          </div>
-                          <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                            <img className={styles.photo} src={context.image} alt={context.title} />
-                          </div>
-                          <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                        </div>,
-                        element
-                      );
-                      break;
-                    case 'contactTemplate':
-                      ReactDOM.render(
-                        <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
-                          <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                          </div>
-                          <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                            <img className={styles.photo} src={context.image} alt={context.title} />
-                          </div>
-                          <div className={`bp-item ${styles.phone}`}>{context.phone}</div>
-                          <div className={`bp-item ${styles.email}`}>{context.email}</div>
-                          <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                        </div>,
-                        element
-                      );
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-              />
+              <div className={styles.placeholder}>
+                <FamDiagram
+                  centerOnCursor={centerOnCursor}
+                  config={{
+                    ...config,
+                    onButtonsRender: (({ context: itemConfig }) => {
+                      return <ButtonGroup className="btn-group-vertical">
+                        <Button bsSize="small" key="out"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            setAnnotationSource(itemConfig.id);
+                          }}
+                        ><Glyphicon glyph="log-out" />
+                        </Button>
+                        <Button bsSize="small" key="in"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            setAnnotationDestination(itemConfig.id);
+                          }}
+                        >
+                          <Glyphicon glyph="log-in" />
+                        </Button>
+                      </ButtonGroup>
+                    }),
+                    templates: [
+                      {
+                        ...templateConfig,
+                        onItemRender: ({ context: itemConfig }) => {
+                          const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                          return <div className={styles.DefaultTemplate}>
+                            <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                              <div className={styles.DefaultTitle}>{itemConfig.title}</div>
+                            </div>
+                            <div className={styles.DefaultPhotoFrame}>
+                              <img className={styles.DefaultPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                            </div>
+                            <div className={styles.DefaultDescription}>{itemConfig.description}</div>
+                          </div>;
+                        }
+                      },
+                      {
+                        ...contactTemplateConfig,
+                        onItemRender: ({ context: itemConfig }) => {
+                          const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                          return <div className={styles.ContactTemplate}>
+                            <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                              <div className={styles.ContactTitle}>{itemConfig.title}</div>
+                            </div>
+                            <div className={styles.ContactPhotoFrame}>
+                              <img className={styles.ContactPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                            </div>
+                            <div className={styles.ContactPhone}>{itemConfig.phone}</div>
+                            <div className={styles.ContactEmail}>{itemConfig.email}</div>
+                            <div className={styles.ContactDescription}>{itemConfig.description}</div>
+                          </div>;
+                        }
+                      }
+                    ]
+                  }}
+                  onCursorChanging={(event, data) => {
+                    const { context } = data;
+                    setCursorItem(context.id);
+                    // Return true in order to suppress set cursor item in control
+                    // it will be updated via subsequent state change and rendering event
+                    return true;
+                  }}
+                  onSelectionChanged={(event, currentSelectedItems, newSelectedItems) => {
+                    setSelectedItems(newSelectedItems);
+                  }}
+                  onHighlightChanging={(event, data) => {
+                    const { context, parentItems, childrenItems } = data;
+                    setHighlightAnnotations(context.id, parentItems, childrenItems);
+                  }}
+                />
+              </div>
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
               <p>
@@ -318,13 +324,13 @@ class FamilyChartWithAnnotations extends Component {
                       {annotationConfig == null ? (
                         <p>No connector annotations found to set options for. Choose another data set.</p>
                       ) : (
-                        <AnnotationOptionsPanel
-                          config={annotationConfig}
-                          setOption={(name, value) => {
-                            setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
-                          }}
-                        />
-                      )}
+                          <AnnotationOptionsPanel
+                            config={annotationConfig}
+                            setOption={(name, value) => {
+                              setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
+                            }}
+                          />
+                        )}
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="intervals">

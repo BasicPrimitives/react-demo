@@ -53,26 +53,8 @@ class UseCases extends Component {
             </Nav>
             <h6>REACT USE CASES</h6>
             <Nav bsStyle="pills" stacked activeKey={1}>
-              <LinkContainer to="/usecases/hardcodedorganizationalchart">
-                <NavItem>Hard coded configuration</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/usecases/stateboundorganizationalchart">
-                <NavItem>Component state bound</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/usecases/reduxstateboundorganizationalchart">
-                <NavItem>Redux state bound</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/usecases/reduxstatepreloadorganizationalchart">
-                <NavItem>Redux state preloading</NavItem>
-              </LinkContainer>
               <LinkContainer to="/usecases/componentsizingwithcssmedia">
                 <NavItem>Component Sizing with CSS @Media</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/usecases/buttonspanel">
-                <NavItem>User Buttons Panel</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/usecases/itemtemplate">
-                <NavItem>Item Template</NavItem>
               </LinkContainer>
             </Nav>
             <h6>USER INTERFACE EVENTS &amp; OPTIONS</h6>

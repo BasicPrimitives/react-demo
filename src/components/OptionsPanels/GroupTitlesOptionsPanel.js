@@ -27,7 +27,7 @@ class GroupTitlesOptionsPanel extends Component { // eslint-disable-line react/p
           propertyName="groupTitlePanelSize"
           value={config.groupTitlePanelSize}
           valueType="number"
-          items={[24, 48, 72]}
+          items={[24, 30, 36, 42, 48, 54, 60, 66, 72]}
           onChange={value => setOption('groupTitlePanelSize', value)}
         />
         <RadioGroupOption

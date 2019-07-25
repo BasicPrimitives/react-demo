@@ -2314,6 +2314,19 @@ basicprimitives@^5.3.1:
   resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.3.1.tgz#f4f25e806d1a14f6da03a9b01dcc59c91e643586"
   integrity sha512-xw16O/kzb1QOFz8Mj49Jc6p0wYvxvz0pSZ8okRxiK26z9MtAg7y+U0yJVwKnNgGtJ81XO5AooO0sG+PCzSM6JA==
 
+basicprimitives@^5.4.0:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.4.1.tgz#bb84d9a9c51da7cbf6783e0a15f514b2dcb18dd4"
+  integrity sha512-YjIY0cXNqYmP0WXMx677yd7EfBSF8DfgO+eYWpSa6+R0T3YMkyBgmFKumW5SHTymfR+dDFhYKQnDaDYGSVCumQ==
+
+basicprimitivesreact@^5.4.13:
+  version "5.4.13"
+  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-5.4.13.tgz#9ab19c72db94b4cb8faf0ccd2298553f54c62611"
+  integrity sha512-kJHYoDHNOPSkH5pUoAY/gsVk6viEFgPU+Z3VBmw7gt96lAsYq34PQ5EbmdBDzRMtPsgbLJ4LKKQ7ewJfwhMdXw==
+  dependencies:
+    basicprimitives "^5.4.0"
+    resize-observer-polyfill "^1.5.1"
+
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"

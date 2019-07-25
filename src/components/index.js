@@ -18,7 +18,6 @@ export RouterTrigger from './RouterTrigger/RouterTrigger';
 
 // Basic Primitives helper Components
 export Version from './Version/Version';
-export TutorialOrgDiagram from './TutorialOrgDiagram/TutorialOrgDiagram';
 export OrgDiagram from './Diagrams/OrgDiagram';
 export FamDiagram from './Diagrams/FamDiagram';
 export OrgDiagramConfig from './Diagrams/Schemas/OrgDiagramConfig';

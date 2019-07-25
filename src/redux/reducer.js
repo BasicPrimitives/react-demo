@@ -3,8 +3,6 @@ import auth from './modules/auth';
 import notifs from './modules/notifs';
 import counter from './modules/counter';
 import info from './modules/info';
-import tutorialOrgDiagram from './modules/TutorialOrgDiagram';
-import preloadOrgDiagram from './modules/PreloadOrgDiagram';
 import largeorganizationalchart from './modules/demos/largeorganizationalchart';
 import highlightannotations from './modules/demos/highlightannotations';
 import partners from './modules/demos/partners';
@@ -29,8 +27,6 @@ export default function createReducers(asyncReducers) {
       counter3: counter
     }),
     info,
-    tutorialOrgDiagram,
-    preloadOrgDiagram,
     partners,
     largeorganizationalchart,
     dynamicloading,

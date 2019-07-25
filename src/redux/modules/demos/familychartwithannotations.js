@@ -30,18 +30,6 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...new primitives.famdiagram.Config(),
-    buttons: [
-      {
-        name: 'in',
-        icon: 'log-in',
-        tooltip: 'Set as annotation distination'
-      },
-      {
-        name: 'out',
-        icon: 'log-out',
-        tooltip: 'Set as annotation source'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
@@ -81,7 +69,7 @@ const initialState = {
     selectCheckBoxLabel: 'Selected',
     itemTitleFirstFontColor: primitives.common.Colors.White,
     itemTitleSecondFontColor: primitives.common.Colors.White,
-    buttonsPanelSize: 28,
+    buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 
@@ -208,20 +196,6 @@ function getCursorItem(config, cursorItem) {
   };
 }
 
-function getAnnotations(config) {
-  const { annotations } = config;
-  if (Array.isArray(annotations)) {
-    return {
-      ...config,
-      annotations: config.annotations.map(annotation => ({
-        ...new primitives.famdiagram.ConnectorAnnotationConfig(),
-        ...annotation
-      }))
-    };
-  }
-  return config;
-}
-
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
@@ -244,7 +218,7 @@ export default function reducer(state = initialState, action = {}) {
         loaded: true,
         datasetName,
         datasetNames,
-        ...getCursorItem(getAnnotations(newConfig), newConfig.cursorItem),
+        ...getCursorItem(newConfig, newConfig.cursorItem),
         ...getItemsHash(config.items)
       };
     }

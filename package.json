@@ -3,7 +3,7 @@
   "description": "Basic Primitives React Demo. JavaScript components visualize hierarchical and DAG structures in form of organizational and dependency diagrams using default or user defined JSX templates.",
   "author": "Basic Primitives Inc <support@basicprimitives.com> (http://www.basicprimitives.com)",
   "contributors": [],
-  "license": "https://www.basicprimitives.com/index.php?option=com_content&view=article&id=14&Itemid=18&lang=en",
+  "license": "SEE LICENSE IN license.pdf",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -69,6 +69,7 @@
     "@feathersjs/socketio-client": "^1.0.1",
     "axios": "^0.18.0",
     "basicprimitives": "^5.3.1",
+    "basicprimitivesreact": "^5.4.13",
     "blob-stream": "^0.1.3",
     "body-parser": "^1.16.1",
     "classnames": "^2.2.5",

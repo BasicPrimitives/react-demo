@@ -5,13 +5,13 @@ import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { OrgDiagram, OrgDiagramConfig } from 'basicprimitivesreact';
+import primitives from 'basicprimitives';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, NavDropdown, MenuItem, Button, Navbar, Modal, Form, FormGroup, ButtonGroup
+  Grid, Col, Row, Tab, NavItem, Nav, NavDropdown, MenuItem, Button, Navbar, Modal, Form, FormGroup, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
 import Select from 'react-select';
 import {
-  OrgDiagram,
-  OrgDiagramConfig,
   AutoLayoutOptionsPanel,
   DefaultTemplateOptionsPanel,
   GroupTitlesOptionsPanel,
@@ -108,7 +108,7 @@ class OrgEditor extends Component {
     isReparentDialogVisible: PropTypes.bool.isRequired,
     isSelectedItemsReparentDialogVisible: PropTypes.bool.isRequired,
     centerOnCursor: PropTypes.bool.isRequired,
-    config: OrgDiagramConfig().isRequired,
+    config: OrgDiagramConfig.isRequired,
     indexes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     children: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     load: PropTypes.func.isRequired,
@@ -169,7 +169,9 @@ class OrgEditor extends Component {
       items, cursorItem, templates, selectedItems
     } = config;
 
-    const templateConfig = templates.find(template => template.name === 'defaultTemplate');
+    const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
+    const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
+
     const itemConfig = (cursorItem && items[indexes[cursorItem]]) || null;
     const cursorChildren = (cursorItem && children[cursorItem] && children[cursorItem].map(id => items[indexes[id]])) || null;
 
@@ -198,80 +200,92 @@ class OrgEditor extends Component {
                         />
                       </FormGroup>{' '}
                       <FormGroup>
-                      <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'orgeditor.pdf', 'Organizational Chart Editor Demo') }>Download PDF</Button>&nbsp;
+                        <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'orgeditor.pdf', 'Organizational Chart Editor Demo')}>Download PDF</Button>&nbsp;
                         <Button onClick={load}>Reset</Button>
                       </FormGroup>
                     </Form>
                   </Navbar.Form>
                 </Navbar.Collapse>
               </Navbar>
-              <OrgDiagram
-                className={styles.placeholder}
-                centerOnCursor={centerOnCursor}
-                config={config}
-                onCursorChanging={data => {
-                  const { context } = data;
-                  setCursorItem(context.id);
-                  // Set data.cancel to true in order to suppress set cursor item in control
-                  // it will be updated via subsequent state change and rendering event
-                  data.cancel = true;
-                }}
-                onButtonClick={({ name }) => {
-                  switch (name) {
-                    case 'add':
-                      showNewItemDialog();
-                      break;
-                    case 'delete':
-                      showConfirmDeleteDialog();
-                      break;
-                    case 'move':
-                      showReparentDialog();
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-                onSelectionChanged={(data, selectedItems) => {
-                  setSelectedItems(selectedItems);
-                }}
-                onItemRender={({ context, element, templateName }) => {
-                  // eslint-disable-line no-unused-vars
-                  switch (templateName) {
-                    case 'defaultTemplate':
-                      ReactDOM.render(
-                        <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
-                          <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                          </div>
-                          <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                            <img className={styles.photo} src={context.image} alt={context.title} />
-                          </div>
-                          <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                        </div>,
-                        element
-                      );
-                      break;
-                    case 'contactTemplate':
-                      ReactDOM.render(
-                        <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
-                          <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                          </div>
-                          <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                            <img className={styles.photo} src={context.image} alt={context.title} />
-                          </div>
-                          <div className={`bp-item ${styles.phone}`}>{context.phone}</div>
-                          <div className={`bp-item ${styles.email}`}>{context.email}</div>
-                          <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                        </div>,
-                        element
-                      );
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-              />
+              <div className={styles.placeholder}>
+                <OrgDiagram
+                  centerOnCursor={centerOnCursor}
+                  config={{
+                    ...config,
+                    onButtonsRender: (({ context: itemConfig }) => {
+                      return <ButtonGroup className="btn-group-vertical">
+                        <Button bsSize="small" key="remove"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            showConfirmDeleteDialog();
+                          }}
+                        ><Glyphicon glyph="remove" />
+                        </Button>
+                        <Button bsSize="small" key="add"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            showNewItemDialog();
+                          }}
+                        >
+                          <Glyphicon glyph="plus" />
+                        </Button>
+                        <Button bsSize="small" key="move"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            showReparentDialog();
+                          }}
+                        >
+                          <Glyphicon glyph="move" />
+                        </Button>
+                      </ButtonGroup>
+                    }),
+                    templates: [
+                      {
+                        ...templateConfig,
+                        onItemRender: ({ context: itemConfig }) => {
+                          const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                          return <div className={styles.DefaultTemplate}>
+                            <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                              <div className={styles.DefaultTitle}>{itemConfig.title}</div>
+                            </div>
+                            <div className={styles.DefaultPhotoFrame}>
+                              <img className={styles.DefaultPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                            </div>
+                            <div className={styles.DefaultDescription}>{itemConfig.description}</div>
+                          </div>;
+                        }
+                      },
+                      {
+                        ...contactTemplateConfig,
+                        onItemRender: ({ context: itemConfig }) => {
+                          const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                          return <div className={styles.ContactTemplate}>
+                            <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                              <div className={styles.ContactTitle}>{itemConfig.title}</div>
+                            </div>
+                            <div className={styles.ContactPhotoFrame}>
+                              <img className={styles.ContactPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                            </div>
+                            <div className={styles.ContactPhone}>{itemConfig.phone}</div>
+                            <div className={styles.ContactEmail}>{itemConfig.email}</div>
+                            <div className={styles.ContactDescription}>{itemConfig.description}</div>
+                          </div>;
+                        }
+                      }
+                    ]
+                  }}
+                  onCursorChanging={(event, data) => {
+                    const { context } = data;
+                    setCursorItem(context.id);
+                    // Return true in order to suppress set cursor item in control
+                    // it will be updated via subsequent state change and rendering event
+                    return true;
+                  }}
+                  onSelectionChanged={(event, currentSelectedItems, newSelectedItems) => {
+                    setSelectedItems(newSelectedItems);
+                  }}
+                />
+              </div>
               <br />
               {itemConfig && (
                 <React.Fragment>
