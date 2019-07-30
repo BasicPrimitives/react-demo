@@ -519,7 +519,7 @@ export default {
       color: '#ff0000',
       lineType: primitives.common.LineType.Dashed,
       selectItems: false,
-      label: "<div class='bp-badge' style='width:20px; height:20px;background-color:red; color: white;'>1</div>Parent",
+      label: { color: "green", badge: "1", title: "Parent"},
       labelSize: { width: 70, height: 30 }
     },
     {

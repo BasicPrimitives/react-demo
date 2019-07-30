@@ -27,20 +27,7 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...new primitives.famdiagram.Config(),
-    buttons: [
-      {
-        name: 'in',
-        icon: 'log-in',
-        tooltip: 'Set as annotation distination'
-      },
-      {
-        name: 'out',
-        icon: 'log-out',
-        tooltip: 'Set as annotation source'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
-    defaulLabelAnnotationTemplate: 'LabelAnnotationTemplate',
     templates: [
       {
         ...new primitives.famdiagram.TemplateConfig(),
@@ -57,9 +44,15 @@ const initialState = {
       },
       {
         ...new primitives.famdiagram.TemplateConfig(),
-        name: 'LabelAnnotationTemplate',
-        itemSize: new primitives.common.Size(100, 20),
-        minimizedItemSize: new primitives.common.Size(6, 6),
+        name: 'unitTemplate',
+        itemSize: new primitives.common.Size(220, 60),
+        minimizedItemSize: new primitives.common.Size(30, 30),
+        minimizedItemCornerRadius: 1, // Sligtly rounded corners
+        minimizedItemLineWidth: 1,
+        minimizedItemLineType: primitives.common.LineType.Solid,
+        minimizedItemBorderColor: null, // Shape border line has the same color as item title background color
+        minimizedItemFillColor: null, // Shape background has the same color as item title background color
+        minimizedItemOpacity: 0.7, // Shape background opacity
         highlightPadding: new primitives.common.Thickness(2, 2, 2, 2)
       },
       {
@@ -88,7 +81,7 @@ const initialState = {
         annotationType: primitives.common.AnnotationType.Connector,
         fromItem: 5,
         toItem: 8,
-        label: "<div class='bp-badge' style='width:18px; height:18px;background-color:red; color: white;'>1</div>Connector annotation",
+        label: {color:"red", badge: "1", title: "Connector annotation"},
         labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
         connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
         color: primitives.common.Colors.Red,
@@ -115,7 +108,7 @@ const initialState = {
     selectCheckBoxLabel: 'Selected',
     itemTitleFirstFontColor: primitives.common.Colors.White,
     itemTitleSecondFontColor: primitives.common.Colors.White,
-    buttonsPanelSize: 28,
+    buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 

@@ -227,3 +227,64 @@
     font-size: 12px;
   }
 }
+
+.Badge {
+  box-sizing:content-box;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -khtml-border-radius: 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: Arial;
+  padding: 4px;
+  float: left;
+  width:16px; 
+  height:16px;
+  z-index: 1000;
+  color: white;
+}
+
+.BadgeLabel {
+  box-sizing:content-box;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: Arial;
+  padding-top: 6px;
+}
+
+.InLayoutLabel {
+	text-align: center;
+}
+
+.MiniTemplate {
+  @extend .TemplateItem, .TemplateCornerAll, .TemplateItemFrame;
+  width: 100%;
+  height: 100%;
+  left: -1px;
+  top: -1px;
+
+  .MiniTitleBackground {
+    @extend .TemplateItem, .TemplateCornerAll, .TemplateItemFrame;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 20px;
+
+    .MiniTitle {
+      @extend .TemplateItem, .TemplateTitle;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      height: 16px;
+ 	  }
+  }
+}

@@ -133,6 +133,19 @@ class Partners extends Component {
                   centerOnCursor={centerOnCursor}
                   config={{
                     ...config,
+                    annotations: (config.annotations.map(annotation => {
+                      const {label} = annotation;
+                      if(label != null) {
+                        const {badge, color, title} = annotation.label;
+                        return {
+                          ...annotation,
+                          label: <><div className={styles.Badge} style={{
+                            backgroundColor: color
+                          }}>{badge}</div><span className={styles.BadgeLabel}>{title}</span></>
+                        }
+                      }
+                      return annotation;
+                    })),
                     onButtonsRender: (({ context: itemConfig }) => {
                       return <ButtonGroup className="btn-group-vertical">
                         <Button bsSize="small" key="user"

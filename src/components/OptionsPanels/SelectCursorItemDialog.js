@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { OrgDiagram } from 'components';
+import { OrgDiagram } from 'basicprimitivesreact';
 import { Button, Modal } from 'react-bootstrap';
 import primitives from 'basicprimitives';
 
@@ -12,7 +11,8 @@ class SelectCursorItemDialog extends Component {
     onClose: PropTypes.func.isRequired,
     itemsToReparent: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])), // eslint-disable-line react/no-unused-prop-types
     config: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types, react/no-unused-prop-types
-    isVisible: PropTypes.bool.isRequired
+    isVisible: PropTypes.bool.isRequired,
+    styles: PropTypes.any.isRequired
   };
 
   static defaultProps = {
@@ -41,7 +41,7 @@ class SelectCursorItemDialog extends Component {
     return isVisible || newIsVisible;
   }
 
-  onCursorChanging(data) {
+  onCursorChanging(event, data) {
     const { context } = data;
     const { config } = this.state;
     this.setState({
@@ -52,7 +52,7 @@ class SelectCursorItemDialog extends Component {
     });
     // Set data.cancel to true in order to suppress set cursor item in control
     // it will be updated via subsequent state change and rendering event
-    data.cancel = true;
+    return true;
   }
 
   setConfig({ isVisible, itemsToReparent, config }) {
@@ -127,66 +127,67 @@ class SelectCursorItemDialog extends Component {
   }
 
   render() {
-    const { isVisible, onCursorItem, onClose } = this.props;
+    const { isVisible, onCursorItem, onClose, styles } = this.props;
     const { config } = this.state;
-    const styles = require('./OrgEditor.scss');
-    return (
-      isVisible && (
-        <Modal show={isVisible} bsSize="large" aria-labelledby="contained-modal-title-lg">
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-lg">Select new parent</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <OrgDiagram
-              className={styles.placeholder}
-              config={config}
-              onCursorChanging={this.onCursorChanging}
-              onItemRender={({ context, element, templateName }) => {
-                // eslint-disable-line no-unused-vars
-                switch (templateName) {
-                  case 'defaultTemplate':
-                    ReactDOM.render(
-                      <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
-                        <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                          <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                        </div>
-                        <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                          <img className={styles.photo} src={context.image} alt={context.title} />
-                        </div>
-                        <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                      </div>,
-                      element
-                    );
-                    break;
-                  case 'contactTemplate':
-                    ReactDOM.render(
-                      <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
-                        <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                          <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                        </div>
-                        <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                          <img className={styles.photo} src={context.image} alt={context.title} />
-                        </div>
-                        <div className={`bp-item ${styles.phone}`}>{context.phone}</div>
-                        <div className={`bp-item ${styles.email}`}>{context.email}</div>
-                        <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                      </div>,
-                      element
-                    );
-                    break;
-                  default:
-                    break;
-                }
-              }}
-            />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => onCursorItem(config.cursorItem)}>Set</Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </Modal.Footer>
-        </Modal>
-      )
-    );
+    if(isVisible) {
+      const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
+      const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
+
+      return <Modal show={isVisible} bsSize="large" aria-labelledby="contained-modal-title-lg">
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-lg">Select new parent</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div className={styles.placeholder}>
+          <OrgDiagram
+                config={{
+                  ...config,
+                  templates: [
+                    {
+                      ...templateConfig,
+                      onItemRender: ({ context: itemConfig }) => {
+                        const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                        return <div className={styles.DefaultTemplate}>
+                          <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                            <div className={styles.DefaultTitle}>{itemConfig.title}</div>
+                          </div>
+                          <div className={styles.DefaultPhotoFrame}>
+                            <img className={styles.DefaultPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                          </div>
+                          <div className={styles.DefaultDescription}>{itemConfig.description}</div>
+                        </div>;
+                      }
+                    },
+                    {
+                      ...contactTemplateConfig,
+                      onItemRender: ({ context: itemConfig }) => {
+                        const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                        return <div className={styles.ContactTemplate}>
+                          <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                            <div className={styles.ContactTitle}>{itemConfig.title}</div>
+                          </div>
+                          <div className={styles.ContactPhotoFrame}>
+                            <img className={styles.ContactPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                          </div>
+                          <div className={styles.ContactPhone}>{itemConfig.phone}</div>
+                          <div className={styles.ContactEmail}>{itemConfig.email}</div>
+                          <div className={styles.ContactDescription}>{itemConfig.description}</div>
+                        </div>;
+                      }
+                    }
+                  ]
+                }}
+            onCursorChanging={this.onCursorChanging}
+          />
+        </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => onCursorItem(config.cursorItem)}>Set</Button>
+          <Button onClick={onClose}>Cancel</Button>
+        </Modal.Footer>
+      </Modal>
+    }
+    return null;
   }
 }
 

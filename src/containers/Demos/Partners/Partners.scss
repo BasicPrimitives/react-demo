@@ -229,7 +229,7 @@
 }
 
 .Badge {
-  @extend .TemplateItem;
+  box-sizing:content-box;
   -moz-border-radius: 16px;
   -webkit-border-radius: 16px;
   -khtml-border-radius: 16px;
@@ -245,9 +245,18 @@
   float: left;
   width:16px; 
   height:16px;
-  top: -8px;
-  left: -16px;
   z-index: 1000;
-  background-color: green;
   color: white;
+}
+
+.BadgeLabel {
+  box-sizing:content-box;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: Arial;
+  padding-top: 6px;
 }

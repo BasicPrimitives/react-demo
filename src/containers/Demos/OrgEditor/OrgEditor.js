@@ -333,6 +333,7 @@ class OrgEditor extends Component {
                 onCursorItem={setItemParent}
                 onClose={hideReparentDialog}
                 config={config}
+                styles={styles}
               />
               <SelectCursorItemDialog
                 isVisible={isSelectedItemsReparentDialogVisible}
@@ -340,6 +341,7 @@ class OrgEditor extends Component {
                 onCursorItem={setSelectedItemsParent}
                 onClose={hideSelectedItemsReparentDialog}
                 config={config}
+                styles={styles}
               />
             </div>
           </Col>

@@ -27,18 +27,6 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...new primitives.famdiagram.Config(),
-    buttons: [
-      {
-        name: 'in',
-        icon: 'log-in',
-        tooltip: 'Set as annotation distination'
-      },
-      {
-        name: 'out',
-        icon: 'log-out',
-        tooltip: 'Set as annotation source'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
     defaultCalloutTemplateName: 'contactTemplate',
     templates: [
@@ -74,7 +62,7 @@ const initialState = {
         annotationType: primitives.common.AnnotationType.Connector,
         fromItem: 5,
         toItem: 8,
-        label: "<div class='bp-badge' style='width:10px; height:10px;background-color:red; color: white;'>1</div>Connector annotation",
+        label: {color:"red", badge: "1", title: "Connector annotation"},
         labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
         connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
         color: primitives.common.Colors.Red,
@@ -101,7 +89,7 @@ const initialState = {
     selectCheckBoxLabel: 'Selected',
     itemTitleFirstFontColor: primitives.common.Colors.White,
     itemTitleSecondFontColor: primitives.common.Colors.White,
-    buttonsPanelSize: 28,
+    buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 
@@ -184,8 +172,17 @@ function getItemsHash(items = []) {
     agg[item.id] = item;
     return agg;
   }, newItemsHash);
+  const children = {};
+  items.map(item => {
+    (item.parents || []).map(parent => {
+      children[parent] = children[parent] || [];
+      children[parent].push(item.id); 
+    })
+  });
+
   return {
-    itemsHash: newItemsHash
+    itemsHash: newItemsHash,
+    children
   };
 }
 
@@ -325,9 +322,12 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case SETCURSORITEM: {
-      const { config, ...restState } = state;
+      const { config, children, itemsHash } = state;
       const { annotations } = config;
-      const { cursorItem, parentItems, childrenItems } = action;
+      const { cursorItem } = action;
+      const itemConfig = itemsHash[cursorItem];
+      const parentItems = ( itemConfig && itemConfig.parents) || [];
+      const childItems = children[cursorItem] || [];
 
       let newAnnotations = annotations.reduce((agg, annotation) => {
         if (annotation.annotationType !== primitives.common.AnnotationType.HighlightPath) {
@@ -337,11 +337,12 @@ export default function reducer(state = initialState, action = {}) {
       }, []);
 
       if (cursorItem !== null) {
-        const items = [...parentItems, ...childrenItems];
+        const items = [...parentItems, ...childItems];
         newAnnotations = newAnnotations.concat(
           items.map(
-            item => new primitives.famdiagram.HighlightPathAnnotationConfig({
-              items: [cursorItem, item.id],
+            itemid => ({
+              annotationType: primitives.common.AnnotationType.HighlightPath,
+              items: [cursorItem, itemid],
               color: primitives.common.Colors.Navy,
               opacity: 0.2,
               lineWidth: 16,
@@ -352,7 +353,7 @@ export default function reducer(state = initialState, action = {}) {
         );
       }
       return {
-        ...restState,
+        ...state,
         centerOnCursor: false,
         ...getCursorItem(
           {
@@ -360,7 +361,7 @@ export default function reducer(state = initialState, action = {}) {
             cursorItem,
             annotations: newAnnotations
           },
-          action.cursorItem
+          cursorItem
         ),
         ...getUserAction(UserActionType.ChangedCursor)
       };
@@ -414,12 +415,10 @@ export function load(datasetName = 'dependencies') {
   };
 }
 
-export function setCursorItem(cursorItem, parentItems, childrenItems) {
+export function setCursorItem(cursorItem) {
   return {
     type: SETCURSORITEM,
-    cursorItem,
-    parentItems,
-    childrenItems
+    cursorItem
   };
 }
 

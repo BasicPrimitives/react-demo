@@ -8,7 +8,7 @@ export default {
       annotationType: primitives.common.AnnotationType.Connector,
       fromItem: 2,
       toItem: 31,
-      label: "<div class='bp-badge' style='width:18px; height:18px;background-color:red; color: white;'>1</div>Connector annotation",
+      label: {color:"red", badge: "1", title: "Connector annotation"},
       labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
       connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
       color: primitives.common.Colors.Red,
@@ -42,7 +42,8 @@ export default {
     {
       id: 3,
       parents: [1, 2],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '3',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -107,7 +108,8 @@ export default {
     {
       id: 9,
       parents: [7, 8],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '9',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -126,7 +128,8 @@ export default {
     {
       id: 11,
       parents: [6, 10],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '11',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -159,7 +162,8 @@ export default {
     {
       id: 14,
       parents: [12, 13],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '14',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -193,6 +197,7 @@ export default {
       id: 17,
       parents: [15, 16],
       title: 'Wedding',
+      templateName: "miniTemplate",
       description: '17',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -221,7 +226,8 @@ export default {
     {
       id: 20,
       parents: [18, 19],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '20',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -264,6 +270,7 @@ export default {
       id: 24,
       parents: [23, 22],
       title: '2nd Wedding',
+      templateName: "miniTemplate",
       description: '24, Pierre Divorced',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -283,6 +290,7 @@ export default {
       id: 26,
       parents: [25, 22],
       title: '3nd Wedding',
+      templateName: "miniTemplate",
       description: '26, Pierre',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -305,6 +313,7 @@ export default {
       id: 28,
       parents: [27, 22],
       title: '1st Wedding',
+      templateName: "miniTemplate",
       description: '26, Divorced',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -325,6 +334,7 @@ export default {
       id: 30,
       parents: [27, 29],
       title: '2nd Wedding',
+      templateName: "miniTemplate",
       description: '30, of Marie Divorced',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -345,6 +355,7 @@ export default {
       id: 32,
       parents: [27, 31],
       title: '3nd Wedding',
+      templateName: "miniTemplate",
       description: '32, of Marie',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -384,7 +395,8 @@ export default {
     {
       id: 36,
       parents: [35, 34],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '36',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -425,7 +437,8 @@ export default {
     {
       id: 40,
       parents: [38, 39],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '40',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -444,7 +457,8 @@ export default {
     {
       id: 42,
       parents: [37, 41],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '42',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -506,6 +520,7 @@ export default {
       id: 48,
       parents: [47, 45],
       title: '1st Wedding',
+      templateName: "miniTemplate",
       description: '48, of Yvonne Divorced',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -525,6 +540,7 @@ export default {
       id: 50,
       parents: [49, 45],
       title: '2nd Wedding',
+      templateName: "miniTemplate",
       description: '50, of Yvonne Divorced',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -544,6 +560,7 @@ export default {
       id: 52,
       parents: [51, 45],
       title: '3d Wedding',
+      templateName: "miniTemplate",
       description: '52, of Yvonne Divorced',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -562,7 +579,8 @@ export default {
     {
       id: 54,
       parents: [53, 46],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '54',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -650,7 +668,8 @@ export default {
     {
       id: 63,
       parents: [55, 59],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '63',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -669,7 +688,8 @@ export default {
     {
       id: 65,
       parents: [64, 60],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '65',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'
@@ -699,7 +719,8 @@ export default {
     {
       id: 68,
       parents: [66, 67],
-      title: 'Wedding',
+      title: 'Wedding', 
+      templateName: "miniTemplate",
       description: '68',
       image: '/photos/w.png',
       itemTitleColor: '#4169e1'

@@ -139,6 +139,7 @@ class FamilyChartWithAnnotations extends Component {
     } = this.props;
     const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
     const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
+    const miniTemplateConfig = config.templates.find(template => template.name === 'miniTemplate');
     const annotationConfig = config.annotations.find(annotation => annotation.annotationType === primitives.common.AnnotationType.Connector);
 
     return (
@@ -164,6 +165,25 @@ class FamilyChartWithAnnotations extends Component {
                   centerOnCursor={centerOnCursor}
                   config={{
                     ...config,
+                    annotations: (config.annotations && config.annotations.map(annotation => {
+                      const {label, title} = annotation;
+                      if(label != null) {
+                        const {badge, color, title} = annotation.label;
+                        return {
+                          ...annotation,
+                          label: <><div className={styles.Badge} style={{
+                            backgroundColor: color
+                          }}>{badge}</div><span className={styles.BadgeLabel}>{title}</span></>
+                        }
+                      }
+                      if(title != null) {
+                        return {
+                          ...annotation,
+                          title: <div className={styles.InLayoutLabel}>{title}</div>
+                        }
+                      }
+                      return annotation;
+                    })),
                     onButtonsRender: (({ context: itemConfig }) => {
                       return <ButtonGroup className="btn-group-vertical">
                         <Button bsSize="small" key="out"
@@ -215,6 +235,17 @@ class FamilyChartWithAnnotations extends Component {
                             <div className={styles.ContactDescription}>{itemConfig.description}</div>
                           </div>;
                         }
+                      },
+                      {
+                        ...miniTemplateConfig,
+                        onItemRender: ({ context: itemConfig }) => {
+                          const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                          return <div className={styles.MiniTemplate}>
+                            <div className={styles.MiniTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                              <div className={styles.MiniTitle}>{itemConfig.title}</div>
+                            </div>
+                          </div>;
+                        }
                       }
                     ]
                   }}
@@ -229,8 +260,9 @@ class FamilyChartWithAnnotations extends Component {
                     setSelectedItems(newSelectedItems);
                   }}
                   onHighlightChanging={(event, data) => {
-                    const { context, parentItems, childrenItems } = data;
-                    setHighlightAnnotations(context.id, parentItems, childrenItems);
+                    const { context:itemConfig } = data;
+                    const id = itemConfig && itemConfig.id;
+                    setHighlightAnnotations(id);
                   }}
                 />
               </div>
