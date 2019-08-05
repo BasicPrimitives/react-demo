@@ -28,23 +28,6 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...new primitives.orgdiagram.Config(),
-    buttons: [
-      {
-        name: 'delete',
-        icon: 'remove',
-        tooltip: 'Delete'
-      },
-      {
-        name: 'properties',
-        icon: 'cog',
-        tooltip: 'Info'
-      },
-      {
-        name: 'add',
-        icon: 'user',
-        tooltip: 'Add'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
@@ -83,7 +66,7 @@ const initialState = {
     selectCheckBoxLabel: 'Selected',
     itemTitleFirstFontColor: primitives.common.Colors.White,
     itemTitleSecondFontColor: primitives.common.Colors.White,
-    buttonsPanelSize: 28,
+    buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 

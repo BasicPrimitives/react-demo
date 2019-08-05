@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { OrgDiagram, OrgDiagramConfig } from 'basicprimitivesreact';
+import primitives from 'basicprimitives';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
 import {
-  OrgDiagram,
-  OrgDiagramConfig,
   AutoLayoutOptionsPanel,
   DefaultTemplateOptionsPanel,
   GroupTitlesOptionsPanel,
@@ -66,7 +65,7 @@ import {
 class VerticalLayout extends Component {
   static propTypes = {
     centerOnCursor: PropTypes.bool.isRequired,
-    config: OrgDiagramConfig().isRequired,
+    config: OrgDiagramConfig.isRequired,
     itemsHash: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     userAction: PropTypes.shape({
       type: PropTypes.oneOf(Object.values(UserActionType)),
@@ -116,6 +115,7 @@ class VerticalLayout extends Component {
       setTemplateOption // eslint-disable-line no-shadow
     } = this.props;
     const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
+    const contactTemplateConfig = config.templates.find(template => template.name === 'managerTemplate');
 
     return (
       <Grid fluid className={styles.appContent}>
@@ -130,66 +130,90 @@ class VerticalLayout extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Navbar.Form pullRight>
-                    <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'verticallayout.pdf', 'Vertical Layout Organizational Chart') }>Download PDF</Button>&nbsp;
+                    <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'verticallayout.pdf', 'Vertical Layout Organizational Chart')}>Download PDF</Button>&nbsp;
                     <Button onClick={load}>Reset</Button>
                   </Navbar.Form>
                 </Navbar.Collapse>
               </Navbar>
-              <OrgDiagram
-                className={styles.placeholder}
-                centerOnCursor={centerOnCursor}
-                config={config}
-                onCursorChanging={data => {
-                  const { context } = data;
-                  setCursorItem(context.id);
-                  // Set data.cancel to true in order to suppress set cursor item in control
-                  // it will be updated via subsequent state change and rendering event
-                  data.cancel = true;
-                }}
-                onButtonClick={({ name, context }) => {
-                  setClickedButton(name, context.id);
-                }}
-                onSelectionChanged={(data, selectedItems) => {
-                  setSelectedItems(selectedItems);
-                }}
-                onItemRender={({ context, element, templateName }) => {
-                  // eslint-disable-line no-unused-vars
-                  switch (templateName) {
-                    case 'defaultTemplate':
-                      ReactDOM.render(
-                        <div className={`bp-item bp-corner-all bt-item-frame ${styles.default_template}`}>
-                          <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                          </div>
-                          <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                            <img className={styles.photo} src={context.image} alt={context.title} />
-                          </div>
-                          <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                        </div>,
-                        element
-                      );
-                      break;
-                    case 'managerTemplate':
-                      ReactDOM.render(
-                        <div className={`bp-item bp-corner-all bt-item-frame ${styles.contact_template}`}>
-                          <div className={`bp-item bp-corner-all bp-title-frame ${styles.background}`} style={{ backgroundColor: context.itemTitleColor }}>
-                            <div className={`bp-item bp-title ${styles.title}`}>{context.title}</div>
-                          </div>
-                          <div className={`bp-item bp-photo-frame ${styles.photo_frame}`}>
-                            <img className={styles.photo} src={context.image} alt={context.title} />
-                          </div>
-                          <div className={`bp-item ${styles.phone}`}>{context.phone}</div>
-                          <div className={`bp-item ${styles.email}`}>{context.email}</div>
-                          <div className={`bp-item ${styles.description}`}>{context.description}</div>
-                        </div>,
-                        element
-                      );
-                      break;
-                    default:
-                      break;
-                  }
-                }}
-              />
+              <div className={styles.placeholder}>
+                <OrgDiagram
+                  centerOnCursor={centerOnCursor}
+                  config={{
+                    ...config,
+                    onButtonsRender: (({ context: itemConfig }) => {
+                      return <ButtonGroup className="btn-group-vertical">
+                        <Button bsSize="small" key="user"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            setClickedButton("user", itemConfig.id);
+                          }}
+                        ><Glyphicon glyph="user" />
+                        </Button>
+                        <Button bsSize="small" key="remove"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            setClickedButton("remove", itemConfig.id);
+                          }}
+                        >
+                          <Glyphicon glyph="remove" />
+                        </Button>
+                        <Button bsSize="small" key="cog"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            setClickedButton("cog", itemConfig.id);
+                          }}
+                        >
+                          <Glyphicon glyph="cog" />
+                        </Button>
+                      </ButtonGroup>
+                    }),
+                    templates: [
+                      {
+                        ...templateConfig,
+                        onItemRender: ({ context: itemConfig }) => {
+                          const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                          return <div className={styles.DefaultTemplate}>
+                            <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                              <div className={styles.DefaultTitle}>{itemConfig.title}</div>
+                            </div>
+                            <div className={styles.DefaultPhotoFrame}>
+                              <img className={styles.DefaultPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                            </div>
+                            <div className={styles.DefaultDescription}>{itemConfig.description}</div>
+                          </div>;
+                        }
+                      },
+                      {
+                        ...contactTemplateConfig,
+                        onItemRender: ({ context: itemConfig }) => {
+                          const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                          return <div className={styles.ContactTemplate}>
+                            <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
+                              <div className={styles.ContactTitle}>{itemConfig.title}</div>
+                            </div>
+                            <div className={styles.ContactPhotoFrame}>
+                              <img className={styles.ContactPhoto} src={itemConfig.image} alt={itemConfig.title} />
+                            </div>
+                            <div className={styles.ContactPhone}>{itemConfig.phone}</div>
+                            <div className={styles.ContactEmail}>{itemConfig.email}</div>
+                            <div className={styles.ContactDescription}>{itemConfig.description}</div>
+                          </div>;
+                        }
+                      }
+                    ]
+                  }}
+                  onCursorChanging={(event, data) => {
+                    const { context } = data;
+                    setCursorItem(context.id);
+                    // Return true in order to suppress set cursor item in control
+                    // it will be updated via subsequent state change and rendering event
+                    return true;
+                  }}
+                  onSelectionChanged={(event, currentSelectedItems, newSelectedItems) => {
+                    setSelectedItems(newSelectedItems);
+                  }}
+                />
+              </div>
               <br />
               <Well bsSize="small">{this.getActionMessage()}</Well>
               <h3>Chart has following children layouts:</h3>

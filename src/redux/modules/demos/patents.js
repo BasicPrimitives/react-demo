@@ -27,18 +27,6 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...new primitives.famdiagram.Config(),
-    buttons: [
-      {
-        name: 'in',
-        icon: 'log-in',
-        tooltip: 'Set as annotation distination'
-      },
-      {
-        name: 'out',
-        icon: 'log-out',
-        tooltip: 'Set as annotation source'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
     defaultCalloutTemplateName: 'contactTemplate',
     templates: [
@@ -79,7 +67,7 @@ const initialState = {
         annotationType: primitives.common.AnnotationType.Connector,
         fromItem: 5,
         toItem: 8,
-        label: "<div class='bp-badge' style='width:18px; height:18px;background-color:red; color: white;'>1</div>Connector annotation",
+        label: {color:"red", badge: "1", title: "Connector annotation"},
         labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
         connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
         color: primitives.common.Colors.Red,
@@ -106,7 +94,7 @@ const initialState = {
     selectCheckBoxLabel: 'Selected',
     itemTitleFirstFontColor: primitives.common.Colors.White,
     itemTitleSecondFontColor: primitives.common.Colors.White,
-    buttonsPanelSize: 28,
+    buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 

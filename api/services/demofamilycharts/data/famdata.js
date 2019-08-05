@@ -7,7 +7,7 @@ export default {
       annotationType: primitives.common.AnnotationType.Connector,
       fromItem: 5,
       toItem: 81,
-      label: "<div class='bp-badge' style='width:18px; height:18px;background-color:red; color: white;'>1</div>Connector annotation",
+      label: {color:"red", badge: "1", title: "Connector annotation"},
       labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
       connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
       color: primitives.common.Colors.Red,
@@ -27,7 +27,7 @@ export default {
     {
       annotationType: primitives.common.AnnotationType.Shape,
       items: [5],
-      label: "<div class='bp-badge' style='width:16px; height:16px;background-color:red; color: white;'>3</div>Cross Out shape annotation",
+      label: {color:"red", badge: "3", title: "Cross Out shape annotation"},
       labelSize: { width: 120, height: 50 }, // new primitives.common.Size(120, 50)
       shapeType: primitives.common.ShapeType.CrossOut,
       borderColor: primitives.common.Colors.Red,
@@ -44,7 +44,7 @@ export default {
     {
       annotationType: primitives.common.AnnotationType.Shape,
       items: [81],
-      label: "<div class='bp-badge' style='width:16px; height:16px;background-color:red; color: white;'>4</div>Oval shape annotation",
+      label: {color:"red", badge: "4", title: "Oval shape annotation"},
       labelSize: new primitives.common.Size(100, 50), // new primitives.common.Size(100, 50)
       shapeType: primitives.common.ShapeType.Oval,
       borderColor: primitives.common.Colors.Red,

@@ -2309,10 +2309,18 @@ basic-auth@~2.0.0:
   dependencies:
     safe-buffer "5.1.2"
 
-basicprimitives@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.3.1.tgz#f4f25e806d1a14f6da03a9b01dcc59c91e643586"
-  integrity sha512-xw16O/kzb1QOFz8Mj49Jc6p0wYvxvz0pSZ8okRxiK26z9MtAg7y+U0yJVwKnNgGtJ81XO5AooO0sG+PCzSM6JA==
+basicprimitives@^5.4.15:
+  version "5.4.15"
+  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.4.15.tgz#ca962306e28441db587ac7985f65006542548a04"
+  integrity sha512-5gqsa3/PVwcFAm38FKoPbpp8/gHjLSrZTFoGAM8M3UwSJ8HTZYspcwXKHgJUhgsFBH6xdUMi81fjWjWDZQUhUw==
+
+basicprimitivesreact@^5.4.16:
+  version "5.4.16"
+  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-5.4.16.tgz#8bbdc0a0d6f465d6c18b5d373c6e0087455a7be8"
+  integrity sha512-USXQkuR7gELGioMSOEgwteq1XcLLeytES1sM6dORz+W8AU2f/pcYAHVoLA95uXMz/SKYbcdREVX7Psqj9CH8Rw==
+  dependencies:
+    basicprimitives "^5.4.15"
+    resize-observer-polyfill "^1.5.1"
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"

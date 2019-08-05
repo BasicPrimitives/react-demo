@@ -60,7 +60,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           propertyName="buttonsPanelSize"
           value={config.buttonsPanelSize}
           valueType="number"
-          items={[28, 56, 84]}
+          items={[28, 35, 42, 49, 56, 63, 70, 77, 84]}
           onChange={value => setOption('buttonsPanelSize', value)}
         />
         <ComboBoxOption
@@ -68,7 +68,7 @@ class DefaultTemplateOptionsPanel extends Component { // eslint-disable-line rea
           propertyName="checkBoxPanelSize"
           value={config.checkBoxPanelSize}
           valueType="number"
-          items={[24, 48, 72]}
+          items={[24, 30, 36, 42, 48, 54, 60, 66, 72]}
           onChange={value => setOption('checkBoxPanelSize', value)}
         />
       </div>

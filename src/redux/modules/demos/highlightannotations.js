@@ -33,23 +33,6 @@ const initialState = {
     cursorItem: 0,
     hasSelectorCheckbox: primitives.common.Enabled.True,
     hasButtons: primitives.common.Enabled.Auto,
-    buttons: [
-      {
-        name: 'delete',
-        icon: 'remove',
-        tooltip: 'Delete'
-      },
-      {
-        name: 'properties',
-        icon: 'cog',
-        tooltip: 'Info'
-      },
-      {
-        name: 'add',
-        icon: 'user',
-        tooltip: 'Add'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
@@ -91,6 +74,7 @@ const initialState = {
     dotItemsInterval: 4,
     lineItemsInterval: 4,
     cousinsIntervalMultiplier: 0,
+    buttonsPanelSize: 42,
     items: []
   },
   annotations: [],

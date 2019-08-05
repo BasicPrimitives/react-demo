@@ -41,23 +41,6 @@ const initialState = {
   config: {
     ...new primitives.orgdiagram.Config(),
     cursorItem: 0,
-    buttons: [
-      {
-        name: 'delete',
-        icon: 'remove',
-        tooltip: 'Delete'
-      },
-      {
-        name: 'add',
-        icon: 'plus',
-        tooltip: 'Add'
-      },
-      {
-        name: 'move',
-        icon: 'move',
-        tooltip: 'Move'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
     defaultCalloutTemplateName: 'defaultTemplate',
     templates: [
@@ -118,7 +101,7 @@ const initialState = {
     childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
     leavesPlacementType: primitives.common.ChildrenPlacementType.Matrix,
     maximumColumnsInMatrix: 6,
-    buttonsPanelSize: 28,
+    buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
     groupTitleOrientation: primitives.text.TextOrientationType.RotateRight,

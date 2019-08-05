@@ -14,13 +14,8 @@ import {
   FinancialOwnership,
   Partners,
   UseCases,
-  HardCodedOrganizationalChart,
-  StateBoundOrganizationalChart,
-  ReduxStateBoundOrganizationalChart,
   ComponentSizingWithCssMedia,
   HowToUse,
-  ItemTemplate,
-  ButtonsPanel,
   NotFound
 } from 'containers';
 import About from 'containers/About/Loadable';
@@ -28,7 +23,6 @@ import Chat from 'containers/Chat/Loadable';
 import Login from 'containers/Login/Loadable';
 import LoginSuccess from 'containers/LoginSuccess/Loadable';
 import Register from 'containers/Register/Loadable';
-import ReduxStatePreloadOrganizationalChart from 'containers/UseCases/ReduxStatePreloadOrganizationalChart/Loadable';
 
 const isAuthenticated = connectedRouterRedirect({
   redirectPath: '/login',
@@ -65,39 +59,9 @@ const routes = [
         component: UseCases,
         routes: [
           {
-            path: '/usecases/hardcodedorganizationalchart',
-            exact: true,
-            component: HardCodedOrganizationalChart
-          },
-          {
-            path: '/usecases/stateboundorganizationalchart',
-            exact: true,
-            component: StateBoundOrganizationalChart
-          },
-          {
-            path: '/usecases/reduxstateboundorganizationalchart',
-            exact: true,
-            component: ReduxStateBoundOrganizationalChart
-          },
-          {
-            path: '/usecases/reduxstatepreloadorganizationalchart',
-            exact: true,
-            component: ReduxStatePreloadOrganizationalChart
-          },
-          {
             path: '/usecases/componentsizingwithcssmedia',
             exact: true,
             component: ComponentSizingWithCssMedia
-          },
-          {
-            path: '/usecases/buttonspanel',
-            exact: true,
-            component: ButtonsPanel
-          },
-          {
-            path: '/usecases/itemtemplate',
-            exact: true,
-            component: ItemTemplate
           },
           {
             path: '/usecases/:fileName',

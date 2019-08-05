@@ -30,18 +30,6 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...new primitives.famdiagram.Config(),
-    buttons: [
-      {
-        name: 'in',
-        icon: 'log-in',
-        tooltip: 'Set as annotation distination'
-      },
-      {
-        name: 'out',
-        icon: 'log-out',
-        tooltip: 'Set as annotation source'
-      }
-    ],
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
@@ -61,6 +49,20 @@ const initialState = {
         ...new primitives.famdiagram.TemplateConfig(),
         name: 'contactTemplate',
         itemSize: new primitives.common.Size(220, 120)
+      },
+      {
+        ...new primitives.famdiagram.TemplateConfig(),
+        name: 'miniTemplate',
+        isActive: false,
+        itemSize: new primitives.common.Size(100, 26),
+        minimizedItemCornerRadius: 4,
+        minimizedItemSize: new primitives.common.Size(8, 8),
+        minimizedItemShapeType: primitives.common.ShapeType.None,
+        minimizedItemLineWidth: 1,
+        minimizedItemLineType: primitives.common.LineType.Solid,
+        minimizedItemBorderColor: null,
+        minimizedItemFillColor: null,
+        minimizedItemOpacity: 1.0
       }
     ],
     cursorItem: 0,
@@ -81,7 +83,7 @@ const initialState = {
     selectCheckBoxLabel: 'Selected',
     itemTitleFirstFontColor: primitives.common.Colors.White,
     itemTitleSecondFontColor: primitives.common.Colors.White,
-    buttonsPanelSize: 28,
+    buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 
@@ -166,8 +168,17 @@ function getItemsHash(items = []) {
     agg[item.id] = item;
     return agg;
   }, newItemsHash);
+  const children = {};
+  items.map(item => {
+    (item.parents || []).map(parent => {
+      children[parent] = children[parent] || [];
+      children[parent].push(item.id); 
+    })
+  });
+
   return {
-    itemsHash: newItemsHash
+    itemsHash: newItemsHash,
+    children
   };
 }
 
@@ -195,7 +206,7 @@ function getCursorItem(config, cursorItem) {
             showCallout: primitives.common.Enabled.True
           };
         }
-        if (item.templateName != null) {
+        if (item.templateName === "contactTemplate") {
           return {
             ...item,
             templateName: null,
@@ -206,20 +217,6 @@ function getCursorItem(config, cursorItem) {
       })
     }
   };
-}
-
-function getAnnotations(config) {
-  const { annotations } = config;
-  if (Array.isArray(annotations)) {
-    return {
-      ...config,
-      annotations: config.annotations.map(annotation => ({
-        ...new primitives.famdiagram.ConnectorAnnotationConfig(),
-        ...annotation
-      }))
-    };
-  }
-  return config;
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -244,7 +241,7 @@ export default function reducer(state = initialState, action = {}) {
         loaded: true,
         datasetName,
         datasetNames,
-        ...getCursorItem(getAnnotations(newConfig), newConfig.cursorItem),
+        ...getCursorItem(newConfig, newConfig.cursorItem),
         ...getItemsHash(config.items)
       };
     }
@@ -318,9 +315,12 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case SETHIGHLIGHTANNOTATIONS: {
-      const { config, ...restState } = state;
+      const { config, itemsHash, children } = state;
       const { annotations } = config;
-      const { id, parentItems, childrenItems } = action;
+      const { id } = action;
+      const itemConfig = itemsHash[id];
+      const parentItems = ( itemConfig && itemConfig.parents) || [];
+      const childItems = children[id] || [];
 
       let newAnnotations = annotations.reduce((agg, annotation) => {
         if (annotation.annotationType !== primitives.common.AnnotationType.HighlightPath) {
@@ -330,11 +330,11 @@ export default function reducer(state = initialState, action = {}) {
       }, []);
 
       if (id !== null) {
-        const items = [...parentItems, ...childrenItems];
+        const items = [...parentItems, ...childItems];
         newAnnotations = newAnnotations.concat(
-          items.map(
-            item => new primitives.famdiagram.HighlightPathAnnotationConfig({
-              items: [id, item.id],
+          items.map(itemid => ({
+              annotationType: primitives.common.AnnotationType.HighlightPath,
+              items: [id, itemid],
               color: primitives.common.Colors.Navy,
               opacity: 0.2,
               lineWidth: 16,
@@ -345,7 +345,7 @@ export default function reducer(state = initialState, action = {}) {
         );
       }
       return {
-        ...restState,
+        ...state,
         centerOnCursor: false,
         config: {
           ...config,
@@ -463,11 +463,9 @@ export function setAnnotationOption(annotationType, name, value) {
   };
 }
 
-export function setHighlightAnnotations(id, parentItems, childrenItems) {
+export function setHighlightAnnotations(id) {
   return {
     type: SETHIGHLIGHTANNOTATIONS,
-    id,
-    parentItems,
-    childrenItems
+    id
   };
 }
