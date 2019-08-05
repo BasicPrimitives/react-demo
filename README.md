@@ -1,4 +1,4 @@
-# Basic Primitives Diagramming Controls React integration demos and tutorials
+# Basic Primitives Diagrams for React integration demos and tutorials
 It is designed to validate effortless integration of Basic Primitives diagramming controls with popular modern web development frameworks.
 * [http://www.basicprimitives.com](https://www.basicprimitives.com) project home.
 * [NPM](https://www.npmjs.com/package/basicprimitives) official release package.
