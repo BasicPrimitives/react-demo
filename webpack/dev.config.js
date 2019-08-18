@@ -41,6 +41,9 @@ const webpackConfig = {
       './src/client.js'
     ]
   },
+  node: {
+    fs: 'empty'
+  },
   output: {
     path: assetsPath,
     filename: '[name]-[hash].js',
@@ -107,6 +110,7 @@ const webpackConfig = {
       {
         test: /\.scss$/,
         include: [path.resolve(__dirname, '../src')],
+        exclude: [/global.scss$/],
         loaders: [
           {
             loader: 'style-loader',
@@ -140,8 +144,42 @@ const webpackConfig = {
         ]
       },
       {
-        test:/\.css$/,
-        use:['style-loader','css-loader']
+        test: /global.scss$/,
+        include: [path.resolve(__dirname, '../src')],
+        loader: [
+          {
+            loader: 'style-loader',
+            options: { sourceMap: true }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: false,
+              importLoaders: 2,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              config: {
+                path: 'postcss.config.js'
+              }
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded',
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,

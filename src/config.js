@@ -16,9 +16,9 @@ const config = {
   apiPort: process.env.APIPORT,
   app: {
     title: 'Basic Primitives',
-    description: 'Basic Primitives Diagramming Controls React integration demos and tutroials.',
+    description: 'Basic Primitives Diagrams',
     head: {
-      titleTemplate: 'Basic Primitives: %s',
+      titleTemplate: 'Basic Primitives Diagrams %s',
       meta: [
         { name: 'description', content: 'All the modern best practices in one example.' },
         { charset: 'utf-8' },
@@ -26,7 +26,7 @@ const config = {
         { property: 'og:image', content: 'https://react-redux.herokuapp.com/logo.jpg' },
         { property: 'og:locale', content: 'en_US' },
         { property: 'og:title', content: 'Basic Primitives' },
-        { property: 'og:description', content: 'Basic Primitives Diagramming Controls React integration demos and tutroials' },
+        { property: 'og:description', content: 'Basic Primitives Diagrams' },
         { property: 'og:card', content: 'summary' },
         { property: 'og:site', content: '@erikras' },
         { property: 'og:creator', content: '@erikras' },

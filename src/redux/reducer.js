@@ -15,6 +15,10 @@ import patents from './modules/demos/patents';
 import financialownership from './modules/demos/financialownership';
 import orgeditor from './modules/demos/orgeditor';
 import howtouse from './modules/howtouse';
+import reacthowtouse from './modules/reacthowtouse';
+import changelog from './modules/changelog';
+import downloads from './modules/downloads';
+import introduction from './modules/introduction';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -27,6 +31,7 @@ export default function createReducers(asyncReducers) {
       counter3: counter
     }),
     info,
+    introduction,
     partners,
     largeorganizationalchart,
     dynamicloading,
@@ -39,6 +44,9 @@ export default function createReducers(asyncReducers) {
     financialownership,
     orgeditor,
     howtouse,
+    reacthowtouse,
+    changelog,
+    downloads,
     ...asyncReducers
   };
 }

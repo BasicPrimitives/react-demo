@@ -3,15 +3,36 @@ import path from 'path';
 import fs from 'fs';
 import util from 'util';
 
+const folders = [
+  {
+    name: 'javascript',
+    path: path.join(__dirname, '..', '..', 'static', 'samples')
+  },
+  {
+    name: 'react',
+    path: path.join(__dirname, '..', '..', 'static', 'reactsamples', 'docs')
+  },
+  {
+    name: 'info',
+    path: path.join(__dirname, '..', '..', 'static')
+  }
+];
+
 async function getMarkdownFiles() {
   const readdir = util.promisify(fs.readdir);
-  const files = (await readdir(path.join(__dirname, '..', '..', 'static', 'samples')))
-    .filter(fileName => fileName.endsWith('.md'))
-    .reduce((files, fileName) => {
-      files[fileName.substr(0, fileName.length - 3).toLowerCase()] = path.join(__dirname, '..', '..', 'static', 'samples', fileName);
-      return files;
-    }, {});
-
+  let files = {};
+  for (let index = 0; index < folders.length; index += 1) {
+    const { name: folderName, path: folderPath } = folders[index];
+    if (fs.existsSync(folderPath)) {
+      files = (await readdir(folderPath))
+        .filter(fileName => fileName.endsWith('.md'))
+        .reduce((files, fileName) => {
+          const fileKey = `${folderName}-${fileName.substr(0, fileName.length - 3).toLowerCase()}`;
+          files[fileKey] = path.join(folderPath, fileName);
+          return files;
+        }, files);
+    }
+  }
   return files;
 }
 
@@ -19,16 +40,22 @@ async function getMarkdownFileContent(name) {
   const readFile = util.promisify(fs.readFile);
   let result = `# File ${name} not found`;
   const files = await getMarkdownFiles();
-  const fileName = files[name] || path.join(__dirname, '..', '..', 'static', 'readme.md');
-  if (fileName != null) {
-    result = (await readFile(fileName)).toString();
+  const filePath = files[name] || path.join(__dirname, '..', '..', 'static', 'readme.md');
+  if (filePath != null) {
+    result = (await readFile(filePath)).toString();
   }
   return result;
 }
 
 export async function getSampleFileContent(link) {
   const readFile = util.promisify(fs.readFile);
-  let fileContent = (await readFile(path.join(__dirname, '..', '..', 'static', 'samples', `${link}`))).toString();
+  let filePath = '';
+  if (link.endsWith('.js')) {
+    filePath = path.join(__dirname, '..', '..', 'static', 'reactsamples', 'docs', `${link}`);
+  } else {
+    filePath = path.join(__dirname, '..', '..', 'static', 'samples', `${link}`);
+  }
+  let fileContent = (await readFile(filePath)).toString();
   // remove BOM mark from file
   if (fileContent.charCodeAt(0) === 0xfeff) {
     fileContent = fileContent.substr(1);
@@ -38,6 +65,10 @@ export async function getSampleFileContent(link) {
   fileContent = fileContent.replace(/(\.\.\/\.\.\/packages)/g, match => '/packages');
   fileContent = fileContent.replace(/(\.\.\/\.\.\/min)/g, match => '/min');
   fileContent = fileContent.replace(/(\.\.\/images\/photos)/g, match => '/photos');
+  fileContent = fileContent.replace(/(\'photos)/g, match => '\'/photos');
+  fileContent = fileContent.replace(/(\"photos)/g, match => '\"/photos');
+  fileContent = fileContent.replace(/(\(\.\/images)/g, match => '/images');
+  fileContent = fileContent.replace(/(\&nbsp\;)/g, match => ' ');
   return fileContent;
 }
 
@@ -53,14 +84,17 @@ export async function loadMarkdown(name) {
     index += 1;
     const samples = [];
     match = match.replace(/\[([\w ]+?)\]\(([\s\S]+?)\)/g, (str, caption, url) => {
-      if (url.endsWith('.html') && !url.startsWith('http')) {
+      if ((url.endsWith('.html') && !url.startsWith('http')) || url.endsWith('.js')) {
         samples.push({
           caption,
           url: getStaticUrl(url),
           content: getSampleFileContent(url)
         });
       }
-      return `[${caption}](/${url})\n`;
+      if (!url.startsWith('http')) {
+        url = `/${url}`;
+      }
+      return `[${caption}](${url})\n`;
     });
     if (samples.length > 0) {
       const groupName = `group${index}`;
