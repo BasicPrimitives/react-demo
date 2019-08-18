@@ -8,6 +8,7 @@ class TryMe extends Component {
     name: PropTypes.string.isRequired,
     onCodeChange: PropTypes.func.isRequired,
     activeKey: PropTypes.number.isRequired,
+    key: PropTypes.number.isRequired,
     samples: PropTypes.arrayOf(
       PropTypes.shape({
         caption: PropTypes.string.isRequired,
@@ -85,15 +86,15 @@ class TryMe extends Component {
   }
 
   render() {
-    const { name } = this.props;
+    const { name, key } = this.props;
     const { samples, activeKey } = this.state;
     const { url, content } = samples[activeKey];
     const styles = require('./TryMe.scss');
     return (
-      <div>
+      <div key={key}>
         <Tabs id={name} defaultActiveKey={activeKey} onSelect={key => this.setActiveSample(key)}>
           {samples.map(({ caption }, index) => (
-            <Tab eventKey={index} generateChildId key={`tab${index}`} title={caption} />
+            <Tab eventKey={index} key={`tab${index}`} title={caption} />
           ))}
         </Tabs>
         <Editor content={content} onCodeChange={this.onEditorValueChange} />

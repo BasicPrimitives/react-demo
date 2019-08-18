@@ -19,6 +19,9 @@ const assetsPath = path.resolve(projectRootPath, './static/dist');
 
 module.exports = {
   mode: 'production',
+  node: {
+    fs: 'empty'
+  },
   devtool: 'source-map',
   context: path.resolve(__dirname, '..'),
   entry: {
@@ -96,6 +99,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        exclude: [/global.scss$/],
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -128,8 +132,42 @@ module.exports = {
         })
       },
       {
-        test:/\.css$/,
-        use:['style-loader','css-loader']
+        test: /global.scss$/,
+        include: [path.resolve(__dirname, '../src')],
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: false,
+                importLoaders: 2,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                config: {
+                  path: 'postcss.config.js'
+                }
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                outputStyle: 'expanded',
+                sourceMap: true,
+                sourceMapContents: true
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,

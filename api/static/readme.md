@@ -1,3 +1,12 @@
-# Sample file not found
-The content of this page is rendered by `MDReactComponent` component, in order to make it render the the same content as you see at [Basic Primitives](https://www.basicprimitives.com/) you have to clone GitHub [BasicPrimitives/javascript](https://github.com/BasicPrimitives/javascript) repository and manually copy `samples` folder to `/api/static` and `min`, `images` and `packages` folders to `static` folder of this react demo project.
-`Packages` and `images` folders contain copies of packages used in JavaScript &amp; jQuery samples. We copy them into static folders in order to avoid explicit dependencies of this React Demo project on them. NPM provides nice way to update packages, but in this particula situation it is better to keep JavaScript samples packages outside of the project.
+# Markdown file not found
+The content of this page is rendered by `MDReactComponent`, in order to make it render the same content as you see at [Basic Primitives](https://www.basicprimitives.com/) you have to copy following GitHub folders:
+
+## 1 Copy following [BasicPrimitives/javascript](https://github.com/BasicPrimitives/javascript) repository folders:
+* `https://github.com/BasicPrimitives/javascript/samples` => `/api/static/samples`
+* `https://github.com/BasicPrimitives/javascript/min` => `/static/min`
+* `https://github.com/BasicPrimitives/javascript/images` => `/static/images`
+* `https://github.com/BasicPrimitives/javascript/packages` => `/static/packages`
+
+## 2 Copy following [BasicPrimitives/react](https://github.com/BasicPrimitives/react) repository folders:
+* `https://github.com/BasicPrimitives/react/docs` => `/api/static/reactsamples/docs`
+* `https://github.com/BasicPrimitives/react/src` => `/api/static/reactsamples/src`

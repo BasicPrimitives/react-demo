@@ -13,7 +13,7 @@ import Helmet from 'react-helmet';
 import qs from 'qs';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout as logoutAction } from 'redux/modules/auth';
-import { Notifs, InfoBar } from 'components';
+import { Notifs } from 'components';
 import config from 'config';
 
 @provideHooks({
@@ -116,7 +116,7 @@ class App extends Component {
               <LinkContainer to="/introduction">
                 <NavItem>Introduction</NavItem>
               </LinkContainer>
-              <NavDropdown eventKey={0} title="Demos" id="basic-nav-dropdown">
+              <NavDropdown title="Demos" id="basic-nav-dropdown">
                 <Navbar.Brand>
                   &nbsp;
                   <nobr>Organizational Chart</nobr>
@@ -159,8 +159,25 @@ class App extends Component {
                   <MenuItem eventKey={10}>Financial Ownership</MenuItem>
                 </LinkContainer>
               </NavDropdown>
-              <LinkContainer to="/usecases/firstorganizationalchart">
-                <NavItem>Use Cases</NavItem>
+              <NavDropdown title="How to Use" id="basic-nav-dropdown">
+                <LinkContainer to="/usecases/firstorganizationalchart">
+                  <NavItem>Basic Primitives for JavaScript/jQuery/PDFkit</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/reactusecases/firstorganizationalchart">
+                  <NavItem>Basic Primitives for React</NavItem>
+                </LinkContainer>
+              </NavDropdown>
+              <LinkContainer to="/changelog">
+                <NavItem>Changelog</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/downloads">
+                <NavItem>Downloads</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/license">
+                <NavItem>License</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/contact">
+                <NavItem>Contact</NavItem>
               </LinkContainer>
               {user && (
                 <>
@@ -173,12 +190,12 @@ class App extends Component {
                 </>
               )}
 
-              {!user && (
+              {user && (
                 <LinkContainer to="/login">
                   <NavItem>Login</NavItem>
                 </LinkContainer>
               )}
-              {!user && (
+              {user && (
                 <LinkContainer to="/register">
                   <NavItem>Register</NavItem>
                 </LinkContainer>
@@ -213,7 +230,6 @@ class App extends Component {
 
           {renderRoutes(route.routes)}
         </div>
-        <InfoBar />
 
         <div className="well text-center">
           Have questions? Ask for help{' '}

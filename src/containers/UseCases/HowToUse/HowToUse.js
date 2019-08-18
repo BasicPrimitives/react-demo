@@ -37,6 +37,7 @@ class HowToUse extends Component {
   constructor() {
     super();
     this.handleIterate = this.handleIterate.bind(this);
+    this.key = 0;
   }
 
   handleIterate(Tag, props, children, level) {
@@ -55,6 +56,7 @@ class HowToUse extends Component {
       }
     }
     if (Tag === 'a') {
+      this.key++;
       const [caption] = children;
       const groupKey = props.href;
       const group = groups[groupKey];
@@ -65,7 +67,8 @@ class HowToUse extends Component {
           className: styles.placeholder,
           name: `group${groupKey}`,
           samples,
-          activeKey
+          activeKey,
+          key: this.key
         };
         return <TryMe {...props} onCodeChange={(sampleKey, text) => setCode(fileName, props.href, sampleKey, text)} />;
       }
@@ -74,11 +77,12 @@ class HowToUse extends Component {
   }
 
   render() {
+    this.key = 0;
     const { markdown } = this.props;
     const [, title] = markdown.match(/^# (.+)$/m) || [];
     return (
       <>
-        <Helmet title={title} />
+        <Helmet title={` for JavaScript - ${title}`} />
         <MDReactComponent text={markdown} onIterate={this.handleIterate} />
       </>
     );

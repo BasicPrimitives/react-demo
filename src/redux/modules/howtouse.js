@@ -157,7 +157,7 @@ export function isLoaded(globalState, fileName) {
 export function load(fileName) {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: ({ client }) => client.get(`/load-markdown?name=${fileName}`),
+    promise: ({ client }) => client.get(`/load-markdown?name=javascript-${fileName}`),
     fileName
   };
 }

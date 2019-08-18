@@ -13,9 +13,14 @@ import {
   Patents,
   FinancialOwnership,
   Partners,
+  ReactUseCases,
   UseCases,
-  ComponentSizingWithCssMedia,
+  ReactHowToUse,
   HowToUse,
+  Changelog,
+  Downloads,
+  License,
+  Contact,
   NotFound
 } from 'containers';
 import About from 'containers/About/Loadable';
@@ -59,17 +64,27 @@ const routes = [
         component: UseCases,
         routes: [
           {
-            path: '/usecases/componentsizingwithcssmedia',
-            exact: true,
-            component: ComponentSizingWithCssMedia
-          },
-          {
             path: '/usecases/:fileName',
             exact: true,
             component: HowToUse
           }
         ]
       },
+      {
+        path: '/reactusecases',
+        component: ReactUseCases,
+        routes: [
+          {
+            path: '/reactusecases/:fileName',
+            exact: true,
+            component: ReactHowToUse
+          }
+        ]
+      },
+      { path: '/changelog', component: Changelog },
+      { path: '/downloads', component: Downloads },
+      { path: '/license', component: License },
+      { path: '/contact', component: Contact },
       { path: '/chat', component: isAuthenticated(Chat) },
       { path: '/about', component: isAuthenticated(About) },
       { path: '/login', component: Login },
