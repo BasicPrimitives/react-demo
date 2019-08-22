@@ -257,7 +257,8 @@ module.exports = {
 
       directoryIndex: '/',
       verbose: true,
-      navigateFallback: '/dist/index.html'
+      navigateFallback: '/dist/index.html',
+      navigateFallbackWhitelist: [/\/api\//],
     })
   ]
 };
