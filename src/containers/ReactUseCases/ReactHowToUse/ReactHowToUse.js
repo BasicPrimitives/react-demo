@@ -23,10 +23,10 @@ import {
 import primitives from 'basicprimitives';
 import {
   LiveProvider,
-  LiveError,
   LivePreview
 } from 'react-live'
 import LiveEditor from './LiveEditor';
+import LiveError from './LiveError';
 import { DndProvider, DropTarget, DragSource } from 'react-dnd-cjs';
 import HTML5Backend from 'react-dnd-html5-backend/dist/cjs/index.js';
 require('./global.scss');
@@ -103,7 +103,7 @@ class ReactHowToUse extends Component {
             faCog
           }}
           key={activeKey}
-          code={samples[0].content}
+          code={samples[0].content || "<p>No code defined</p>"}
           transformCode={code => {
             let transformed = code;
             try {
@@ -124,20 +124,7 @@ class ReactHowToUse extends Component {
             return transformed;
           }}
         >
-          <div style={{
-            height: "300px",
-            maxHeight: "350px",
-            overflow: "auto",
-            background: '#1D1F27',
-            color: '#f8f8f2',
-            whiteSpace: "pre-wrap",
-            textAlign: "left",
-            fontSize: "0.9em",
-            fontFamily: "Source Code Pro, monospace",
-            marginBottom: "10px"
-          }}>
-            <LiveEditor />
-          </div>
+          <LiveEditor />
           <LivePreview />
           <LiveError />
         </LiveProvider>
