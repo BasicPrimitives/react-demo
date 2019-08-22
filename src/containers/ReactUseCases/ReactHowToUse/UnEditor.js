@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
 
 class UnEditor extends Component {
   static propTypes = {
@@ -29,26 +28,31 @@ class UnEditor extends Component {
 
   render() {
     const { content } = this.props;
-    require('codemirror/lib/codemirror.css');
-    require('codemirror/theme/material.css');
-    require('codemirror/mode/javascript/javascript');
-    return (
-      <CodeMirror
-        value={content}
-        options={{
-          mode: 'javascript',
-          theme: 'material',
-          lineNumbers: true
-        }}
-        editorDidMount={editor => {
-          this.instance = editor;
-        }}
-        onBeforeChange={(editor, data, value) => {
-          this.onContentChange(value);
-        }}
-        onChange={() => { }}
-      />
-    );
+    if (!!((typeof window !== 'undefined' && window.document && window.document.createElement))) {
+      const CodeMirror = require('react-codemirror2').UnControlled;
+      require('codemirror/lib/codemirror.css');
+      require('codemirror/theme/material.css');
+      require('codemirror/mode/javascript/javascript');
+      return (
+        <CodeMirror
+          value={content}
+          options={{
+            mode: 'javascript',
+            theme: 'material',
+            lineNumbers: true
+          }}
+          editorDidMount={editor => {
+            this.instance = editor;
+          }}
+          onBeforeChange={(editor, data, value) => {
+            this.onContentChange(value);
+          }}
+          onChange={() => { }}
+        />
+      );
+    } else {
+      return <></>;
+    }
   }
 }
 

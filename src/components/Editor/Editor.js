@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Controlled as CodeMirror } from 'react-codemirror2';
 
 class Editor extends Component {
   static propTypes = {
@@ -28,12 +27,14 @@ class Editor extends Component {
   }
 
   render() {
-    const { content } = this.props;
-    require('codemirror/lib/codemirror.css');
-    require('codemirror/theme/material.css');
-    require('codemirror/mode/javascript/javascript');
-    return (
-      <CodeMirror
+    if (!!((typeof window !== 'undefined' && window.document && window.document.createElement))) {
+      const CodeMirror = require('react-codemirror2').Controlled;
+      //require('./global.scss');
+      require('codemirror/lib/codemirror.css');
+      require('codemirror/theme/material.css');
+      require('codemirror/mode/javascript/javascript');
+      const { content } = this.props;
+      return <CodeMirror
         value={content}
         options={{
           mode: 'javascript',
@@ -48,7 +49,9 @@ class Editor extends Component {
         }}
         onChange={() => { }}
       />
-    );
+    }
+    else
+      return <></>;
   }
 }
 

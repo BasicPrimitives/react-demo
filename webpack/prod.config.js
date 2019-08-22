@@ -247,12 +247,12 @@ module.exports = {
     }),
 
     new SWPrecacheWebpackPlugin({
-      cacheId: 'react-redux-universal-hot-example',
+      cacheId: 'www.basicprimitives.com',
       filename: 'service-worker.js',
       maximumFileSizeToCacheInBytes: 8388608,
 
       // Ensure all our static, local assets are cached.
-      staticFileGlobs: [`${path.dirname(assetsPath)}/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2}`],
+      staticFileGlobs: [`${path.dirname(assetsPath)}/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2,zip,pdf}`],
       stripPrefix: path.dirname(assetsPath),
 
       directoryIndex: '/',
