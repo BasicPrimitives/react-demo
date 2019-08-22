@@ -43,8 +43,8 @@ require('./global.scss');
       }
     }
   ) => ({
-    markdown: state.reacthowtouse.files[fileName].markdown,
-    groups: state.reacthowtouse.files[fileName].groups,
+    markdown: (state.reacthowtouse.files[fileName] != null ? state.reacthowtouse.files[fileName].markdown : ""),
+    groups: (state.reacthowtouse.files[fileName] != null ? state.reacthowtouse.files[fileName].groups : {}),
     fileName
   }),
   { load }

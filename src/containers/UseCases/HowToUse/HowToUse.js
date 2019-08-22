@@ -20,8 +20,8 @@ import MDReactComponent from 'markdown-react-js';
       }
     }
   ) => ({
-    markdown: state.howtouse.files[fileName].markdown,
-    groups: state.howtouse.files[fileName].groups,
+    markdown: (state.howtouse.files[fileName] != null ? state.howtouse.files[fileName].markdown : ""),
+    groups: (state.howtouse.files[fileName] != null ? state.howtouse.files[fileName].groups : {}),
     fileName
   }),
   { setCode, load }
