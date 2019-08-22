@@ -256,9 +256,7 @@ module.exports = {
       stripPrefix: path.dirname(assetsPath),
 
       directoryIndex: '/',
-      verbose: true,
-      navigateFallback: '/dist/index.html',
-      navigateFallbackWhitelist: [/\/api\//],
+      verbose: true
     })
   ]
 };
