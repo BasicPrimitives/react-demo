@@ -60,6 +60,7 @@ app.use((req, res, next) => {
 
 // Proxy to API server
 app.use('/api', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
   proxy.web(req, res, { target: targetUrl });
 });
 
