@@ -47,7 +47,6 @@ const routes = [
     component: App,
     routes: [
       { path: '/', exact: true, component: Home },
-      { path: '/introduction', component: Home },
       { path: '/largehierarchy', component: LargeHierarchy },
       { path: '/dynamicloading', component: DynamicLoading },
       { path: '/orgeditor', component: OrgEditor },
