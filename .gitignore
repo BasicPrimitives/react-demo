@@ -7,7 +7,6 @@ static/dist/
 static/packages/
 static/files/
 static/min/
-static/images/
 api/static/samples/
 api/static/reactsamples/
 *.iml
