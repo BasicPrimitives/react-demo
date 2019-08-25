@@ -39,8 +39,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
       <Grid fluid>
         <Row>
           <Col lgPush={3} lg={6} mdPush={3} md={8} smPush={3} sm={9}>
-            <Helmet title="Introduction" />
-            <h1>JavaScript/HTML/PDF/React Organizational Chart, Family &amp; Dependencies Diagrams</h1>
+            <Helmet title=" " />
+            <h1>JavaScript ∙ HTML ∙ PDF ∙ React Organizational Chart, Family &amp; Dependencies Diagrams</h1>
             <Carousel>
               <Carousel.Item>
                 <Link to="/largehierarchy">

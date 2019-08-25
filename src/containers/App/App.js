@@ -104,7 +104,7 @@ class App extends Component {
             <Navbar.Brand>
               <div className={styles.appBrand}>
                 <span>
-                  <a href="https://www.basicprimitives.com/">{config.app.title}</a>
+                  <a href="/">{config.app.title}</a>
                 </span>
               </div>
             </Navbar.Brand>
@@ -113,9 +113,6 @@ class App extends Component {
 
           <Navbar.Collapse>
             <Nav navbar>
-              <LinkContainer to="/introduction">
-                <NavItem>Introduction</NavItem>
-              </LinkContainer>
               <NavDropdown title="Demos" id="basic-nav-dropdown">
                 <Navbar.Brand>
                   &nbsp;
