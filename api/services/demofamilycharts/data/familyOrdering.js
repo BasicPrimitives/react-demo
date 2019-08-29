@@ -3,18 +3,35 @@ const primitives = require('basicprimitives');
 export default {
   cursorItem: 1,
   pageFitMode: primitives.common.PageFitMode.None,
+  selectedItems: [2, 3, 5, 6, 7, 9, 10, 11],
   annotations: [
     {
+      name: "usercontrolledconnector",
       annotationType: primitives.common.AnnotationType.Connector,
-      fromItem: 2,
-      toItem: 31,
-      label: {color:"red", badge: "1", title: "Connector annotation"},
+      fromItem: 8,
+      toItem: 27,
+      label: { color: "red", badge: "1", title: "Connector annotation" },
       labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
       connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
       color: primitives.common.Colors.Red,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed
+      lineType: primitives.common.LineType.Dashed,
+      connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
+      labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
+      zOrderType: primitives.common.ZOrderType.Foreground
+    },
+    {
+      name: "usercontrolledbackground",
+      annotationType: primitives.common.AnnotationType.Background,
+      items: [2, 3, 5, 6, 7, 9, 10, 11],
+      borderColor: "#f8e5f9",
+      fillColor: "#e5f9f8",
+      lineWidth: 2,
+      selectItems: true,
+      includeChildren: false,
+      lineType: primitives.common.LineType.Dotted,
+      offset: new primitives.common.Thickness(20, 20, 20, 20)
     }
   ],
   items: [
@@ -42,7 +59,7 @@ export default {
     {
       id: 3,
       parents: [1, 2],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '3',
       image: '/photos/w.png',
@@ -108,7 +125,7 @@ export default {
     {
       id: 9,
       parents: [7, 8],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '9',
       image: '/photos/w.png',
@@ -128,7 +145,7 @@ export default {
     {
       id: 11,
       parents: [6, 10],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '11',
       image: '/photos/w.png',
@@ -162,7 +179,7 @@ export default {
     {
       id: 14,
       parents: [12, 13],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '14',
       image: '/photos/w.png',
@@ -226,7 +243,7 @@ export default {
     {
       id: 20,
       parents: [18, 19],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '20',
       image: '/photos/w.png',
@@ -257,7 +274,7 @@ export default {
 
     {
       id: 23,
-      parents: [11],
+      parents: [],
       title: 'REBIERE Christiane',
       relativeItem: 22,
       placementType: primitives.common.AdviserPlacementType.Left,
@@ -395,7 +412,7 @@ export default {
     {
       id: 36,
       parents: [35, 34],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '36',
       image: '/photos/w.png',
@@ -437,7 +454,7 @@ export default {
     {
       id: 40,
       parents: [38, 39],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '40',
       image: '/photos/w.png',
@@ -457,7 +474,7 @@ export default {
     {
       id: 42,
       parents: [37, 41],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '42',
       image: '/photos/w.png',
@@ -579,7 +596,7 @@ export default {
     {
       id: 54,
       parents: [53, 46],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '54',
       image: '/photos/w.png',
@@ -668,7 +685,7 @@ export default {
     {
       id: 63,
       parents: [55, 59],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '63',
       image: '/photos/w.png',
@@ -688,7 +705,7 @@ export default {
     {
       id: 65,
       parents: [64, 60],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '65',
       image: '/photos/w.png',
@@ -719,7 +736,7 @@ export default {
     {
       id: 68,
       parents: [66, 67],
-      title: 'Wedding', 
+      title: 'Wedding',
       templateName: "miniTemplate",
       description: '68',
       image: '/photos/w.png',
