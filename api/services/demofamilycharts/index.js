@@ -46,8 +46,7 @@ export default function service(app) {
       'Simple Sand Clock': 'simpleSandClock',
       'W Shape Family': 'wFamily',
       'Simple Family': 'simpleFamily',
-      'Matrix Family Layout': 'matrixLayout',
-      'Family Nodes Ordering': 'familyOrdering'
+      'Matrix Family Layout': 'matrixLayout'
     };
     return res.json(names);
   });

@@ -143,17 +143,20 @@ class App extends Component {
                   &nbsp;
                   <nobr>Family Chart</nobr>
                 </Navbar.Brand>
+                <LinkContainer to="/familychartitemsordering">
+                  <MenuItem eventKey={7}>Family Chart Items Ordering</MenuItem>
+                </LinkContainer>
                 <LinkContainer to="/familychartwithannotations">
-                  <MenuItem eventKey={7}>Family Chart &amp; Annotations</MenuItem>
+                  <MenuItem eventKey={8}>Family Chart &amp; Annotations</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/dependencies">
-                  <MenuItem eventKey={8}>Dependencies</MenuItem>
+                  <MenuItem eventKey={9}>Dependencies</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/patents">
-                  <MenuItem eventKey={9}>Patents</MenuItem>
+                  <MenuItem eventKey={10}>Patents</MenuItem>
                 </LinkContainer>
                 <LinkContainer to="/financialownership">
-                  <MenuItem eventKey={10}>Financial Ownership</MenuItem>
+                  <MenuItem eventKey={11}>Financial Ownership</MenuItem>
                 </LinkContainer>
               </NavDropdown>
               <NavDropdown title="How to Use" id="basic-nav-dropdown">

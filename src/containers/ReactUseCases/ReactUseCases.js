@@ -20,7 +20,7 @@ class UseCases extends Component {
     return (
       <Grid fluid className={styles.appContent}>
         <Row>
-          <Col sm={3} md={2}>
+          <Col sm={3} md={4}>
             <h6>REACT USE CASES</h6>
             <Nav bsStyle="pills" stacked activeKey={1}>
               <LinkContainer to="/reactusecases/firstorganizationalchart">
@@ -134,7 +134,7 @@ class UseCases extends Component {
             </Nav>
             <Version />
           </Col>
-          <Col sm={7} md={6}>
+          <Col sm={7} md={8}>
             <div>{renderRoutes(route.routes)}</div>
           </Col>
         </Row>

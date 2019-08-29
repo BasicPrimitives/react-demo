@@ -10,6 +10,7 @@ import dynamicloading from './modules/demos/dynamicloading';
 import verticallayoutorganizationalchart from './modules/demos/verticallayoutorganizationalchart';
 import crossteamgroup from './modules/demos/crossteamgroup';
 import familychartwithannotations from './modules/demos/familychartwithannotations';
+import familychartitemsordering from './modules/demos/familychartitemsordering';
 import dependencies from './modules/demos/dependencies';
 import patents from './modules/demos/patents';
 import financialownership from './modules/demos/financialownership';
@@ -39,6 +40,7 @@ export default function createReducers(asyncReducers) {
     highlightannotations,
     crossteamgroup,
     familychartwithannotations,
+    familychartitemsordering,
     dependencies,
     patents,
     financialownership,
