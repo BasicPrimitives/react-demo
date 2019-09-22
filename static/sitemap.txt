@@ -79,3 +79,12 @@ https://www.basicprimitives.com/reactusecases/connectorannotation
 https://www.basicprimitives.com/reactusecases/shapeandbackgroundannotations
 https://www.basicprimitives.com/reactusecases/highlightpathannotation
 https://www.basicprimitives.com/reactusecases/labelscascadesinfamilychart
+
+https://www.basicprimitives.com/reference/javascriptcontrols
+https://www.basicprimitives.com/reference/pdfkitplugins
+https://www.basicprimitives.com/reference/orgdiagram
+https://www.basicprimitives.com/reference/famdiagram
+https://www.basicprimitives.com/reference/enums
+https://www.basicprimitives.com/reference/structures
+https://www.basicprimitives.com/reference/functions
+https://www.basicprimitives.com/reference/algorithms
