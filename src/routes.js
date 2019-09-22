@@ -18,6 +18,8 @@ import {
   UseCases,
   ReactHowToUse,
   HowToUse,
+  ApiReference,
+  Reference,
   Changelog,
   Downloads,
   License,
@@ -79,6 +81,17 @@ const routes = [
             path: '/reactusecases/:fileName',
             exact: true,
             component: ReactHowToUse
+          }
+        ]
+      },
+      {
+        path: '/reference',
+        component: Reference,
+        routes: [
+          {
+            path: '/reference/:fileName',
+            exact: true,
+            component: ApiReference
           }
         ]
       },

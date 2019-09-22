@@ -2372,17 +2372,17 @@ basic-auth@~2.0.0:
   dependencies:
     safe-buffer "5.1.2"
 
-basicprimitives@^5.4.15:
-  version "5.4.15"
-  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.4.15.tgz#ca962306e28441db587ac7985f65006542548a04"
-  integrity sha512-5gqsa3/PVwcFAm38FKoPbpp8/gHjLSrZTFoGAM8M3UwSJ8HTZYspcwXKHgJUhgsFBH6xdUMi81fjWjWDZQUhUw==
+basicprimitives@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.5.0.tgz#986edb3b5f1c1566d59e4beb359c8b76969793f4"
+  integrity sha512-FMdUf0/yLzRNJQw+aujoP6sbjbDKplyUCYygGlTspAmxj4PM0O2u4Fcm4ecAwOaaP2za4hSJ9ZwKl8tpbt5kOA==
 
-basicprimitivesreact@^5.4.17:
-  version "5.4.17"
-  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-5.4.17.tgz#c8b8ba97f35f9337a3449b01dc83138dc11c93e7"
-  integrity sha512-5HrtTGfVROTmicMqND6vaHZXCPK5RmF5XBqz4f3gAu6BxVPt7kBHf7Mwu3k3VAjYhVzdQOeg63kPD6tfHSYWUQ==
+basicprimitivesreact@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-5.5.0.tgz#b2e9f3bd222c1434073eb107cab6bc8d81d5db9c"
+  integrity sha512-pCF40QtKx0HGUONSiEtVAIkSrTeqmT59CA76DfzseR0FKjKJN/T8/NrXFODr/D53wNO9ZXFWesrUbXrDVOv5wQ==
   dependencies:
-    basicprimitives "^5.4.15"
+    basicprimitives "^5.5.0"
     resize-observer-polyfill "^1.5.1"
 
 bcrypt-pbkdf@^1.0.0:
@@ -10273,6 +10273,13 @@ react-router-dom@^5.0.0:
     react-router "5.0.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-router-hash-link@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-router-hash-link/-/react-router-hash-link-1.2.2.tgz#7a0ad5e925d49596d19554de8bc6c554ce4f8099"
+  integrity sha512-LBthLVHdqPeKDVt3+cFRhy15Z7veikOvdKRZRfyBR2vjqIE7rxn+tKLjb6DOmLm6JpoQVemVDnxQ35RVnEHdQA==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-router@5.0.0, react-router@^5.0.0:
   version "5.0.0"

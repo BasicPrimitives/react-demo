@@ -167,6 +167,9 @@ class App extends Component {
                   <NavItem>Basic Primitives for React</NavItem>
                 </LinkContainer>
               </NavDropdown>
+              <LinkContainer to="/reference/javascriptcontrols">
+                <NavItem>Reference</NavItem>
+              </LinkContainer>
               <LinkContainer to="/changelog">
                 <NavItem>Changelog</NavItem>
               </LinkContainer>
@@ -214,9 +217,13 @@ class App extends Component {
               </p>
             )}
             <Nav navbar pullRight>
-              <NavItem target="_blank" title="View on Github" href="https://github.com/BasicPrimitives/react-demo">
-                <i className="fa fa-github" />
-              </NavItem>
+              <span style={{ padding: "0px", margin: "0px" }}>
+                <NavItem target="_blank" title="View on Github" href="https://github.com/BasicPrimitives">
+                  <span style={{ fontSize: "3rem", paddingRight: "15px" }}>
+                    <i className="fa fa-github" />
+                  </span>
+                </NavItem>
+              </span>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -233,7 +240,7 @@ class App extends Component {
 
         <div className="well text-center">
           Have questions? Ask for help{' '}
-          <a href="https://github.com/BasicPrimitives/react-demo/issues" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/BasicPrimitives/javascript/issues" target="_blank" rel="noopener noreferrer">
             on Github
           </a>
           .

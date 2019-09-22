@@ -26,9 +26,6 @@ class Updates extends Component {
       <p><a href="https://basicprimitives.github.io/react/" target="_blank">
         <img src="https://img.shields.io/badge/Basic%20Primitives-Rect%20Samples-blue.svg" width="182" height="20" />
       </a></p>
-      <p><a href="http://react.basicprimitives.com:8080/" target="_blank">
-        <img src="https://img.shields.io/badge/Basic%20Primitives-Rect%20Demos-blue.svg" width="174" height="20" />
-      </a></p>
     </>;
   }
 }

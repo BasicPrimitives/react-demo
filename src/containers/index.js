@@ -18,6 +18,8 @@ export UseCases from './UseCases/UseCases';
 export HowToUse from './UseCases/HowToUse/HowToUse';
 export ReactHowToUse from './ReactUseCases/ReactHowToUse/ReactHowToUse';
 export Changelog from './Changelog/Changelog';
+export Reference from './Reference/Reference';
+export ApiReference from './Reference/ApiReference/ApiReference';
 export Downloads from './Downloads/Downloads';
 export License from './License/License';
 export Contact from './Contact/Contact';

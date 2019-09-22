@@ -15,6 +15,10 @@ const folders = [
   {
     name: 'info',
     path: path.join(__dirname, '..', '..', 'static')
+  },
+  {
+    name: 'reference',
+    path: path.join(__dirname, '..', '..', 'static', 'apireference')
   }
 ];
 

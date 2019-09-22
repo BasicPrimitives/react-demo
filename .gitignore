@@ -9,6 +9,7 @@ static/files/
 static/min/
 api/static/samples/
 api/static/reactsamples/
+api/static/apireference/
 *.iml
 webpack-assets.json
 webpack-stats.json

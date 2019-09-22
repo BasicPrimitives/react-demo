@@ -20,6 +20,7 @@ import reacthowtouse from './modules/reacthowtouse';
 import changelog from './modules/changelog';
 import downloads from './modules/downloads';
 import introduction from './modules/introduction';
+import reference from './modules/reference';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -33,6 +34,7 @@ export default function createReducers(asyncReducers) {
     }),
     info,
     introduction,
+    reference,
     partners,
     largeorganizationalchart,
     dynamicloading,
