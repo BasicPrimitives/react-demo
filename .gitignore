@@ -10,6 +10,7 @@ static/min/
 api/static/samples/
 api/static/reactsamples/
 api/static/apireference/
+api/static/changelog.md
 *.iml
 webpack-assets.json
 webpack-stats.json
