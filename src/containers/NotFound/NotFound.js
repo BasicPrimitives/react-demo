@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'
 
 export default function NotFound() {
   return (
@@ -7,6 +8,8 @@ export default function NotFound() {
       <p>
         These are <em>not</em> the droids you are looking for!
       </p>
+      <Redirect to='/' />
     </div>
+
   );
 }

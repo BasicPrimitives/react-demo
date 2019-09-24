@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import { provideHooks } from 'redial';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -104,7 +105,7 @@ class App extends Component {
             <Navbar.Brand>
               <div className={styles.appBrand}>
                 <span>
-                  <a href="/">{config.app.title}</a>
+                  <Link to="/">{config.app.title}</Link>
                 </span>
               </div>
             </Navbar.Brand>

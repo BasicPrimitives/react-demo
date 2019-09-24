@@ -121,7 +121,7 @@ class Downloads extends Component {
             <Checkbox checked={isLicenseAccepted} onChange={(event) => acceptLicense(!isLicenseAccepted)}>
               I agree to the terms listed above
           </Checkbox>
-            <form method="get" action={fileName} style={{
+            <form method="get" target="_blank" action={fileName} style={{
               display: "inline",
               verticalAlign: "middle"
             }}>
