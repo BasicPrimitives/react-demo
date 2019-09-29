@@ -1,9 +1,9 @@
 # Downloads
 
 ## Basic Primitives Diagrams for JavaScript
-Basic Primitives Diagrams for JavaScript - components library that implements organizational and multi-parent hierarchical charts, contains implementations of JavaScript Controls, jQuery UI Widgets and PDFkit plugins.
+Basic Primitives Diagrams for JavaScript - components library that implements organizational and multi-parent hierarchical charts, contains implementations of JavaScript Controls, jQuery UI Widgets and PDFkit plugins. Markdown API reference.
 
-[Download](files/BasicPrimitives.zip) [npm package](https://www.npmjs.com/package/basicprimitives) [GitHub](https://github.com/BasicPrimitives/javascript)
+[Download](files/BasicPrimitives.zip) [npm package](https://www.npmjs.com/package/basicprimitives) [GitHub](https://github.com/BasicPrimitives/javascript) [GitHub Deployment](https://basicprimitives.github.io/javascript/)
 
 ## Basic Primitives Diagrams for JavaScript Demos
 JavaScript Controls, jQuery UI Widgets, PDFKit plugins and AngularJS Directive Samples & Demos
@@ -28,7 +28,7 @@ Components library that implements organizational and multi-parent hierarchical 
 * react-dnd support
 * create-react-app compatible package.
 
-[Download](files/BasicPrimitivesDiagramsReact.zip) [npm package](https://www.npmjs.com/package/basicprimitivesreact) [GitHub](https://github.com/BasicPrimitives/react)
+[Download](files/BasicPrimitivesDiagramsReact.zip) [npm package](https://www.npmjs.com/package/basicprimitivesreact) [GitHub](https://github.com/BasicPrimitives/react) [GitHub Deployment](https://basicprimitives.github.io/react/)
 
 ## Basic Primitives Diagrams for React Demos
 * Large Hierarchical Chart navigation demo

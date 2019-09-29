@@ -75,27 +75,34 @@ class Downloads extends Component {
     }
     if (Tag === 'a') {
       const { href } = props;
-      if (href.endsWith('.zip')) {
-        return <Button key={`download-${href}`} type="submit" onClick={() => showLicenseDialog(href)} bsStyle="primary" style={{
-          display: "inline",
-          verticalAlign: "middle"
-        }}>Download</Button>;
-      }
-      if (href.indexOf('www.npmjs.com') != -1) {
-        return <form key={`npm-${href}`} method="get" action={href} style={{
-          display: "inline",
-          verticalAlign: "middle"
-        }}>
-          <Button type="submit" bsStyle="success">npm package</Button>
-        </form>;
-      }
-      if (href.indexOf('github.com') != -1) {
-        return <form key={`github-${href}`} method="get" action={href} style={{
-          display: "inline",
-          verticalAlign: "middle"
-        }}>
-          <Button type="submit" bsStyle="info">GitHub</Button>
-        </form>;
+      let [caption] = children;
+      switch(caption) {
+        case "Download":
+            return <Button key={`download-${href}`} type="submit" onClick={() => showLicenseDialog(href)} bsStyle="primary" style={{
+              display: "inline",
+              verticalAlign: "middle"
+            }}>Download</Button>;
+        case "npm package":
+            return <form key={`npm-${href}`} method="get" action={href} style={{
+              display: "inline",
+              verticalAlign: "middle"
+            }}>
+              <Button type="submit" bsStyle="success">npm package</Button>
+            </form>;
+        case "GitHub":
+            return <form key={`github-${href}`} method="get" action={href} style={{
+              display: "inline",
+              verticalAlign: "middle"
+            }}>
+              <Button type="submit" bsStyle="info">GitHub</Button>
+            </form>;
+        case "GitHub Deployment":
+            return <form key={`github-${href}`} method="get" action={href} style={{
+              display: "inline",
+              verticalAlign: "middle"
+            }}>
+              <Button type="submit" bsStyle="warning">GitHub Deployment</Button>
+            </form>;
       }
     }
     return <Tag {...props}>{children}</Tag>;
