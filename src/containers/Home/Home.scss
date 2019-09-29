@@ -9,3 +9,16 @@
 .carouselCaption {
   background-color: $humility;
 }
+
+// find best combination of screen size / control size
+@media screen and (min-width: 0px) {
+  .thumbnailtext {
+    min-height: 200px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .thumbnailtext {
+    min-height: 180px;
+  }
+}
+

@@ -84,21 +84,31 @@ export async function loadMarkdown(name) {
   const groups = {};
   let index = 0;
   const fileContent = await getMarkdownFileContent(name);
-  const markdown = fileContent.replace(/(\[[\w ]+?\]\([\s\S]+?\)\s*)+/g, match => {
+  const markdown = fileContent.replace(/(\!?\[[\w ]+?\]\([\s\S]+?\)\s*)+/g, match => {
     index += 1;
     const samples = [];
-    match = match.replace(/\[([\w ]+?)\]\(([\s\S]+?)\)/g, (str, caption, url) => {
-      if ((url.endsWith('.html') && !url.startsWith('http')) || url.endsWith('.js')) {
-        samples.push({
-          caption,
-          url: getStaticUrl(url),
-          content: getSampleFileContent(url)
-        });
+    match = match.replace(/(\!?)\[([\w ]+?)\]\(([\s\S]+?)\)/g, (str, sign, caption, url) => {
+      if (sign == "") {
+        if ((url.endsWith('.html') && !url.startsWith('http')) || url.endsWith('.js')) {
+          samples.push({
+            caption,
+            url: getStaticUrl(url),
+            content: getSampleFileContent(url)
+          });
+        }
+        if (!url.startsWith('http')) {
+          url = `/${url}`;
+        }
+        return `[${caption}](${url})\n`;
+      } else {
+        if (caption == "Screenshot") {
+          return '';
+        }
+        if (!url.startsWith('http')) {
+          url = `/${url}`;
+        }
+        return `![${caption}](${url})\n`;
       }
-      if (!url.startsWith('http')) {
-        url = `/${url}`;
-      }
-      return `[${caption}](${url})\n`;
     });
     if (samples.length > 0) {
       const groupName = `group${index}`;

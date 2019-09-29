@@ -136,13 +136,13 @@ class FamilyChartItemsOrdering extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Family Chart with Annotations" />
+        <Helmet title="Family Chart Nodes Order" />
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
               <Navbar fluid>
                 <Navbar.Header>
-                  <Navbar.Brand>Family Chart with Annotations</Navbar.Brand>
+                  <Navbar.Brand>Family Chart Nodes Order</Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
