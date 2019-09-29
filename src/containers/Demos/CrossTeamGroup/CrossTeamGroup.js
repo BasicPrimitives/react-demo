@@ -112,7 +112,10 @@ class CrossTeamGroup extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Cross Functional Team" />
+        <Helmet>
+          <title>- Organizational Chart Cross Functional Team Visualization</title>
+          <meta name="description" content="Application demonstrates how to show cross functional team members over large organizational chart hierarchy having over several hundred nodes. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>

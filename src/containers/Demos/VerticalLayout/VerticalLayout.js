@@ -119,7 +119,10 @@ class VerticalLayout extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Vertical Layout Organizational Chart" />
+        <Helmet>
+          <title>- Vertical Layout Organizational Chart</title>
+          <meta name="description" content="Organizational chart application demonstrates vertical children layout. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>

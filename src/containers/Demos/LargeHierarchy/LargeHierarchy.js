@@ -119,7 +119,10 @@ class LargeHierarchy extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="React Large Organizational Chart Demo" />
+        <Helmet>
+          <title>Large Hierarchy Visualization Demo</title>
+          <meta name="description" content="Rendering and browsing of hierarchy having over 800 nodes. Open sources. Universal React architecture. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>

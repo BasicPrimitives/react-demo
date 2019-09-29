@@ -125,7 +125,10 @@ class HighlightAnnotations extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Highlight &amp; Connector Annotations" />
+        <Helmet>
+          <title>- Organizational Chart &amp; Instant Annotations</title>
+          <meta name="description" content="Organizational chart application demonstrates instant update of on-screen annotations in diagram layout. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>

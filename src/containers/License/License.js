@@ -12,7 +12,10 @@ class License extends Component {
       whiteSpace: "nowrap"
     };
     return <div className="container">
-      <Helmet title="License" />
+      <Helmet>
+        <title>- License</title>
+        <meta name="description" content="Licenses and online store." />
+      </Helmet>
       <h1>Licenses</h1>
       <h2>Non-commercial - Free</h2>
       <p>Do you want to use Basic Primitives Diagram for a personal or non-profit project? Then you can use Basic Primitives Diagram for free under the&nbsp; <a href="http://creativecommons.org/licenses/by-nc/3.0/" rel="license">Creative Commons Attribution-NonCommercial 3.0 License</a>.</p>

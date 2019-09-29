@@ -132,7 +132,10 @@ class FamilyChartWithAnnotations extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Patents Demo" />
+        <Helmet>
+          <title>- Patent Application Dependencies Visualization</title>
+          <meta name="description" content="Application demonstrates how to show patent application dependency graph having massive number of direct links to grand parents. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
@@ -143,7 +146,7 @@ class FamilyChartWithAnnotations extends Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                   <Navbar.Form pullRight>
-                    <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'patents.pdf', 'Patents Demo') }>Download PDF</Button>&nbsp;
+                    <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'patents.pdf', 'Patents Demo')}>Download PDF</Button>&nbsp;
                     <Button onClick={() => load()}>Reset</Button>
                   </Navbar.Form>
                 </Navbar.Collapse>
@@ -155,9 +158,9 @@ class FamilyChartWithAnnotations extends Component {
                   config={{
                     ...config,
                     annotations: (config.annotations && config.annotations.map(annotation => {
-                      const {label, title} = annotation;
-                      if(label != null) {
-                        const {badge, color, title} = annotation.label;
+                      const { label, title } = annotation;
+                      if (label != null) {
+                        const { badge, color, title } = annotation.label;
                         return {
                           ...annotation,
                           label: <><div className={styles.Badge} style={{
@@ -165,7 +168,7 @@ class FamilyChartWithAnnotations extends Component {
                           }}>{badge}</div><span className={styles.BadgeLabel}>{title}</span></>
                         }
                       }
-                      if(title != null) {
+                      if (title != null) {
                         return {
                           ...annotation,
                           title: <div className={styles.InLayoutLabel}>{title}</div>
@@ -204,7 +207,7 @@ class FamilyChartWithAnnotations extends Component {
                             <div className={styles.DefaultDescription}>{itemConfig.description}</div>
                           </div>;
                         }
-                      }, 
+                      },
                       {
                         ...directTemplateConfig,
                         onItemRender: ({ context: itemConfig }) => {
@@ -324,13 +327,13 @@ class FamilyChartWithAnnotations extends Component {
                       {annotationConfig == null ? (
                         <p>No connector annotations found to set options for. Choose another data set.</p>
                       ) : (
-                        <AnnotationOptionsPanel
-                          config={annotationConfig}
-                          setOption={(name, value) => {
-                            setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
-                          }}
-                        />
-                      )}
+                          <AnnotationOptionsPanel
+                            config={annotationConfig}
+                            setOption={(name, value) => {
+                              setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
+                            }}
+                          />
+                        )}
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="intervals">

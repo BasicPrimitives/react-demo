@@ -24,7 +24,10 @@ class Changelog extends Component {
     const { markdown } = this.props;
     return <div className="container">
       <h1>Changelog</h1>
-      <Helmet title="Changelog" />
+      <Helmet>
+        <title>- Changelog</title>
+        <meta name="description" content="Products update changelog." />
+      </Helmet>
       <MDReactComponent text={markdown} />
     </div>
   }

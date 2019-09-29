@@ -112,7 +112,10 @@ class Partners extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Partners &amp; Annotations" />
+        <Helmet>
+          <title>- Organizational Chart Partners &amp; Annotations</title>
+          <meta name="description" content="Application demonstrates multi-parent support and various on-screen annotations in organizational chart. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
@@ -134,9 +137,9 @@ class Partners extends Component {
                   config={{
                     ...config,
                     annotations: (config.annotations.map(annotation => {
-                      const {label} = annotation;
-                      if(label != null) {
-                        const {badge, color, title} = annotation.label;
+                      const { label } = annotation;
+                      if (label != null) {
+                        const { badge, color, title } = annotation.label;
                         return {
                           ...annotation,
                           label: <><div className={styles.Badge} style={{

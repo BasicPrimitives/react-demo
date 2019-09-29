@@ -111,7 +111,10 @@ class DynamicLoading extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Dynamic Organizational Chart Nodes Loading" />
+        <Helmet>
+          <title>- Dynamic Organizational Chart Nodes Loading</title>
+          <meta name="description" content="Application demonstrates dynamic nodes loading as user browses through hierarchy. Application automatically expands and collapses branches visited by user. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>

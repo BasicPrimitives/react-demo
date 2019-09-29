@@ -131,7 +131,10 @@ class FinancialOwnership extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Financial Ownership Demo" />
+        <Helmet>
+          <title>- Business Ownership Diagram</title>
+          <meta name="description" content="Application demonstrates visualization of complex business ownership relations. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
@@ -153,9 +156,9 @@ class FinancialOwnership extends Component {
                   config={{
                     ...config,
                     annotations: (config.annotations && config.annotations.map(annotation => {
-                      const {label, title} = annotation;
-                      if(label != null) {
-                        const {badge, color, title} = annotation.label;
+                      const { label, title } = annotation;
+                      if (label != null) {
+                        const { badge, color, title } = annotation.label;
                         return {
                           ...annotation,
                           label: <><div className={styles.Badge} style={{
@@ -163,7 +166,7 @@ class FinancialOwnership extends Component {
                           }}>{badge}</div><span className={styles.BadgeLabel}>{title}</span></>
                         }
                       }
-                      if(title != null) {
+                      if (title != null) {
                         return {
                           ...annotation,
                           title: <div className={styles.InLayoutLabel}>{title}</div>
@@ -202,7 +205,7 @@ class FinancialOwnership extends Component {
                             <div className={styles.DefaultDescription}>{itemConfig.description}</div>
                           </div>;
                         }
-                      }, 
+                      },
                       {
                         ...shapeTemplateConfig,
                         onItemRender: ({ context }) => {
@@ -328,13 +331,13 @@ class FinancialOwnership extends Component {
                       {annotationConfig == null ? (
                         <p>No connector annotations found to set options for. Choose another data set.</p>
                       ) : (
-                        <AnnotationOptionsPanel
-                          config={annotationConfig}
-                          setOption={(name, value) => {
-                            setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
-                          }}
-                        />
-                      )}
+                          <AnnotationOptionsPanel
+                            config={annotationConfig}
+                            setOption={(name, value) => {
+                              setAnnotationOption(primitives.common.AnnotationType.Connector, name, value);
+                            }}
+                          />
+                        )}
                     </Tab.Pane>
 
                     <Tab.Pane eventKey="intervals">

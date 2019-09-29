@@ -76,33 +76,33 @@ class Downloads extends Component {
     if (Tag === 'a') {
       const { href } = props;
       let [caption] = children;
-      switch(caption) {
+      switch (caption) {
         case "Download":
-            return <Button key={`download-${href}`} type="submit" onClick={() => showLicenseDialog(href)} bsStyle="primary" style={{
-              display: "inline",
-              verticalAlign: "middle"
-            }}>Download</Button>;
+          return <Button key={`download-${href}`} type="submit" onClick={() => showLicenseDialog(href)} bsStyle="primary" style={{
+            display: "inline",
+            verticalAlign: "middle"
+          }}>Download</Button>;
         case "npm package":
-            return <form key={`npm-${href}`} method="get" action={href} style={{
-              display: "inline",
-              verticalAlign: "middle"
-            }}>
-              <Button type="submit" bsStyle="success">npm package</Button>
-            </form>;
+          return <form key={`npm-${href}`} method="get" action={href} style={{
+            display: "inline",
+            verticalAlign: "middle"
+          }}>
+            <Button type="submit" bsStyle="success">npm package</Button>
+          </form>;
         case "GitHub":
-            return <form key={`github-${href}`} method="get" action={href} style={{
-              display: "inline",
-              verticalAlign: "middle"
-            }}>
-              <Button type="submit" bsStyle="info">GitHub</Button>
-            </form>;
+          return <form key={`github-${href}`} method="get" action={href} style={{
+            display: "inline",
+            verticalAlign: "middle"
+          }}>
+            <Button type="submit" bsStyle="info">GitHub</Button>
+          </form>;
         case "GitHub Deployment":
-            return <form key={`github-${href}`} method="get" action={href} style={{
-              display: "inline",
-              verticalAlign: "middle"
-            }}>
-              <Button type="submit" bsStyle="warning">GitHub Deployment</Button>
-            </form>;
+          return <form key={`github-${href}`} method="get" action={href} style={{
+            display: "inline",
+            verticalAlign: "middle"
+          }}>
+            <Button type="submit" bsStyle="warning">GitHub Deployment</Button>
+          </form>;
       }
     }
     return <Tag {...props}>{children}</Tag>;
@@ -112,7 +112,10 @@ class Downloads extends Component {
     this.key = 0;
     const { markdown, license, isLicenseAccepted, isLicenseDialogVisible, hideLicenseDialog, acceptLicense, fileName } = this.props;
     return <div className="container">
-      <Helmet title="Downloads" />
+      <Helmet>
+        <title>- Downloads</title>
+        <meta name="description" content="Products, API Reference &amp; Demos sources downloads." />
+      </Helmet>
       <MDReactComponent text={markdown} onIterate={this.handleIterate} />
       {isLicenseDialogVisible &&
         <Modal show={isLicenseDialogVisible} onHide={hideLicenseDialog} bsSize="large" aria-labelledby="contained-modal-title-lg">

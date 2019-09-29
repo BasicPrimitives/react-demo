@@ -177,7 +177,10 @@ class OrgEditor extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Organizational Chart Editor Demo" />
+        <Helmet>
+          <title>- Organizational Chart Editor Demo</title>
+          <meta name="description" content="Fully functional downloadable Organizational Chart editing application developed in Universal React JS architecture. Open Sources. Client side PDF rendering." />
+        </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>

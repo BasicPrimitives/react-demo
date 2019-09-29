@@ -40,13 +40,17 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
     const financialOwnershipImage = require('./carousel/demo_financial_ownership.png');
     return (
       <Grid fluid>
-        <Helmet title=" " />
+        <Helmet>
+          <title>- Data visualization diagramming components for dependencies visualization and analysis.</title>
+          <meta name="description" content="JavaScript, HTML, PDFKit, ReactJS; Organizational Chart, Family Inheritance Chart; Dependencies Visualizations;" />
+        </Helmet>
         <Row>
           <Col mdPush={4} md={8} smPush={4} sm={8} lgPush={2} lg={10} >
             <Grid fluid>
               <Row>
-                <Col xs={12} md={12} lg={6}>
-                  <h1>JavaScript ∙ HTML ∙ PDF ∙ React Organizational Chart, Family &amp; Dependencies Diagrams</h1>
+                <Col xs={12} md={12} lg={8}>
+                  <h1>Basic Primitives Diagrams</h1>
+                  <h3>Data visualization diagramming Components for dependencies visualization and analysis</h3>
                 </Col>
               </Row>
             </Grid>

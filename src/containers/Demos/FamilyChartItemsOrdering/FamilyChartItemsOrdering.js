@@ -136,7 +136,11 @@ class FamilyChartItemsOrdering extends Component {
 
     return (
       <Grid fluid className={styles.appContent}>
-        <Helmet title="Family Chart Nodes Order" />
+        <Helmet>
+          <title>- Family Chart Nodes Order</title>
+          <meta name="description" content="Application shows user guided nodes ordering in the inheritance diagram. It respects children and marriages order. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
+        </Helmet>
+        <Helmet title="" />
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>

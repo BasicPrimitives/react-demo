@@ -82,7 +82,10 @@ class HowToUse extends Component {
     const [, title] = markdown.match(/^# (.+)$/m) || [];
     return (
       <>
-        <Helmet title={` for JavaScript - ${title}`} />
+        <Helmet>
+          <title>{` for JavaScript - ${title}`}</title>
+          <meta name="description" content="JavaScript/jQuery/PDFKit Product Samples." />
+        </Helmet>
         <MDReactComponent text={markdown} onIterate={this.handleIterate} />
       </>
     );
