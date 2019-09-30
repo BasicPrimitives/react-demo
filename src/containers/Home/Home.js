@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router-dom";
 import {
   Grid, Row, Col, Thumbnail
 } from 'react-bootstrap';
@@ -57,7 +58,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
             <Grid fluid>
               <Row>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/largehierarchy" src={largeHierarchyImage} alt="Large Hierarchy Visualization &amp; Navigation">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/largehierarchy") }}
+                    href="/largehierarchy" src={largeHierarchyImage} alt="Large Hierarchy Visualization &amp; Navigation">
                     <div className={styles.thumbnailtext}>
                       <h3>Large Hierarchy Visualization</h3>
                       <p>Visualization &amp; navigation of diagram having large number of nodes.</p>
@@ -65,7 +67,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/orgeditor" src={orgeditorImage} alt="Organizational Chart Editor">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/orgeditor") }}
+                    href="/orgeditor" src={orgeditorImage} alt="Organizational Chart Editor">
                     <div className={styles.thumbnailtext}>
                       <h3>Organizational Chart Editor</h3>
                       <p>Fully functional oraganizational chart editing application developed in ReactJS.</p>
@@ -73,7 +76,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/dynamicloading" src={dynamicLoadingImage} alt="Dynamic Nodes Loading">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/dynamicloading") }}
+                    href="/dynamicloading" src={dynamicLoadingImage} alt="Dynamic Nodes Loading">
                     <div className={styles.thumbnailtext}>
                       <h3>Dynamic Nodes Loading</h3>
                       <p>Large Hierarchy navigation using dynamic diagram nodes loading.</p>
@@ -81,7 +85,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/verticallayout" src={verticalLayoutImage} alt="Vertical Layout Organizational Diagram">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/verticallayout") }}
+                    href="/verticallayout" src={verticalLayoutImage} alt="Vertical Layout Organizational Diagram">
                     <div className={styles.thumbnailtext}>
                       <h3>Org Chart Vertical Layout</h3>
                       <p>Organizational Diagram demonstrating vertical nodes layout</p>
@@ -89,7 +94,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/crossteamgroup" src={crossTeamGroupImage} alt="Cross Functional Team">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/crossteamgroup") }}
+                    href="/crossteamgroup" src={crossTeamGroupImage} alt="Cross Functional Team">
                     <div className={styles.thumbnailtext}>
                       <h3>Cross Functional Team</h3>
                       <p>Visualization of cross functional group of employees on organizational diagram</p>
@@ -97,7 +103,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/highlightannotations" src={highlightAnnotationsImage} alt="Instant Annotations Update">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/highlightannotations") }}
+                    href="/highlightannotations" src={highlightAnnotationsImage} alt="Instant Annotations Update">
                     <div className={styles.thumbnailtext}>
                       <h3>Instant Annotations Update</h3>
                       <p>Rendering cycle optimized to specific user changes.</p>
@@ -105,7 +112,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/partners" src={partnersImage} alt="Partners &amp; Annotations">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/partners") }}
+                    href="/partners" src={partnersImage} alt="Partners &amp; Annotations">
                     <div className={styles.thumbnailtext}>
                       <h3>Partners &amp; Annotations</h3>
                       <p>Demo of limited multiple parents support in Organizational chart.</p>
@@ -113,7 +121,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/familychartwithannotations" src={familyWithAnnotationsImage} alt="Family &amp; Annotations">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/familychartwithannotations") }}
+                    href="/familychartwithannotations" src={familyWithAnnotationsImage} alt="Family &amp; Annotations">
                     <div className={styles.thumbnailtext}>
                       <h3>Family Chart Auto Layout</h3>
                       <p>Various multiple inheritance diagrams, dependencies diagrams and graphs</p>
@@ -121,7 +130,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/familychartitemsordering" src={familyDiagramNodesOrderImage} alt="Family Diagram Nodes Order">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/familychartitemsordering") }}
+                    href="/familychartitemsordering" src={familyDiagramNodesOrderImage} alt="Family Diagram Nodes Order">
                     <div className={styles.thumbnailtext}>
                       <h3>Family Diagram Nodes Order </h3>
                       <p>User guided family diagram nodes sorting and layout. Childrens and marriages order.</p>
@@ -129,7 +139,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/patents" src={patentsImage} alt="Patents Dependencies Visualization">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/patents") }}
+                    href="/patents" src={patentsImage} alt="Patents Dependencies Visualization">
                     <div className={styles.thumbnailtext}>
                       <h3>Patents Dependencies</h3>
                       <p>Dependencies visualization having massive number of references to grandparents.</p>
@@ -137,7 +148,8 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                   </Thumbnail>
                 </Col>
                 <Col xs={6} md={4} lg={3}>
-                  <Thumbnail href="/financialownership" src={financialOwnershipImage} alt="Business Ownership Visualization">
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/financialownership") }}
+                    href="/financialownership" src={financialOwnershipImage} alt="Business Ownership Visualization">
                     <div className={styles.thumbnailtext}>
                       <h3>Business Ownership Diagram</h3>
                       <p>Multiple inheritance diagram visualizing financial ownership.</p>
@@ -163,4 +175,4 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
   }
 }
 
-export default Home;
+export default withRouter(Home);
