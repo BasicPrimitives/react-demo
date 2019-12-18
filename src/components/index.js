@@ -19,6 +19,7 @@ export RouterTrigger from './RouterTrigger/RouterTrigger';
 // Basic Primitives helper Components
 export Version from './Version/Version';
 export Updates from './Updates/Updates';
+export Videos from './Videos/Videos';
 export Editor from './Editor/Editor';
 export TryMe from './TryMe/TryMe';
 export PdfkitHelper from './PdfkitHelper/PdfkitHelper';
