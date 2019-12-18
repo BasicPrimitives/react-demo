@@ -6,6 +6,7 @@ import {
 } from 'react-bootstrap';
 import Helmet from 'react-helmet';
 import { Updates } from 'components';
+import { Videos } from 'components';
 
 import { provideHooks } from 'redial';
 import { connect } from 'react-redux';
@@ -168,6 +169,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
           </Col>
           <Col smPull={8} sm={4} mdPull={8} md={4} lgPull={10} lg={2}>
             <Updates />
+            <Videos />
           </Col>
         </Row>
       </Grid>
