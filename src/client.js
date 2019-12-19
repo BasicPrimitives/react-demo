@@ -21,6 +21,7 @@ import isOnline from 'utils/isOnline';
 import asyncMatchRoutes from 'utils/asyncMatchRoutes';
 import { RouterTrigger, Provider } from 'components';
 import NProgress from 'nprogress';
+import ReactGA from "react-ga";
 
 const persistConfig = {
   key: 'root',
@@ -104,12 +105,18 @@ initSocket();
     NProgress.done();
   };
 
+  ReactGA.initialize('UA-35196769-1');
+
   const hydrate = _routes => {
     const element = (
       <HotEnabler>
         <Provider store={store} {...providers}>
           <Router history={history}>
-            <RouterTrigger trigger={pathname => triggerHooks(_routes, pathname)}>{renderRoutes(_routes)}</RouterTrigger>
+            <RouterTrigger trigger={pathname => {
+              ReactGA.pageview(pathname);
+              return triggerHooks(_routes, pathname);
+            }
+            }>{renderRoutes(_routes)}</RouterTrigger>
           </Router>
         </Provider>
       </HotEnabler>
