@@ -41,7 +41,8 @@ import {
       await dispatch(load()).catch(() => null);
     }
     return Promise.resolve();
-  }
+  },
+  defer: ({ store: { dispatch } }) => dispatch(setConfigOption('scale', (window.devicePixelRatio > 1 ? 0.5 : 1)))
 })
 @connect(
   state => ({

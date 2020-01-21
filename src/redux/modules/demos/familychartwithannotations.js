@@ -20,7 +20,7 @@ export const UserActionType = {
 
 const initialState = {
   loaded: false,
-  datasetName: 'crossShape',
+  datasetName: 'sideBySide',
   datasetNames: {},
   userAction: {
     type: UserActionType.None,
@@ -157,7 +157,9 @@ const initialState = {
     /* Interactivity */
     navigationMode: primitives.common.NavigationMode.Default,
     highlightGravityRadius: 40,
-    enablePanning: true
+    enablePanning: true,
+
+    scale: 1
   },
   itemsHash: {}
 };
@@ -172,7 +174,7 @@ function getItemsHash(items = []) {
   items.map(item => {
     (item.parents || []).map(parent => {
       children[parent] = children[parent] || [];
-      children[parent].push(item.id); 
+      children[parent].push(item.id);
     })
   });
 
@@ -223,7 +225,7 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
@@ -233,7 +235,8 @@ export default function reducer(state = initialState, action = {}) {
       const { datasetName, datasetNames, config } = action.result;
       const newConfig = {
         ...oldConfig,
-        ...config
+        ...config,
+        scale: oldConfig.scale
       };
       return {
         ...restState,
@@ -319,7 +322,7 @@ export default function reducer(state = initialState, action = {}) {
       const { annotations } = config;
       const { id } = action;
       const itemConfig = itemsHash[id];
-      const parentItems = ( itemConfig && itemConfig.parents) || [];
+      const parentItems = (itemConfig && itemConfig.parents) || [];
       const childItems = children[id] || [];
 
       let newAnnotations = annotations.reduce((agg, annotation) => {
@@ -333,14 +336,14 @@ export default function reducer(state = initialState, action = {}) {
         const items = [...parentItems, ...childItems];
         newAnnotations = newAnnotations.concat(
           items.map(itemid => ({
-              annotationType: primitives.common.AnnotationType.HighlightPath,
-              items: [id, itemid],
-              color: primitives.common.Colors.Navy,
-              opacity: 0.2,
-              lineWidth: 16,
-              zOrderType: primitives.common.ZOrderType.Background,
-              showArrows: false
-            })
+            annotationType: primitives.common.AnnotationType.HighlightPath,
+            items: [id, itemid],
+            color: primitives.common.Colors.Navy,
+            opacity: 0.2,
+            lineWidth: 16,
+            zOrderType: primitives.common.ZOrderType.Background,
+            showArrows: false
+          })
           )
         );
       }

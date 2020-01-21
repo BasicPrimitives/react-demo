@@ -47,7 +47,8 @@ const primitives = require('basicprimitives');
       await dispatch(load(familychartwithannotations.datasetName)).catch(() => null);
     }
     return Promise.resolve();
-  }
+  },
+  defer: ({ store: { dispatch } }) => dispatch(setConfigOption('scale', (window.devicePixelRatio > 1 ? 0.5 : 1)))
 })
 @connect(
   state => ({
