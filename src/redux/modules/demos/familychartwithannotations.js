@@ -231,15 +231,16 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case LOAD_SUCCESS: {
-      const { config: oldConfig, ...restState } = state;
+      const { config: { scale } } = state;
+      const { config: defaultConfig } = initialState;
       const { datasetName, datasetNames, config } = action.result;
       const newConfig = {
-        ...oldConfig,
+        ...defaultConfig,
         ...config,
-        scale: oldConfig.scale
+        scale
       };
       return {
-        ...restState,
+        ...initialState,
         loading: false,
         loaded: true,
         datasetName,
