@@ -37,6 +37,7 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
     const orgeditorImage = require('./carousel/demo_orgeditor.png');
     const familyWithAnnotationsImage = require('./carousel/demo_family_with_annotations.png');
     const familyDiagramNodesOrderImage = require('./carousel/demo_family_diagram_nodes_order.png');
+    const dependencyGraphPrimaryParentsImage = require('./carousel/demo_dependency_graph_primary_parents.png');
     const highlightAnnotationsImage = require('./carousel/demo_instant_highlights.png');
     const patentsImage = require('./carousel/demo_patents.png');
     const financialOwnershipImage = require('./carousel/demo_financial_ownership.png');
@@ -136,6 +137,15 @@ class Home extends Component { // eslint-disable-line react/prefer-stateless-fun
                     <div className={styles.thumbnailtext}>
                       <h3>Family Diagram Nodes Order </h3>
                       <p>User guided family diagram nodes sorting and layout. Childrens and marriages order.</p>
+                    </div>
+                  </Thumbnail>
+                </Col>
+                <Col xs={6} md={4} lg={3}>
+                  <Thumbnail onClick={event => { event.preventDefault(); this.props.history.push("/familycharttechtree") }}
+                    href="/familycharttechtree" src={dependencyGraphPrimaryParentsImage} alt="Dependency Graph Primary Parents">
+                    <div className={styles.thumbnailtext}>
+                      <h3>Dependency Graph Primary Parents</h3>
+                      <p>User guided nodes placement into branches of multi-parent hierarchy.</p>
                     </div>
                   </Thumbnail>
                 </Col>

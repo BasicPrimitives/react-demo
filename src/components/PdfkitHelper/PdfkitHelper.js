@@ -9,7 +9,10 @@ const downloadDiagram = (config, fileName, caption, plugin) => {
   let { items } = config;
 
   items = items.map(item => {
-    const [, imageName] = item.image.match(/.*(.+?)\.png/m) || [];
+    var imageName = "a";
+    if (item.image != null) {
+      [, imageName] = item.image.match(/.*(.+?)\.png/m) || [];
+    }
     return {
       ...item,
       image: Photos[imageName]

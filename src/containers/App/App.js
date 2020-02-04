@@ -150,6 +150,9 @@ class App extends Component {
                 <LinkContainer to="/familychartwithannotations">
                   <MenuItem eventKey={8}>Family Chart &amp; Annotations</MenuItem>
                 </LinkContainer>
+                <LinkContainer to="/familycharttechtree">
+                  <MenuItem eventKey={8}>Dependeny Graph Primary Parents</MenuItem>
+                </LinkContainer>
                 <LinkContainer to="/dependencies">
                   <MenuItem eventKey={9}>Dependencies</MenuItem>
                 </LinkContainer>

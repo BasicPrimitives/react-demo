@@ -10,6 +10,7 @@ export HighlightAnnotations from './Demos/HighlightAnnotations/HighlightAnnotati
 export FamilyChartWithAnnotations from './Demos/FamilyChartWithAnnotations/FamilyChartWithAnnotations';
 export FamilyChartItemsOrdering from './Demos/FamilyChartItemsOrdering/FamilyChartItemsOrdering';
 export Dependencies from './Demos/Dependencies/Dependencies';
+export TechTree from './Demos/TechTree/TechTree';
 export Patents from './Demos/Patents/Patents';
 export FinancialOwnership from './Demos/FinancialOwnership/FinancialOwnership';
 export Partners from './Demos/Partners/Partners';
