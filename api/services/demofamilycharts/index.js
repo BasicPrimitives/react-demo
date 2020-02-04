@@ -22,6 +22,7 @@ import familyOrdering from './data/familyOrdering.js';
 import dependencies from './data/dependencies.js';
 import patents from './data/patents.js';
 import financialOwnership from './data/financialOwnership.js';
+import techTree from './data/techTree.js';
 
 export default function service(app) {
   app.use('/load-demofamilychartslist', (req, res) => {
@@ -127,6 +128,9 @@ export default function service(app) {
         break;
       case 'financialownership':
         result = financialOwnership;
+        break;
+      case 'techtree':
+        result = techTree;
         break;
       default:
         break;

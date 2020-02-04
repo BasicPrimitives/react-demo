@@ -14,6 +14,7 @@ import familychartitemsordering from './modules/demos/familychartitemsordering';
 import dependencies from './modules/demos/dependencies';
 import patents from './modules/demos/patents';
 import financialownership from './modules/demos/financialownership';
+import techtree from './modules/demos/techtree';
 import orgeditor from './modules/demos/orgeditor';
 import howtouse from './modules/howtouse';
 import reacthowtouse from './modules/reacthowtouse';
@@ -46,6 +47,7 @@ export default function createReducers(asyncReducers) {
     dependencies,
     patents,
     financialownership,
+    techtree,
     orgeditor,
     howtouse,
     reacthowtouse,
