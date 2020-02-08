@@ -4,6 +4,7 @@ const LOAD = 'redux-example/dynamicloading/LOAD';
 const LOAD_SUCCESS = 'redux-example/dynamicloading/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/dynamicloading/LOAD_FAIL';
 const SETCURSORITEM = 'redux-example/dynamicloading/setCursorItem';
+const SETCURSORITEM_SUCCESS = 'redux-example/dynamicloading/SETCURSORITEM_SUCCESS';
 const SETSELECTEDITEMS = 'redux-example/dynamicloading/setSelectedItems';
 const SETCLICKEDBUTTON = 'redux-example/dynamicloading/setClickedButton';
 const SETCONFIGOPTION = 'redux-example/dynamicloading/setConfigOption';
@@ -189,13 +190,14 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
 
     case LOAD_SUCCESS: {
-      const { config, ...restState } = state;
+      const { config: { scale } } = state;
+      const { config, ...restState } = initialState;
       return {
         ...restState,
         loading: false,
@@ -203,7 +205,8 @@ export default function reducer(state = initialState, action = {}) {
         ...getCursorItem(
           {
             ...config,
-            ...action.result
+            ...action.result,
+            scale
           },
           config.cursorItem
         ),
@@ -259,6 +262,25 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
 
+    case SETCURSORITEM_SUCCESS: {
+      const { config, ...restState } = state;
+      const { scale } = config;
+      return {
+        ...restState,
+        loading: false,
+        loaded: true,
+        ...getCursorItem(
+          {
+            ...config,
+            ...action.result,
+            scale
+          },
+          config.cursorItem
+        ),
+        ...getItemsHash(action.result.items)
+      };
+    }
+
     case SETSELECTEDITEMS: {
       const { config, ...restState } = state;
       return {
@@ -303,7 +325,7 @@ export function load() {
 
 export function setCursorItem(cursorItem) {
   return {
-    types: [SETCURSORITEM, LOAD_SUCCESS, LOAD_FAIL],
+    types: [SETCURSORITEM, SETCURSORITEM_SUCCESS, LOAD_FAIL],
     promise: ({ client }, dispatch, getState) => {
       const { dynamicloading } = getState();
       const { selectedItems } = dynamicloading.config;

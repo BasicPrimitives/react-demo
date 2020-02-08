@@ -65,9 +65,10 @@ const initialState = {
     annotations: [
       {
         annotationType: primitives.common.AnnotationType.Connector,
+        connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
         fromItem: 5,
         toItem: 8,
-        label: {color:"red", badge: "1", title: "Connector annotation"},
+        label: { color: "red", badge: "1", title: "Connector annotation" },
         labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
         connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
         color: primitives.common.Colors.Red,
@@ -292,17 +293,19 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
 
     case LOAD_SUCCESS: {
-      const { config: oldConfig } = state;
+      const { config: { scale } } = state;
+      const { config: oldConfig } = initialState;
       const config = action.result;
       const newConfig = {
         ...oldConfig,
-        ...config
+        ...config,
+        scale
       };
       const { itemsHash, children, parents } = getItemsHash(config.items);
       return {

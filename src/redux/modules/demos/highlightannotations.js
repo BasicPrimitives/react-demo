@@ -187,23 +187,28 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
 
     case LOAD_SUCCESS: {
-      const { config, ...restState } = state;
-      const { cursorItem, highlightItem } = config;
+      const { config: { scale } } = state;
+      const { config: defaultConfig } = initialState;
+      const { cursorItem, highlightItem } = defaultConfig;
       const { items, links } = action.result;
       const { annotations, annotationsHash } = getAnnotationsHash(links);
+      const newConfig = {
+        ...defaultConfig,
+        scale
+      };
       return {
-        ...restState,
+        ...initialState,
         loading: false,
         loaded: true,
         ...getCursorItem(
           {
-            ...config,
+            ...newConfig,
             items
           },
           true,

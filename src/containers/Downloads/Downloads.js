@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-
+import ReactGA from "react-ga";
 import { provideHooks } from 'redial';
 import { connect } from 'react-redux';
 import {
@@ -87,21 +87,39 @@ class Downloads extends Component {
             display: "inline",
             verticalAlign: "middle"
           }}>
-            <Button type="submit" bsStyle="success">npm package</Button>
+            <Button type="submit" bsStyle="success" onClick={() => {
+              ReactGA.event({
+                category: 'npm package',
+                action: 'Click',
+                label: href
+              });
+            }}>npm package</Button>
           </form>;
         case "GitHub":
           return <form key={`github-${href}`} method="get" action={href} style={{
             display: "inline",
             verticalAlign: "middle"
           }}>
-            <Button type="submit" bsStyle="info">GitHub</Button>
+            <Button type="submit" bsStyle="info" onClick={() => {
+              ReactGA.event({
+                category: 'GitHub',
+                action: 'Click',
+                label: href
+              });
+            }}>GitHub</Button>
           </form>;
         case "GitHub Deployment":
           return <form key={`github-${href}`} method="get" action={href} style={{
             display: "inline",
             verticalAlign: "middle"
           }}>
-            <Button type="submit" bsStyle="warning">GitHub Deployment</Button>
+            <Button type="submit" bsStyle="warning" onClick={() => {
+              ReactGA.event({
+                category: 'GitHub Deployment',
+                action: 'Click',
+                label: href
+              });
+            }}>GitHub Deployment</Button>
           </form>;
       }
     }
@@ -135,7 +153,13 @@ class Downloads extends Component {
               display: "inline",
               verticalAlign: "middle"
             }}>
-              <Button type="submit" disabled={!isLicenseAccepted} bsStyle="primary">Download</Button>
+              <Button type="submit" disabled={!isLicenseAccepted} bsStyle="primary" onClick={() => {
+                ReactGA.event({
+                  category: 'Downloads',
+                  action: 'Click',
+                  label: fileName
+                });
+              }}>Download</Button>
             </form> <Button onClick={hideLicenseDialog}>Cancel</Button>
           </Modal.Footer>
         </Modal>

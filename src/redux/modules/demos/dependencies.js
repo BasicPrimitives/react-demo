@@ -62,7 +62,7 @@ const initialState = {
         annotationType: primitives.common.AnnotationType.Connector,
         fromItem: 5,
         toItem: 8,
-        label: {color:"red", badge: "1", title: "Connector annotation"},
+        label: { color: "red", badge: "1", title: "Connector annotation" },
         labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
         connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
         color: primitives.common.Colors.Red,
@@ -176,7 +176,7 @@ function getItemsHash(items = []) {
   items.map(item => {
     (item.parents || []).map(parent => {
       children[parent] = children[parent] || [];
-      children[parent].push(item.id); 
+      children[parent].push(item.id);
     })
   });
 
@@ -241,17 +241,19 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
 
     case LOAD_SUCCESS: {
-      const { config: oldConfig, ...restState } = state;
+      const { config: { scale } } = state;
+      const { config: oldConfig, ...restState } = initialState;
       const config = action.result;
       const newConfig = {
         ...oldConfig,
-        ...config
+        ...config,
+        scale
       };
       return {
         ...restState,
@@ -326,7 +328,7 @@ export default function reducer(state = initialState, action = {}) {
       const { annotations } = config;
       const { cursorItem } = action;
       const itemConfig = itemsHash[cursorItem];
-      const parentItems = ( itemConfig && itemConfig.parents) || [];
+      const parentItems = (itemConfig && itemConfig.parents) || [];
       const childItems = children[cursorItem] || [];
 
       let newAnnotations = annotations.reduce((agg, annotation) => {

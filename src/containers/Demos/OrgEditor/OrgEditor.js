@@ -10,6 +10,7 @@ import primitives from 'basicprimitives';
 import {
   Grid, Col, Row, Tab, NavItem, Nav, NavDropdown, MenuItem, Button, Navbar, Modal, Form, FormGroup, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
+import cn from 'classnames';
 import Select from 'react-select';
 import {
   AutoLayoutOptionsPanel,
@@ -175,6 +176,24 @@ class OrgEditor extends Component {
 
     const itemConfig = (cursorItem && items[indexes[cursorItem]]) || null;
     const cursorChildren = (cursorItem && children[cursorItem] && children[cursorItem].map(id => items[indexes[id]])) || null;
+    const buttons = <>
+      <Form inline>
+        <FormGroup>
+          <Select
+            className={styles.cursor_search}
+            value={cursorItem}
+            getOptionValue={({ id }) => id}
+            getOptionLabel={({ title }) => title}
+            onChange={({ id }) => setCursorItem(id)}
+            options={items}
+          />
+        </FormGroup>{' '}
+        <FormGroup>
+          <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'orgeditor.pdf', 'Organizational Chart Editor Demo')}>Download PDF</Button>&nbsp;
+          <Button onClick={load}>Reset</Button>
+        </FormGroup>
+      </Form>
+    </>;
 
     return (
       <Grid fluid className={styles.appContent}>
@@ -185,32 +204,21 @@ class OrgEditor extends Component {
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
-              <Navbar fluid>
-                <Navbar.Header>
-                  <Navbar.Brand>Organizational Chart Editor Demo</Navbar.Brand>
-                  <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                  <Navbar.Form pullRight>
-                    <Form inline>
-                      <FormGroup>
-                        <Select
-                          className={styles.cursor_search}
-                          value={cursorItem}
-                          getOptionValue={({ id }) => id}
-                          getOptionLabel={({ title }) => title}
-                          onChange={({ id }) => setCursorItem(id)}
-                          options={items}
-                        />
-                      </FormGroup>{' '}
-                      <FormGroup>
-                        <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'orgeditor.pdf', 'Organizational Chart Editor Demo')}>Download PDF</Button>&nbsp;
-                        <Button onClick={load}>Reset</Button>
-                      </FormGroup>
-                    </Form>
-                  </Navbar.Form>
-                </Navbar.Collapse>
-              </Navbar>
+              <Grid fluid>
+                <Row>
+                  <Col lg={5} md={12}>
+                    <h2>Organizational Chart Editor Demo</h2>
+                  </Col>
+                  <Col lg={7} xsHidden smHidden mdHidden>
+                    <div className={cn('pull-right', styles.contextButtonsPanel)}>
+                      {buttons}
+                    </div>
+                  </Col>
+                  <Col md={12} lgHidden>
+                    {buttons}<p />
+                  </Col>
+                </Row>
+              </Grid>
               <div className={styles.placeholder}>
                 <OrgDiagram
                   centerOnCursor={centerOnCursor}

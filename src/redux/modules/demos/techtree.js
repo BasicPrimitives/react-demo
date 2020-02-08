@@ -243,17 +243,19 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
 
     case LOAD_SUCCESS: {
-      const { config: oldConfig, ...restState } = state;
+      const { config: { scale } } = state;
+      const { config: oldConfig, ...restState } = initialState;
       const config = action.result;
       const newConfig = {
         ...oldConfig,
-        ...config
+        ...config,
+        scale
       };
       return {
         ...restState,

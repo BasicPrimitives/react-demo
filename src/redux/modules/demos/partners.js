@@ -187,13 +187,14 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
 
     case LOAD_SUCCESS: {
-      const { config, ...restState } = state;
+      const { config: { scale } } = state;
+      const { config, ...restState } = initialState;
       return {
         ...restState,
         loading: false,
@@ -201,7 +202,8 @@ export default function reducer(state = initialState, action = {}) {
         ...getCursorItem(
           {
             ...config,
-            ...action.result
+            ...action.result,
+            scale
           },
           config.cursorItem
         ),

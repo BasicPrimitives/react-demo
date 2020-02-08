@@ -6,7 +6,7 @@ import Helmet from 'react-helmet';
 import { OrgDiagram, OrgDiagramConfig } from 'basicprimitivesreact';
 import primitives from 'basicprimitives';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, ButtonGroup, Glyphicon
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
 import {
   AutoLayoutOptionsPanel,
@@ -123,6 +123,10 @@ class HighlightAnnotations extends Component {
     const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
     const defaultConnectedItemTemplateConfig = config.templates.find(template => template.name === 'defaultConnectedItemTemplate');
     const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
+    const buttons = <>
+      <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'highlightannotations.pdf', 'Highlight & Connector Annotations')}>Download PDF</Button>&nbsp;
+      <Button onClick={load}>Reset</Button>
+    </>;
 
     return (
       <Grid fluid className={styles.appContent}>
@@ -133,18 +137,23 @@ class HighlightAnnotations extends Component {
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
-              <Navbar fluid>
-                <Navbar.Header>
-                  <Navbar.Brand>Highlight &amp; Connector Annotations</Navbar.Brand>
-                  <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                  <Navbar.Form pullRight>
-                    <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'highlightannotations.pdf', 'Highlight & Connector Annotations')}>Download PDF</Button>&nbsp;
-                    <Button onClick={load}>Reset</Button>
-                  </Navbar.Form>
-                </Navbar.Collapse>
-              </Navbar>
+              <h2>
+                <Grid fluid>
+                  <Row>
+                    <Col lg={8} md={12}>
+                      Highlight &amp; Connector Annotations
+                    </Col>
+                    <Col lg={4} xsHidden smHidden mdHidden>
+                      <div className="pull-right">
+                        {buttons}
+                      </div>
+                    </Col>
+                    <Col md={12} lgHidden>
+                      <p />{buttons}
+                    </Col>
+                  </Row>
+                </Grid>
+              </h2>
               <div className={styles.placeholder}>
                 <OrgDiagram
                   className={styles.placeholder}
@@ -152,17 +161,22 @@ class HighlightAnnotations extends Component {
                   config={config}
                   onCursorChanging={(event, data) => {
                     const { context } = data;
-                    setCursorItem(context.id);
+                    if (context != null) {
+                      setCursorItem(context.id);
+                    }
                     // Return true in order to suppress set cursor item in control
                     // it will be updated via subsequent state change and rendering event
                     return true;
                   }}
                   onHighlightChanging={(event, data) => {
                     const { context } = data;
-                    setHighlightItem(context.id);
-                    // Return true in order to suppress set cursor item in control
-                    // it will be updated via subsequent state change and rendering event
-                    return true;
+                    if (context != null) {
+                      setHighlightItem(context.id);
+
+                      // Return true in order to suppress set cursor item in control
+                      // it will be updated via subsequent state change and rendering event
+                      return true;
+                    }
                   }}
                   config={{
                     ...config,

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { FamDiagram, FamDiagramConfig } from 'basicprimitivesreact';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, ButtonGroup, Glyphicon
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
 import {
   FamilyOptionsPanel,
@@ -129,28 +129,37 @@ class FamilyChartWithAnnotations extends Component {
     const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
     const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
     const annotationConfig = config.annotations.find(annotation => annotation.annotationType === primitives.common.AnnotationType.Connector);
+    const buttons = <>
+      <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'dependencies.pdf', 'Dependencies Demo')}>Download PDF</Button>&nbsp;
+      <Button onClick={() => load()}>Reset</Button>
+    </>;
 
     return (
       <Grid fluid className={styles.appContent}>
         <Helmet>
-          <title>- Dependencies Visualization</title>
+          <title>- Dependency Graph Visualization</title>
           <meta name="description" content="Application visualizes project dependency graph. Open sources. Universal React architecture. JavaScript. Supports client side PDf rendering and download." />
         </Helmet>
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
-              <Navbar fluid>
-                <Navbar.Header>
-                  <Navbar.Brand>Dependencies</Navbar.Brand>
-                  <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                  <Navbar.Form pullRight>
-                    <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'dependencies.pdf', 'Dependencies Demo')}>Download PDF</Button>&nbsp;
-                    <Button onClick={() => load()}>Reset</Button>
-                  </Navbar.Form>
-                </Navbar.Collapse>
-              </Navbar>
+              <h2>
+                <Grid fluid>
+                  <Row>
+                    <Col lg={8} md={12}>
+                      Dependency Graph Visualization
+                    </Col>
+                    <Col lg={4} xsHidden smHidden mdHidden>
+                      <div className="pull-right">
+                        {buttons}
+                      </div>
+                    </Col>
+                    <Col md={12} lgHidden>
+                      <p />{buttons}
+                    </Col>
+                  </Row>
+                </Grid>
+              </h2>
               <div className={styles.placeholder}>
                 <FamDiagram
                   className={styles.placeholder}

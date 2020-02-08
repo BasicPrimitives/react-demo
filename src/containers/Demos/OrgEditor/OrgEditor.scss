@@ -14,6 +14,10 @@
   border-style: dotted;
 }
 
+.contextButtonsPanel {
+  margin: 20px 0 10px 0;
+}
+
 // find best combination of screen size / control size
 @media screen and (min-height: 600px) {
   .placeholder {

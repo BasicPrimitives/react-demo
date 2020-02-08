@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { OrgDiagram, OrgDiagramConfig } from 'basicprimitivesreact';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, ButtonGroup, Glyphicon
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
 import {
   AutoLayoutOptionsPanel,
@@ -109,7 +109,10 @@ class DynamicLoading extends Component {
     } = this.props;
     const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
     const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
-
+    const buttons = <>
+      <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'dynamicloading.pdf', 'Dynamic Organizational Chart Nodes Loading')}>Download PDF</Button>&nbsp;
+      <Button onClick={load}>Reset</Button>
+    </>;
     return (
       <Grid fluid className={styles.appContent}>
         <Helmet>
@@ -119,18 +122,23 @@ class DynamicLoading extends Component {
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
-              <Navbar fluid>
-                <Navbar.Header>
-                  <Navbar.Brand>Dynamic Organizational Chart Nodes Loading</Navbar.Brand>
-                  <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                  <Navbar.Form pullRight>
-                    <Button onClick={() => PdfkitHelper.downloadOrgDiagram(config, 'dynamicloading.pdf', 'Dynamic Organizational Chart Nodes Loading')}>Download PDF</Button>&nbsp;
-                    <Button onClick={load}>Reset</Button>
-                  </Navbar.Form>
-                </Navbar.Collapse>
-              </Navbar>
+              <h2>
+                <Grid fluid>
+                  <Row>
+                    <Col lg={8} md={12}>
+                      Dynamic Organizational Chart Nodes Loading
+                    </Col>
+                    <Col lg={4} xsHidden smHidden mdHidden>
+                      <div className="pull-right">
+                        {buttons}
+                      </div>
+                    </Col>
+                    <Col md={12} lgHidden>
+                      <p />{buttons}
+                    </Col>
+                  </Row>
+                </Grid>
+              </h2>
               <div className={styles.placeholder}>
                 <OrgDiagram
                   className={styles.placeholder}

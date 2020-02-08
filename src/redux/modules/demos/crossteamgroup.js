@@ -199,26 +199,30 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
       return {
-        ...initialState,
+        ...state,
         loading: true
       };
     }
 
     case LOAD_SUCCESS: {
-      const { config, ...restState } = state;
+      const { config: { scale } } = state;
+      const { config: defaultConfig } = initialState;
+      const config = action.result;
+      const newConfig = {
+        ...defaultConfig,
+        ...config,
+        scale
+      };
       return {
-        ...restState,
+        ...initialState,
         loading: false,
         loaded: true,
         centerOnCursor: true,
         ...getSelectedItems(
-          {
-            ...config,
-            ...action.result
-          },
-          config.selectedItems
+          newConfig,
+          newConfig.selectedItems
         ),
-        ...getItemsHash(action.result.items),
+        ...getItemsHash(config.items),
         ...getUserAction(UserActionType.SelectedItems)
       };
     }

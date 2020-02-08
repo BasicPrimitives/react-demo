@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { FamDiagram, FamDiagramConfig } from 'basicprimitivesreact';
 import {
-  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, Navbar, ButtonGroup, Glyphicon
+  Grid, Col, Row, Tab, NavItem, Nav, Well, NavDropdown, MenuItem, Button, ButtonGroup, Glyphicon
 } from 'react-bootstrap';
 import {
   FamilyOptionsPanel,
@@ -134,6 +134,10 @@ class FamilyChartItemsOrdering extends Component {
     const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
     const miniTemplateConfig = config.templates.find(template => template.name === 'miniTemplate');
     const annotationConfig = config.annotations.find(annotation => annotation.name === "usercontrolledconnector");
+    const buttons = <>
+      <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'familychartitemsordering.pdf', 'Family Chart Items Ordering Demo')}>Download PDF</Button>&nbsp;
+      <Button onClick={() => load()}>Reset</Button>
+    </>;
 
     return (
       <Grid fluid className={styles.appContent}>
@@ -145,18 +149,23 @@ class FamilyChartItemsOrdering extends Component {
         <Row>
           <Col smPush={4} sm={8} mdPush={3} md={9}>
             <div>
-              <Navbar fluid>
-                <Navbar.Header>
-                  <Navbar.Brand>Family Chart Nodes Order</Navbar.Brand>
-                  <Navbar.Toggle />
-                </Navbar.Header>
-                <Navbar.Collapse>
-                  <Navbar.Form pullRight>
-                    <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'familychartitemsordering.pdf', 'Family Chart Items Ordering Demo')}>Download PDF</Button>&nbsp;
-                    <Button onClick={() => load()}>Reset</Button>
-                  </Navbar.Form>
-                </Navbar.Collapse>
-              </Navbar>
+              <h2>
+                <Grid fluid>
+                  <Row>
+                    <Col lg={8} md={12}>
+                      Family Chart Nodes Order
+                    </Col>
+                    <Col lg={4} xsHidden smHidden mdHidden>
+                      <div className="pull-right">
+                        {buttons}
+                      </div>
+                    </Col>
+                    <Col md={12} lgHidden>
+                      <p />{buttons}
+                    </Col>
+                  </Row>
+                </Grid>
+              </h2>
               <div className={styles.placeholder}>
                 <FamDiagram
                   centerOnCursor={centerOnCursor}
@@ -264,8 +273,11 @@ class FamilyChartItemsOrdering extends Component {
                 />
               </div>
               <br />
+              <div>
+                <input type='checkbox' defaultChecked />
+              </div>
               <Well bsSize="small">{this.getActionMessage()}</Well>
-              <h2>User guided family chart nodes ordering</h2>
+              <h3>User guided family chart nodes ordering</h3>
               <p>Family Tree Component orders and aligns nodes automatically, it searches for the best order of family nodes.
                 This is very handy for initial rendering, but lack of ordering rules keeps layout engine
                 reordering nodes every time we add new nodes into diagram. So end users have to adopt to global
