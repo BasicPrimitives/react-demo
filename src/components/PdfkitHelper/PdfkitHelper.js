@@ -1,7 +1,14 @@
 const primitives = require('basicprimitives');
+import ReactGA from "react-ga";
 import Photos from './Photos';
 
-const downloadDiagram = (config, fileName, caption, plugin) => {
+const downloadDiagram = (config, fileName, caption, templates, onItemRender, plugin) => {
+  ReactGA.event({
+    category: 'PDF Download',
+    action: 'Click',
+    label: fileName
+  });
+
   const PDFDocument = require('pdfkit-nodejs-webpack');
   const blobStream = require('blob-stream');
   const FileSaver = require('file-saver');
@@ -24,7 +31,8 @@ const downloadDiagram = (config, fileName, caption, plugin) => {
     items,
     cursorItem: null,
     hasSelectorCheckbox: primitives.common.Enabled.False,
-    templates: {}
+    templates: (templates || []),
+    onItemRender
   });
 
   var diagramSize = orgDiagramPlugin.getSize();
@@ -49,12 +57,12 @@ const downloadDiagram = (config, fileName, caption, plugin) => {
   });
 };
 
-const downloadOrgDiagram = (config, fileName, caption) => {
-  downloadDiagram(config, fileName, caption, primitives.pdf.orgdiagram.Plugin);
+const downloadOrgDiagram = (config, fileName, caption, templates, onItemRender) => {
+  downloadDiagram(config, fileName, caption, templates, onItemRender, primitives.pdf.orgdiagram.Plugin);
 }
 
-const downloadFamDiagram = (config, fileName, caption) => {
-  downloadDiagram(config, fileName, caption, primitives.pdf.famdiagram.Plugin);
+const downloadFamDiagram = (config, fileName, caption, templates, onItemRender) => {
+  downloadDiagram(config, fileName, caption, templates, onItemRender, primitives.pdf.famdiagram.Plugin);
 }
 
 export default {

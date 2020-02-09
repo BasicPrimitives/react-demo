@@ -115,7 +115,50 @@ class TechTree extends Component {
     const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
     const dotTemplateConfig = config.templates.find(template => template.name === 'dot');
     const buttons = <>
-      <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'techtree.pdf', 'Tech Tree Demo')}>Download PDF</Button>&nbsp;
+      <Button onClick={() => PdfkitHelper.downloadFamDiagram(config, 'techtree.pdf', 'Tech Tree Demo', [
+        {
+          ...(new primitives.orgdiagram.TemplateConfig()),
+          name: "defaultTemplate",
+          itemTemplate: "Use onItemRener method.",
+          itemSize: new primitives.common.Size(164, 34),
+          highlightPadding: new primitives.common.Thickness(2, 2, 2, 2)
+        }
+      ], function (doc, position, data) {
+        var itemConfig = data.context,
+          itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue,
+          color = primitives.common.highestContrast(itemTitleColor, config.itemTitleSecondFontColor, config.itemTitleFirstFontColor);
+
+        if (data.templateName == "defaultTemplate") {
+          var contentSize = new primitives.common.Size(164, 34);
+
+          contentSize.width -= 2;
+          contentSize.height -= 2;
+
+          doc.save();
+
+          /* item border */
+          doc.roundedRect(position.x, position.y, position.width, position.height, 0)
+            .lineWidth(1)
+            .stroke('#dddddd');
+
+          /* title background */
+          doc.fillColor(itemTitleColor)
+            .roundedRect(position.x + 2, position.y + 2, (contentSize.width - 4), (contentSize.height - 4), 2)
+            .fill();
+
+          /* title */
+          doc.fillColor(color)
+            .font('Helvetica', 12)
+            .text(itemConfig.title, position.x + 4, position.y + 4, {
+              ellipsis: true,
+              width: (contentSize.width - 8),
+              height: (contentSize.height - 8),
+              align: 'left'
+            });
+
+          doc.restore();
+        }
+      })}>Download PDF</Button>&nbsp;
       <Button onClick={() => load()}>Reset</Button>
     </>;
 
