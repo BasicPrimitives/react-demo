@@ -48,10 +48,11 @@ class MinimizedItemsOptionsPanel extends Component { // eslint-disable-line reac
           items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           onChange={value => setOption('highlightPadding', value)}
         />
-        <RadioGroupOption
+        <ComboBoxOption
           caption="Marker Shape"
           propertyName="minimizedItemShapeType"
           value={config.minimizedItemShapeType}
+          isNullable
           valueType="number"
           items={primitives.common.ShapeType}
           onChange={value => setOption('minimizedItemShapeType', value)}

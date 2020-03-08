@@ -32,7 +32,7 @@ class ReactUseCases extends Component {
         },
         {
           url: "/reactusecases/dragndrop",
-          caption: "Drag &amp; Drop Support"
+          caption: "Drag & Drop Support"
         },
         {
           url: "/reactusecases/diagramsizing",
@@ -41,7 +41,7 @@ class ReactUseCases extends Component {
       ]
     },
     {
-      title: "USER INTERFACE EVENTS &amp; OPTIONS",
+      title: "USER INTERFACE EVENTS & OPTIONS",
       items: [
         {
           url: "/reactusecases/selectingcursoritem",
@@ -53,7 +53,7 @@ class ReactUseCases extends Component {
         },
         {
           url: "/reactusecases/selecteditems",
-          caption: "Slected items &amp; Check boxes"
+          caption: "Slected items & Check boxes"
         },
         {
           url: "/reactusecases/buttons",
@@ -61,7 +61,7 @@ class ReactUseCases extends Component {
         },
         {
           url: "/reactusecases/itemandgrouptitlecolors",
-          caption: "Item &amp; Group title colors"
+          caption: "Item & Group title colors"
         },
         {
           url: "/reactusecases/labels",
@@ -78,7 +78,7 @@ class ReactUseCases extends Component {
         },
         {
           url: "/reactusecases/adviserandassistantitemtypes",
-          caption: "Adviser &amp; Assistant item types"
+          caption: "Adviser & Assistant item types"
         },
         {
           url: "/reactusecases/partneritemtypes",
@@ -120,6 +120,10 @@ class ReactUseCases extends Component {
         {
           url: "/reactusecases/familychartitemsordering",
           caption: "Family Items Ordering"
+        },
+        {
+          url: "/usecases/loopsinfamily",
+          caption: "Loops Optimization"
         }
       ]
     },
@@ -157,7 +161,7 @@ class ReactUseCases extends Component {
         },
         {
           url: "/reactusecases/shapeandbackgroundannotations",
-          caption: "Shape &amp; Background Annotations"
+          caption: "Shape & Background Annotations"
         },
         {
           url: "/reactusecases/highlightpathannotation",

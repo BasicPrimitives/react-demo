@@ -13,7 +13,7 @@ import Loadable from 'react-loadable';
 import { AppContainer as HotEnabler } from 'react-hot-loader';
 import { getStoredState } from 'redux-persist';
 import localForage from 'localforage';
-import { socket, createApp } from 'app';
+import { createApp } from 'app';
 import createStore from 'redux/create';
 import apiClient from 'helpers/apiClient';
 import routes from 'routes';
@@ -30,7 +30,7 @@ const persistConfig = {
     // Ignore state from cookies, only use preloadedState from window object
     return originalState;
   },
-  whitelist: ['auth', 'info', 'chat']
+  whitelist: ['auth', 'info']
 };
 
 const dest = document.getElementById('content');
@@ -42,28 +42,9 @@ const providers = {
   client
 };
 
-function initSocket() {
-  socket.on('news', data => {
-    console.log(data);
-    socket.emit('my other event', { my: 'data from client' });
-  });
-  socket.on('msg', data => {
-    console.log(data);
-  });
-
-  return socket;
-}
-
-initSocket();
-
 (async () => {
   const preloadedState = await getStoredState(persistConfig);
   const online = window.__data ? true : await isOnline();
-
-  if (online) {
-    socket.open();
-    await app.authenticate().catch(() => null);
-  }
 
   const history = createBrowserHistory();
   const store = createStore({

@@ -22,6 +22,7 @@ import familyOrdering from './data/familyOrdering.js';
 import dependencies from './data/dependencies.js';
 import patents from './data/patents.js';
 import financialOwnership from './data/financialOwnership.js';
+import mutualFinancialOwnership from './data/mutualFinancialOwnership.js';
 import techTree from './data/techTree.js';
 
 export default function service(app) {
@@ -37,9 +38,7 @@ export default function service(app) {
       'Horizontal Chain': 'horizontalChain',
       Alignment: 'alignmentData',
       Cascade: 'famdataCascade',
-      // "Weird Financial Ownership - Loops": "famdataOwnership",
       Loops: 'famdataLoops',
-      'Lables on Loops': 'famdataLoopsTest',
       'World Dynamics': 'famdataWorld',
       Spouses: 'famSpouses',
       'Inter Marriage': 'famdataCharless2',
@@ -90,9 +89,6 @@ export default function service(app) {
       case 'famdataLoops':
         result = famdataLoops;
         break;
-      case 'famdataLoopsTest':
-        result = famdataLoopsTest;
-        break;
       case 'famdataWorld':
         result = famdataWorld;
         break;
@@ -128,6 +124,9 @@ export default function service(app) {
         break;
       case 'financialownership':
         result = financialOwnership;
+        break;
+      case 'mutualfinancialownership':
+        result = mutualFinancialOwnership;
         break;
       case 'techtree':
         result = techTree;

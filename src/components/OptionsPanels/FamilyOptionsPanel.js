@@ -53,6 +53,19 @@ class FamilyOptionsPanel extends Component { // eslint-disable-line react/prefer
           onChange={value => setOption('hideGrandParentsConnectors', value)}
         />
         <p>
+          Chart optimizes items placement into layers, so the final diagram has minimal number
+          of feedback loops between them. Use following option to disable that behaviour and
+          place items in the same sequence as in source items collection.
+        </p>
+        <RadioGroupOption
+          caption="Loops Layout Mode"
+          propertyName="loopsLayoutMode"
+          value={config.loopsLayoutMode}
+          valueType="number"
+          items={primitives.common.LoopsLayoutMode}
+          onChange={value => setOption('loopsLayoutMode', value)}
+        />
+        <p>
           The following option enables natrix layout in family diagram. Nodes having the same set of parents and children are grouped into square shaped matrix in order to keep
           them visualy together.
         </p>

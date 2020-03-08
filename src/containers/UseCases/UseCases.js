@@ -132,6 +132,10 @@ class UseCases extends Component {
         {
           url: "/usecases/familychartitemsordering",
           caption: "Family Items Ordering"
+        },
+        {
+          url: "/usecases/loopsinfamily",
+          caption: "Loops Optimization"
         }
       ]
     },

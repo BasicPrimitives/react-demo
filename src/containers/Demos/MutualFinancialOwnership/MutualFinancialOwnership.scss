@@ -1,0 +1,253 @@
+.appContent {
+  margin: 70px 0; // for fixed navbar
+  position: relative;
+}
+
+.placeholder {
+  width: 100%;
+  height: 350px;
+  border-width: 1px;
+  border-style: dotted;
+}
+
+
+// find best combination of screen size / control size
+@media screen and (min-height: 600px) {
+  .placeholder {
+    height: 350px;
+  }
+}
+
+@media screen and (min-height: 700px) {
+  .placeholder {
+    height: 450px;
+  }
+}
+
+@media screen and (min-height: 800px) {
+  .placeholder {
+    height: 550px;
+  }
+}
+
+@media screen and (min-height: 900px) {
+  .placeholder {
+    height: 650px;
+  }
+}
+
+@media screen and (min-height: 1000px) {
+  .placeholder {
+    height: 750px;
+  }
+}
+
+@media screen and (min-height: 1100px) {
+  .placeholder {
+    height: 850px;
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  .placeholder {
+    height: 950px;
+  }
+}
+
+@media screen and (min-height: 1300px) {
+  .placeholder {
+    height: 1050px;
+  }
+}
+
+@media screen and (min-height: 1400px) {
+  .placeholder {
+    height: 1150px;
+  }
+}
+
+@media screen and (min-height: 1500px) {
+  .placeholder {
+    height: 1250px;
+  }
+}
+
+.TemplateItem {
+	position: absolute;
+	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  box-sizing:content-box;
+}
+
+.TemplateCornerAll {
+  -moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.TemplateItemFrame {
+	border: 1px solid #dddddd;
+	background: #eeeeee;
+	color: #333333;
+}
+
+.TemplateTitle {
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 14px;
+	line-height: 16px;
+	color: white;
+	padding: 0;
+}
+
+.TemplatePhotoFrame {
+	border: 1px solid #cccccc;
+	background: #f6f6f6;
+	color: #1c94c4;
+}
+
+.DefaultTemplate {
+  @extend .TemplateItem, .TemplateCornerAll, .TemplateItemFrame;
+  width: 100%;
+  height: 100%;
+  left: -1px;
+  top: -1px;
+
+  .DefaultTitleBackground {
+    @extend .TemplateItem, .TemplateCornerAll, .TemplateItemFrame;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 20px;
+
+    .DefaultTitle {
+      @extend .TemplateItem, .TemplateTitle;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      height: 16px;
+ 	  }
+  }
+
+  .DefaultDescription {
+    @extend .TemplateItem;
+    overflow: hidden;
+    text-align: left;
+    top: 26px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    font-size: 12px;
+  }
+}
+
+.Badge {
+  box-sizing:content-box;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -khtml-border-radius: 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: Arial;
+  padding: 4px;
+  float: left;
+  width:16px; 
+  height:16px;
+  z-index: 1000;
+  color: white;
+}
+
+.BadgeLabel {
+  box-sizing:content-box;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: Arial;
+  padding-top: 6px;
+}
+
+.InLayoutLabel {
+	text-align: center;
+}
+
+.UnitTemplate {
+  @extend .TemplateItem, .TemplateCornerAll, .TemplateItemFrame;
+	width: 100%;
+  height: 100%;
+  left: -1px;
+  top: -1px;
+
+	.UnitBackground {
+    @extend .TemplateItem, .TemplateCornerAll, .TemplateItemFrame;
+		top: 2px;
+		left: 2px;
+		width: 216px;
+		height: 20px;
+
+		.UnitTitle {
+      @extend .TemplateItem, .TemplateTitle;
+      top: 3px;
+      left: 6px;
+      width: 208px;
+      height: 16px;
+      text-align: center;
+		}
+	}
+
+	.UnitDescription {
+    @extend .TemplateItem;
+		top: 26px;
+		left: 4px;
+		width: 212px;
+    height: 36px;
+    font-size: 10px;
+	}
+}
+
+.ShapeTemplate {
+  @extend .TemplateItem;
+	width: 100%;
+  height: 100%;
+  left: -1px;
+  top: -1px;
+
+  .ShapeFrame {
+    @extend .TemplateItem;
+		top: 0px;
+		left: 0px;
+		width: 100px;
+		height: 100px;
+
+		.ShapeShape {
+      @extend .TemplateItem;
+      height:100px;
+      width:100px;
+		}
+  }
+
+  .ShapeTitle {
+    @extend .TemplateItem;
+    top: 40px;
+    left: 0px;
+    width: 100px;
+    height: 24px;
+    font-size: 20px;
+    text-align: center;
+  }
+}

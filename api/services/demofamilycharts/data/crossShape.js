@@ -5,9 +5,12 @@ export default {
   annotations: [
     {
       annotationType: primitives.common.AnnotationType.Connector,
+      connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
+      labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
+      zOrderType: primitives.common.ZOrderType.Foreground,
       fromItem: 2,
       toItem: 1,
-      label: {color:"red", badge: "1", title: "Connector annotation"},
+      label: { color: "red", badge: "1", title: "Connector annotation" },
       labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
       connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
       color: primitives.common.Colors.Red,
