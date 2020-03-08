@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { transform } from "@babel/core";
@@ -86,6 +86,7 @@ class ReactHowToUse extends Component {
         return <LiveProvider
           scope={{
             Component,
+            Fragment,
             primitives,
             OrgDiagram,
             FamDiagram,
