@@ -1,14 +1,14 @@
 const primitives = require('basicprimitives');
 
-const LOAD = 'redux-example/financialownership/LOAD';
-const LOAD_SUCCESS = 'redux-example/financialownership/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/financialownership/LOAD_FAIL';
-const SETCURSORITEM = 'redux-example/financialownership/setCursorItem';
-const SETSELECTEDITEMS = 'redux-example/financialownership/setSelectedItems';
-const SETCONFIGOPTION = 'redux-example/financialownership/setConfigOption';
-const SETTEMPLATEOPTION = 'redux-example/financialownership/setTemplateOption';
-const SETANNOTATIONOPTION = 'redux-example/financialownership/setAnnotationOption';
-const SETANNOTATIONITEM = 'redux-example/financialownership/setAnnotationItem';
+const LOAD = 'redux-example/mutualfinancialownership/LOAD';
+const LOAD_SUCCESS = 'redux-example/mutualfinancialownership/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/mutualfinancialownership/LOAD_FAIL';
+const SETCURSORITEM = 'redux-example/mutualfinancialownership/setCursorItem';
+const SETSELECTEDITEMS = 'redux-example/mutualfinancialownership/setSelectedItems';
+const SETCONFIGOPTION = 'redux-example/mutualfinancialownership/setConfigOption';
+const SETTEMPLATEOPTION = 'redux-example/mutualfinancialownership/setTemplateOption';
+const SETANNOTATIONOPTION = 'redux-example/mutualfinancialownership/setAnnotationOption';
+const SETANNOTATIONITEM = 'redux-example/mutualfinancialownership/setAnnotationItem';
 
 export const UserActionType = {
   None: 0,
@@ -32,7 +32,7 @@ const initialState = {
       {
         ...new primitives.famdiagram.TemplateConfig(),
         name: 'defaultTemplate',
-        itemSize: new primitives.common.Size(220, 60),
+        itemSize: new primitives.common.Size(160, 60),
         minimizedItemSize: new primitives.common.Size(30, 30),
         minimizedItemCornerRadius: 1, // Sligtly rounded corners
         minimizedItemLineWidth: 1,
@@ -45,7 +45,7 @@ const initialState = {
       {
         ...new primitives.famdiagram.TemplateConfig(),
         name: 'unitTemplate',
-        itemSize: new primitives.common.Size(220, 60),
+        itemSize: new primitives.common.Size(160, 60),
         minimizedItemSize: new primitives.common.Size(30, 30),
         minimizedItemCornerRadius: 1, // Sligtly rounded corners
         minimizedItemLineWidth: 1,
@@ -79,14 +79,14 @@ const initialState = {
     annotations: [
       new primitives.famdiagram.ConnectorAnnotationConfig({
         annotationType: primitives.common.AnnotationType.Connector,
-        fromItem: 5,
-        toItem: 8,
-        label: { color: "red", badge: "1", title: "Connector annotation" },
-        labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
-        connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
         connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
         labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
         zOrderType: primitives.common.ZOrderType.Foreground,
+        fromItem: 5,
+        toItem: 8,
+        label: { color: 'red', badge: '1', title: 'Link' },
+        labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
+        connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
         color: primitives.common.Colors.Red,
         offset: 5,
         lineWidth: 2,
@@ -97,7 +97,7 @@ const initialState = {
     items: [],
 
     /* Layout */
-    pageFitMode: primitives.common.PageFitMode.None,
+    pageFitMode: primitives.common.PageFitMode.FitToPage,
     orientationType: primitives.common.OrientationType.Top,
     verticalAlignment: primitives.common.VerticalAlignmentType.Middle,
     horizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
@@ -140,14 +140,14 @@ const initialState = {
     normalLevelShift: 20,
     dotLevelShift: 20,
     lineLevelShift: 20,
-    normalItemsInterval: 20,
+    normalItemsInterval: 10,
     dotItemsInterval: 20,
     lineItemsInterval: 20,
     cousinsIntervalMultiplier: 1,
 
     /* Connectors */
     arrowsDirection: primitives.common.GroupByType.Children,
-    showExtraArrows: false,
+    showExtraArrows: true,
     extraArrowsMinimumSpace: 20,
     connectorType: primitives.common.ConnectorType.Squared,
     elbowType: primitives.common.ElbowType.Round,
@@ -190,32 +190,25 @@ const initialState = {
     highlightGravityRadius: 40,
     enablePanning: true
   },
-  itemsHash: {},
-  parents: {},
-  children: {}
+  itemsHash: {}
 };
 
 function getItemsHash(items = []) {
-  const parents = {};
-  const children = {};
-  items.forEach(item => {
-    if (!parents[item.id]) {
-      parents[item.id] = item.parents || [];
-    }
-    parents[item.id].forEach(parentid => {
-      if (!children[parentid]) {
-        children[parentid] = [];
-      }
-      children[parentid].push(item.id);
-    });
-  });
-  const itemsHash = items.reduce((agg, item) => {
+  const newItemsHash = {};
+  items.reduce((agg, item) => {
     agg[item.id] = item;
     return agg;
-  }, {});
+  }, newItemsHash);
+  const children = {};
+  items.map(item => {
+    (item.parents || []).map(parent => {
+      children[parent] = children[parent] || [];
+      children[parent].push(item.id);
+    })
+  });
+
   return {
-    itemsHash,
-    parents,
+    itemsHash: newItemsHash,
     children
   };
 }
@@ -230,6 +223,30 @@ function getUserAction(type, buttonName, itemId) {
   };
 }
 
+function getCursorItem(config, cursorItem) {
+  return {
+    centerOnCursor: true,
+    config: {
+      ...config,
+      cursorItem
+    }
+  };
+}
+
+function getAnnotations(config) {
+  const { annotations } = config;
+  if (Array.isArray(annotations)) {
+    return {
+      ...config,
+      annotations: config.annotations.map(annotation => ({
+        ...new primitives.famdiagram.ConnectorAnnotationConfig(),
+        ...annotation
+      }))
+    };
+  }
+  return config;
+}
+
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {
@@ -241,22 +258,19 @@ export default function reducer(state = initialState, action = {}) {
 
     case LOAD_SUCCESS: {
       const { config: { scale } } = state;
-      const { config: oldConfig } = initialState;
+      const { config: oldConfig, ...restState } = initialState;
       const config = action.result;
       const newConfig = {
         ...oldConfig,
         ...config,
         scale
       };
-      const { itemsHash, children, parents } = getItemsHash(config.items);
       return {
-        ...state,
+        ...restState,
         loading: false,
         loaded: true,
-        config: newConfig,
-        itemsHash,
-        children,
-        parents
+        ...getCursorItem(getAnnotations(newConfig), newConfig.cursorItem),
+        ...getItemsHash(config.items)
       };
     }
 
@@ -320,15 +334,47 @@ export default function reducer(state = initialState, action = {}) {
     }
 
     case SETCURSORITEM: {
-      const { config } = state;
+      const { config, children, itemsHash } = state;
+      const { annotations } = config;
       const { cursorItem } = action;
+      const itemConfig = itemsHash[cursorItem];
+      const parentItems = (itemConfig && itemConfig.parents) || [];
+      const childItems = children[cursorItem] || [];
+
+      let newAnnotations = annotations.reduce((agg, annotation) => {
+        if (annotation.annotationType !== primitives.common.AnnotationType.HighlightPath) {
+          agg.push(annotation);
+        }
+        return agg;
+      }, []);
+
+      if (cursorItem !== null) {
+        const items = [...parentItems, ...childItems];
+        newAnnotations = newAnnotations.concat(
+          items.map(
+            itemid => ({
+              annotationType: primitives.common.AnnotationType.HighlightPath,
+              items: [cursorItem, itemid],
+              color: primitives.common.Colors.Navy,
+              opacity: 0.2,
+              lineWidth: 16,
+              zOrderType: primitives.common.ZOrderType.Background,
+              showArrows: false
+            })
+          )
+        );
+      }
       return {
         ...state,
         centerOnCursor: false,
-        config: {
-          ...config,
+        ...getCursorItem(
+          {
+            ...config,
+            cursorItem,
+            annotations: newAnnotations
+          },
           cursorItem
-        },
+        ),
         ...getUserAction(UserActionType.ChangedCursor)
       };
     }
@@ -371,22 +417,20 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  return globalState.financialownership && globalState.financialownership.loaded;
+  return globalState.mutualfinancialownership && globalState.mutualfinancialownership.loaded;
 }
 
-export function load(datasetName = 'financialownership') {
+export function load(datasetName = 'mutualfinancialownership') {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: ({ client }) => client.get(`/load-demofamilychart?name=${datasetName}`)
   };
 }
 
-export function setCursorItem(cursorItem, parentItems, childrenItems) {
+export function setCursorItem(cursorItem) {
   return {
     type: SETCURSORITEM,
-    cursorItem,
-    parentItems,
-    childrenItems
+    cursorItem
   };
 }
 

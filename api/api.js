@@ -1,6 +1,5 @@
 import express from '@feathersjs/express';
 import feathers from '@feathersjs/feathers';
-import socketio from '@feathersjs/socketio';
 import morgan from 'morgan';
 import session from 'express-session';
 import bodyParser from 'body-parser';
@@ -8,7 +7,6 @@ import cookieParser from 'cookie-parser';
 import PrettyError from 'pretty-error';
 import config from './config';
 import services from './services';
-import channels from './channels';
 
 const pretty = new PrettyError();
 
@@ -34,9 +32,7 @@ app
   .use(bodyParser.json())
   // Core
   .configure(express.rest())
-  .configure(socketio({ path: '/ws' }))
   .configure(services)
-  .configure(channels)
   // Final handlers
   .use(express.notFound())
   .use(

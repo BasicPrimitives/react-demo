@@ -99,6 +99,7 @@ const initialState = {
     /* Family Diagram Specific Options */
     neighboursSelectionMode: primitives.common.NeighboursSelectionMode.ParentsChildrenSiblingsAndSpouses,
     groupByType: primitives.common.GroupByType.Children,
+    loopsLayoutMode: primitives.common.LoopsLayoutMode.Optimized,
     alignBylevels: true,
     hideGrandParentsConnectors: false,
     enableMatrixLayout: false,
@@ -245,7 +246,9 @@ export default function reducer(state = initialState, action = {}) {
             offset: -45,
             lineWidth: 3,
             lineType: primitives.common.LineType.Dotted,
-            connectorPlacementType: primitives.common.ConnectorPlacementType.Straight
+            connectorPlacementType: primitives.common.ConnectorPlacementType.Straight,
+            labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
+            zOrderType: primitives.common.ZOrderType.Foreground
           });
         }
       };

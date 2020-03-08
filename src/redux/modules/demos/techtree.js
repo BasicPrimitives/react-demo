@@ -92,6 +92,7 @@ const initialState = {
     /* Family Diagram Specific Options */
     neighboursSelectionMode: primitives.common.NeighboursSelectionMode.ParentsChildrenSiblingsAndSpouses,
     groupByType: primitives.common.GroupByType.Parents,
+    loopsLayoutMode: primitives.common.LoopsLayoutMode.Optimized,
     alignBylevels: true,
     hideGrandParentsConnectors: false,
     enableMatrixLayout: false,

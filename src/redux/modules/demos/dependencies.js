@@ -60,6 +60,9 @@ const initialState = {
     annotations: [
       {
         annotationType: primitives.common.AnnotationType.Connector,
+        connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
+        labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
+        zOrderType: primitives.common.ZOrderType.Foreground,
         fromItem: 5,
         toItem: 8,
         label: { color: "red", badge: "1", title: "Connector annotation" },
@@ -107,6 +110,7 @@ const initialState = {
     /* Family Diagram Specific Options */
     neighboursSelectionMode: primitives.common.NeighboursSelectionMode.ParentsChildrenSiblingsAndSpouses,
     groupByType: primitives.common.GroupByType.Children,
+    loopsLayoutMode: primitives.common.LoopsLayoutMode.Optimized,
     alignBylevels: true,
     hideGrandParentsConnectors: false,
     enableMatrixLayout: false,

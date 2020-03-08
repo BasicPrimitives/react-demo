@@ -13,7 +13,6 @@ import {
 } from 'react-bootstrap';
 import Helmet from 'react-helmet';
 import qs from 'qs';
-import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout as logoutAction } from 'redux/modules/auth';
 import { Notifs } from 'components';
 import config from 'config';
@@ -22,9 +21,6 @@ import config from 'config';
   fetch: async ({ store: { dispatch, getState } }) => {
     if (!isAuthLoaded(getState())) {
       await dispatch(loadAuth()).catch(() => null);
-    }
-    if (!isInfoLoaded(getState())) {
-      await dispatch(loadInfo()).catch(() => null);
     }
   }
 })
@@ -144,6 +140,9 @@ class App extends Component {
         <LinkContainer to="/financialownership">
           <MenuItem eventKey={11}>Financial Ownership</MenuItem>
         </LinkContainer>
+        <LinkContainer to="/mutualfinancialownership">
+          <MenuItem eventKey={12}>Mutual Financial Ownership</MenuItem>
+        </LinkContainer>
       </NavDropdown>
       <NavDropdown title="How to Use" id="basic-nav-dropdown">
         <LinkContainer to="/usecases/firstorganizationalchart">
@@ -208,17 +207,6 @@ class App extends Component {
                 </LinkContainer>
               </NavDropdown>
               {user && (
-                <>
-                  <LinkContainer to="/chat">
-                    <NavItem>Chat</NavItem>
-                  </LinkContainer>
-                  <LinkContainer to="/about">
-                    <NavItem>About Us</NavItem>
-                  </LinkContainer>
-                </>
-              )}
-
-              {user && (
                 <LinkContainer to="/login">
                   <NavItem>Login</NavItem>
                 </LinkContainer>
@@ -276,7 +264,7 @@ class App extends Component {
           </a>
           .
         </div>
-      </div >
+      </div>
     );
   }
 }

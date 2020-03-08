@@ -13,6 +13,7 @@ import {
   Dependencies,
   Patents,
   FinancialOwnership,
+  MutualFinancialOwnership,
   TechTree,
   Partners,
   ReactUseCases,
@@ -27,8 +28,6 @@ import {
   Contact,
   NotFound
 } from 'containers';
-import About from 'containers/About/Loadable';
-import Chat from 'containers/Chat/Loadable';
 import Login from 'containers/Login/Loadable';
 import LoginSuccess from 'containers/LoginSuccess/Loadable';
 import Register from 'containers/Register/Loadable';
@@ -64,6 +63,7 @@ const routes = [
       { path: '/patents', component: Patents },
       { path: '/partners', component: Partners },
       { path: '/financialownership', component: FinancialOwnership },
+      { path: '/mutualfinancialownership', component: MutualFinancialOwnership },
       {
         path: '/usecases',
         component: UseCases,
@@ -101,8 +101,6 @@ const routes = [
       { path: '/downloads', component: Downloads },
       { path: '/license', component: License },
       { path: '/contact', component: Contact },
-      { path: '/chat', component: isAuthenticated(Chat) },
-      { path: '/about', component: isAuthenticated(About) },
       { path: '/login', component: Login },
       { path: '/login-success', component: isAuthenticated(LoginSuccess) },
       { path: '/register', component: isNotAuthenticated(Register) },
