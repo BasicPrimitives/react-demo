@@ -2319,17 +2319,17 @@ basic-auth@~2.0.0:
   dependencies:
     safe-buffer "5.1.2"
 
-basicprimitives@^5.8.1:
-  version "5.8.1"
-  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.8.1.tgz#c4fc2d80bb7b85c7ff304935b6f7df406b616b89"
-  integrity sha512-SpQciJLkFG4kFPg3l4EILP/RoYq8rFItbZvKLlj6UCRGWQfZoxaQr1XoyLODC5stboEemCQkVkFOL5kSel7A0Q==
+basicprimitives@^5.8.2:
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-5.8.2.tgz#7ec11deb7aef1d68189cd488f17242fbdda5445d"
+  integrity sha512-ECDCK56ZK3RsVSLft0iAzqowOfTHSxNQTY3WxOnMA1llPiKfsW4nSXqjswnawUjNQ/4sr3HU8gL4Ttlb1zaPTQ==
 
-basicprimitivesreact@^5.8.1:
-  version "5.8.1"
-  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-5.8.1.tgz#4a17c6b4439277b3d472e798f751a503108f186d"
-  integrity sha512-eIJy95hoaP0krMi2RGCKXzkpd5fl3vhJQKPaRmXuBwNAu7Ut9pUoXt5SUbkLzSRCQSW6IjrDuXtrBb1kmthu2Q==
+basicprimitivesreact@^5.8.2:
+  version "5.8.2"
+  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-5.8.2.tgz#d78b02eab8f7e4e7971fa359afa6196303317fec"
+  integrity sha512-5chC8uinKN6FFJxL8qRdbR++t6Nsv6KMZouDQWthQe/3djeur0wWCRUQwM0to+Xopqhk7s6OubQIR5MukoEBuA==
   dependencies:
-    basicprimitives "^5.8.1"
+    basicprimitives "^5.8.2"
     resize-observer-polyfill "^1.5.1"
 
 bcrypt-pbkdf@^1.0.0:
