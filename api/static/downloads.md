@@ -43,21 +43,3 @@ Components library that implements organizational and multi-parent hierarchical 
 * Patents Inheritance Diagram
 
 [Download](files/BasicPrimitivesDiagramsReactDemo.zip) [GitHub](https://github.com/BasicPrimitives/react-demo)
-
-## Basic Primitives Diagrams ASP.NET MVC Sample
-Basic Primitives ASP.NET MVC Sample - rendering of Basic Primitives First Organizational Chart on ASP.NET MVC page
-
-[Download](files/BasicPrimitivesAspNetMvcSample.zip)
-
-## Basic Primitives Diagrams ASP.NET Sample
-
-Basic Primitives ASP.NET 3.5 custom control Demo. jQuery UI Widget based control visualizes hierarchical structure in form of organizational chart using default or user defined client side JavaScript templates.
-
-**Warning! This sample is no longer being updated.**
-
-ASP.NET Web Form application should include next JavaScript files: jquery-1.7.2.js, jquery.json-2.3.min.js, jquery-ui-1.8.16.custom.min.js and css file: jquery-ui-1.8.16.custom.css
-ASP.NET Web Form application must contain AJAX "ScriptManager" component.
-Please rebuild project in order to see control in Visual Studio toolbox. Design time preview is not implemented, but control's API is complete.
-It has next major features:
-
-[Download](files/BasicPrimitivesAspNetSample.zip)
