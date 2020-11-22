@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:8
+FROM mhart/alpine-node:14
 
 # Install required dependencies (Alpine Linux packages)
 RUN apk update && \
@@ -47,3 +47,5 @@ RUN chown -Rh $user:$user /project
 RUN yarn
 
 USER $user
+
+CMD [ "yarn", "start" ]
