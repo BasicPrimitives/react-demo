@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo, useCallback } from 'react';
 import Helmet from 'react-helmet';
 import Container from '@material-ui/core/Container';
 import Drawer from '@material-ui/core/Drawer';
@@ -91,7 +91,7 @@ function FamilyChartWithAnnotations() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []/* run only once */);
 
-  function getActionMessage() {
+  function getActionMessage(config, userAction, itemsHash) {
     switch (userAction.type) {
       case UserActionType.ContextButtonClick: {
         const item = itemsHash[userAction.itemId];
@@ -110,11 +110,35 @@ function FamilyChartWithAnnotations() {
     }
   }
 
-  const snackbarMessage = getActionMessage();
+  function getOptionsPanelConfig(datasetNames, annotationConfig) {
+    return [{ title: "Family Samples", 
+        namespace: "datasets",
+        options: [
+          { optionType: "RadioBoxConfig", name: "datasetName", caption: "Names", options: datasetNames, valueType: "string" },
+        ]
+      }, 
+      FamilyLayoutOptions,
+      DefaultTemplateOptions,
+      (annotationConfig !== undefined ? ConnectorAnnotationOptions : undefined),
+      GroupTitlesOptions,
+      MarkersOptions,
+      IntervalsOptions,
+      ConnectorsOptions,
+      LabelsOptions,
+      CalloutOptions,
+      InteractivityOptions,
+      RenderingOptions,
+      FrameOptions
+    ].filter(items => items);
+  }
+
+  const snackbarMessage = useMemo(() => getActionMessage(config, userAction, itemsHash), [config, userAction, itemsHash]);
   const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
   const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
   const miniTemplateConfig = config.templates.find(template => template.name === 'miniTemplate');
-  const annotationConfig = config.annotations.find(annotation => annotation.name === "usercontrolledconnector") || new primitives.orgdiagram.ConnectorAnnotationConfig({offset: 2});
+  const annotationConfig = config.annotations.find(annotation => annotation.name === "usercontrolledconnector");
+  const optionsPanelConfig = useMemo(() => getOptionsPanelConfig(datasetNames, annotationConfig), [datasetNames, annotationConfig]);
+
   return (
     <>
       <Helmet>
@@ -282,24 +306,7 @@ function FamilyChartWithAnnotations() {
           </div>
           <Divider />
           <OptionsPanel 
-            optionsPanelConfig={[{ title: "Family Samples", 
-                namespace: "datasets",
-                options: [
-                  { optionType: "RadioBoxConfig", name: "datasetName", caption: "Names", options: datasetNames, valueType: "string" },
-                ]
-              },
-              FamilyLayoutOptions,
-              DefaultTemplateOptions,
-              ConnectorAnnotationOptions,
-              GroupTitlesOptions,
-              MarkersOptions,
-              IntervalsOptions,
-              ConnectorsOptions,
-              LabelsOptions,
-              CalloutOptions,
-              InteractivityOptions,
-              RenderingOptions,
-              FrameOptions]} 
+            optionsPanelConfig={optionsPanelConfig} 
             config={config} 
             defaultTemplate={templateConfig} 
             annotation={annotationConfig}

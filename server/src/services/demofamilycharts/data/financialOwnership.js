@@ -16,7 +16,8 @@ module.exports = {
       color: primitives.common.Colors.Red,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed
+      lineType: primitives.common.LineType.Dashed,
+      name: "usercontrolledconnector"
     },
     new primitives.famdiagram.HighlightPathAnnotationConfig({ items: [3, 5] }),
     new primitives.famdiagram.HighlightPathAnnotationConfig({ items: [3, 6] }),

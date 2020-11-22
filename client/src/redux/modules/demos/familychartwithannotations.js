@@ -239,6 +239,7 @@ export default function reducer(state = initialState, action = {}) {
 
     case LOAD_SUCCESS: {
       const { config: { scale } } = state;
+      let { datasetNames: newDatasetNames } = state;
       const { config: defaultConfig } = initialState;
       const { datasetName, datasetNames, config } = action.result;
       const newConfig = {
@@ -246,6 +247,9 @@ export default function reducer(state = initialState, action = {}) {
         ...config,
         scale
       };
+      if(!Object.keys(newDatasetNames).length) {
+        newDatasetNames = datasetNames;
+      }
       return {
         ...state,
         loading: false,
@@ -257,7 +261,7 @@ export default function reducer(state = initialState, action = {}) {
         },
         centerOnCursor: true,
         datasetName,
-        datasetNames,
+        datasetNames:newDatasetNames,
         ...getCursorItem(newConfig, newConfig.cursorItem),
         ...getItemsHash(config.items)
       };
