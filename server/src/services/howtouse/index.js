@@ -1,0 +1,46 @@
+const _ = require('lodash');
+const express = require('express');
+const path = require('path');
+const cache = require('memory-cache');
+const uuid = require('uuid');
+const { loadMarkdown, getSampleFileContent } = require('./markdown');
+
+module.exports = function customService(app) {
+  //app.use(express.static(path.join(__dirname, '..', '..', 'static')));
+
+  app.use('/load-markdown', async (req, res, next) => {
+    try {
+      var markdown = await loadMarkdown(req.query.name);
+      return res.json(markdown);
+    } catch (e) {
+      next(e)
+    }
+  });
+
+  app.use('/get-sample', async (req, res) => {
+    const fileContent = await getSampleFileContent(req.query.name);
+    return res.send(fileContent);
+  });
+
+  app.use('/get-saved-sample', (req, res) => {
+    let fileContent = cache.get(req.query.name);
+    if (fileContent == null) {
+      fileContent = '<p>Sample expired in cache. Click Try button again.</p>';
+    }
+    return res.send(fileContent);
+  });
+
+  app.use('/save-code', (req, res) => {
+    const id = uuid.v1();
+    cache.put(id, req.body.content, 60000);
+    return res.json({
+      url: `/api/get-saved-sample?name=${id}`
+    });
+  });
+
+  app.use('/images', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'images')));
+  app.use('/images', express.static(path.join(__dirname, '..', '..', 'static', 'react', 'docs', 'images')));
+  app.use('/min', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'min')));
+  app.use('/packages', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'packages')));
+  app.use('/data', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'data')));
+}
