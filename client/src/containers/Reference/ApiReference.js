@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from '@reach/router';
+import TableContainer from '@material-ui/core/TableContainer';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -29,12 +31,6 @@ function ApiReference(props) {
   let key = 0;
 
   function handleIterate(Tag, props, children, level) {
-    if (level === 1) {
-      props = {
-        ...props,
-        className: 'first-level-class'
-      };
-    }
     key++;
     switch(Tag) {
       case "h2":
@@ -56,7 +52,7 @@ function ApiReference(props) {
         }
         break;
       case 'table':
-        return <Table key={key}>{children}</Table>;
+        return <Paper style={{overflowX: "auto"}}><Table style={{minWidth: 640}} key={key}>{children}</Table></Paper>;
       case 'tbody':
         return <TableBody key={key}>{children}</TableBody>;
       case 'thead':
@@ -76,6 +72,8 @@ function ApiReference(props) {
         return <TableCell style={style} key={key}>{children}</TableCell>;
       case 'td':
         return <TableCell key={key}>{children}</TableCell>;
+      case 'span':
+        return <Container maxWidth={false}>{children}</Container>;
       default:
         break;
     }
@@ -88,10 +86,10 @@ function ApiReference(props) {
   }
 
   return (markdown ?
-    <Container fixed>
+    <>
       <Helmet title={` API Reference - ${title}`} />
       <MDReactComponent text={markdown} onIterate={handleIterate} />
-    </Container>
+    </>
     : <>
     </>
   );
