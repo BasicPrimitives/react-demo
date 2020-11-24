@@ -15,7 +15,7 @@ import { faUserPlus, faUserSlash, faCoffee, faSitemap, faUser, faComment, faCog 
 import primitives from 'basicprimitives';
 import { OrgDiagram, FamDiagram } from 'basicprimitivesreact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { DndProvider, DropTarget, DragSource } from 'react-dnd';
+import { DndProvider, useDrag, useDrop, DropTarget, DragSource } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 require('./global.scss');
 
@@ -70,6 +70,8 @@ function ReactHowToUse(props) {
             DndProvider,
             DropTarget,
             DragSource,
+            useDrag,
+            useDrop,
             HTML5Backend,
             FontAwesomeIcon,
             faUserPlus,

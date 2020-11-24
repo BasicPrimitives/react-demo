@@ -1,13 +1,16 @@
 ## Demoed features
 ### General
 * Diagram reset
-* PDF file generation
+* [PDF file generation](https://pdfkit.org/)
 * Diagram options drawer
 * Nodes search drawer
 * Add new root node
-* Drag & Drop node from parent to parent
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [React Drag & Drop support](https://react-dnd.github.io/react-dnd/docs/overview)
+* [React Material-UI](https://material-ui.com/)
 ### Dual Mode View
-* Showing two diagram components side by side lets you see distant parts of the same diagram
+* Showing two diagraming components side by side let you see distant parts of the same diagram
 * Zoom in on one side and Drag & Drop nodes to other side.
 ### Diagram node:
 * Edit node properties
@@ -22,5 +25,5 @@
 * Remove item from selected nodes
 
 
-## Matrix children layout 
+### Matrix children layout 
 Usually organizational charts grow horizontally more than vertically. So keeping nodes in square formation saves horizontal space. It is important to fit matrix into width of screen, it is fine to scroll nodes vertically or horizontally, but necessaty to scroll both ways creates usability issue, so chart support extra option `maximumColumnsInMatrix` limiting number of columns. For example when node has 4 children they are matrxied into 2 * 2 matrix, 9 children are matrixed into 3 * 3 matrix, 16 into 4 * 4 and so on, but if we put limitation for number of columns for example at 4 then 20 children would be matrixed into 4 * 5 matrix.

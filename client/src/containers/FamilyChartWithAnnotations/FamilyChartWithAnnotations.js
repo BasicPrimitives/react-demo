@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Helmet from 'react-helmet';
 import Container from '@material-ui/core/Container';
 import Drawer from '@material-ui/core/Drawer';

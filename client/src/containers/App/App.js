@@ -1,21 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Helmet from 'react-helmet';
-import Link from '@material-ui/core/Link';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import AppDrawer from './AppDrawer';
 import Version from './Version';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Hidden from '@material-ui/core/Hidden';
+import withWidth from '@material-ui/core/withWidth';
+import AppBar from './AppBar';
 
 const drawerWidth = 350;
 
@@ -39,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
+  },
+  appBarShiftStatic: {
+    flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -77,13 +78,18 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  contentStatic: {
+    flexGrow: 1,
+    padding: theme.spacing(1),
+  }
 }));
 
 const App = (props) => {
   const { children } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -93,74 +99,73 @@ const App = (props) => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    setOpen(!isSmallScreen);
+  }, [isSmallScreen]);
+
   return (
     <div className={classes.root}>
       <Helmet titleTemplate="Basic Primitives Diagrams %s" />
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <div className={classes.grow}>
-            <Typography variant="h6" noWrap>
-              Basic Primitives
-            </Typography>
+      <Hidden smDown implementation="js">
+        <AppBar open={open} className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })} handleDrawerOpen={handleDrawerOpen}
+        />
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            {Version()}  
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
           </div>
-          <IconButton 
-            color="inherit"
-            edge="end"
-            aria-label="GitHub repos."
-          >
-            <Link
-              color="inherit"
-              href="https://github.com/BasicPrimitives"
-            >
-              <GitHubIcon />
-            </Link>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          {Version()}  
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <AppDrawer />
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        {children}
-      </main>
+          <Divider />
+          <AppDrawer onClose={() => setOpen(!isSmallScreen)} />
+        </Drawer>
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+          {children}
+        </main>
+      </Hidden>
+      <Hidden mdUp implementation="js">
+        <AppBar open={open} className={classes.appBarShiftStatic} handleDrawerOpen={handleDrawerOpen} />
+        <Drawer
+          className={classes.drawer}
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            {Version()}  
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
+          <AppDrawer onClose={() => setOpen(!isSmallScreen)} />
+        </Drawer>
+        <main className={classes.contentStatic} >
+          <div className={classes.drawerHeader} />
+          {children}
+        </main>
+      </Hidden>
     </div>
   );
 }
 
 
-export default App;
+export default withWidth()(App);
