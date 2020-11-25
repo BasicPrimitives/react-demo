@@ -39,7 +39,7 @@ function License() {
             <td style={pricestyle} rowSpan="1"><h4>534.00 CAD</h4></td>
             <td rowSpan="1">&nbsp;</td>
             <td>
-              <form method="post" action="https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=534&trnType=P&hashValue=8ba4ccac6699573c4b308787d2c4da5810f196ef">
+              <form method="post" action="https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=550&trnType=P&hashValue=e15324107f967dae60b6d61498c9e6e4697ae94e">
                 <Button type="submit" variant="contained" color="primary">Buy</Button>
               </form>
             </td>
