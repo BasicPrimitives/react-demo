@@ -36,7 +36,7 @@ function License() {
               </ul>
               <p>Each person who directly or indirectly creates an application or user interface containing Basic Primitives Diagram considered a developer.</p>
             </td>
-            <td style={pricestyle} rowSpan="1"><h4>534.00 CAD</h4></td>
+            <td style={pricestyle} rowSpan="1"><h4>550.00 CAD</h4></td>
             <td rowSpan="1">&nbsp;</td>
             <td>
               <form method="post" action="https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=550&trnType=P&hashValue=e15324107f967dae60b6d61498c9e6e4697ae94e">
