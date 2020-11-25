@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    overflowX: "auto"
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -81,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
   contentStatic: {
     flexGrow: 1,
     padding: theme.spacing(1),
+    overflowX: "auto"
   }
 }));
 

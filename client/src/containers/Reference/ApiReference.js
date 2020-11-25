@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from '@reach/router';
-import TableContainer from '@material-ui/core/TableContainer';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,12 +13,29 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  grow: {
+    flexGrow: 1,
+  },
+  paper: {
+    flexGrow: 1,
+    display: "flex",
+    overflowX: "auto"
+  },
+  table: {
+    minWidth: 800
+  }
+}));
 
 function ApiReference(props) {
   const { fileName } = props;
   const loaded = useSelector(state => state.reference.files[fileName] && state.reference.files[fileName].loaded); 
   const markdown = useSelector(state => state.reference.files[fileName] && state.reference.files[fileName].markdown); 
   const dispatch = useDispatch()
+
+  const classes = useStyles();
 
   useEffect(() => {
     if (!loaded) {
@@ -52,7 +68,7 @@ function ApiReference(props) {
         }
         break;
       case 'table':
-        return <Paper style={{overflowX: "auto"}}><Table style={{minWidth: 640}} key={key}>{children}</Table></Paper>;
+        return <Paper className={classes.paper}><Table className={classes.table} key={key}>{children}</Table></Paper>;
       case 'tbody':
         return <TableBody key={key}>{children}</TableBody>;
       case 'thead':
@@ -73,7 +89,7 @@ function ApiReference(props) {
       case 'td':
         return <TableCell key={key}>{children}</TableCell>;
       case 'span':
-        return <Container maxWidth={false}>{children}</Container>;
+        return <Container className={classes.grow}>{children}</Container>;
       default:
         break;
     }
