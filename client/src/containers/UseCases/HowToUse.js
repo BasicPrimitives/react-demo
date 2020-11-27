@@ -6,8 +6,11 @@ import Container from '@material-ui/core/Container';
 import TryMe from './TryMe';
 import { load, setCode } from 'redux/modules/howtouse';
 import MDReactComponent from 'markdown-react-js';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
+
+SyntaxHighlighter.registerLanguage('javascript', js);
 
 const useStyles = makeStyles(() => ({
   placeholder: {

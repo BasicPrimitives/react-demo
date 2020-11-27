@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import AppDrawerNavItem from './AppDrawerNavItem';
 import {pageToTitle} from './helpers';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import { load } from 'redux/modules/pages';
 import { useLocation } from "@reach/router"
 import primitives from 'basicprimitives';

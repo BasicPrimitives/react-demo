@@ -3,5 +3,7 @@ server/api/**/*.nedb
 server/static/javascript
 server/static/react
 client/node_modules/
+Dockerfile
 .vscode
+site
 

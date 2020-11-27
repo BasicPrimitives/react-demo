@@ -8,8 +8,9 @@ import MDReactComponent from 'markdown-react-js';
 import { LiveProvider, LivePreview } from 'react-live'
 import LiveEditor from './LiveEditor';
 import LiveError from './LiveError';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
 
 import { faUserPlus, faUserSlash, faCoffee, faSitemap, faUser, faComment, faCog } from '@fortawesome/free-solid-svg-icons'
 import primitives from 'basicprimitives';
@@ -18,6 +19,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DndProvider, useDrag, useDrop, DropTarget, DragSource } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 require('./global.scss');
+
+SyntaxHighlighter.registerLanguage('javascript', js);
 
 function ReactHowToUse(props) {
   const { fileName } = props;
