@@ -11,9 +11,12 @@ import { load } from 'redux/modules/reference';
 import MDReactComponent from 'markdown-react-js';
 import { useSelector, useDispatch } from 'react-redux';
 import Container from '@material-ui/core/Container';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
+import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
 import { makeStyles } from "@material-ui/core/styles";
+
+SyntaxHighlighter.registerLanguage('javascript', js);
 
 const useStyles = makeStyles((theme) => ({
   grow: {

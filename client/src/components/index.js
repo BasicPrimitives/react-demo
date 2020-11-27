@@ -1,4 +1,5 @@
-import pdfViewDialog from './PdfViewDialog/PdfViewDialog';
+import orgPdfViewDialog from './PdfViewDialog/OrgPdfViewDialogLoadable';
+import famPdfViewDialog from './PdfViewDialog/FamPdfViewDialogLoadable';
 import radioGroupOption from './Options/RadioGroupOption';
 import checkboxOption from './Options/CheckboxOption';
 import comboBoxOption from './Options/ComboBoxOption';
@@ -9,8 +10,8 @@ import itemsOrderOption from './Options/ItemsOrderOption';
 import optionsPanel from './Options/OptionsPanel';
 import options from './Options/options';
 
-export const OrgPdfViewDialog = pdfViewDialog.OrgPdfViewDialog;
-export const FamPdfViewDialog = pdfViewDialog.FamPdfViewDialog;
+export const OrgPdfViewDialog = orgPdfViewDialog;
+export const FamPdfViewDialog = famPdfViewDialog;
 export const RadioGroupOption = radioGroupOption;
 export const CheckboxOption = checkboxOption;
 export const ComboBoxOption = comboBoxOption;

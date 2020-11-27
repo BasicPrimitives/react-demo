@@ -165,7 +165,7 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_SUCCESS: {
       const { result } = action;
       const { pages } = state;
-      const { javascript, react, reference } = result;
+      const { javascript, react, reference, packageinfo } = result;
       const childPages = {
         reference: getAPIPages(reference.markdown, 'reference'),
         usecases: getSamplePages(javascript.markdown, 'usecases'),
@@ -175,6 +175,7 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
+        version: packageinfo.version,
         pages: pages.map(page => {
           const { pathname, title, children } = page;
           const newChildren = childPages[pathname.substring(1)];
@@ -218,11 +219,13 @@ export function load() {
     promise: ({ client }) => Promise.all([
       client.get('/load-markdown?name=javascript-readme'), 
       client.get('/load-markdown?name=react-readme'),
-      client.get('/load-markdown?name=reference-readme')
+      client.get('/load-markdown?name=reference-readme'),
+      client.get('/min/package.json')
     ]).then(results => ({
       javascript: results[0],
       react: results[1],
-      reference: results[2]
+      reference: results[2],
+      packageinfo: results[3]
     }))
   };
 }

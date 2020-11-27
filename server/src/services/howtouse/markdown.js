@@ -52,6 +52,7 @@ async function getMarkdownFileContent(name) {
   if (filePath != null) {
     fileContent = (await readFile(filePath)).toString();
     fileContent = fileContent.replace(/(samples\/images)/g, match => 'api/images');    
+    fileContent = fileContent.replace(/(\(images)/g, match => '(api/images');
   }
   return fileContent;
 }
@@ -71,12 +72,13 @@ async function getSampleFileContent(link) {
   }
   // remove SSI command used for package primary library development.
   fileContent = fileContent.replace(/<!-- # include file="\.\.\/\.\.\/src\.primitives\/src\.primitives\.html"-->/g, match => '');
-  fileContent = fileContent.replace(/(\.\.\/\.\.\/packages)/g, match => '/packages');
-  fileContent = fileContent.replace(/(\.\.\/\.\.\/min)/g, match => '/min');
-  fileContent = fileContent.replace(/(\.\.\/images\/photos)/g, match => '/images/photos');
+  fileContent = fileContent.replace(/(\.\.\/\.\.\/packages)/g, match => '/api/packages');
+  fileContent = fileContent.replace(/(\.\.\/\.\.\/min)/g, match => '/api/min');
+  fileContent = fileContent.replace(/(\.\.\/images\/photos)/g, match => '/api/images/photos');
+  fileContent = fileContent.replace(/(\.\.\/data\/photos)/g, match => '/api/data/photos');
   fileContent = fileContent.replace(/(\'photos)/g, match => '\'/photos');
   fileContent = fileContent.replace(/(\"photos)/g, match => '\"/photos');
-  fileContent = fileContent.replace(/(\(\.\/images)/g, match => '/images');
+  fileContent = fileContent.replace(/(\(\.\/images)/g, match => '/api/images');
   fileContent = fileContent.replace(/(\&nbsp\;)/g, match => ' ');
   fileContent = fileContent.replace(/(\/react\/photos)/g, match => '/api/images/photos');
   return fileContent;

@@ -97,17 +97,4 @@ function PdfViewDialog(props) {
   );
 }
 
-function OrgPdfViewDialog(props) {
-  return <PdfViewDialog {...props} plugin={primitives.pdf.orgdiagram.Plugin} />
-}
-
-function FamPdfViewDialog(props) {
-  return <PdfViewDialog {...props} plugin={primitives.pdf.famdiagram.Plugin} />
-}
-
-const result = {
-  OrgPdfViewDialog,
-  FamPdfViewDialog
-}
-
-export default result;
+export default PdfViewDialog;

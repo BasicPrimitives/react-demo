@@ -5,13 +5,13 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { RadioGroupOption } from 'components';
-import { CheckboxOption } from 'components';
-import { ComboBoxOption } from 'components';
-import { SizeOption } from 'components';
-import { ThicknessOption } from 'components';
-import { TextOption } from 'components';
-import { ItemsOrderOption } from 'components';
+import RadioGroupOption from 'components/Options/RadioGroupOption';
+import CheckboxOption from 'components/Options/CheckboxOption';
+import ComboBoxOption from 'components/Options/ComboBoxOption';
+import SizeOption from 'components/Options/SizeOption';
+import ThicknessOption from 'components/Options/ThicknessOption';
+import TextOption from 'components/Options/TextOption';
+import ItemsOrderOption from 'components/Options/ItemsOrderOption';
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles =  makeStyles(theme => {

@@ -15,10 +15,9 @@ process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at: Promise ', p, pretty.render(reason));
 });
 
-const app = express(feathers());
+const fApp = express(feathers());
 
-app
-  .set('config', config)
+fApp.set('config', config)
   .use(morgan('dev'))
   .use(cookieParser())
   .use(
@@ -47,6 +46,9 @@ app
       }
     })
   );
+
+const app = express();
+app.use('/api', fApp);
 
 if (process.env.APIPORT) {
   app.listen(process.env.APIPORT, err => {
