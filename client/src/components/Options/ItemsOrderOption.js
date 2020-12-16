@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
+import { isEqual } from 'lodash';
 import { SortableContainer, SortableElement, arrayMove } from 'react-sortable-hoc';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -45,7 +45,7 @@ class ItemsOrderOption extends Component {
 
   componentWillReceiveProps({ items: newItems }) {
     const { items } = this.state;
-    if (!_.isEqual(newItems, items)) {
+    if (!isEqual(newItems, items)) {
       this.setState({
         items: newItems
       });
@@ -56,7 +56,7 @@ class ItemsOrderOption extends Component {
     // eslint-disable-line no-unused-vars
     const { items } = this.state;
     const { items: newItems } = nextState;
-    return !_.isEqual(items, newItems);
+    return !isEqual(items, newItems);
   }
 
   onSortEnd({ oldIndex, newIndex }) {

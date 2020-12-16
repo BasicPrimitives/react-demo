@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { isEqual } from 'lodash';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
@@ -56,7 +56,7 @@ class TextOption extends Component { // eslint-disable-line react/prefer-statele
     const currentOptions = this.getUsedOptions(this.props);
     const { value } = this.state;
     const { newValue } = nextState;
-    return !(_.isEqual(currentOptions, nextOptions) && value === newValue);
+    return !(isEqual(currentOptions, nextOptions) && value === newValue);
   }
 
   onTimer() {

@@ -1,63 +1,64 @@
-const primitives = require('basicprimitives');
+const { AnnotationType, ConnectorPlacementType, ConnectorLabelPlacementType, ZOrderType,
+  ConnectorShapeType, Colors, LineType, PageFitMode } = require('basicprimitives');
 
 module.exports = {
-  pageFitMode: primitives.common.PageFitMode.PageWidth,
+  pageFitMode: PageFitMode.PageWidth,
   annotations: [
     {
-      annotationType: primitives.common.AnnotationType.Connector,
-      connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
-      labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
-      zOrderType: primitives.common.ZOrderType.Foreground,
+      annotationType: AnnotationType.Connector,
+      connectorPlacementType: ConnectorPlacementType.Offbeat,
+      labelPlacementType: ConnectorLabelPlacementType.Between,
+      zOrderType: ZOrderType.Foreground,
       fromItem: 1,
       toItem: 5,
       label: { color: "red", badge: "1", title: "Connector annotation" },
-      labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
-      connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
-      color: primitives.common.Colors.Red,
+      labelSize: { width: 80, height: 30 }, // new Size(80, 30)
+      connectorShapeType: ConnectorShapeType.OneWay,
+      color: Colors.Red,
       selectItems: true,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed,
+      lineType: LineType.Dashed,
       name: "usercontrolledconnector"
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 1,
       toItems: [3],
       title: '10%'
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 1,
       toItems: [5],
       title: '30%'
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 1,
       toItems: [6],
       title: '50%'
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 1,
       toItems: [7],
       title: '10%'
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 1,
       toItems: [3, 5],
       title: '40%'
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 1,
       toItems: [3, 5, 6, 7],
       title: '100%'
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 2,
       toItems: [1],
       title: '100%'

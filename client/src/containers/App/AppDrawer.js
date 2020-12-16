@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import AppDrawerNavItem from './AppDrawerNavItem';
-import {pageToTitle} from './helpers';
+import { pageToTitle } from './helpers';
 import { useSelector, useDispatch } from 'react-redux';
 import { load } from 'redux/modules/pages';
 import { useLocation } from "@reach/router"
-import primitives from 'basicprimitives';
+import { Tree } from 'basicprimitives';
 
 let savedScrollTop = null;
 
@@ -74,7 +74,7 @@ const styles = (theme) => ({
 });
 
 function getPagesTree(pages) {
-  const tree = primitives.common.tree();
+  const tree = Tree();
   tree.add(null, 0, {});
   let key = 0;
   let depth = 0;

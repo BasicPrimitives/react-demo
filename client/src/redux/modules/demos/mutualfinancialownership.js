@@ -1,4 +1,10 @@
-const primitives = require('basicprimitives');
+import { FamConfig, TemplateConfig, Size, Thickness, PageFitMode,
+  Enabled, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
+  ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
+  AdviserPlacementType, TextOrientationType, GroupByType, ConnectorType,
+  ElbowType, PlacementType, NavigationMode, NeighboursSelectionMode, LoopsLayoutMode,
+  AnnotationType, ZOrderType, ConnectorShapeType, ConnectorPlacementType, ConnectorLabelPlacementType,
+  PaletteItemConfig, ConnectorAnnotationConfig } from 'basicprimitives';
 
 const LOAD = 'redux-example/mutualfinancialownership/LOAD';
 const LOAD_SUCCESS = 'redux-example/mutualfinancialownership/LOAD_SUCCESS';
@@ -31,84 +37,84 @@ const initialState = {
   },
   centerOnCursor: true,
   config: {
-    ...new primitives.famdiagram.Config(),
+    ...new FamConfig(),
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
-        ...new primitives.famdiagram.TemplateConfig(),
+        ...new TemplateConfig(),
         name: 'defaultTemplate',
-        itemSize: new primitives.common.Size(200, 180),
-        minimizedItemSize: new primitives.common.Size(20, 20),
+        itemSize: new Size(200, 180),
+        minimizedItemSize: new Size(20, 20),
         minimizedItemCornerRadius: 10, // Sligtly rounded corners
         minimizedItemLineWidth: 1,
-        minimizedItemLineType: primitives.common.LineType.Solid,
+        minimizedItemLineType: LineType.Solid,
         minimizedItemBorderColor: null, // Shape border line has the same color as item title background color
         minimizedItemFillColor: null, // Shape background has the same color as item title background color
         minimizedItemOpacity: 0.7, // Shape background opacity
-        highlightPadding: new primitives.common.Thickness(2, 2, 2, 2)
+        highlightPadding: new Thickness(2, 2, 2, 2)
       }
     ],
     linesPalette: [
-      new primitives.famdiagram.PaletteItemConfig({ lineColor: '#C6C6C6', lineWidth: 1, lineType: primitives.common.LineType.Solid }), // 1
-      new primitives.famdiagram.PaletteItemConfig({ lineColor: '#A5A5A5', lineWidth: 1, lineType: primitives.common.LineType.Dashed }), // 4
-      new primitives.famdiagram.PaletteItemConfig({ lineColor: '#848484', lineWidth: 1, lineType: primitives.common.LineType.Solid }), // 7
-      new primitives.famdiagram.PaletteItemConfig({ lineColor: '#646464', lineWidth: 1, lineType: primitives.common.LineType.Dashed }), // 10
-      new primitives.famdiagram.PaletteItemConfig({ lineColor: '#454545', lineWidth: 1, lineType: primitives.common.LineType.Solid }) // 13
+      new PaletteItemConfig({ lineColor: '#C6C6C6', lineWidth: 1, lineType: LineType.Solid }), // 1
+      new PaletteItemConfig({ lineColor: '#A5A5A5', lineWidth: 1, lineType: LineType.Dashed }), // 4
+      new PaletteItemConfig({ lineColor: '#848484', lineWidth: 1, lineType: LineType.Solid }), // 7
+      new PaletteItemConfig({ lineColor: '#646464', lineWidth: 1, lineType: LineType.Dashed }), // 10
+      new PaletteItemConfig({ lineColor: '#454545', lineWidth: 1, lineType: LineType.Solid }) // 13
     ],
     annotations: [
-      new primitives.famdiagram.ConnectorAnnotationConfig({
-        annotationType: primitives.common.AnnotationType.Connector,
-        connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
-        labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
-        zOrderType: primitives.common.ZOrderType.Foreground,
+      new ConnectorAnnotationConfig({
+        annotationType: AnnotationType.Connector,
+        connectorPlacementType: ConnectorPlacementType.Offbeat,
+        labelPlacementType: ConnectorLabelPlacementType.Between,
+        zOrderType: ZOrderType.Foreground,
         fromItem: 5,
         toItem: 8,
         label: { color: 'red', badge: '1', title: 'Link' },
-        labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
-        connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
-        color: primitives.common.Colors.Red,
+        labelSize: { width: 80, height: 30 }, // new Size(80, 30)
+        connectorShapeType: ConnectorShapeType.OneWay,
+        color: Colors.Red,
         offset: 5,
         lineWidth: 2,
-        lineType: primitives.common.LineType.Dashed
+        lineType: LineType.Dashed
       })
     ],
     cursorItem: 0,
     items: [],
-
+    
     /* Layout */
-    pageFitMode: primitives.common.PageFitMode.FitToPage,
-    orientationType: primitives.common.OrientationType.Top,
-    verticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    horizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
-    childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
-    leavesPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
-    minimalVisibility: primitives.common.Visibility.Dot,
-    selectionPathMode: primitives.common.SelectionPathMode.FullStack,
+    pageFitMode: PageFitMode.FitToPage,
+    orientationType: OrientationType.Top,
+    verticalAlignment: VerticalAlignmentType.Middle,
+    horizontalAlignment: HorizontalAlignmentType.Center,
+    childrenPlacementType: ChildrenPlacementType.Horizontal,
+    leavesPlacementType: ChildrenPlacementType.Horizontal,
+    minimalVisibility: Visibility.Dot,
+    selectionPathMode: SelectionPathMode.FullStack,
 
-    hasButtons: primitives.common.Enabled.True,
-    hasSelectorCheckbox: primitives.common.Enabled.True,
+    hasButtons: Enabled.True,
+    hasSelectorCheckbox: Enabled.True,
     selectCheckBoxLabel: 'Selected',
-    itemTitleFirstFontColor: primitives.common.Colors.White,
-    itemTitleSecondFontColor: primitives.common.Colors.White,
+    itemTitleFirstFontColor: Colors.White,
+    itemTitleSecondFontColor: Colors.White,
     buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 
     /* group title options */
-    groupTitlePlacementType: primitives.common.AdviserPlacementType.Left,
-    groupTitleOrientation: primitives.text.TextOrientationType.RotateRight,
-    groupTitleVerticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    groupTitleHorizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
+    groupTitlePlacementType: AdviserPlacementType.Left,
+    groupTitleOrientation: TextOrientationType.RotateRight,
+    groupTitleVerticalAlignment: VerticalAlignmentType.Middle,
+    groupTitleHorizontalAlignment: HorizontalAlignmentType.Center,
     groupTitleFontSize: '12px',
     groupTitleFontFamily: 'Arial',
-    groupTitleColor: primitives.common.Colors.RoyalBlue,
+    groupTitleColor: Colors.RoyalBlue,
     groupTitleFontWeight: 'normal',
     groupTitleFontStyle: 'normal',
 
     /* Family Diagram Specific Options */
-    neighboursSelectionMode: primitives.common.NeighboursSelectionMode.ParentsChildrenSiblingsAndSpouses,
-    groupByType: primitives.common.GroupByType.Children,
-    loopsLayoutMode: primitives.common.LoopsLayoutMode.Optimized,
+    neighboursSelectionMode: NeighboursSelectionMode.ParentsChildrenSiblingsAndSpouses,
+    groupByType: GroupByType.Children,
+    loopsLayoutMode: LoopsLayoutMode.Optimized,
     alignBylevels: true,
     hideGrandParentsConnectors: true,
     enableMatrixLayout: false,
@@ -125,35 +131,35 @@ const initialState = {
     cousinsIntervalMultiplier: 1,
 
     /* Connectors */
-    arrowsDirection: primitives.common.GroupByType.Children,
+    arrowsDirection: GroupByType.Children,
     showExtraArrows: true,
     extraArrowsMinimumSpace: 20,
-    connectorType: primitives.common.ConnectorType.Squared,
-    elbowType: primitives.common.ElbowType.Round,
+    connectorType: ConnectorType.Squared,
+    elbowType: ElbowType.Round,
     bevelSize: 4,
     elbowDotSize: 4,
-    linesType: primitives.common.LineType.Solid,
-    linesColor: primitives.common.Colors.Black,
+    linesType: LineType.Solid,
+    linesColor: Colors.Black,
     linesWidth: 1,
 
-    highlightLinesColor: primitives.common.Colors.Red,
+    highlightLinesColor: Colors.Red,
     highlightLinesWidth: 2,
-    highlightLinesType: primitives.common.LineType.Solid,
+    highlightLinesType: LineType.Solid,
 
     /* Labels */
-    showLabels: primitives.common.Enabled.False,
-    labelSize: new primitives.common.Size(80, 24),
-    labelOrientation: primitives.text.TextOrientationType.Horizontal,
-    labelPlacement: primitives.common.PlacementType.Top,
+    showLabels: Enabled.False,
+    labelSize: new Size(80, 24),
+    labelOrientation: TextOrientationType.Horizontal,
+    labelPlacement: PlacementType.Top,
     labelOffset: 1,
     labelFontSize: '10px',
     labelFontFamily: 'Arial',
-    labelColor: primitives.common.Colors.Black,
+    labelColor: Colors.Black,
     labelFontWeight: 'normal',
     labelFontStyle: 'normal',
 
     /* Callout */
-    calloutMaximumVisibility: primitives.common.Visibility.Dot,
+    calloutMaximumVisibility: Visibility.Dot,
     showCallout: true,
     calloutPlacementOffset: 100,
     calloutfillColor: '#000000',
@@ -165,7 +171,7 @@ const initialState = {
     calloutOpacity: 0.2,
 
     /* Interactivity */
-    navigationMode: primitives.common.NavigationMode.Default,
+    navigationMode: NavigationMode.Default,
     highlightGravityRadius: 40,
     enablePanning: true
   },
@@ -219,7 +225,7 @@ function getAnnotations(config) {
     return {
       ...config,
       annotations: config.annotations.map(annotation => ({
-        ...new primitives.famdiagram.ConnectorAnnotationConfig(),
+        ...new ConnectorAnnotationConfig(),
         ...annotation
       }))
     };
@@ -356,7 +362,7 @@ export default function reducer(state = initialState, action = {}) {
       const childItems = children[cursorItem] || [];
 
       let newAnnotations = annotations.reduce((agg, annotation) => {
-        if (annotation.annotationType !== primitives.common.AnnotationType.HighlightPath) {
+        if (annotation.annotationType !== AnnotationType.HighlightPath) {
           agg.push(annotation);
         }
         return agg;
@@ -367,12 +373,12 @@ export default function reducer(state = initialState, action = {}) {
         newAnnotations = newAnnotations.concat(
           items.map(
             itemid => ({
-              annotationType: primitives.common.AnnotationType.HighlightPath,
+              annotationType: AnnotationType.HighlightPath,
               items: [cursorItem, itemid],
-              color: primitives.common.Colors.Navy,
+              color: Colors.Navy,
               opacity: 0.2,
               lineWidth: 16,
-              zOrderType: primitives.common.ZOrderType.Background,
+              zOrderType: ZOrderType.Background,
               showArrows: false
             })
           )
@@ -415,7 +421,7 @@ export default function reducer(state = initialState, action = {}) {
         config: {
           ...restConfig,
           annotations: annotations.map(annotation => {
-            if (annotation.annotationType === primitives.common.AnnotationType.Connector) {
+            if (annotation.annotationType === AnnotationType.Connector) {
               const newAnnotation = { ...annotation };
               newAnnotation[action.option] = action.itemId;
               return newAnnotation;

@@ -14,7 +14,7 @@ import TextFieldAdapter from './FieldAdapters/TextFieldAdapter';
 import ComboBoxFieldAdapter from './FieldAdapters/ComboBoxFieldAdapter';
 import RadioGroupFieldAdapter from './FieldAdapters/RadioGroupFieldAdapter';
 import { Form, Field } from 'react-final-form';
-import primitives from 'basicprimitives';
+import { Colors, ShapeType, AdviserPlacementType, ChildrenPlacementType } from 'basicprimitives';
 import addNewItemDialogValidation from './AddNewItemDialogValidation';
 
 class AddNewItemDialog extends Component {
@@ -86,8 +86,8 @@ class AddNewItemDialog extends Component {
                       <Grid item><Field name="phone" component={TextFieldAdapter} placeholder="(123) 123-12-12" caption="phone" /></Grid>
                       <Grid item><Field name="email" component={TextFieldAdapter} placeholder="E-mail" caption="E-mail" /></Grid>
                       <Grid item><Field name="label" component={TextFieldAdapter} placeholder={values.title || 'Marker Label'} caption="Marker Label" /></Grid>
-                      <Grid item><Field name="itemTitleColor" component={ComboBoxFieldAdapter} caption="Title Color" isNullable valueType="string" items={primitives.common.Colors} /></Grid>
-                      <Grid item><Field name="groupTitleColor" component={ComboBoxFieldAdapter} caption="Group Title Color" isNullable valueType="string" items={primitives.common.Colors} /></Grid>
+                      <Grid item><Field name="itemTitleColor" component={ComboBoxFieldAdapter} caption="Title Color" isNullable valueType="string" items={Colors} /></Grid>
+                      <Grid item><Field name="groupTitleColor" component={ComboBoxFieldAdapter} caption="Group Title Color" isNullable valueType="string" items={Colors} /></Grid>
                       <Grid item><Field name="image" component={ComboBoxFieldAdapter} caption="Image" valueType="string" items={images} /></Grid>
                       <Grid item>
                         <Field
@@ -96,7 +96,7 @@ class AddNewItemDialog extends Component {
                           caption="Marker Shape"
                           valueType="number"
                           isNullable={true}
-                          items={primitives.common.ShapeType}
+                          items={ShapeType}
                         />
                       </Grid>
                     </Grid>
@@ -128,7 +128,7 @@ class AddNewItemDialog extends Component {
                           component={RadioGroupFieldAdapter}
                           caption="Placement"
                           valueType="number"
-                          items={primitives.common.AdviserPlacementType}
+                          items={AdviserPlacementType}
                         />
                       </Grid>
                       <Grid item>
@@ -137,7 +137,7 @@ class AddNewItemDialog extends Component {
                           component={RadioGroupFieldAdapter}
                           caption="Children Layout"
                           valueType="number"
-                          items={primitives.common.ChildrenPlacementType}
+                          items={ChildrenPlacementType}
                         />
                       </Grid>
                     </Grid>

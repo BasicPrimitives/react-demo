@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { isEqual } from 'lodash';
 import PropTypes from 'prop-types';
 import FormLabel from '@material-ui/core/FormLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import primitives from 'basicprimitives';
+import { Size } from 'basicprimitives';
 import Tooltip from '@material-ui/core/Tooltip';
 
 class SizeOption extends Component {
@@ -25,17 +25,17 @@ class SizeOption extends Component {
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !_.isEqual(currentOptions, nextOptions);
+    return !isEqual(currentOptions, nextOptions);
   }
 
   onWidthChange(width) {
     const { onChange, value } = this.props;
-    onChange(new primitives.common.Size(width, value.height));
+    onChange(new Size(width, value.height));
   }
 
   onHeightChange(height) {
     const { onChange, value } = this.props;
-    onChange(new primitives.common.Size(value.width, height));
+    onChange(new Size(value.width, height));
   }
 
   getUsedOptions(props) { // eslint-disable-line class-methods-use-this

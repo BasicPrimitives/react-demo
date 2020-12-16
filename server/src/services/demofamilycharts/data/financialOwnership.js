@@ -1,47 +1,49 @@
-const primitives = require('basicprimitives');
+const { LabelAnnotationConfig, AnnotationType, ConnectorPlacementType, ZOrderType,
+  ConnectorShapeType, HighlightPathAnnotationConfig, ShapeType, ConnectorLabelPlacementType, 
+  Colors, LineType, Enabled } = require('basicprimitives');
 
 module.exports = {
   cursorItem: 3,
   annotations: [
     {
-      annotationType: primitives.common.AnnotationType.Connector,
-      connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
-      labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
-      zOrderType: primitives.common.ZOrderType.Foreground,
+      annotationType: AnnotationType.Connector,
+      connectorPlacementType: ConnectorPlacementType.Offbeat,
+      labelPlacementType: ConnectorLabelPlacementType.Between,
+      zOrderType: ZOrderType.Foreground,
       fromItem: 2,
       toItem: 1,
       label: { color: "red", badge: "1", title: "Connector annotation" },
-      labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
-      connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
-      color: primitives.common.Colors.Red,
+      labelSize: { width: 80, height: 30 }, // new Size(80, 30)
+      connectorShapeType: ConnectorShapeType.OneWay,
+      color: Colors.Red,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed,
+      lineType: LineType.Dashed,
       name: "usercontrolledconnector"
     },
-    new primitives.famdiagram.HighlightPathAnnotationConfig({ items: [3, 5] }),
-    new primitives.famdiagram.HighlightPathAnnotationConfig({ items: [3, 6] }),
+    new HighlightPathAnnotationConfig({ items: [3, 5] }),
+    new HighlightPathAnnotationConfig({ items: [3, 6] }),
 
-    new primitives.famdiagram.LabelAnnotationConfig({
+    new LabelAnnotationConfig({
       fromItem: 4,
       toItems: [5],
       title: '30%',
       templateName: 'LabelAnnotationTemplate'
     }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 4, toItems: [5, 7], title: '100%' }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 4, toItems: [7], title: '70%' }),
+    new LabelAnnotationConfig({ fromItem: 4, toItems: [5, 7], title: '100%' }),
+    new LabelAnnotationConfig({ fromItem: 4, toItems: [7], title: '70%' }),
 
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 3, toItems: [5], title: '20%' }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 3, toItems: [6], title: '80%' }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 3, toItems: [5, 6], title: '100%' }),
+    new LabelAnnotationConfig({ fromItem: 3, toItems: [5], title: '20%' }),
+    new LabelAnnotationConfig({ fromItem: 3, toItems: [6], title: '80%' }),
+    new LabelAnnotationConfig({ fromItem: 3, toItems: [5, 6], title: '100%' }),
 
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 6, toItems: [5], title: '⇧27%' }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 6, toItems: [3], title: '⇧73%' }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 6, toItems: [5, 3], title: '⇧100%' }),
+    new LabelAnnotationConfig({ fromItem: 6, toItems: [5], title: '⇧27%' }),
+    new LabelAnnotationConfig({ fromItem: 6, toItems: [3], title: '⇧73%' }),
+    new LabelAnnotationConfig({ fromItem: 6, toItems: [5, 3], title: '⇧100%' }),
 
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 6, toItems: [7], title: '60%' }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 6, toItems: [7, 8], title: '100%' }),
-    new primitives.famdiagram.LabelAnnotationConfig({ fromItem: 6, toItems: [8], title: '40%' })
+    new LabelAnnotationConfig({ fromItem: 6, toItems: [7], title: '60%' }),
+    new LabelAnnotationConfig({ fromItem: 6, toItems: [7, 8], title: '100%' }),
+    new LabelAnnotationConfig({ fromItem: 6, toItems: [8], title: '40%' })
   ],
   items: [
     {
@@ -50,7 +52,7 @@ module.exports = {
       isActive: false,
       templateName: 'ShapeTemplate',
       shapeType: 'rhombus',
-      minimizedItemShapeType: primitives.common.ShapeType.Rhombus
+      minimizedItemShapeType: ShapeType.Rhombus
     },
     {
       id: 2,
@@ -58,34 +60,34 @@ module.exports = {
       isActive: false,
       templateName: 'ShapeTemplate',
       shapeType: 'circle',
-      minimizedItemShapeType: primitives.common.ShapeType.Circle
+      minimizedItemShapeType: ShapeType.Circle
     },
     {
       id: 3,
       parents: [1, 2],
       title: 'Top Holdings',
-      hasSelectorCheckbox: primitives.common.Enabled.True,
-      minimizedItemShapeType: primitives.common.ShapeType.Rectangle
+      hasSelectorCheckbox: Enabled.True,
+      minimizedItemShapeType: ShapeType.Rectangle
     },
     {
       id: 4,
       title: 'Top Holdings Ltd.',
-      hasSelectorCheckbox: primitives.common.Enabled.True,
-      minimizedItemShapeType: primitives.common.ShapeType.Rectangle
+      hasSelectorCheckbox: Enabled.True,
+      minimizedItemShapeType: ShapeType.Rectangle
     },
     {
       id: 5,
       parents: [3, 4],
       title: 'ABC Holdings',
-      hasSelectorCheckbox: primitives.common.Enabled.True,
-      minimizedItemShapeType: primitives.common.ShapeType.Rectangle
+      hasSelectorCheckbox: Enabled.True,
+      minimizedItemShapeType: ShapeType.Rectangle
     },
     {
       id: 6,
       parents: [5, 3],
       title: 'ABC Co Ltd',
-      hasSelectorCheckbox: primitives.common.Enabled.True,
-      minimizedItemShapeType: primitives.common.ShapeType.Rectangle
+      hasSelectorCheckbox: Enabled.True,
+      minimizedItemShapeType: ShapeType.Rectangle
     },
     {
       id: 7,
@@ -94,7 +96,7 @@ module.exports = {
       isActive: false,
       templateName: 'ShapeTemplate',
       shapeType: 'rectangle',
-      minimizedItemShapeType: primitives.common.ShapeType.Rectangle
+      minimizedItemShapeType: ShapeType.Rectangle
     },
     {
       id: 8,
@@ -103,7 +105,7 @@ module.exports = {
       isActive: false,
       templateName: 'ShapeTemplate',
       shapeType: 'rectangle',
-      minimizedItemShapeType: primitives.common.ShapeType.Rectangle
+      minimizedItemShapeType: ShapeType.Rectangle
     }
   ]
 };

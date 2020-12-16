@@ -1,9 +1,9 @@
-const primitives = require('basicprimitives');
+const { Tree } = require('basicprimitives');
 
 // selecting all data from data source and filtering it in business layer is not optimal,
 // you have to design your data base properly so you don't need to fetch all nodes to filter them
 function filterData(items = [], cursorItem = null, selectedItems = [], depth = 3) {
-  const tree = primitives.common.tree();
+  const tree = Tree();
 
   // rebuild tree
   for (let index = 0; index < items.length; index += 1) {

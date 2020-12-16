@@ -1,16 +1,16 @@
-const primitives = require('basicprimitives');
+const { AnnotationType } = require('basicprimitives');
 
 module.exports = {
   cursorItem: 2,
   annotations: [
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 2,
       toItems: [1],
       title: '2->1'
     },
     {
-      annotationType: primitives.common.AnnotationType.Label,
+      annotationType: AnnotationType.Label,
       fromItem: 1,
       toItems: [2],
       title: '1->2'

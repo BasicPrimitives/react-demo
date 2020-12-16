@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { OrgDiagram } from 'basicprimitivesreact';
-import primitives from 'basicprimitives';
+import { Colors, Tree, LCA } from 'basicprimitives';
 
 class SelectCursorItemDialog extends Component {
   // eslint-disable-line react/prefer-stateless-function
@@ -74,7 +74,7 @@ class SelectCursorItemDialog extends Component {
   }
 
   getTree(items = []) { // eslint-disable-line class-methods-use-this
-    const tree = primitives.common.tree();
+    const tree = Tree();
 
     // rebuild tree
     for (let index = 0; index < items.length; index += 1) {
@@ -87,7 +87,7 @@ class SelectCursorItemDialog extends Component {
 
   getDeletedItemsParent(tree, deletedItems, deletedHash) { // eslint-disable-line class-methods-use-this
     let result = null;
-    const lca = primitives.common.LCA(tree);
+    const lca = LCA(tree);
     result = deletedItems.reduce((agg, itemid) => {
       if (agg == null) {
         agg = itemid;
@@ -161,7 +161,7 @@ class SelectCursorItemDialog extends Component {
                     {
                       ...templateConfig,
                       onItemRender: ({ context: itemConfig }) => {
-                        const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                        const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                         return <div className={styles.DefaultTemplate}>
                           <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                             <div className={styles.DefaultTitle}>{itemConfig.title}</div>
@@ -176,7 +176,7 @@ class SelectCursorItemDialog extends Component {
                     {
                       ...contactTemplateConfig,
                       onItemRender: ({ context: itemConfig }) => {
-                        const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                        const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                         return <div className={styles.ContactTemplate}>
                           <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                             <div className={styles.ContactTitle}>{itemConfig.title}</div>

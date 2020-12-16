@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { isEqual, startCase, camelCase } from 'lodash';
 import PropTypes from 'prop-types';
 import FormLabel from '@material-ui/core/FormLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Tooltip from '@material-ui/core/Tooltip';
-import primitives from 'basicprimitives';
+import { Thickness } from 'basicprimitives';
 
 class ThicknessOption extends Component {
   static propTypes = {
@@ -26,12 +26,12 @@ class ThicknessOption extends Component {
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !_.isEqual(currentOptions, nextOptions);
+    return !isEqual(currentOptions, nextOptions);
   }
 
   onPropertyChange(propertyName, propertyValue) {
     const { onChange, value } = this.props;
-    const result = new primitives.common.Thickness(value);
+    const result = new Thickness(value);
     result[propertyName] = propertyValue;
     onChange(result);
   }
@@ -58,7 +58,7 @@ class ThicknessOption extends Component {
         </Tooltip>
         {names.map(name => {
           return <FormControl className={'option-panel-item'} key={`${propertyName}-${name}`}>
-            <FormLabel key={`${propertyName}-${name}-label`} id={`${propertyName}-${name}-label`}>{_.startCase(_.camelCase(name))}</FormLabel>
+            <FormLabel key={`${propertyName}-${name}-label`} id={`${propertyName}-${name}-label`}>{startCase(camelCase(name))}</FormLabel>
             <Select
               labelId={`${propertyName}-${name}-label`}
               key={`${propertyName}-${name}`}

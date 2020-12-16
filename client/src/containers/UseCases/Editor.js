@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Controlled as CodeMirror} from 'react-codemirror2'
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/material.css');
-require('codemirror/mode/javascript/javascript');
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/mode/javascript/javascript';
 
 class Editor extends Component {
   static propTypes = {

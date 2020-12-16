@@ -218,8 +218,8 @@ function License() {
           No. The developer license applies to the seat, not the individual.
         </li>
         <li>
-          What is license type for ASP.NET component and any other demo components based on Basic Primitives Diagram?<br />
-          ASP.NET component uses Basic Primitives Diagram jQuery UI widgets for rendering, so its usage is governed by the same license conditions as Basic Primitives Diagram.
+          What is license type for React component and any other demo components based on Basic Primitives Diagram?<br />
+          React component uses Basic Primitives Diagram for rendering, so its usage is governed by the same license conditions as Basic Primitives Diagram.
         </li>
       </ul>
       <h2>Update policy</h2>

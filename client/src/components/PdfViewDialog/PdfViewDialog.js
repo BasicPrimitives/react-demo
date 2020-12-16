@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import primitives from 'basicprimitives';
+import { Enabled } from 'basicprimitives';
 import ReactGA from "react-ga";
 import PDFDocument from 'pdfkit-nodejs-webpack';
 import blobStream from 'blob-stream';
@@ -43,7 +43,7 @@ function PdfViewDialog(props) {
       ...config,
       items,
       cursorItem: null,
-      hasSelectorCheckbox: primitives.common.Enabled.False,
+      hasSelectorCheckbox: Enabled.False,
       templates: (templates || []),
       onItemRender
     });

@@ -23,7 +23,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { FamDiagram } from 'basicprimitivesreact';
-import primitives from 'basicprimitives';
+import { ConnectorAnnotationConfig, AnnotationType, TemplateConfig, Size, Thickness, Colors, highestContrast } from 'basicprimitives';
 import {
   load,
   loadMarkdown,
@@ -117,7 +117,7 @@ function Patents() {
   const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
   const directTemplateConfig = config.templates.find(template => template.name === 'directTemplate');
   const contactTemplateConfig = config.templates.find(template => template.name === 'contactTemplate');
-  const annotationConfig = config.annotations.find(annotation => annotation.name === "usercontrolledconnector") || new primitives.orgdiagram.ConnectorAnnotationConfig({offset: 2});
+  const annotationConfig = config.annotations.find(annotation => annotation.name === "usercontrolledconnector") || new ConnectorAnnotationConfig({offset: 2});
   return (
     <>
       <Helmet>
@@ -318,7 +318,7 @@ function Patents() {
                   dispatch(setTemplateOption('defaultTemplate', name, value));
                   break;
                 case 'annotation':
-                  dispatch(setAnnotationOption(primitives.common.AnnotationType.Connector, name, value));
+                  dispatch(setAnnotationOption(AnnotationType.Connector, name, value));
                   break;
                 default:
                   dispatch(setConfigOption(name, value)) 
@@ -336,20 +336,20 @@ function Patents() {
         onClose= {() => setPdfDialogOpen(false)}
         templates={[
           {
-            ...(new primitives.orgdiagram.TemplateConfig()),
+            ...(new TemplateConfig()),
             name: "defaultTemplate",
             itemTemplate: "Use onItemRener method.",
-            itemSize: new primitives.common.Size(100, 60),
-            highlightPadding: new primitives.common.Thickness(2, 2, 2, 2)
+            itemSize: new Size(100, 60),
+            highlightPadding: new Thickness(2, 2, 2, 2)
           }
         ]}
         onItemRender={(doc, position, data) => {
           var itemConfig = data.context,
-            itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue,
-            color = primitives.common.highestContrast(itemTitleColor, config.itemTitleSecondFontColor, config.itemTitleFirstFontColor);
+            itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue,
+            color = highestContrast(itemTitleColor, config.itemTitleSecondFontColor, config.itemTitleFirstFontColor);
   
           if (data.templateName === "defaultTemplate") {
-            var contentSize = new primitives.common.Size(100, 60);
+            var contentSize = new Size(100, 60);
   
             contentSize.width -= 2;
             contentSize.height -= 2;

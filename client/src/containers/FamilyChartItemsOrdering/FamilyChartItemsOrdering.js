@@ -17,7 +17,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { FamDiagram } from 'basicprimitivesreact';
-import primitives from 'basicprimitives';
+import { Colors, AnnotationType } from 'basicprimitives';
 import {
   load,
   loadMarkdown,
@@ -199,7 +199,7 @@ function FamilyChartItemsOrdering() {
               {
                 ...templateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.DefaultTemplate}>
                     <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.DefaultTitle}>{itemConfig.title}</div>
@@ -214,7 +214,7 @@ function FamilyChartItemsOrdering() {
               {
                 ...contactTemplateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.ContactTemplate}>
                     <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.ContactTitle}>{itemConfig.title}</div>
@@ -231,7 +231,7 @@ function FamilyChartItemsOrdering() {
               {
                 ...miniTemplateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.MiniTemplate}>
                     <div className={styles.MiniTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.MiniTitle}>{itemConfig.title}</div>
@@ -301,7 +301,7 @@ function FamilyChartItemsOrdering() {
                   dispatch(setTemplateOption('defaultTemplate', name, value));
                   break;
                 case 'annotation':
-                  dispatch(setAnnotationOption(primitives.common.AnnotationType.Connector, name, value));
+                  dispatch(setAnnotationOption(AnnotationType.Connector, name, value));
                   break;
                 default:
                   dispatch(setConfigOption(name, value)) 

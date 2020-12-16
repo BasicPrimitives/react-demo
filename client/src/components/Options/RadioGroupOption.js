@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { isEqual } from 'lodash';
 import PropTypes from 'prop-types';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -29,7 +29,7 @@ class RadioGroupOption extends Component {
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !_.isEqual(currentOptions, nextOptions);
+    return !isEqual(currentOptions, nextOptions);
   }
 
   getValue(value) {

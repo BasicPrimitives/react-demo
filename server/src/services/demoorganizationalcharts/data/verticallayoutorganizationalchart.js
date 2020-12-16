@@ -1,4 +1,4 @@
-const primitives = require('basicprimitives');
+const { Size, PlacementType, ItemType } = require('basicprimitives');
 
 module.exports = {
   items: [
@@ -14,8 +14,8 @@ module.exports = {
       phone: '1-900-800-70-60',
       title: 'Title A',
       templateName: 'managerTemplate',
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right,
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right,
       groupTitle: "Root"
     },
     {
@@ -27,7 +27,7 @@ module.exports = {
       image: '/api/images/photos/z.png',
       title: 'Adviser 1',
       label: 'Adviser 1',
-      itemType: primitives.orgdiagram.ItemType.Adviser
+      itemType: ItemType.Adviser
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ module.exports = {
       image: '/api/images/photos/z.png',
       title: 'Adviser 2',
       label: 'Adviser 2',
-      itemType: primitives.orgdiagram.ItemType.Adviser
+      itemType: ItemType.Adviser
     },
     {
       id: 3,
@@ -49,9 +49,9 @@ module.exports = {
       image: '/api/images/photos/y.png',
       title: 'Assistant 1',
       label: 'Assistant 1',
-      itemType: primitives.orgdiagram.ItemType.Assistant,
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right
+      itemType: ItemType.Assistant,
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right
     },
     /* managers */
     {
@@ -66,8 +66,8 @@ module.exports = {
       title: 'Manager E',
       label: 'Manager E',
       templateName: 'managerTemplate',
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right
     },
     {
       id: 20,
@@ -81,8 +81,8 @@ module.exports = {
       title: 'Manager V',
       label: 'Manager V',
       templateName: 'managerTemplate',
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right
     },
     {
       id: 38,
@@ -96,8 +96,8 @@ module.exports = {
       title: 'Manager U',
       label: 'Manager U',
       templateName: 'managerTemplate',
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right
     },
     {
       id: 57,
@@ -111,8 +111,8 @@ module.exports = {
       title: 'Manager O',
       label: 'Manager O',
       templateName: 'managerTemplate',
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right
     },
     {
       id: 73,
@@ -126,8 +126,8 @@ module.exports = {
       title: 'Manager P',
       label: 'Manager P',
       templateName: 'managerTemplate',
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right
     },
     {
       id: 90,
@@ -141,8 +141,8 @@ module.exports = {
       title: 'Manager L',
       label: 'Manager L',
       templateName: 'managerTemplate',
-      labelSize: new primitives.common.Size(300, 14),
-      labelPlacement: primitives.common.PlacementType.Right
+      labelSize: new Size(300, 14),
+      labelPlacement: PlacementType.Right
     },
     /* direct reports */
     {

@@ -17,7 +17,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { OrgDiagram } from 'basicprimitivesreact';
-import primitives from 'basicprimitives';
+import { Colors } from 'basicprimitives';
 import {
   load,
   loadMarkdown,
@@ -184,7 +184,7 @@ function HighlightAnnotations() {
               {
                 ...templateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.DefaultTemplate}>
                     <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.DefaultTitle}>{itemConfig.title}</div>
@@ -199,7 +199,7 @@ function HighlightAnnotations() {
               {
                 ...defaultConnectedItemTemplateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.DefaultTemplate}>
                     <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.DefaultTitle}>{itemConfig.title}</div>
@@ -214,7 +214,7 @@ function HighlightAnnotations() {
               {
                 ...contactTemplateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.ContactTemplate}>
                     <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.ContactTitle}>{itemConfig.title}</div>

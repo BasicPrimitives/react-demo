@@ -40,7 +40,8 @@ module.exports = function customService(app) {
 
   app.use('/images', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'images')));
   app.use('/images', express.static(path.join(__dirname, '..', '..', 'static', 'react', 'docs', 'images')));
-  app.use('/min', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'min')));
-  app.use('/packages', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'packages')));
+  app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript')));
+  app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript' , 'dist')));
+  app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript')));
   app.use('/data', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'data')));
 }

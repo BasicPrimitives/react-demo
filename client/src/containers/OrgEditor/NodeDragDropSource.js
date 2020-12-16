@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import useStyles from  './styles';
-import primitives from 'basicprimitives';
+import { Colors } from 'basicprimitives';
 
 const ItemTypes = {
     NODE: 'node'
@@ -31,7 +31,7 @@ export default function NodeDragDropSource({ itemConfig, canDropItem, onDropItem
             isOverCurrent: monitor.isOver({ shallow: true }),
         }),      
     })
-  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
   const styles = useStyles();
   return (
     <div ref={drop} style = {{width: "100%", height: "100%"}}>

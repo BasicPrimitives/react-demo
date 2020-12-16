@@ -53,6 +53,7 @@ async function getMarkdownFileContent(name) {
     fileContent = (await readFile(filePath)).toString();
     fileContent = fileContent.replace(/(samples\/images)/g, match => 'api/images');    
     fileContent = fileContent.replace(/(\(images)/g, match => '(api/images');
+    fileContent = fileContent.replace(/(\(\.\/images)/g, match => '(api/images');
   }
   return fileContent;
 }
@@ -70,10 +71,9 @@ async function getSampleFileContent(link) {
   if (fileContent.charCodeAt(0) === 0xfeff) {
     fileContent = fileContent.substr(1);
   }
-  // remove SSI command used for package primary library development.
-  fileContent = fileContent.replace(/<!-- # include file="\.\.\/\.\.\/src\.primitives\/src\.primitives\.html"-->/g, match => '');
-  fileContent = fileContent.replace(/(\.\.\/\.\.\/packages)/g, match => '/api/packages');
-  fileContent = fileContent.replace(/(\.\.\/\.\.\/min)/g, match => '/api/min');
+  fileContent = fileContent.replace(/(\.\.\/\.\.\/primitives.js)/g, match => '/api/javascript/primitives.js');
+  fileContent = fileContent.replace(/(\.\.\/\.\.\/pdfkitsamples.js)/g, match => '/api/javascript/pdfkitsamples.js');
+  fileContent = fileContent.replace(/(\.\.\/\.\.\/css)/g, match => '/api/javascript/css');
   fileContent = fileContent.replace(/(\.\.\/images\/photos)/g, match => '/api/images/photos');
   fileContent = fileContent.replace(/(\.\.\/data\/photos)/g, match => '/api/data/photos');
   fileContent = fileContent.replace(/(\'photos)/g, match => '\'/photos');
