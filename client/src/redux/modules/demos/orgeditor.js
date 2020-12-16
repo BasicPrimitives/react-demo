@@ -1,4 +1,9 @@
-const primitives = require('basicprimitives');
+import { OrgConfig, TemplateConfig, Size, Thickness, PageFitMode,
+  Enabled, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
+  ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
+  TextOrientationType, GroupByType, ConnectorType,
+  ElbowType, PlacementType, NavigationMode, ShapeType,
+  Tree, LCA } from 'basicprimitives';
 
 const LOAD = 'redux-example/orgeditor/LOAD';
 const LOAD_SUCCESS = 'redux-example/orgeditor/LOAD_SUCCESS';
@@ -49,56 +54,56 @@ export const DrawerNames = {
 };
 
 const config = {
-  ...new primitives.orgdiagram.Config(),
+  ...new OrgConfig(),
   cursorItem: 0,
   defaultTemplateName: 'defaultTemplate',
   defaultCalloutTemplateName: 'defaultTemplate',
   templates: [
     {
-      ...new primitives.orgdiagram.TemplateConfig(),
+      ...new TemplateConfig(),
       name: 'defaultTemplate',
       minimizedItemCornerRadius: null,
-      minimizedItemSize: new primitives.common.Size(4, 4),
-      highlightPadding: new primitives.common.Thickness(2, 2, 2, 2),
-      minimizedItemShapeType: primitives.common.ShapeType.None,
+      minimizedItemSize: new Size(4, 4),
+      highlightPadding: new Thickness(2, 2, 2, 2),
+      minimizedItemShapeType: ShapeType.None,
       minimizedItemLineWidth: 1,
-      minimizedItemLineType: primitives.common.LineType.Solid,
+      minimizedItemLineType: LineType.Solid,
       minimizedItemBorderColor: null,
       minimizedItemFillColor: null,
       minimizedItemOpacity: 1.0
     },
     {
-      ...new primitives.orgdiagram.TemplateConfig(),
+      ...new TemplateConfig(),
       name: 'contactTemplate',
-      itemSize: new primitives.common.Size(220, 120)
+      itemSize: new Size(220, 120)
     }
   ],
   items: [],
   onSave: null,
   editMode: true,
-  navigationMode: primitives.common.NavigationMode.Default,
-  pageFitMode: primitives.common.PageFitMode.FitToPage,
-  verticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-  arrowsDirection: primitives.common.GroupByType.None,
+  navigationMode: NavigationMode.Default,
+  pageFitMode: PageFitMode.FitToPage,
+  verticalAlignment: VerticalAlignmentType.Middle,
+  arrowsDirection: GroupByType.None,
   showExtraArrows: false,
   extraArrowsMinimumSpace: 30,
-  horizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
-  connectorType: primitives.common.ConnectorType.Angular,
+  horizontalAlignment: HorizontalAlignmentType.Center,
+  connectorType: ConnectorType.Angular,
   bevelSize: 4,
-  elbowType: primitives.common.ElbowType.None,
+  elbowType: ElbowType.None,
   elbowDotSize: 4,
   highlightGravityRadius: 40,
-  hasSelectorCheckbox: primitives.common.Enabled.True,
+  hasSelectorCheckbox: Enabled.True,
   selectCheckBoxLabel: 'Selected',
-  selectionPathMode: primitives.common.SelectionPathMode.FullStack,
-  hasButtons: primitives.common.Enabled.Auto,
-  minimalVisibility: primitives.common.Visibility.Dot,
-  orientationType: primitives.common.OrientationType.Top,
-  itemTitleFirstFontColor: primitives.common.Colors.White,
-  itemTitleSecondFontColor: primitives.common.Colors.Navy,
-  linesColor: primitives.common.Colors.Silver,
+  selectionPathMode: SelectionPathMode.FullStack,
+  hasButtons: Enabled.Auto,
+  minimalVisibility: Visibility.Dot,
+  orientationType: OrientationType.Top,
+  itemTitleFirstFontColor: Colors.White,
+  itemTitleSecondFontColor: Colors.Navy,
+  linesColor: Colors.Silver,
   linesWidth: 1,
-  linesType: primitives.common.LineType.Solid,
+  linesType: LineType.Solid,
   showCallout: true,
   calloutPlacementOffset: 100,
   calloutfillColor: '#000000',
@@ -108,18 +113,18 @@ const config = {
   calloutPointerWidth: '10%',
   calloutLineWidth: 1,
   calloutOpacity: 0.2,
-  childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
-  leavesPlacementType: primitives.common.ChildrenPlacementType.Matrix,
+  childrenPlacementType: ChildrenPlacementType.Horizontal,
+  leavesPlacementType: ChildrenPlacementType.Matrix,
   maximumColumnsInMatrix: 6,
   buttonsPanelSize: 42,
   groupTitlePanelSize: 24,
   checkBoxPanelSize: 24,
-  groupTitleOrientation: primitives.text.TextOrientationType.RotateRight,
-  groupTitleVerticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-  groupTitleHorizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
+  groupTitleOrientation: TextOrientationType.RotateRight,
+  groupTitleVerticalAlignment: VerticalAlignmentType.Middle,
+  groupTitleHorizontalAlignment: HorizontalAlignmentType.Center,
   groupTitleFontSize: '12px',
   groupTitleFontFamily: 'Arial',
-  groupTitleColor: primitives.common.Colors.RoyalBlue,
+  groupTitleColor: Colors.RoyalBlue,
   groupTitleFontWeight: 'normal',
   groupTitleFontStyle: 'normal',
   scale: 1,
@@ -130,14 +135,14 @@ const config = {
   dotItemsInterval: 10,
   lineItemsInterval: 5,
   cousinsIntervalMultiplier: 5,
-  showLabels: primitives.common.Enabled.Auto,
-  labelSize: new primitives.common.Size(10, 24),
+  showLabels: Enabled.Auto,
+  labelSize: new Size(10, 24),
   labelOffset: 1,
-  labelOrientation: primitives.text.TextOrientationType.Horizontal,
-  labelPlacement: primitives.common.PlacementType.Top,
+  labelOrientation: TextOrientationType.Horizontal,
+  labelPlacement: PlacementType.Top,
   labelFontSize: '10px',
   labelFontFamily: 'Arial',
-  labelColor: primitives.common.Colors.Black,
+  labelColor: Colors.Black,
   labelFontWeight: 'normal',
   labelFontStyle: 'normal',
   enablePanning: true
@@ -214,7 +219,7 @@ function getNewChildItem(items = [], cursorItem = null, config = null) {
 }
 
 function getTree(items = []) {
-  const tree = primitives.common.tree();
+  const tree = Tree();
 
   // rebuild tree
   for (let index = 0; index < items.length; index += 1) {
@@ -227,7 +232,7 @@ function getTree(items = []) {
 
 function getDeletedItemsParent(tree, deletedItems, deletedHash) {
   let result = null;
-  const lca = primitives.common.LCA(tree);
+  const lca = LCA(tree);
   result = deletedItems.reduce((agg, itemid) => {
     if (agg == null) {
       agg = itemid;

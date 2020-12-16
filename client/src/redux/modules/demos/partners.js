@@ -1,4 +1,8 @@
-const primitives = require('basicprimitives');
+import { OrgConfig, TemplateConfig, Size, Thickness, PageFitMode,
+  Enabled, ShapeType, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
+  ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
+  AdviserPlacementType, TextOrientationType, GroupByType, ConnectorType,
+  ElbowType, PlacementType, NavigationMode} from 'basicprimitives';
 
 const LOAD = 'redux-example/partners/LOAD';
 const LOAD_SUCCESS = 'redux-example/partners/LOAD_SUCCESS';
@@ -32,56 +36,56 @@ const initialState = {
   },
   centerOnCursor: true,
   config: {
-    ...new primitives.orgdiagram.Config(),
+    ...new OrgConfig(),
     cursorItem: 0,
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
-        ...new primitives.orgdiagram.TemplateConfig(),
+        ...new TemplateConfig(),
         name: 'defaultTemplate',
         minimizedItemCornerRadius: 8,
-        minimizedItemSize: new primitives.common.Size(16, 16),
-        highlightPadding: new primitives.common.Thickness(6, 6, 6, 6),
-        minimizedItemShapeType: primitives.common.ShapeType.Rhombus,
+        minimizedItemSize: new Size(16, 16),
+        highlightPadding: new Thickness(6, 6, 6, 6),
+        minimizedItemShapeType: ShapeType.Rhombus,
         minimizedItemLineWidth: 0,
-        minimizedItemLineType: primitives.common.LineType.Solid,
+        minimizedItemLineType: LineType.Solid,
         minimizedItemBorderColor: null,
         minimizedItemFillColor: null,
         minimizedItemOpacity: 1
       },
       {
-        ...new primitives.orgdiagram.TemplateConfig(),
+        ...new TemplateConfig(),
         name: 'contactTemplate',
-        itemSize: new primitives.common.Size(220, 120)
+        itemSize: new Size(220, 120)
       }
     ],
-    pageFitMode: primitives.common.PageFitMode.FitToPage,
-    orientationType: primitives.common.OrientationType.Top,
-    verticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    horizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
-    childrenPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
-    leavesPlacementType: primitives.common.ChildrenPlacementType.Horizontal,
+    pageFitMode: PageFitMode.FitToPage,
+    orientationType: OrientationType.Top,
+    verticalAlignment: VerticalAlignmentType.Middle,
+    horizontalAlignment: HorizontalAlignmentType.Center,
+    childrenPlacementType: ChildrenPlacementType.Horizontal,
+    leavesPlacementType: ChildrenPlacementType.Horizontal,
     maximumColumnsInMatrix: 6,
-    minimalVisibility: primitives.common.Visibility.Dot,
-    selectionPathMode: primitives.common.SelectionPathMode.FullStack,
+    minimalVisibility: Visibility.Dot,
+    selectionPathMode: SelectionPathMode.FullStack,
 
-    hasButtons: primitives.common.Enabled.Auto,
-    hasSelectorCheckbox: primitives.common.Enabled.True,
+    hasButtons: Enabled.Auto,
+    hasSelectorCheckbox: Enabled.True,
     selectCheckBoxLabel: 'Selected',
-    itemTitleFirstFontColor: primitives.common.Colors.White,
-    itemTitleSecondFontColor: primitives.common.Colors.White,
+    itemTitleFirstFontColor: Colors.White,
+    itemTitleSecondFontColor: Colors.White,
     buttonsPanelSize: 42,
     groupTitlePanelSize: 24,
     checkBoxPanelSize: 24,
 
     /* group title options */
-    groupTitlePlacementType: primitives.common.AdviserPlacementType.Left,
-    groupTitleOrientation: primitives.text.TextOrientationType.RotateRight,
-    groupTitleVerticalAlignment: primitives.common.VerticalAlignmentType.Middle,
-    groupTitleHorizontalAlignment: primitives.common.HorizontalAlignmentType.Center,
+    groupTitlePlacementType: AdviserPlacementType.Left,
+    groupTitleOrientation: TextOrientationType.RotateRight,
+    groupTitleVerticalAlignment: VerticalAlignmentType.Middle,
+    groupTitleHorizontalAlignment: HorizontalAlignmentType.Center,
     groupTitleFontSize: '12px',
     groupTitleFontFamily: 'Arial',
-    groupTitleColor: primitives.common.Colors.RoyalBlue,
+    groupTitleColor: Colors.RoyalBlue,
     groupTitleFontWeight: 'normal',
     groupTitleFontStyle: 'normal',
 
@@ -95,31 +99,31 @@ const initialState = {
     cousinsIntervalMultiplier: 0,
 
     /* Connectors */
-    arrowsDirection: primitives.common.GroupByType.None,
+    arrowsDirection: GroupByType.None,
     showExtraArrows: true,
     extraArrowsMinimumSpace: 30,
-    connectorType: primitives.common.ConnectorType.Squared,
-    elbowType: primitives.common.ElbowType.None,
+    connectorType: ConnectorType.Squared,
+    elbowType: ElbowType.None,
     bevelSize: 4,
     elbowDotSize: 4,
-    linesType: primitives.common.LineType.Solid,
-    linesColor: primitives.common.Colors.Silver,
+    linesType: LineType.Solid,
+    linesColor: Colors.Silver,
     linesWidth: 1,
 
     /* Labels */
-    showLabels: primitives.common.Enabled.Auto,
-    labelSize: new primitives.common.Size(10, 14),
-    labelOrientation: primitives.text.TextOrientationType.Horizontal,
-    labelPlacement: primitives.common.PlacementType.Bottom,
+    showLabels: Enabled.Auto,
+    labelSize: new Size(10, 14),
+    labelOrientation: TextOrientationType.Horizontal,
+    labelPlacement: PlacementType.Bottom,
     labelOffset: 3,
     labelFontSize: '10px',
     labelFontFamily: 'Arial',
-    labelColor: primitives.common.Colors.Black,
+    labelColor: Colors.Black,
     labelFontWeight: 'normal',
     labelFontStyle: 'normal',
 
     /* Callout */
-    calloutMaximumVisibility: primitives.common.Visibility.Dot,
+    calloutMaximumVisibility: Visibility.Dot,
     showCallout: true,
     calloutPlacementOffset: 100,
     calloutfillColor: '#000000',
@@ -131,7 +135,7 @@ const initialState = {
     calloutOpacity: 0.2,
 
     /* Interactivity */
-    navigationMode: primitives.common.NavigationMode.Default,
+    navigationMode: NavigationMode.Default,
     highlightGravityRadius: 40,
     enablePanning: true,
 
@@ -172,14 +176,14 @@ function getCursorItem(config, cursorItem) {
           return {
             ...item,
             templateName: 'contactTemplate',
-            showCallout: primitives.common.Enabled.True
+            showCallout: Enabled.True
           };
         }
         if (item.templateName != null) {
           return {
             ...item,
             templateName: null,
-            showCallout: primitives.common.Enabled.Auto
+            showCallout: Enabled.Auto
           };
         }
         return item;

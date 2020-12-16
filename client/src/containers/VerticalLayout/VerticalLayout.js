@@ -19,7 +19,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { OrgDiagram } from 'basicprimitivesreact';
-import primitives from 'basicprimitives';
+import { HorizontalAlignmentType, Colors } from 'basicprimitives';
 import {
   load,
   loadMarkdown,
@@ -150,7 +150,7 @@ function VerticalLayout() {
         <FormControlLabel
           control={
             <Switch
-              checked={config.horizontalAlignment === primitives.common.HorizontalAlignmentType.Left}
+              checked={config.horizontalAlignment === HorizontalAlignmentType.Left}
               onChange={() => dispatch(switchLTR())}
               color="primary"
               name="switchLTR"
@@ -197,7 +197,7 @@ function VerticalLayout() {
               {
                 ...templateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.DefaultTemplate}>
                     <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.DefaultTitle}>{itemConfig.title}</div>
@@ -212,7 +212,7 @@ function VerticalLayout() {
               {
                 ...contactTemplateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.ContactTemplate}>
                     <div className={styles.ContactTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.ContactTitle}>{itemConfig.title}</div>

@@ -1,9 +1,9 @@
 import React from 'react';
 import PdfViewDialog from './PdfViewDialog';
-import primitives from 'basicprimitives';
+import { OrgDiagramPdfkit } from 'basicprimitives';
 
 function OrgPdfViewDialog(props) {
-    return <PdfViewDialog {...props} plugin={primitives.pdf.orgdiagram.Plugin} />
+    return <PdfViewDialog {...props} plugin={OrgDiagramPdfkit} />
 }
   
 export default OrgPdfViewDialog;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { LiveContext } from 'react-live'
 import {UnControlled as CodeMirror} from 'react-codemirror2'
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/material.css');
-require('codemirror/mode/javascript/javascript');
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/mode/javascript/javascript';
 
 export default function LiveEditor(props) {
   return (

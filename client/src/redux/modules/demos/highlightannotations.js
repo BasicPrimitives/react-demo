@@ -1,4 +1,5 @@
-const primitives = require('basicprimitives');
+import { OrgConfig, TemplateConfig, Size, Thickness, PageFitMode,
+  Enabled, ShapeType, LineType, ConnectorAnnotationConfig, ConnectorPlacementType} from 'basicprimitives';
 
 const LOAD = 'redux-example/highlightannotations/LOAD';
 const LOAD_SUCCESS = 'redux-example/highlightannotations/LOAD_SUCCESS';
@@ -33,43 +34,43 @@ const initialState = {
   },
   centerOnCursor: true,
   config: {
-    ...new primitives.orgdiagram.Config(),
-    pageFitMode: primitives.common.PageFitMode.FitToPage,
+    ...new OrgConfig(),
+    pageFitMode: PageFitMode.FitToPage,
     cursorItem: 0,
-    hasSelectorCheckbox: primitives.common.Enabled.True,
-    hasButtons: primitives.common.Enabled.Auto,
+    hasSelectorCheckbox: Enabled.True,
+    hasButtons: Enabled.Auto,
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {
-        ...new primitives.orgdiagram.TemplateConfig(),
+        ...new TemplateConfig(),
         name: 'defaultTemplate',
         minimizedItemCornerRadius: 8,
-        minimizedItemSize: new primitives.common.Size(6, 6),
-        highlightPadding: new primitives.common.Thickness(6, 6, 6, 6),
-        minimizedItemShapeType: primitives.common.ShapeType.None,
+        minimizedItemSize: new Size(6, 6),
+        highlightPadding: new Thickness(6, 6, 6, 6),
+        minimizedItemShapeType: ShapeType.None,
         minimizedItemLineWidth: 0,
-        minimizedItemLineType: primitives.common.LineType.Solid,
+        minimizedItemLineType: LineType.Solid,
         minimizedItemBorderColor: null,
         minimizedItemFillColor: null,
         minimizedItemOpacity: 1.0
       },
       {
-        ...new primitives.orgdiagram.TemplateConfig(),
+        ...new TemplateConfig(),
         name: 'defaultConnectedItemTemplate',
         minimizedItemCornerRadius: 12,
-        minimizedItemSize: new primitives.common.Size(12, 12),
-        highlightPadding: new primitives.common.Thickness(6, 6, 6, 6),
-        minimizedItemShapeType: primitives.common.ShapeType.None,
+        minimizedItemSize: new Size(12, 12),
+        highlightPadding: new Thickness(6, 6, 6, 6),
+        minimizedItemShapeType: ShapeType.None,
         minimizedItemLineWidth: 0,
-        minimizedItemLineType: primitives.common.LineType.Solid,
+        minimizedItemLineType: LineType.Solid,
         minimizedItemBorderColor: null,
         minimizedItemFillColor: null,
         minimizedItemOpacity: 1.0
       },
       {
-        ...new primitives.orgdiagram.TemplateConfig(),
+        ...new TemplateConfig(),
         name: 'contactTemplate',
-        itemSize: new primitives.common.Size(220, 120)
+        itemSize: new Size(220, 120)
       }
     ],
     normalLevelShift: 30,
@@ -92,12 +93,12 @@ function getAnnotationsHash(links = []) {
   const annotations = links.map(({
     fromItem, toItem, lineType, color, connectorShapeType
   }, index) => {
-    const annotation = new primitives.orgdiagram.ConnectorAnnotationConfig(fromItem, toItem);
+    const annotation = new ConnectorAnnotationConfig(fromItem, toItem);
     annotation.id = index;
     annotation.selectItems = true;
     annotation.lineType = lineType;
     annotation.color = color;
-    annotation.connectorPlacementType = primitives.common.ConnectorPlacementType.Straight;
+    annotation.connectorPlacementType = ConnectorPlacementType.Straight;
     annotation.connectorShapeType = connectorShapeType;
 
     annotationsHash[fromItem] = annotationsHash[fromItem] || [];
@@ -165,21 +166,21 @@ function getCursorItem(config, centerOnCursor, cursorItem, highlightItem, annota
           return {
             ...item,
             templateName: 'contactTemplate',
-            showCallout: primitives.common.Enabled.True
+            showCallout: Enabled.True
           };
         }
         if (annotationsHash[id] != null) {
           return {
             ...item,
             templateName: 'defaultConnectedItemTemplate',
-            showCallout: primitives.common.Enabled.Auto
+            showCallout: Enabled.Auto
           };
         }
         if (item.templateName != null) {
           return {
             id,
             ...restItem,
-            showCallout: primitives.common.Enabled.Auto
+            showCallout: Enabled.Auto
           };
         }
         return item;

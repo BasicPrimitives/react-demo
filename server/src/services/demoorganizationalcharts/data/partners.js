@@ -1,4 +1,6 @@
-const primitives = require('basicprimitives');
+const { Colors, ItemType, AdviserPlacementType, ChildrenPlacementType,
+  LineType, AnnotationType, ZOrderType, ConnectorShapeType, ConnectorPlacementType,
+  ConnectorLabelPlacementType, Thickness } = require('basicprimitives');
 
 module.exports = {
   items: [
@@ -9,7 +11,7 @@ module.exports = {
       description: 'Regular root item',
       image: '/api/images/photos/r.png',
       groupTitle: 'Has Partners',
-      groupTitleColor: primitives.common.Colors.Red,
+      groupTitleColor: Colors.Red,
       email: 'root@name.com',
       phone: '648-123-12-12'
     },
@@ -19,9 +21,9 @@ module.exports = {
       title: 'GP 1',
       description: 'General Partner on right',
       image: '/api/images/photos/g.png',
-      itemType: primitives.orgdiagram.ItemType.GeneralPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
-      groupTitleColor: primitives.common.Colors.Green,
+      itemType: ItemType.GeneralPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
+      groupTitleColor: Colors.Green,
       groupTitle: 'Partner',
       email: 'gp1@name.com',
       phone: '648-123-12-13'
@@ -32,8 +34,8 @@ module.exports = {
       title: 'LP 2',
       description: 'Limited Partner on right',
       image: '/api/images/photos/l.png',
-      itemType: primitives.orgdiagram.ItemType.LimitedPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.LimitedPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
       groupTitle: 'Partner',
       email: 'lp2@name.com',
       phone: '648-123-12-14'
@@ -44,8 +46,8 @@ module.exports = {
       title: 'LP 3',
       description: 'Limited Partner on left',
       image: '/api/images/photos/l.png',
-      itemType: primitives.orgdiagram.ItemType.LimitedPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Left,
+      itemType: ItemType.LimitedPartner,
+      adviserPlacementType: AdviserPlacementType.Left,
       groupTitle: 'Partner',
       email: 'lp3@name.com',
       phone: '648-123-12-15'
@@ -65,9 +67,9 @@ module.exports = {
       title: 'Adviser 5',
       description: 'Adviser on right',
       image: '/api/images/photos/a.png',
-      itemType: primitives.orgdiagram.ItemType.Adviser,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
-      groupTitleColor: primitives.common.Colors.Red,
+      itemType: ItemType.Adviser,
+      adviserPlacementType: AdviserPlacementType.Right,
+      groupTitleColor: Colors.Red,
       groupTitle: 'Has Partners',
       email: 'adviser5@name.com',
       phone: '648-123-12-17'
@@ -78,9 +80,9 @@ module.exports = {
       title: 'GP 6',
       description: 'General Partner on right',
       image: '/api/images/photos/g.png',
-      itemType: primitives.orgdiagram.ItemType.GeneralPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
-      groupTitleColor: primitives.common.Colors.Green,
+      itemType: ItemType.GeneralPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
+      groupTitleColor: Colors.Green,
       groupTitle: 'Partner',
       email: 'gp6@name.com',
       phone: '648-123-12-18'
@@ -91,9 +93,9 @@ module.exports = {
       title: 'Regular 7',
       description: 'Regular',
       image: '/api/images/photos/r.png',
-      childrenPlacementType: primitives.common.ChildrenPlacementType.Matrix,
+      childrenPlacementType: ChildrenPlacementType.Matrix,
       groupTitle: 'Has Partners',
-      groupTitleColor: primitives.common.Colors.Red,
+      groupTitleColor: Colors.Red,
       email: 'regular7@name.com',
       phone: '648-123-12-19'
     },
@@ -103,8 +105,8 @@ module.exports = {
       title: 'LP 8',
       description: 'Limited Partner on the right',
       image: '/api/images/photos/l.png',
-      itemType: primitives.orgdiagram.ItemType.LimitedPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.LimitedPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
       groupTitle: 'Partner',
       email: 'lp8@name.com',
       phone: '648-123-12-20'
@@ -115,8 +117,8 @@ module.exports = {
       title: 'Assistant 9',
       description: 'Assistant having its own partner node',
       image: '/api/images/photos/r.png',
-      itemType: primitives.orgdiagram.ItemType.Assistant,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Left,
+      itemType: ItemType.Assistant,
+      adviserPlacementType: AdviserPlacementType.Left,
       email: 'assistant9@name.com',
       phone: '648-123-12-21'
     },
@@ -126,9 +128,9 @@ module.exports = {
       title: 'Adviser 10',
       description: 'Adviser on the left',
       image: '/api/images/photos/a.png',
-      itemType: primitives.orgdiagram.ItemType.Adviser,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Left,
-      groupTitleColor: primitives.common.Colors.Red,
+      itemType: ItemType.Adviser,
+      adviserPlacementType: AdviserPlacementType.Left,
+      groupTitleColor: Colors.Red,
       groupTitle: 'Has Partners',
       email: 'adviser10@name.com',
       phone: '648-123-12-22'
@@ -139,9 +141,9 @@ module.exports = {
       title: 'GP 11',
       description: 'General Partner on right',
       image: '/api/images/photos/g.png',
-      itemType: primitives.orgdiagram.ItemType.GeneralPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
-      groupTitleColor: primitives.common.Colors.Green,
+      itemType: ItemType.GeneralPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
+      groupTitleColor: Colors.Green,
       groupTitle: 'Partner',
       email: 'gp11@name.com',
       phone: '648-123-12-23'
@@ -152,9 +154,9 @@ module.exports = {
       title: 'GP 12',
       description: 'General Partner on right',
       image: '/api/images/photos/g.png',
-      itemType: primitives.orgdiagram.ItemType.GeneralPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
-      groupTitleColor: primitives.common.Colors.Green,
+      itemType: ItemType.GeneralPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
+      groupTitleColor: Colors.Green,
       groupTitle: 'Partner',
       email: 'gp12@name.com',
       phone: '648-123-12-24'
@@ -165,10 +167,10 @@ module.exports = {
       title: 'Adviser 13',
       description: 'Adviser',
       image: '/api/images/photos/a.png',
-      itemType: primitives.orgdiagram.ItemType.Adviser,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.Adviser,
+      adviserPlacementType: AdviserPlacementType.Right,
       groupTitle: 'Has Partners',
-      groupTitleColor: primitives.common.Colors.Red,
+      groupTitleColor: Colors.Red,
       email: 'adviser13@name.com',
       phone: '648-123-12-25'
     },
@@ -178,9 +180,9 @@ module.exports = {
       title: 'GP 14',
       description: 'General Partner on right',
       image: '/api/images/photos/g.png',
-      itemType: primitives.orgdiagram.ItemType.GeneralPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
-      groupTitleColor: primitives.common.Colors.Green,
+      itemType: ItemType.GeneralPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
+      groupTitleColor: Colors.Green,
       groupTitle: 'Partner',
       email: 'gp14@name.com',
       phone: '648-123-12-26'
@@ -191,8 +193,8 @@ module.exports = {
       title: 'Adviser 15',
       description: 'Adviser',
       image: '/api/images/photos/a.png',
-      itemType: primitives.orgdiagram.ItemType.Adviser,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.Adviser,
+      adviserPlacementType: AdviserPlacementType.Right,
       email: 'adviser15@name.com',
       phone: '648-123-12-27'
     },
@@ -202,7 +204,7 @@ module.exports = {
       title: 'Regular 16',
       description: 'Regular',
       image: '/api/images/photos/r.png',
-      childrenPlacementType: primitives.common.ChildrenPlacementType.Matrix,
+      childrenPlacementType: ChildrenPlacementType.Matrix,
       email: 'regular16@name.com',
       phone: '648-123-12-28'
     },
@@ -212,7 +214,7 @@ module.exports = {
       title: 'Regular 17',
       description: 'Regular',
       image: '/api/images/photos/r.png',
-      itemType: primitives.orgdiagram.ItemType.Regular /* We explisitly set iteType of regular item */,
+      itemType: ItemType.Regular /* We explisitly set iteType of regular item */,
       email: 'regular17@name.com',
       phone: '648-123-12-29'
     },
@@ -222,8 +224,8 @@ module.exports = {
       title: 'Assistant 18',
       description: 'Assistant item on right',
       image: '/api/images/photos/s.png',
-      itemType: primitives.orgdiagram.ItemType.Assistant,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.Assistant,
+      adviserPlacementType: AdviserPlacementType.Right,
       email: 'assistant18@name.com',
       phone: '648-123-12-30'
     },
@@ -233,8 +235,8 @@ module.exports = {
       title: 'Assistant 19',
       description: 'Assistant item on right',
       image: '/api/images/photos/s.png',
-      itemType: primitives.orgdiagram.ItemType.Regular,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.Regular,
+      adviserPlacementType: AdviserPlacementType.Right,
       email: 'assistant19@name.com',
       phone: '648-123-12-31'
     },
@@ -244,9 +246,9 @@ module.exports = {
       title: 'GP 20',
       description: 'General Partner on right',
       image: '/api/images/photos/g.png',
-      itemType: primitives.orgdiagram.ItemType.GeneralPartner,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
-      groupTitleColor: primitives.common.Colors.Green,
+      itemType: ItemType.GeneralPartner,
+      adviserPlacementType: AdviserPlacementType.Right,
+      groupTitleColor: Colors.Green,
       groupTitle: 'Partner',
       email: 'gp20@name.com',
       phone: '648-123-12-32'
@@ -257,8 +259,8 @@ module.exports = {
       title: 'Assistant 21',
       description: 'Assistant item on right',
       image: '/api/images/photos/s.png',
-      itemType: primitives.orgdiagram.ItemType.Assistant,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.Assistant,
+      adviserPlacementType: AdviserPlacementType.Right,
       email: 'assistant21@name.com',
       phone: '648-123-12-32'
     },
@@ -268,7 +270,7 @@ module.exports = {
       title: 'Regular 22',
       description: 'Regular item assigned to Partner is shown as its Assistant.',
       image: '/api/images/photos/r.png',
-      itemType: primitives.orgdiagram.ItemType.Regular,
+      itemType: ItemType.Regular,
       email: 'regular22@name.com',
       phone: '648-123-12-33'
     },
@@ -278,7 +280,7 @@ module.exports = {
       title: 'Regular 23',
       description: 'Regular item assigned to assistant.',
       image: '/api/images/photos/r.png',
-      itemType: primitives.orgdiagram.ItemType.Regular,
+      itemType: ItemType.Regular,
       email: 'regular23@name.com',
       phone: '648-123-12-34'
     },
@@ -288,7 +290,7 @@ module.exports = {
       title: 'Regular 24',
       description: 'Regular item assigned to assistant.',
       image: '/api/images/photos/r.png',
-      itemType: primitives.orgdiagram.ItemType.Regular,
+      itemType: ItemType.Regular,
       email: 'regular24@name.com',
       phone: '648-123-12-35'
     },
@@ -298,7 +300,7 @@ module.exports = {
       title: 'Regular 25',
       description: 'Regular item assigned to assistant.',
       image: '/api/images/photos/r.png',
-      itemType: primitives.orgdiagram.ItemType.Regular,
+      itemType: ItemType.Regular,
       email: 'regular25@name.com',
       phone: '648-123-12-36'
     },
@@ -310,8 +312,8 @@ module.exports = {
       title: 'Adviser 26',
       description: 'Adviser on left',
       image: '/api/images/photos/a.png',
-      itemType: primitives.orgdiagram.ItemType.Adviser,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Left,
+      itemType: ItemType.Adviser,
+      adviserPlacementType: AdviserPlacementType.Left,
       email: 'regular26@name.com',
       phone: '648-123-12-37'
     },
@@ -321,8 +323,8 @@ module.exports = {
       title: 'Adviser 27',
       description: 'Adviser on right',
       image: '/api/images/photos/a.png',
-      itemType: primitives.orgdiagram.ItemType.Adviser,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.Adviser,
+      adviserPlacementType: AdviserPlacementType.Right,
       email: 'regular27@name.com',
       phone: '648-123-12-38'
     },
@@ -332,8 +334,8 @@ module.exports = {
       title: 'Assistant 28',
       description: 'Assistant on right',
       image: '/api/images/photos/s.png',
-      itemType: primitives.orgdiagram.ItemType.Assistant,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Right,
+      itemType: ItemType.Assistant,
+      adviserPlacementType: AdviserPlacementType.Right,
       email: 'assistant28@name.com',
       phone: '648-123-12-39'
     },
@@ -343,8 +345,8 @@ module.exports = {
       title: 'Assistant 29',
       description: 'Assistant on left',
       image: '/api/images/photos/s.png',
-      itemType: primitives.orgdiagram.ItemType.Assistant,
-      adviserPlacementType: primitives.common.AdviserPlacementType.Left,
+      itemType: ItemType.Assistant,
+      adviserPlacementType: AdviserPlacementType.Left,
       email: 'assistant29@name.com',
       phone: '648-123-12-40'
     },
@@ -507,64 +509,64 @@ module.exports = {
   ],
   annotations: [
     {
-      annotationType: primitives.common.AnnotationType.Connector,
-      zOrderType: primitives.common.ZOrderType.Foreground,
+      annotationType: AnnotationType.Connector,
+      zOrderType: ZOrderType.Foreground,
       fromItem: 31,
       toItem: 7,
-      connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
-      connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
-      labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
-      offset: new primitives.common.Thickness(0, 0, 0, 0),
+      connectorShapeType: ConnectorShapeType.OneWay,
+      connectorPlacementType: ConnectorPlacementType.Offbeat,
+      labelPlacementType: ConnectorLabelPlacementType.Between,
+      offset: new Thickness(0, 0, 0, 0),
       lineWidth: 2,
       color: '#ff0000',
-      lineType: primitives.common.LineType.Dashed,
+      lineType: LineType.Dashed,
       selectItems: false,
       label: { color: "green", badge: "1", title: "Parent"},
       labelSize: { width: 70, height: 30 }
     },
     {
-      annotationType: primitives.common.AnnotationType.Background,
+      annotationType: AnnotationType.Background,
       items: [30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 18, 19],
       borderColor: '#f8e5f9',
       fillColor: '#e5f9f8',
       lineWidth: 2,
       selectItems: true,
-      lineType: primitives.common.LineType.Solid
+      lineType: LineType.Solid
     },
     {
-      annotationType: primitives.common.AnnotationType.Background,
+      annotationType: AnnotationType.Background,
       items: [21, 22, 23, 24, 25],
       borderColor: '#ccffb3',
       fillColor: '#effda4',
       lineWidth: 2,
       selectItems: false,
-      lineType: primitives.common.LineType.Solid
+      lineType: LineType.Solid
     },
     {
-      annotationType: primitives.common.AnnotationType.Background,
+      annotationType: AnnotationType.Background,
       items: [13, 14],
       borderColor: '#e3c5ad',
       fillColor: '#f6eeeb',
       lineWidth: 2,
       selectItems: true,
       includeChildren: true,
-      lineType: primitives.common.LineType.Solid
+      lineType: LineType.Solid
     },
     {
-      annotationType: primitives.common.AnnotationType.HighlightPath,
+      annotationType: AnnotationType.HighlightPath,
       items: [41, 3],
       selectItems: true,
-      color: primitives.common.Colors.Black,
+      color: Colors.Black,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Solid
+      lineType: LineType.Solid
     },
     {
-      annotationType: primitives.common.AnnotationType.HighlightPath,
+      annotationType: AnnotationType.HighlightPath,
       items: [35, 1],
       selectItems: true,
-      color: primitives.common.Colors.Red,
+      color: Colors.Red,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Solid
+      lineType: LineType.Solid
     }
   ]
 };

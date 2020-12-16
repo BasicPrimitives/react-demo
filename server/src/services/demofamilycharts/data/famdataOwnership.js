@@ -1,22 +1,23 @@
-const primitives = require('basicprimitives');
+const { AnnotationType, ConnectorPlacementType, ConnectorLabelPlacementType, ZOrderType,
+  ConnectorShapeType, Colors, LineType } = require('basicprimitives');
 
 module.exports = {
   cursorItem: 5,
   annotations: [
     {
-      annotationType: primitives.common.AnnotationType.Connector,
-      connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
-      labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
-      zOrderType: primitives.common.ZOrderType.Foreground,
+      annotationType: AnnotationType.Connector,
+      connectorPlacementType: ConnectorPlacementType.Offbeat,
+      labelPlacementType: ConnectorLabelPlacementType.Between,
+      zOrderType: ZOrderType.Foreground,
       fromItem: 1,
       toItem: 5,
       label: { color: "red", badge: "1", title: "Connector annotation" },
-      labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
-      connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
-      color: primitives.common.Colors.Red,
+      labelSize: { width: 80, height: 30 }, // new Size(80, 30)
+      connectorShapeType: ConnectorShapeType.OneWay,
+      color: Colors.Red,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed,
+      lineType: LineType.Dashed,
       name: "usercontrolledconnector"
     }
   ],
@@ -26,7 +27,7 @@ module.exports = {
       title: 'Family Ownership',
       label: 'Family Ownership',
       description: '1, Chaiman Name',
-      itemTitleColor: primitives.common.Colors.Black
+      itemTitleColor: Colors.Black
     },
     {
       id: 3,
@@ -34,7 +35,7 @@ module.exports = {
       title: 'Everland',
       label: 'Everland',
       description: '3, Everland',
-      itemTitleColor: primitives.common.Colors.Gray
+      itemTitleColor: Colors.Gray
     },
 
     {
@@ -43,7 +44,7 @@ module.exports = {
       title: 'Life Insurance',
       label: 'Life Insurance',
       description: '10, Life Insurance',
-      itemTitleColor: primitives.common.Colors.Blue
+      itemTitleColor: Colors.Blue
     },
     {
       id: 11,
@@ -51,7 +52,7 @@ module.exports = {
       title: 'Fire & Marine',
       label: 'Fire & Marine',
       description: '11, Fire & Marine',
-      itemTitleColor: primitives.common.Colors.Blue
+      itemTitleColor: Colors.Blue
     },
     {
       id: 12,
@@ -59,7 +60,7 @@ module.exports = {
       title: 'Card',
       label: 'Card',
       description: '12, Card',
-      itemTitleColor: primitives.common.Colors.Blue
+      itemTitleColor: Colors.Blue
     },
     {
       id: 13,
@@ -67,7 +68,7 @@ module.exports = {
       title: 'Securities',
       label: 'Securities',
       description: '13, Securities',
-      itemTitleColor: primitives.common.Colors.Blue
+      itemTitleColor: Colors.Blue
     },
     {
       id: 14,
@@ -75,7 +76,7 @@ module.exports = {
       title: 'Asset Mgmt.',
       label: 'Asset Mgmt.',
       description: '14, Asset Mgmt.',
-      itemTitleColor: primitives.common.Colors.Blue
+      itemTitleColor: Colors.Blue
     },
 
     {
@@ -84,7 +85,7 @@ module.exports = {
       title: 'C&T',
       label: 'C&T',
       description: '20, C&T',
-      itemTitleColor: primitives.common.Colors.DarkRed
+      itemTitleColor: Colors.DarkRed
     },
     {
       id: 21,
@@ -92,7 +93,7 @@ module.exports = {
       title: 'Heavy Industries',
       label: 'Heavy Industries',
       description: '21, Heavy Industries',
-      itemTitleColor: primitives.common.Colors.DarkRed
+      itemTitleColor: Colors.DarkRed
     },
     {
       id: 22,
@@ -100,7 +101,7 @@ module.exports = {
       title: 'Engineering',
       label: 'Engineering',
       description: '22, Engineering',
-      itemTitleColor: primitives.common.Colors.DarkRed
+      itemTitleColor: Colors.DarkRed
     },
     {
       id: 23,
@@ -108,7 +109,7 @@ module.exports = {
       title: 'General Chemicals',
       label: 'General Chemicals',
       description: '23, General Chemicals',
-      itemTitleColor: primitives.common.Colors.DarkRed
+      itemTitleColor: Colors.DarkRed
     },
     {
       id: 24,
@@ -116,7 +117,7 @@ module.exports = {
       title: 'Fine Chemicals',
       label: 'Fine Chemicals',
       description: '24, Fine Chemicals',
-      itemTitleColor: primitives.common.Colors.DarkRed
+      itemTitleColor: Colors.DarkRed
     },
 
     {
@@ -125,7 +126,7 @@ module.exports = {
       title: 'Electronics',
       label: 'Electronics',
       description: '30, Electronics',
-      itemTitleColor: primitives.common.Colors.DarkBlue
+      itemTitleColor: Colors.DarkBlue
     },
     {
       id: 31,
@@ -133,7 +134,7 @@ module.exports = {
       title: 'SEMCO',
       label: 'SEMCO',
       description: '31, SEMCO',
-      itemTitleColor: primitives.common.Colors.DarkBlue
+      itemTitleColor: Colors.DarkBlue
     },
     {
       id: 32,
@@ -141,7 +142,7 @@ module.exports = {
       title: 'SDI',
       label: 'SDI',
       description: '32, SDI',
-      itemTitleColor: primitives.common.Colors.DarkBlue
+      itemTitleColor: Colors.DarkBlue
     },
     {
       id: 33,
@@ -149,7 +150,7 @@ module.exports = {
       title: 'Techwin',
       label: 'Techwin',
       description: '33, Techwin',
-      itemTitleColor: primitives.common.Colors.DarkBlue
+      itemTitleColor: Colors.DarkBlue
     },
     {
       id: 34,
@@ -157,7 +158,7 @@ module.exports = {
       title: 'SDS',
       label: 'SDS',
       description: '34, SDS',
-      itemTitleColor: primitives.common.Colors.DarkBlue
+      itemTitleColor: Colors.DarkBlue
     },
     {
       id: 35,
@@ -165,7 +166,7 @@ module.exports = {
       title: 'Display',
       label: 'Display',
       description: '35, Display',
-      itemTitleColor: primitives.common.Colors.DarkBlue
+      itemTitleColor: Colors.DarkBlue
     },
 
     {
@@ -174,7 +175,7 @@ module.exports = {
       title: 'Welstory',
       label: 'Welstory',
       description: '40, Welstory',
-      itemTitleColor: primitives.common.Colors.Orange
+      itemTitleColor: Colors.Orange
     },
     {
       id: 41,
@@ -182,7 +183,7 @@ module.exports = {
       title: 'A1 Corporation',
       label: 'A1 Corporation',
       description: '41, A1 Corporation',
-      itemTitleColor: primitives.common.Colors.Orange
+      itemTitleColor: Colors.Orange
     },
     {
       id: 42,
@@ -190,7 +191,7 @@ module.exports = {
       title: 'Hotel',
       label: 'Hotel',
       description: '42, Hotel',
-      itemTitleColor: primitives.common.Colors.Orange
+      itemTitleColor: Colors.Orange
     },
     {
       id: 43,
@@ -198,7 +199,7 @@ module.exports = {
       title: 'Worldwide',
       label: 'Worldwide',
       description: '43, Worldwide',
-      itemTitleColor: primitives.common.Colors.Orange
+      itemTitleColor: Colors.Orange
     }
   ]
 };

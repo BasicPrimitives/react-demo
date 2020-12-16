@@ -1,23 +1,24 @@
-const primitives = require('basicprimitives');
+const { AnnotationType, ConnectorPlacementType, ConnectorLabelPlacementType, ZOrderType,
+  ConnectorShapeType, Colors, LineType, PageFitMode } = require('basicprimitives');
 
 module.exports = {
   cursorItem: 1,
-  pageFitMode: primitives.common.PageFitMode.PageWidth,
+  pageFitMode: PageFitMode.PageWidth,
   annotations: [
     {
-      annotationType: primitives.common.AnnotationType.Connector,
-      connectorPlacementType: primitives.common.ConnectorPlacementType.Offbeat,
-      labelPlacementType: primitives.common.ConnectorLabelPlacementType.Between,
-      zOrderType: primitives.common.ZOrderType.Foreground,
+      annotationType: AnnotationType.Connector,
+      connectorPlacementType: ConnectorPlacementType.Offbeat,
+      labelPlacementType: ConnectorLabelPlacementType.Between,
+      zOrderType: ZOrderType.Foreground,
       fromItem: 3,
       toItem: 8,
       label: { color: "red", badge: "1", title: "Connector annotation" },
-      labelSize: { width: 80, height: 30 }, // new primitives.common.Size(80, 30)
-      connectorShapeType: primitives.common.ConnectorShapeType.OneWay,
-      color: primitives.common.Colors.Red,
+      labelSize: { width: 80, height: 30 }, // new Size(80, 30)
+      connectorShapeType: ConnectorShapeType.OneWay,
+      color: Colors.Red,
       offset: 5,
       lineWidth: 2,
-      lineType: primitives.common.LineType.Dashed,
+      lineType: LineType.Dashed,
       name: "usercontrolledconnector"
     }
   ],

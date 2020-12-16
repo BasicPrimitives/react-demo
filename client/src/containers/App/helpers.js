@@ -1,7 +1,6 @@
-const upperFirst = require('lodash/upperFirst');
-const camelCase = require('lodash/camelCase');
+import { upperFirst, camelCase } from 'lodash';
 
-function titleize(string) {
+export function titleize(string) {
   if (process.env.NODE_ENV !== 'production') {
     if (typeof string !== 'string' || string.length <= 0) {
       console.error('titleize(string) expects a non empty string argument.');
@@ -14,7 +13,7 @@ function titleize(string) {
     .join(' ');
 }
 
-function pageToTitle(page) {
+export function pageToTitle(page) {
   if (page.title === false) {
     return null;
   }
@@ -34,13 +33,7 @@ function pageToTitle(page) {
 }
 
 
-function getCookie(name) {
+export function getCookie(name) {
   const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`);
   return document.cookie.replace(regex, '$1');
 }
-
-module.exports = {
-  titleize,
-  pageToTitle,
-  getCookie
-};

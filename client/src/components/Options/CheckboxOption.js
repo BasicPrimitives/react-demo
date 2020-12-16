@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { isEqual } from 'lodash';
 import PropTypes from 'prop-types';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -17,7 +17,7 @@ class CheckboxOption extends Component { // eslint-disable-line react/prefer-sta
     const nextOptions = this.getUsedOptions(nextProps);
     const currentOptions = this.getUsedOptions(this.props);
 
-    return !_.isEqual(currentOptions, nextOptions);
+    return !isEqual(currentOptions, nextOptions);
   }
 
   getUsedOptions(props) { // eslint-disable-line class-methods-use-this

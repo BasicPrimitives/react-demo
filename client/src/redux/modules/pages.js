@@ -220,7 +220,7 @@ export function load() {
       client.get('/load-markdown?name=javascript-readme'), 
       client.get('/load-markdown?name=react-readme'),
       client.get('/load-markdown?name=reference-readme'),
-      client.get('/min/package.json')
+      client.get('/javascript/package.json')
     ]).then(results => ({
       javascript: results[0],
       react: results[1],

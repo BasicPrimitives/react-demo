@@ -89,7 +89,7 @@ function HowToUse(props) {
     <>
       <Helmet>
         <title>{` for JavaScript - ${title}`}</title>
-        <meta name="description" content="JavaScript/jQuery/PDFKit Product Samples." />
+        <meta name="description" content="JavaScript/Bootstrap/PDFKit Product Samples." />
       </Helmet>
       <Container fixed>
         <MDReactComponent text={markdown} onIterate={handleIterate} />

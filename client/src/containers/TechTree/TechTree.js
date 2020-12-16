@@ -14,7 +14,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { FamDiagram } from 'basicprimitivesreact';
-import primitives from 'basicprimitives';
+import { ConnectorAnnotationConfig, Colors, AnnotationType, TemplateConfig, Size, Thickness, highestContrast } from 'basicprimitives';
 import {
   load,
   loadMarkdown,
@@ -105,7 +105,7 @@ function TechTree() {
   const snackbarMessage = getActionMessage();
   const templateConfig = config.templates.find(template => template.name === 'defaultTemplate');
   const dotTemplateConfig = config.templates.find(template => template.name === 'dot');
-  const annotationConfig = config.annotations.find(annotation => annotation.name === "usercontrolledconnector") || new primitives.orgdiagram.ConnectorAnnotationConfig({offset: 2});
+  const annotationConfig = config.annotations.find(annotation => annotation.name === "usercontrolledconnector") || new ConnectorAnnotationConfig({offset: 2});
   return (
     <>
       <Helmet>
@@ -172,7 +172,7 @@ function TechTree() {
               {
                 ...templateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.DefaultTemplate}>
                     <div className={styles.DefaultTitleBackground} style={{ backgroundColor: itemTitleColor }}>
                       <div className={styles.DefaultTitle}>{itemConfig.title}</div>
@@ -183,7 +183,7 @@ function TechTree() {
               {
                 ...dotTemplateConfig,
                 onItemRender: ({ context: itemConfig }) => {
-                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue;
+                  const itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue;
                   return <div className={styles.DotTemplate}>
                     <div className={styles.DotTitleBackground} style={{ backgroundColor: itemTitleColor }} />
                   </div>;
@@ -246,7 +246,7 @@ function TechTree() {
                   dispatch(setTemplateOption('defaultTemplate', name, value));
                   break;
                 case 'annotation':
-                  dispatch(setAnnotationOption(primitives.common.AnnotationType.Connector, name, value));
+                  dispatch(setAnnotationOption(AnnotationType.Connector, name, value));
                   break;
                 default:
                   dispatch(setConfigOption(name, value)) 
@@ -264,20 +264,20 @@ function TechTree() {
         onClose= {() => setPdfDialogOpen(false)}
         templates={[
           {
-            ...(new primitives.orgdiagram.TemplateConfig()),
+            ...(new TemplateConfig()),
             name: "defaultTemplate",
             itemTemplate: "Use onItemRener method.",
-            itemSize: new primitives.common.Size(164, 34),
-            highlightPadding: new primitives.common.Thickness(2, 2, 2, 2)
+            itemSize: new Size(164, 34),
+            highlightPadding: new Thickness(2, 2, 2, 2)
           }
         ]}
         onItemRender={(doc, position, data) => {
           var itemConfig = data.context,
-            itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : primitives.common.Colors.RoyalBlue,
-            color = primitives.common.highestContrast(itemTitleColor, config.itemTitleSecondFontColor, config.itemTitleFirstFontColor);
+            itemTitleColor = itemConfig.itemTitleColor != null ? itemConfig.itemTitleColor : Colors.RoyalBlue,
+            color = highestContrast(itemTitleColor, config.itemTitleSecondFontColor, config.itemTitleFirstFontColor);
   
           if (data.templateName === "defaultTemplate") {
-            var contentSize = new primitives.common.Size(164, 34);
+            var contentSize = new Size(164, 34);
   
             contentSize.width -= 2;
             contentSize.height -= 2;

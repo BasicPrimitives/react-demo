@@ -13,12 +13,12 @@ import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
 import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
 
 import { faUserPlus, faUserSlash, faCoffee, faSitemap, faUser, faComment, faCog } from '@fortawesome/free-solid-svg-icons'
-import primitives from 'basicprimitives';
+import * as basicprimitives from 'basicprimitives';
 import { OrgDiagram, FamDiagram } from 'basicprimitivesreact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DndProvider, useDrag, useDrop, DropTarget, DragSource } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-require('./global.scss');
+import './global.scss';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
@@ -67,7 +67,7 @@ function ReactHowToUse(props) {
           scope={{
             Component,
             Fragment,
-            primitives,
+            ...basicprimitives,
             OrgDiagram,
             FamDiagram,
             DndProvider,
@@ -94,7 +94,7 @@ function ReactHowToUse(props) {
               transformed = transformed.replace(/^export.*$/gm, match => '');
               transformed = transform(transformed, {
                 plugins: [
-                  require("@babel/plugin-syntax-jsx"),
+                  require('@babel/plugin-syntax-jsx'),
                   [
                     require("@babel/plugin-proposal-class-properties"),
                     { loose: true }

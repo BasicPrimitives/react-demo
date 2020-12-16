@@ -81,7 +81,7 @@ import SelectCursorItemDialog from './SelectCursorItemDialog';
 import AddNewItemDialog from './AddNewItemDialog';
 import SearchDrawer from './SearchDrawer';
 import NodeDragDropSource from './NodeDragDropSource';
-import primitives from 'basicprimitives';
+import { Tree } from 'basicprimitives';
 
 function OrgEditor() {
   const loaded = useSelector(state => state.orgeditor.loaded); 
@@ -133,7 +133,7 @@ function OrgEditor() {
 
   function getTree(items = []) {
     if(!tree) {
-      tree = primitives.common.tree();
+      tree = Tree();
       for (let index = 0; index < items.length; index += 1) {
         const item = items[index];
         tree.add(item.parent, item.id, item);
@@ -421,7 +421,7 @@ function OrgEditor() {
           />
         </Drawer>
       }
-      {activeDrawer === DrawerNames.Item && <Drawer
+      {activeDrawer === DrawerNames.Item && itemConfig && <Drawer
           key="itemoptions-drawer"
           className={styles.drawer}
           variant="persistent"
