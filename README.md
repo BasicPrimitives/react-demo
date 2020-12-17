@@ -6,7 +6,7 @@ This project is created for validation of effortless integration of Basic Primit
 * [GitHub](https://github.com/BasicPrimitives) Github repositories.
 * [NPM](https://www.npmjs.com/package/basicprimitives) official - release packages.
 * [Basic Primitives for React Live Demos](https://basicprimitives.github.io/react/) - github live site
-* [Basic Primitives for JavaScript, jQUery and PDFkit Live Demos & Samples](https://basicprimitives.github.io/javascript/) - github live site
+* [Basic Primitives for JavaScript and PDFkit Live Demos & Samples](https://basicprimitives.github.io/javascript/) - github live site
 
 ### Basics
 
