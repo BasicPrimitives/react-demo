@@ -23,7 +23,7 @@
     "final-form": "^4.20.1",
     "lodash": "^4.17.20",
     "markdown-react-js": "^1.0.2",
-    "node-sass": "^4.0.0",
+    "node-sass": "^5.0.0",
     "pdfkit-nodejs-webpack": "^0.0.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
