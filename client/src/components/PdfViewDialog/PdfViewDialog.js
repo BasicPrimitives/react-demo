@@ -72,7 +72,7 @@ function PdfViewDialog(props) {
   }, []);
 
   return (
-    isVisible && (
+    isVisible ? (
       <Dialog fullScreen open={isVisible} onClose={onClose}>
         <AppBar style={{position: 'relative'}}>
           <Toolbar>
@@ -93,8 +93,8 @@ function PdfViewDialog(props) {
           <Button variant="contained" color="primary" onClick={onClose}>Close</Button>
         </DialogActions>
       </Dialog>
-    )
-  );
+    ) : <></>
+  ) 
 }
 
 export default PdfViewDialog;

@@ -18,7 +18,7 @@ import { OrgDiagram, FamDiagram } from 'basicprimitivesreact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DndProvider, useDrag, useDrop, DropTarget, DragSource } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import './global.scss';
+import './global.css';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 

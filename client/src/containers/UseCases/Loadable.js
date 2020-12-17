@@ -1,11 +1,12 @@
-import React from "react"
-import Loadable from "react-loadable"
+import React, { Suspense } from "react"
+const HowToUse = React.lazy(() => import('./HowToUse'));
 
-const loadable = Loadable({
-    loader: () => import("./HowToUse"),
-    loading() {
-        return <div>Loading...</div>
-    }
-  })
-
-export default loadable;
+export default function Loadable(props) {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <HowToUse {...props} />
+      </Suspense>
+    </div>
+  );
+}

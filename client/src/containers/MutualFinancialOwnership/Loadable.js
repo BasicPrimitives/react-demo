@@ -1,11 +1,12 @@
-import React from "react"
-import Loadable from "react-loadable"
+import React, { Suspense } from "react"
+const MutualFinancialOwnership = React.lazy(() => import('./MutualFinancialOwnership'));
 
-const loadable = Loadable({
-    loader: () => import("./MutualFinancialOwnership"),
-    loading() {
-        return <div>Loading...</div>
-    }
-  })
-
-export default loadable;
+export default function Loadable() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MutualFinancialOwnership />
+      </Suspense>
+    </div>
+  );
+}

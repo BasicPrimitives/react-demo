@@ -1,11 +1,12 @@
-import React from "react"
-import Loadable from "react-loadable"
+import React, { Suspense } from "react"
+const OrgEditor = React.lazy(() => import('./OrgEditor'));
 
-const loadable = Loadable({
-    loader: () => import("./OrgEditor"),
-    loading() {
-        return <div>Loading...</div>
-    }
-  })
-
-export default loadable;
+export default function Loadable() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <OrgEditor />
+      </Suspense>
+    </div>
+  );
+}

@@ -1,11 +1,12 @@
-import React from "react"
-import Loadable from "react-loadable"
+import React, { Suspense } from "react"
+const Dependencies = React.lazy(() => import('./Dependencies'));
 
-const loadable = Loadable({
-    loader: () => import("./Dependencies"),
-    loading() {
-        return <div>Loading...</div>
-    }
-  })
-
-export default loadable;
+export default function Loadable() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Dependencies />
+      </Suspense>
+    </div>
+  );
+}

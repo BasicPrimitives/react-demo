@@ -1,11 +1,12 @@
-import React from "react"
-import Loadable from "react-loadable"
+import React, { Suspense } from "react"
+const OrgPdfViewDialog = React.lazy(() => import('./OrgPdfViewDialog'));
 
-const loadable = Loadable({
-    loader: () => import("./OrgPdfViewDialog"),
-    loading() {
-        return <div>Loading...</div>
-    }
-  })
-
-export default loadable;
+export default function Loadable(props) {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <OrgPdfViewDialog {...props} />
+      </Suspense>
+    </div>
+  );
+}
