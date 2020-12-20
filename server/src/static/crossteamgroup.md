@@ -2,7 +2,7 @@
 ### Cross Functional Team Visualization
 * Group titles
 * Custom templates
-* Selection checkmarks
+* Selection check marks
 
 ### Frame
 * Displays selected nodes placed outside viewport on the frame

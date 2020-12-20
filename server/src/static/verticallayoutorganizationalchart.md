@@ -9,7 +9,7 @@
 * Places group title on the right and context buttons on the left
 * Rotates root's group title 180 degree
 * Places vertical managers formation on the left of the root connection line
-* Aligns horiozontal children formation to the left of the managers node
+* Aligns horizontal children formation to the left of the managers node
 
 ## Children layout 
 Chart supports following layouts for children
