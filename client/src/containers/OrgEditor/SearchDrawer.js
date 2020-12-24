@@ -11,10 +11,8 @@ import Divider from '@material-ui/core/Divider';
 import { TextOption } from 'components';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import PersonIcon from '@material-ui/icons/Person';
-import ListItemText from '@material-ui/core/ListItemText';
 import { hideDrawer, setFilterText, setCursorItem } from 'redux/modules/demos/orgeditor';
+import NodeDragSource from './NodeDragSource';
 
 const drawerWidth = 350;
 
@@ -33,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'flex-start',
+    },
+    listItem: {
+        margin: theme.spacing(1),
+        width: 220,
+        height: 120
     }
 }));
 
@@ -73,12 +76,9 @@ function SearchDrawer(props) { // eslint-disable-line react/prefer-stateless-fun
                 onChange={value => dispatch(setFilterText(value))}
                 />
             <List aria-label="children-list">
-                {filteredItems.map((value, index) => (
-                    <ListItem key={`item-${value.id}`} button onClick={() => dispatch(setCursorItem(value.id, isPrimary))}>
-                        <ListItemIcon>
-                            <PersonIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={value.title} />
+                {filteredItems.map((itemConfig, index) => (
+                    <ListItem className={styles.listItem} key={`item-${itemConfig.id}`} button onClick={() => dispatch(setCursorItem(itemConfig.id, isPrimary))}>
+                        <NodeDragSource itemConfig={itemConfig}></NodeDragSource>
                     </ListItem>
                 ))}
             </List>

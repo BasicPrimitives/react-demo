@@ -126,7 +126,7 @@ class TextOption extends Component { // eslint-disable-line react/prefer-statele
     const { caption, propertyName, placeholder, isNullable } = this.props;
     const { value, message } = this.state;
     return (
-      <form className={'option-panel-item'} noValidate autoComplete="off">
+      <form className={'option-panel-item'} noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
         <TextField 
           required={!isNullable}
           key={propertyName}
