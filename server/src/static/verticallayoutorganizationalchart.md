@@ -4,14 +4,18 @@
 * PDF file generation
 * Diagram options drawer
 
-## Layout Flip
+### Layout Flip
 * Places Advisers & Assistants on the left
 * Places group title on the right and context buttons on the left
 * Rotates root's group title 180 degree
 * Places vertical managers formation on the left of the root connection line
 * Aligns horizontal children formation to the left of the managers node
 
-## Children layout 
+### Annotations
+* Level annotations - Decorate nodes having the same level in the hierarchy
+
+
+### Children layout 
 Chart supports following layouts for children
 * Horizontal
 * Vertical

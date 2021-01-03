@@ -92,6 +92,20 @@ const initialState = {
     groupTitleFontWeight: 'normal',
     groupTitleFontStyle: 'normal',
 
+    /* level title options */
+    levelTitlePanelSize: 24,
+    levelTitlePlaceInside: false,
+    levelTitlePlacementType: AdviserPlacementType.Left,
+    levelTitleOrientation: TextOrientationType.Auto,
+    levelTitleVerticalAlignment: VerticalAlignmentType.Middle,
+    levelTitleHorizontalAlignment: HorizontalAlignmentType.Center,
+    levelTitleFontSize: '12px',
+    levelTitleFontFamily: 'Arial',
+    levelTitleColor: Colors.RoyalBlue,
+    levelTitleFontColor: Colors.White,
+    levelTitleFontWeight: 'normal',
+    levelTitleFontStyle: 'normal',
+
     /* Intervals */
     normalLevelShift: 20,
     dotLevelShift: 30,

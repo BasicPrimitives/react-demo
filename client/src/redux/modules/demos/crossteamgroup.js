@@ -2,7 +2,7 @@ import { OrgConfig, TemplateConfig, Size, Thickness, PageFitMode,
   Enabled, ShapeType, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
   ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
   AdviserPlacementType, TextOrientationType, GroupByType, ConnectorType,
-  ElbowType, PlacementType, NavigationMode, GraphicsType} from 'basicprimitives';
+  ElbowType, PlacementType, NavigationMode, GraphicsType, AnnotationType} from 'basicprimitives';
 
 const LOAD = 'redux-example/crossteamgroup/LOAD';
 const LOAD_SUCCESS = 'redux-example/crossteamgroup/LOAD_SUCCESS';
@@ -220,11 +220,30 @@ export default function reducer(state = initialState, action = {}) {
       const { config: { scale } } = state;
       const { config: defaultConfig } = initialState;
       const config = action.result;
+
+      var annotations = [];
+      for(var index = 0; index < 10; index+=1) {
+        annotations.push({
+          annotationType: AnnotationType.Level,
+          levels: [index],
+          title: "Level " + index,
+          titleColor: Colors.RoyalBlue,
+          offset: new Thickness(0, 4, 0, -5),
+          lineWidth: new Thickness(0, 0, 0, 0),
+          opacity: (index % 2 > 0 ? 0.08 : 0),
+          borderColor: Colors.Black,
+          fillColor: Colors.Gray,
+          lineType: LineType.Dotted
+        })
+      }
+
       const newConfig = {
         ...defaultConfig,
         ...config,
+        annotations,
         scale
       };
+
       return {
         ...state,
         loading: false,

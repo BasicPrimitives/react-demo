@@ -18,7 +18,7 @@ const SortableItem = SortableElement(({ value }) => <ListItem button style={{zIn
 
 const SortableList = SortableContainer(({ items }) => (
   <List aria-label="children-list">
-    {items.map((value, index) => (
+    {items && items.map((value, index) => (
       <SortableItem key={`item-${value.id}`} index={index} value={value.title} />
     ))}
   </List>
@@ -28,7 +28,7 @@ class ItemsOrderOption extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     propertyName: PropTypes.string.isRequired,
-    items: PropTypes.arrayOf(PropTypes.any.isRequired).isRequired // eslint-disable-line react/forbid-prop-types
+    items: PropTypes.arrayOf(PropTypes.any.isRequired) // eslint-disable-line react/forbid-prop-types
   };
 
   constructor(props) {

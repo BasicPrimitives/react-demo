@@ -27,7 +27,7 @@
         "@feathersjs/rest-client": "^1.3.2",
         "@feathersjs/socketio": "^3.0.1",
         "@feathersjs/socketio-client": "^1.0.1",
-        "basicprimitives": "6.0.3",
+        "basicprimitives": "6.1.0",
         "compression": "^1.6.2",
         "cookie-parser": "^1.4.3",
         "cookies-js": "^1.2.3",

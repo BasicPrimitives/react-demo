@@ -23,6 +23,7 @@ export const OptionsPanel = optionsPanel;
 export const AutoLayoutOptions = options.AutoLayoutOptions;
 export const DefaultTemplateOptions = options.DefaultTemplateOptions;
 export const GroupTitlesOptions = options.GroupTitlesOptions;
+export const LevelTitlesOptions = options.LevelTitlesOptions;
 export const MarkersOptions = options.MarkersOptions;
 export const IntervalsOptions = options.IntervalsOptions;
 export const ConnectorsOptions = options.ConnectorsOptions;
