@@ -100,6 +100,20 @@ const initialState = {
     groupTitleFontWeight: 'normal',
     groupTitleFontStyle: 'normal',
 
+    /* level title options */
+    levelTitlePanelSize: 24,
+    levelTitlePlaceInside: false,
+    levelTitlePlacementType: AdviserPlacementType.Left,
+    levelTitleOrientation: TextOrientationType.Auto,
+    levelTitleVerticalAlignment: VerticalAlignmentType.Middle,
+    levelTitleHorizontalAlignment: HorizontalAlignmentType.Center,
+    levelTitleFontSize: '12px',
+    levelTitleFontFamily: 'Arial',
+    levelTitleColor: Colors.RoyalBlue,
+    levelTitleFontColor: Colors.White,
+    levelTitleFontWeight: 'normal',
+    levelTitleFontStyle: 'normal',
+
     /* Family Diagram Specific Options */
     neighboursSelectionMode: NeighboursSelectionMode.ParentsChildrenSiblingsAndSpouses,
     groupByType: GroupByType.Parents,
@@ -209,8 +223,19 @@ function getAnnotations(config) {
   const { items } = config;
   if (Array.isArray(items)) {
     var annotations = [];
+    /* create level annotations to show levels of nodes */
+    for(var index = 0; index < 20; index+=1) {
+      annotations.push({
+        annotationType: AnnotationType.Level,
+        levels: [index],
+        title: "Level " + index,
+        offset: new Thickness(0, -1, 0, -1),
+        opacity: (index % 2 > 0 ? 0.2 : 0)
+      })
+    }
+
     // Populate annotations to visualize family ordering references
-    for (var index = 0; index < items.length; index += 1) {
+    for (index = 0; index < items.length; index += 1) {
       var item = items[index];
       if (item.relativeItem != null) {
         annotations.push(new ConnectorAnnotationConfig({

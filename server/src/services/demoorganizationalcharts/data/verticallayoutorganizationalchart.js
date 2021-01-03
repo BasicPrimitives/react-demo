@@ -1,4 +1,4 @@
-const { Size, PlacementType, ItemType } = require('basicprimitives');
+const { Size, Thickness, PlacementType, ItemType, LineType, Colors, AnnotationType } = require('basicprimitives');
 
 module.exports = {
   items: [
@@ -1104,6 +1104,44 @@ module.exports = {
       image: '/api/images/photos/l.png',
       title: '14 member of L',
       label: '14'
+    }
+  ],
+  annotations: [
+    {
+      annotationType: AnnotationType.Level,
+      levels: [0],
+      title: "CEO",
+      titleColor: Colors.RoyalBlue,
+      offset: new Thickness(0, 0, 0, -1),
+      lineWidth: new Thickness(0, 0, 0, 0),
+      opacity: 0,
+      borderColor: Colors.Gray,
+      fillColor: Colors.Gray,
+      lineType: LineType.Dotted
+    },
+    {
+      annotationType: AnnotationType.Level,
+      levels: [1],
+      title: "Management",
+      titleColor: Colors.RoyalBlue,
+      offset: new Thickness(0, 0, 0, -1),
+      lineWidth: new Thickness(0, 0, 0, 0),
+      opacity: 0.08,
+      borderColor: Colors.Gray,
+      fillColor: Colors.Gray,
+      lineType: LineType.Dotted
+    },
+    {
+      annotationType: AnnotationType.Level,
+      levels: [2],
+      title: "Members",
+      titleColor: Colors.RoyalBlue,
+      offset: new Thickness(0, 0, 0, -1),
+      lineWidth: new Thickness(0, 0, 0, 0),
+      opacity: 0,
+      borderColor: Colors.Gray,
+      fillColor: Colors.Gray,
+      lineType: LineType.Dotted
     }
   ]
 };

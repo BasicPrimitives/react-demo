@@ -2862,17 +2862,17 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
-basicprimitives@6.0.3, basicprimitives@^6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-6.0.3.tgz#8cd72565aa2c4f05acc216a48d0d571bf975b9d4"
-  integrity sha512-q7jiMXQvgUv++t0YDCUEWjIF+rjVaJhfwdlZaXoUMVtb/pfaf0BrbpLgjTsVQPkMNW+p2+y+joHCgBpD6SMEQA==
+basicprimitives@6.1.0, basicprimitives@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-6.1.0.tgz#1c3c036f25b27b053b5e886e7e771ff05550361f"
+  integrity sha512-tsxBraeJrGjb0mA177H2f+8ykhrTroFZ2XBLCBb+WHcvR6KsN2s+UR1OptyusvnCZAQkx907U9xhhDqMAF1tNA==
 
-basicprimitivesreact@^6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-6.0.3.tgz#cd21d423e9b93b0427c6094669f22b52ead3c101"
-  integrity sha512-OYFwvzVDQiWQwun7Y7l38sFuGrqlLeVMzt8nt25A7C/Hgg5c29gHHKybQJQhv4EeSeTYsNxv2YLr1onzcx07Bw==
+basicprimitivesreact@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-6.1.1.tgz#82e3f9c1762eaee42f7112dda5366f76f3ca2119"
+  integrity sha512-FQkH3aaMbMRBzrRnctP5uCfyPr4fVL6b8urCc9S8TfAtgvRjWw4gYT68NHm9F6iNJJbsoIjDVHY4XqcxfkrYBQ==
   dependencies:
-    basicprimitives "6.0.3"
+    basicprimitives "6.1.0"
     resize-observer-polyfill "^1.5.1"
 
 batch@0.6.1:

@@ -31,6 +31,7 @@ import { FamilyLayoutOptions,
   DefaultTemplateOptions,
   ConnectorAnnotationOptions,
   GroupTitlesOptions,
+  LevelTitlesOptions,
   MarkersOptions,
   IntervalsOptions,
   ConnectorsOptions,
@@ -150,20 +151,22 @@ function TechTree() {
           config={{
             ...config,
             annotations: (config.annotations && config.annotations.map(annotation => {
-              const { label, title } = annotation;
-              if (label != null) {
-                const { badge, color, title } = annotation.label;
-                return {
-                  ...annotation,
-                  label: <><div className={styles.Badge} style={{
-                    backgroundColor: color
-                  }}>{badge}</div><span className={styles.BadgeLabel}>{title}</span></>
+              if(annotation.annotationType !== AnnotationType.Level) {
+                const { label, title } = annotation;
+                if (label != null) {
+                  const { badge, color, title } = annotation.label;
+                  return {
+                    ...annotation,
+                    label: <><div className={styles.Badge} style={{
+                      backgroundColor: color
+                    }}>{badge}</div><span className={styles.BadgeLabel}>{title}</span></>
+                  }
                 }
-              }
-              if (title != null) {
-                return {
-                  ...annotation,
-                  title: <div className={styles.InLayoutLabel}>{title}</div>
+                if (title != null) {
+                  return {
+                    ...annotation,
+                    title: <div className={styles.InLayoutLabel}>{title}</div>
+                  }
                 }
               }
               return annotation;
@@ -229,6 +232,7 @@ function TechTree() {
               DefaultTemplateOptions,
               ConnectorAnnotationOptions,
               GroupTitlesOptions,
+              LevelTitlesOptions,
               MarkersOptions,
               IntervalsOptions,
               ConnectorsOptions,

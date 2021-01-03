@@ -4,6 +4,9 @@
 * Custom templates
 * Selection check marks
 
+### Annotations
+* Level annotations - Decorate nodes having the same level in the hierarchy
+
 ### Frame
 * Displays selected nodes placed outside viewport on the frame
 

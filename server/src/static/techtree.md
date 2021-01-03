@@ -7,6 +7,7 @@ This alignment priority can then be used to create a full sequence, branch or ch
 ### Annotations
 * Offbeat Connector Annotations - red annotations display `primaryParent` references to enforce the hierarchy
 * Straight Connector Annotation - blue annotations display references enforcing the sorting of nodes within one group.
+* Level annotations - Decorate nodes having the same level in the hierarchy
 
 ### General
 * Diagram reset

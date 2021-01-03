@@ -84,7 +84,25 @@ const GroupTitlesOptions = {
         { optionType: "DropDownBoxConfig", name: "groupTitleFontSize", caption: "Font size", options: ["8px", "10px", "12px", "14px", "16px", "18px", "20px"], valueType: "string" },
         { optionType: "DropDownBoxConfig", name: "groupTitleFontWeight", caption: "Font Weight", options: ["normal", "bold"], valueType: "string" },
         { optionType: "DropDownBoxConfig", name: "groupTitleFontStyle", caption: "Font Style", options: ["normal", "italic"], valueType: "string" },
-        { optionType: "DropDownBoxConfig", name: "groupTitleFontFamily", caption: "Font Style", options: ["Arial", "Verdana", "Times New Roman", "Serif", "Courier"], valueType: "string" },
+        { optionType: "DropDownBoxConfig", name: "groupTitleFontFamily", caption: "Font Style", options: ["Arial", "Verdana", "Times New Roman", "Serif", "Courier"], valueType: "string" }
+    ]
+};
+const LevelTitlesOptions = { 
+    title: "Level Titles", 
+    namespace: "config",
+    options: [
+        { optionType: "RadioBoxConfig", name: "levelTitlePlacementType", caption: "Placement", options: AdviserPlacementType, valueType: "number" },
+        { optionType: "DropDownBoxConfig", name: "levelTitlePanelSize", caption: "Level titles panel width", options: [24, 48, 72], valueType: "number" },
+        { optionType: "CheckBoxConfig", name: "levelTitlePlaceInside", caption: "Place titles inside view port area" },
+        { optionType: "RadioBoxConfig", name: "levelTitleOrientation", caption: "Orientation", options: TextOrientationType, valueType: "number" },
+        { optionType: "RadioBoxConfig", name: "levelTitleVerticalAlignment", caption: "Vertical Alignment", options: VerticalAlignmentType, valueType: "number" },
+        { optionType: "RadioBoxConfig", name: "levelTitleHorizontalAlignment", caption: "Horizontal Alignment", options: HorizontalAlignmentType, valueType: "number" },
+        { optionType: "DropDownBoxConfig", name: "levelTitleColor", caption: "Background Color", options: Colors, valueType: "string" },
+        { optionType: "DropDownBoxConfig", name: "levelTitleFontColor", caption: "Font Color", options: Colors, valueType: "string" },
+        { optionType: "DropDownBoxConfig", name: "levelTitleFontSize", caption: "Font size", options: ["8px", "10px", "12px", "14px", "16px", "18px", "20px"], valueType: "string" },
+        { optionType: "DropDownBoxConfig", name: "levelTitleFontWeight", caption: "Font Weight", options: ["normal", "bold"], valueType: "string" },
+        { optionType: "DropDownBoxConfig", name: "levelTitleFontStyle", caption: "Font Style", options: ["normal", "italic"], valueType: "string" },
+        { optionType: "DropDownBoxConfig", name: "levelTitleFontFamily", caption: "Font Style", options: ["Arial", "Verdana", "Times New Roman", "Serif", "Courier"], valueType: "string" }
     ]
 };
 const MarkersOptions = { 
@@ -251,9 +269,11 @@ const ItemLayoutOptions = {
             AdviserPartner: 8
           }, valueType: "number" },
         { optionType: "RadioBoxConfig", name: "adviserPlacementType", caption: "Placement", options: AdviserPlacementType, valueType: "number" },
-        { optionType: "RadioBoxConfig", name: "childrenPlacementType", caption: "Children Layout", options: ChildrenPlacementType, valueType: "number" }
-        // { optionType: "CheckBoxConfig", name: "placeAdvisersAboveChildren", caption: "Place advisers above children" },
-        // { optionType: "CheckBoxConfig", name: "placeAssistantsAboveChildren", caption: "Place assistants above children" }
+        { optionType: "RadioBoxConfig", name: "childrenPlacementType", caption: "Children Layout", options: ChildrenPlacementType, valueType: "number" },
+        { optionType: "DropDownBoxConfig", name: "levelOffset", caption: "Level Offset", options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], valueType: "number", isNullable: true }
+        //{ optionType: "CheckBoxConfig", name: "placeAdvisersAboveChildren", caption: "Place advisers above children" },
+        //{ optionType: "CheckBoxConfig", name: "placeAssistantsAboveChildren", caption: "Place assistants above children" }
+        
     ]
 };
 
@@ -272,6 +292,7 @@ const Options = {
     DefaultTemplateOptions,
     ConnectorAnnotationOptions,
     GroupTitlesOptions,
+    LevelTitlesOptions,
     MarkersOptions,
     IntervalsOptions,
     ConnectorsOptions,
