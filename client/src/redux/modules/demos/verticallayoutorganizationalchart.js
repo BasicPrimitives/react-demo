@@ -129,7 +129,7 @@ const initialState = {
 
     /* Labels */
     showLabels: Enabled.Auto,
-    labelSize: new Size(10, 14),
+    labelSize: new Size(14, 14),
     labelOrientation: TextOrientationType.Horizontal,
     labelPlacement: PlacementType.Bottom,
     labelOffset: 3,
@@ -277,6 +277,7 @@ export default function reducer(state = initialState, action = {}) {
       const { items } = newConfig;
       newConfig["horizontalAlignment"] = isLTR ? HorizontalAlignmentType.Right : HorizontalAlignmentType.Left;
       newConfig["groupTitlePlacementType"] = isLTR ? AdviserPlacementType.Right : AdviserPlacementType.Left;
+      newConfig["levelTitlePlacementType"] = isLTR ? AdviserPlacementType.Right : AdviserPlacementType.Left;
       newConfig["groupTitleOrientation"] = isLTR ? TextOrientationType.RotateLeft : TextOrientationType.RotateRight;
       
       newConfig.items = items.map(item => {
