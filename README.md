@@ -24,6 +24,9 @@ This project is created for validation of effortless integration of Basic Primit
 git clone https://github.com/BasicPrimitives/react-demo.git
 cd react-demo/server/src/static
 git clone https://github.com/BasicPrimitives/javascript.git
+cd javascript
+yarn build
+cd ..
 git clone https://github.com/BasicPrimitives/react.git
 ```
 
