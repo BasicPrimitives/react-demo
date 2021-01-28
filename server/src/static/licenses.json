@@ -1,0 +1,100 @@
+[
+    {
+        "name": "Single Developer License",
+        "description": "Allow one single developer in your company to work with Basic Primitives Diagram.",
+        "allows": [
+            "Allow Basic Primitives Diagram to be used with an unlimited number of SaaS projects, web applications, intranets, and websites for you or your customers.",
+            "Source editing allowed."        
+        ],
+        "comment": "Each person who directly or indirectly creates an application or user interface containing Basic Primitives Diagram considered a developer.",
+        "value": "550.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=550&trnType=P&hashValue=e15324107f967dae60b6d61498c9e6e4697ae94e"
+    },
+
+    {
+        "name": "5 Developer License",
+        "description": "Allow 5 of developers in your company to work with Basic Primitives Diagram.",
+        "allows": [
+            "Allow Basic Primitives Diagram to be used with an unlimited number of SaaS projects, web applications, intranets, and websites for you or your customers.",
+            "Source editing allowed"
+        ],
+        "comment": "Each person who directly or indirectly creates an application or user interface containing Basic Primitives Diagram considered a developer.",
+        "value": "1,782.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=1782&trnType=P&hashValue=8a9a9158579406e7cb8e53893ff8eeca14415f42"
+    },
+    {
+        "name": "10 Developer License",
+        "description": "Allow 10 developers in your company to work with Basic Primitives Diagram",
+        "allows": [
+            "Allows Basic Primitives Diagram to be used with an unlimited number of SaaS projects, web applications, intranets, and websites for you or your customers.",
+            "Source editing allowed"
+        ],
+        "comment": "Each person who directly or indirectly creates an application or user interface containing Basic Primitives Diagram considered a developer.",
+        "value": "2,970.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=2970&trnType=P&hashValue=0b88cbdbd89e344ef1a07959924fffdcbf758209"
+    },
+    {
+        "name": "Upgrade from Single Developer to 5 Developers",
+        "description": "Basic Primitives Diagram Upgrade from Single Developer to 5 Developers",
+        "value": "1336.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=1336&trnType=P&hashValue=ee94a4629313369b0975d263d381adc2ea5e1ae6"
+    },
+    {
+        "name": "Upgrade from Single Website to Single Developer",
+        "description": "Basic Primitives Diagram Upgrade from Single Website to Single Developer",
+        "value": "430.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=430&trnType=P&hashValue=b9886c6e7a62d43ed0cf7a4083e83eab883e33db"
+    },
+    {
+        "name": "Upgrade from 5 Developers to 10 Developers",
+        "description": "Basic Primitives Diagram Upgrade from 5 Developers to 10 Developers",
+        "value": "1336.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=1336&trnType=P&hashValue=ee94a4629313369b0975d263d381adc2ea5e1ae6"
+    },
+    {
+        "name": "Single Developer Maintenance",
+        "description": "Maintenance for Basic Primitives Diagram Single Developer License",
+        "allows": [
+            "The right to obtain the latest version of our product for another 12 months.",
+            "2 Additional hours of Support"
+        ],
+        "value": "148.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=148&trnType=P&hashValue=1281c13fe4c898eb5f73fbffeb9c771c4d36ba78"
+    },
+    {
+        "name": "5 Developer Maintenance",
+        "description": "Maintenance for Basic Primitives Diagram 5 Developer License",
+        "allows": [
+            "The right to obtain the latest version of Basic Primitives Diagram for another 12 months.",
+            "2 Additional hours of Support"
+        ],
+        "value": "534.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=534&trnType=P&hashValue=8ba4ccac6699573c4b308787d2c4da5810f196ef"
+    },
+    {
+        "name": "10 Developer Maintenance",
+        "description": "Maintenance for Basic Primitives Diagram 10 Developer License",
+        "allows": [
+            "The right to obtain the latest version of Basic Primitives Diagram for another 12 months.",
+            "2 Additional hours of Support."
+        ],
+        "value": "891.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=891&trnType=P&hashValue=74b0ac3a2d9105c6a5210ce8a7aa425d30c006a0"
+    },
+    {
+        "name": "OEM License",
+        "description": "OEM License allows you to distribute Basic Primitives Diagram in your software or hardware product",
+        "value": "6615.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=6615&trnType=P&hashValue=730930f20215e92b02be8f7fef52dfd397e28e9d"
+    },
+    {
+        "name": "OEM License Maintenance",
+        "description": "Maintenance for Basic Primitives Diagram OEM License",
+        "allows": [
+            "The right to obtain the latest version of our product for another 12 months",
+            "2 Additional hours of Support"
+        ],
+        "value": "1833.00 CAD",
+        "action": "https://web.na.bambora.com/scripts/payment/payment.asp?merchant_id=293700000&trnAmount=1833&trnType=P&hashValue=16ecc5bb595c89a0ab494a725c2ff1e7006edbb8"
+    }
+]

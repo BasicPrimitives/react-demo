@@ -1,46 +1,93 @@
 # Downloads
 
-## Basic Primitives Diagrams for JavaScript
-Basic Primitives Diagrams for JavaScript - components library that implements organizational and multi-parent hierarchical charts, contains implementations of JavaScript Controls and PDFkit plugins. Markdown API reference.
+## Basic Primitives Diagrams for JavaScript Samples, Demos & Tests
+JavaScript controls library that implements organizational and multi-parent hierarchical charts. Contains PDFkit plugins implementations.
 
-[Download](files/BasicPrimitives6.zip) [npm package](https://www.npmjs.com/package/basicprimitives) [GitHub](https://github.com/BasicPrimitives/javascript) [GitHub Deployment](https://basicprimitives.github.io/javascript/)
+### Organizational Charts Demos
+* Large Organizational Chart Hierarchy
+* Dynamic Organizational Chart Nodes Loading
+* Organizational Chart Matrix Layout
+* Vertical Layout Organizational Chart
+* Cross Functional Team
+* Highlight & Connector Annotations
+* Partners & Annotations
 
-## Basic Primitives Diagrams for JavaScript Demos
-JavaScript Controls, Bootstrap 5.0, PDFKit plugins and AngularJS Directive Samples & Demos
-* Large Hierarchical Chart navigation demo
-* Vertical & Matrix Organizational Chart layout demos
-* Client side PDF generation demo.
-* Organizational Chart Matrix Children Layout 
-* Family Tree
-* Dependencies Chart
-* Partners in Organizational Chart
-* Drag & Drop
-* Cross Functional Group visualization demo
-* Bootstrap Styling Demo
+### Family Diagrams Demos
+* Family Chart Nodes Order
+* Family Chart with Annotations
+* Dependency Graph Primary Parents
+* Dependency Graph Visualization
+* Patent Application Dependencies Visualization
+* Financial Ownership Demo
+* Mutual Financial Ownership Demo
 
-[Download](files/BasicPrimitivesDemo.zip)
+### Frameworks
+* [Webpack](https://webpack.js.org/)
+* Webpack [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) support
+* Samples framework developed in JavaScript with [Bootstrap 5.0](https://getbootstrap.com/)
+* [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+* [PDFKit](https://pdfkit.org/)
+* [Jest](https://jestjs.io/) unit tests
+* Sample AngularJS Directive
 
+
+**Use yarn or npm to run samples framework**
+```JavaScript
+yarn
+yarn start
+```
+
+[Download](files/BasicPrimitivesDemo.zip) [npm package](https://www.npmjs.com/package/basicprimitives) [GitHub](https://github.com/BasicPrimitives/javascript) [GitHub Deployment](https://basicprimitives.github.io/javascript/)
+
+## Basic Primitives Diagrams Webpack Build
+Contains JavaScript pre-build package designed to be used without [npm](https://www.npmjs.com/package/basicprimitives).
+
+[Download](files/BasicPrimitives6.zip) 
 
 ## Basic Primitives Diagrams for React
-Components library that implements organizational and multi-parent hierarchical charts, contains implementations of React components. Diagrams visualize structures using default or user defined JSX elements. 
-* Virtual DOM rendering.
-* JSX Templates
-* react-dnd support
-* create-react-app compatible package.
+ReactJS components library that implements organizational and multi-parent hierarchical charts. Components render their content using JSX elements, as a result it is 100% compatible with React [Context](https://reactjs.org/docs/context.html) including popular [React DnD](https://react-dnd.github.io/react-dnd/about) library.
 
-[Download](files/BasicPrimitivesDiagramsReact.zip) [npm package](https://www.npmjs.com/package/basicprimitivesreact) [GitHub](https://github.com/BasicPrimitives/react) [GitHub Deployment](https://basicprimitives.github.io/react/)
+### Frameworks
+* [Create React App](https://create-react-app.dev/) compatible project
+* Webpack [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) support
+* [Virtual DOM](https://reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom) rendering
+* [JSX Templates](https://reactjs.org/docs/introducing-jsx.html) support
+* React [Context](https://reactjs.org/docs/context.html) support
+* React [DnD](https://react-dnd.github.io/react-dnd/about) support
+* [PDFKit](https://pdfkit.org/)
+
+[Download](files/BasicPrimitivesReact.zip) [npm package](https://www.npmjs.com/package/basicprimitivesreact) [GitHub](https://github.com/BasicPrimitives/react) [GitHub Deployment](https://basicprimitives.github.io/react/)
 
 ## Basic Primitives Diagrams for React Demos
-* Large Hierarchical Chart navigation demo
-* Vertical & Matrix Organizational Chart layout demos
-* Organizational Chart Editor 
-* Family Tree
-* Partners in Organizational Chart
-* Cross Functional Group visualization demo
-* Highlight Movement & Annotations
-* Dependencies Diagram
-* Financial Ownership Diagram
-* Patents Inheritance Diagram
+Contains sources of demos published at https://www.basicprimitives.com/. They are near full stack applications having implemented demo back end API and client side Redux store.
 
-[Download](files/BasicPrimitivesDiagramsReactDemo.zip) [GitHub](https://github.com/BasicPrimitives/react-demo)
+### Organizational Charts Demos
+* Large Organizational Chart Hierarchy
+* Dynamic Organizational Chart Nodes Loading
+* Organizational Chart Editor Demo
+* Vertical Layout Organizational Chart
+* Cross Functional Team
+* Highlight & Connector Annotations
+* Partners & Annotations
+
+### Family Diagrams Demos
+* Family Chart Nodes Order
+* Family Chart with Annotations
+* Dependency Graph Primary Parents
+* Dependency Graph Visualization
+* Patent Application Dependencies Visualization
+* Financial Ownership Demo
+* Mutual Financial Ownership Demo
+
+### Frameworks
+* [Create React App](https://create-react-app.dev/)
+* [Material-UI](https://material-ui.com/)
+* [Hooks](https://reactjs.org/docs/hooks-intro.html)
+* [Redux](https://redux.js.org/)
+* [Reach Router](https://reach.tech/router/)
+* [React Final Form](https://github.com/final-form/react-final-form)
+* [React DnD](https://react-dnd.github.io/react-dnd/about)
+* [PDFKit](https://pdfkit.org/)
+
+[Download](files/BasicPrimitivesReactDemo.zip) [GitHub](https://github.com/BasicPrimitives/react-demo)
 

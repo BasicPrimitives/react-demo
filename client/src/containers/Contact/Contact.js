@@ -1,31 +1,33 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Helmet from 'react-helmet';
+import { useSelector, useDispatch } from 'react-redux'
+import { load } from 'redux/modules/contact';
+import MDReactComponent from 'markdown-react-js';
 import Container from '@material-ui/core/Container';
 
-class Contact extends Component {
-  render() {
-    return <Container fixed>
-      <h1>Contact</h1>
-      <Helmet title="Contact" />
-      <h2>Email addresses</h2>
-      <ul>
-        <li>Sales and professional services inquiries: <a href="mailto:sales@basicprimitives.com">
-          sales@basicprimitives.com
-        </a>
-        </li>
-        <li>Technical support: <a href="mailto:support@basicprimitives.com">
-          support@basicprimitives.com
-        </a>
-        </li>
-      </ul>
-      <h2>Address</h2>
-      <ul>
-        <li>
-          524 Ridelle Avenue, M6B 1K8, Toronto, ON, Canada
-          </li>
-      </ul>
-    </Container>
-  }
+function Contact() {
+  const loaded = useSelector(state => state.contact.loaded); 
+  const markdown = useSelector(state => state.contact.markdown); 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!loaded) {
+      dispatch(load());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []/* run only once */);
+
+  return (
+    <>
+      <Helmet>
+        <title>- Contact</title>
+        <meta name="description" content="Contacts." />
+      </Helmet>
+      <Container fixed>
+        <MDReactComponent text={markdown} />
+      </Container>
+    </>
+  );
 }
 
 export default Contact;

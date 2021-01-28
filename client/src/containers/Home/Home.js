@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { useSelector, useDispatch } from 'react-redux'
-import YouTube from 'react-youtube';
 import MDReactComponent from 'markdown-react-js';
 import { load } from 'redux/modules/introduction';
 import { Link } from '@reach/router';
@@ -26,10 +25,6 @@ import dependencyGraphPrimaryParentsImage from './carousel/demo_dependency_graph
 import highlightAnnotationsImage from './carousel/demo_instant_highlights.png';
 import patentsImage from './carousel/demo_patents.png';
 import financialOwnershipImage from './carousel/demo_financial_ownership.png';
-
-const videos = [
-	{videoId: "F_wlDks_ABQ", title: "Introduction", subtitle: "Reviews basic features of Organizational and Family diagramming components" },
-];
 
 const demos = [
 	{href: "/largehierarchy", image: largeHierarchyImage, title: "Large Hierarchy Visualization", subtitle: "Visualization & navigation of diagram having large number of nodes" },
@@ -52,15 +47,10 @@ const useStyles = makeStyles({
   },
 });
 
-const opts = {
-  width: 300,
-  height: 200,
-  display: 'block'
-};
-
-function Changelog() {
+function Home() {
   const classes = useStyles();
   const loaded = useSelector(state => state.introduction.loaded); 
+  const products = useSelector(state => state.introduction.products); 
   const markdown = useSelector(state => state.introduction.markdown); 
   const dispatch = useDispatch()
 
@@ -79,34 +69,11 @@ function Changelog() {
           <meta name="description" content="JavaScript, HTML, PDFKit, ReactJS; Organizational Chart, Family Inheritance Chart; Dependencies Visualizations;" />
         </Helmet>
         <h1>Basic Primitives Diagrams</h1>
-        <h3>Data visualization diagramming Components for dependencies visualization and analysis</h3>
+        <p>Data visualization diagramming components library for dependencies visualization and analysis that implements organizational chart, family chart, inheritance, dependency trees, and business ownership diagrams provides a reach feature set for automatic layout customization and visual node annotation.</p>
       </Container>
       <Container fixed>
-        <h2>Videos</h2>
+        <MDReactComponent text={products} />
       </Container>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Grid container justify="center" spacing={2}>
-            {videos.map(({videoId, title, subtitle}, index) => (
-              <Grid key={index} item>
-                  <Card className={classes.root}>
-                    <CardActionArea>
-                      <YouTube videoId={videoId} opts={opts} />
-                      <CardContent>
-                        <Typography gutterBottom variant="h6" component="h2">
-                          {title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                          {subtitle}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-      </Grid>
       <Container fixed>
         <h2>Demos</h2>
       </Container>
@@ -146,4 +113,4 @@ function Changelog() {
   )
 }
 
-export default Changelog;
+export default Home;

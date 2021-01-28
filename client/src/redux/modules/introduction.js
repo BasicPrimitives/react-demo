@@ -3,6 +3,7 @@ const LOAD_SUCCESS = 'redux-example/introduction/LOAD_SUCCESS';
 const LOAD_FAIL = 'redux-example/introduction/LOAD_FAIL';
 
 const initialState = {
+  products: "",
   markdown: "",
   loaded: false
 };
@@ -18,15 +19,19 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_SUCCESS: {
       const { result } = action;
       let { markdown } = result;
-      const contentStart = markdown.indexOf("## Supported Diagrams:");
+      let products = "";
+      const contentStart = markdown.indexOf("## Products");
+      const contentMid = markdown.indexOf("## Open Source");
       const contentEnd = markdown.indexOf("Copyright (c)");
       if(contentStart > 0) {
-        markdown = markdown.substring(contentStart, contentEnd);
+        products = markdown.substring(contentStart, contentMid);
+        markdown = markdown.substring(contentMid, contentEnd);
       }
       return {
         ...state,
         loading: false,
         loaded: true,
+        products,
         markdown
       };
     }
@@ -34,6 +39,7 @@ export default function reducer(state = initialState, action = {}) {
       const { error } = action;
       return {
         ...state,
+        products: 'File not found',
         markdown: 'File not found',
         loading: false,
         loaded: false,

@@ -41,6 +41,7 @@
         "memory-cache": "^0.2.0",
         "morgan": "^1.10.0",
         "nedb": "^1.8.0",
+        "newrelic": "^7.1.0",
         "nprogress": "^0.2.0",
         "passport-facebook-token": "^3.3.0",
         "pretty-error": "^2.1.2",

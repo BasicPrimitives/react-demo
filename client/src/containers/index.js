@@ -1,5 +1,6 @@
 import app from './App/App';
 import home from './Home/Home';
+import videos from './Videos/Videos';
 import demos from './Demos/Demos';
 import largeHierarchy from './LargeHierarchy/Loadable';
 import dynamicLoading from './DynamicLoading/Loadable';
@@ -29,6 +30,7 @@ import notFound from './NotFound/NotFound';
 
 export const App = app;
 export const Home = home;
+export const Videos = videos;
 export const Demos = demos;
 export const LargeHierarchy = largeHierarchy;
 export const DynamicLoading = dynamicLoading;

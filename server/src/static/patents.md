@@ -4,7 +4,7 @@ Patents data has massive number of references to grandparents, basically every p
 
 ### Features
 * Hiding grand parent connections
-* [Material-UI Cards(https://material-ui.com/components/cards/)
+* [Material-UI Cards](https://material-ui.com/components/cards/)
 
 ### General
 * Diagram reset

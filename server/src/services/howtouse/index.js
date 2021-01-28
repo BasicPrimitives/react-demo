@@ -3,13 +3,17 @@ const express = require('express');
 const path = require('path');
 const cache = require('memory-cache');
 const uuid = require('uuid');
+const newrelic = require('newrelic');
 const { loadMarkdown, getSampleFileContent } = require('./markdown');
 
 module.exports = function customService(app) {
-  //app.use(express.static(path.join(__dirname, '..', '..', 'static')));
-
   app.use('/load-markdown', async (req, res, next) => {
     try {
+      newrelic.addCustomAttributes({
+        "markdown": req.query.name,
+        "address": req.header('x-forwarded-for') || req.connection.remoteAddress,
+        "folder": req.query.name.split('-')[0]
+      });
       var markdown = await loadMarkdown(req.query.name);
       return res.json(markdown);
     } catch (e) {
@@ -44,4 +48,5 @@ module.exports = function customService(app) {
   app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript' , 'dist')));
   app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript')));
   app.use('/data', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'data')));
+  app.use('/', express.static(path.join(__dirname, '..', '..', 'static')));
 }

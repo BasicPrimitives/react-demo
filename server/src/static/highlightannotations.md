@@ -3,9 +3,9 @@
 * Straight connector annotations
 * Stacking connector annotations
 
-Diagram displays permanent connector annotations for current cursor node and dynamic for current highlighted node. 
+The diagram displays permanent straight connector annotations for the current cursor node and dynamic for the currently highlighted node. 
 
-Component is designed to perform minimal volume of rendering and layout calculations. When user moves mouse pointer over nodes, chart shows highlight and draws on-screen connector annotations. Diagram layout does not depend on annotations, it does not reserve any space for them, so component draws connector annotations on top of diagram nodes without general layout, so user gets instant visual feedback for node under mouse cursor. This is very handy when we have a lot of connector annotations and we don't want them to be shown all the time.
+The component performs the minimum required volume of rendering and layout operations. The chart shows highlight and draws on-screen connector annotations when the user moves the mouse pointer over nodes. The diagram layout does not depend on annotations. It does not reserve any space for them, so the component draws connector annotations on top of diagram nodes without general layout and nodes rendering. The user gets instant visual feedback for a node under the mouse cursor. Instant annotations are convenient when we have many of them defined across nodes of the diagram, and we don't want to show all of them all the time.
 
 ### General
 * Diagram reset

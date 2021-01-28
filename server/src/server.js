@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser');
 const PrettyError = require('pretty-error');
 const config = require('./config');
 const services = require('./services');
+require('newrelic');
 
 const pretty = new PrettyError();
 

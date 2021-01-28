@@ -7,7 +7,11 @@ const initialState = {
   pages: [
     {
       pathname: '/',
-      title: "Introduction",
+      title: "Introduction"
+    },
+    {
+      pathname: '/videos',
+      title: "Video Tutorials"
     },
     {
       pathname: '/',

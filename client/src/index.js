@@ -10,9 +10,6 @@ import { createHistory, LocationProvider }from "@reach/router";
 import routes from './routes';
 import apiClient from './helpers/apiClient';
 import reportWebVitals from './reportWebVitals';
-import ReactGA from "react-ga";
-
-ReactGA.initialize('UA-35196769-1');
 
 const client = apiClient();
 
@@ -21,10 +18,6 @@ const helpers = {
 }
 
 const history = createHistory(window);
-
-history.listen( window => {
-  ReactGA.pageview(window.location.pathname + window.location.hash);
-});
 
 function AppWrapper(props) {
   const { children } = props;

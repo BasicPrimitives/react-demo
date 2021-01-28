@@ -17,6 +17,9 @@ import howtouse from './modules/howtouse';
 import reacthowtouse from './modules/reacthowtouse';
 import changelog from './modules/changelog';
 import downloads from './modules/downloads';
+import contact from './modules/contact';
+import videos from './modules/videos';
+import license from './modules/license';
 import introduction from './modules/introduction';
 import reference from './modules/reference';
 import notificationsReducer from './modules/notificationsReducer';
@@ -47,6 +50,9 @@ export default function createReducers() {
     reacthowtouse,
     changelog,
     downloads,
+    videos,
+    contact,
+    license,
     notificationsReducer
   };
 }

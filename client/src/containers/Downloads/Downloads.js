@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Helmet from 'react-helmet';
-import ReactGA from "react-ga";
 import { useSelector, useDispatch } from 'react-redux'
 import {
   load,
@@ -59,11 +58,14 @@ function Downloads() {
       };
     }
     if (Tag === 'p') {
-      if (children.filter(child => child.$$typeof != null).length > 0) {
+      if (children.filter(child => child.key != null && child.key.indexOf('button') !== -1).length > 0) {
         key += 1;
-        return <div key={`buttons-${key}`} style={{
+        return <React.Fragment key={`buttons-${key}`}><br/><div style={{
           display: "inline"
-        }}>{children}</div>;
+        }}>{children}</div></React.Fragment>;
+      } else if (children.filter(child => child.$$typeof != null).length > 0) {
+        key += 1;
+        return <React.Fragment key={`buttons-${key}`}>{children}</React.Fragment>;
       }
     }
     if (Tag === 'a') {
@@ -71,51 +73,33 @@ function Downloads() {
       let [caption] = children;
       switch (caption) {
         case "Download":
-          return <Button key={`download-${href}`} type="submit" onClick={() => dispatch(showLicenseDialog(href))} variant="contained" color="primary" style={{
+          return <Button key={`button-${href}`} type="submit" onClick={() => dispatch(showLicenseDialog(href))} variant="contained" color="primary" style={{
             display: "inline",
             verticalAlign: "middle"
           }}>Download</Button>;
         case "npm package":
-          return <form key={`npm-${href}`} method="get" action={href} style={{
+          return <form key={`button-${href}`} method="get" action={href} style={{
             display: "inline",
             verticalAlign: "middle"
           }}>
-            <Button type="submit" variant="contained" color="primary" onClick={() => {
-              ReactGA.event({
-                category: 'npm package',
-                action: 'Click',
-                label: href
-              });
-            }}>npm package</Button>
+            <Button type="submit" variant="contained" color="primary">npm package</Button>
           </form>;
         case "GitHub":
-          return <form key={`github-${href}`} method="get" action={href} style={{
+          return <form key={`button-${href}`} method="get" action={href} style={{
             display: "inline",
             verticalAlign: "middle"
           }}>
-            <Button type="submit" variant="contained" color="primary" onClick={() => {
-              ReactGA.event({
-                category: 'GitHub',
-                action: 'Click',
-                label: href
-              });
-            }}>GitHub</Button>
+            <Button type="submit" variant="contained" color="primary">GitHub</Button>
           </form>;
         case "GitHub Deployment":
-          return <form key={`github-${href}`} method="get" action={href} style={{
+          return <form key={`button-${href}`} method="get" action={href} style={{
             display: "inline",
             verticalAlign: "middle"
           }}>
-            <Button type="submit" variant="contained" color="primary" onClick={() => {
-              ReactGA.event({
-                category: 'GitHub Deployment',
-                action: 'Click',
-                label: href
-              });
-            }}>GitHub Deployment</Button>
+            <Button type="submit" variant="contained" color="primary">GitHub Deployment</Button>
           </form>;
         default:
-          return <></>;
+          return <a {...props}>{children}</a>;
       }
     }
     return <Tag {...props}>{children}</Tag>;
@@ -161,13 +145,7 @@ function Downloads() {
               display: "inline",
               verticalAlign: "middle"
             }}>
-              <Button type="submit" disabled={!isLicenseAccepted} variant="contained" color="primary" onClick={() => {
-                ReactGA.event({
-                  category: 'Downloads',
-                  action: 'Click',
-                  label: fileName
-                });
-              }}>Download</Button>
+              <Button type="submit" disabled={!isLicenseAccepted} variant="contained" color="primary">Download</Button>
             </form> 
             <Button variant="contained" color="primary" onClick={() => dispatch(hideLicenseDialog())}>Cancel</Button>
           </DialogActions>

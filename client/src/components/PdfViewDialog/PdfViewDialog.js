@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Enabled } from 'basicprimitives';
-import ReactGA from "react-ga";
 import PDFDocument from 'pdfkit-nodejs-webpack';
 import blobStream from 'blob-stream';
 import Button from '@material-ui/core/Button';
@@ -15,17 +14,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import Photos from './Photos';
 
 function PdfViewDialog(props) {
-  const { isVisible, onClose, config, fileName, caption, templates, onItemRender, plugin } = props;
+  const { isVisible, onClose, config, caption, templates, onItemRender, plugin } = props;
 
   const [url, setUrl] = React.useState(null);
     
   useEffect(() => {
-    ReactGA.event({
-      category: 'PDF Download',
-      action: 'Click',
-      label: fileName
-    });
-  
     let { items } = config;
   
     items = items.map(item => {

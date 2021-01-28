@@ -2,6 +2,7 @@ import { Router } from "@reach/router"
 import {
   App,
   Home,
+  Videos,
   Demos,
   LargeHierarchy,
   DynamicLoading,
@@ -34,6 +35,7 @@ const routes =
 <Router>
   <App path="/">
     <Home path="/"/>
+    <Videos path="/videos"/>
     <Demos path="/">
       <LargeHierarchy path="largehierarchy" />
       <DynamicLoading path="dynamicloading" />
