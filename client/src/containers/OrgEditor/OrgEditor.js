@@ -159,8 +159,8 @@ function OrgEditor() {
   return (
     <>
       <Helmet>
-        <title>- Organizational Chart Editor Demo</title>
-        <meta name="description" content="Fully functional downloadable Organizational Chart editing application developed in Universal React JS architecture. Demonstrates matrix nodes layout in org chart. Open Sources. Client side PDF rendering." />
+        <title>- Matrixed Organizational Structure Editor Demo</title>
+        <meta name="description" content="Fully functional downloadable matrixed organizational structure editor demo application developed in the ReactJS with Redux. Github repository. Client-side PDF rendering." />
       </Helmet>
       <h1>Organizational Chart Editor Demo</h1>
       <div className={styles.buttonsPanel}>

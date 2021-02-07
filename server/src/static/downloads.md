@@ -1,14 +1,16 @@
 # Downloads
 
 ## Basic Primitives Diagrams for JavaScript Samples, Demos & Tests
-JavaScript controls library that implements organizational and multi-parent hierarchical charts. Contains PDFkit plugins implementations.
+It is a JavaScript controls library that implements organizational and multi-parent hierarchical charts. It uses HTML and SVG elements to render diagrams client-side in the browser. 
+
+The package contains a standalone set of PDFkit plugins for the client and server-side diagrams rendering in PDF documents. Plugins use PDF specific features, like PDF annotations and links. Plugins have no browser dependency on HTML to PDF conversion.
 
 ### Organizational Charts Demos
 * Large Organizational Chart Hierarchy
 * Dynamic Organizational Chart Nodes Loading
 * Organizational Chart Matrix Layout
 * Vertical Layout Organizational Chart
-* Cross Functional Team
+* Cross-Functional Team
 * Highlight & Connector Annotations
 * Partners & Annotations
 
@@ -40,12 +42,12 @@ yarn start
 [Download](files/BasicPrimitivesDemo.zip) [npm package](https://www.npmjs.com/package/basicprimitives) [GitHub](https://github.com/BasicPrimitives/javascript) [GitHub Deployment](https://basicprimitives.github.io/javascript/)
 
 ## Basic Primitives Diagrams Webpack Build
-Contains JavaScript pre-build package designed to be used without [npm](https://www.npmjs.com/package/basicprimitives).
+It contains JavaScript pre-build package. Use it if you need to include our library directly to the web page as an [external script](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script), without [npm](https://www.npmjs.com/package/basicprimitives).
 
 [Download](files/BasicPrimitives6.zip) 
 
 ## Basic Primitives Diagrams for React
-ReactJS components library that implements organizational and multi-parent hierarchical charts. Components render their content using JSX elements, as a result it is 100% compatible with React [Context](https://reactjs.org/docs/context.html) including popular [React DnD](https://react-dnd.github.io/react-dnd/about) library.
+It is a ReactJS components library that implements organizational and multi-parent hierarchical charts. It is a real ReactJS component, which does not direct DOM manipulations, and it renders content using JSX elements. It is compatible with React [Context](https://reactjs.org/docs/context.html) including popular [React DnD](https://react-dnd.github.io/react-dnd/about) library.
 
 ### Frameworks
 * [Create React App](https://create-react-app.dev/) compatible project
@@ -59,14 +61,14 @@ ReactJS components library that implements organizational and multi-parent hiera
 [Download](files/BasicPrimitivesReact.zip) [npm package](https://www.npmjs.com/package/basicprimitivesreact) [GitHub](https://github.com/BasicPrimitives/react) [GitHub Deployment](https://basicprimitives.github.io/react/)
 
 ## Basic Primitives Diagrams for React Demos
-Contains sources of demos published at https://www.basicprimitives.com/. They are near full stack applications having implemented demo back end API and client side Redux store.
+It contains sources of demos published at https://www.basicprimitives.com/. They are near full-stack applications, having implemented demo back-end API and client-side Redux store.
 
 ### Organizational Charts Demos
 * Large Organizational Chart Hierarchy
 * Dynamic Organizational Chart Nodes Loading
 * Organizational Chart Editor Demo
 * Vertical Layout Organizational Chart
-* Cross Functional Team
+* Cross-Functional Team
 * Highlight & Connector Annotations
 * Partners & Annotations
 
