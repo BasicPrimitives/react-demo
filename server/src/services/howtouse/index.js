@@ -5,14 +5,21 @@ const cache = require('memory-cache');
 const uuid = require('uuid');
 const newrelic = require('newrelic');
 const { loadMarkdown, getSampleFileContent } = require('./markdown');
+const { URL } = require('url');
 
 module.exports = function customService(app) {
   app.use('/load-markdown', async (req, res, next) => {
+    let gclid = null;
+    if(req.headers.referer != null) {
+      let url = new URL(req.headers.referer);
+      gclid = url.searchParams.get("gclid");
+    }
     try {
       newrelic.addCustomAttributes({
         "markdown": req.query.name,
         "address": req.header('x-forwarded-for') || req.connection.remoteAddress,
-        "folder": req.query.name.split('-')[0]
+        "folder": req.query.name.split('-')[0],
+        "gclid": gclid
       });
       var markdown = await loadMarkdown(req.query.name);
       return res.json(markdown);
