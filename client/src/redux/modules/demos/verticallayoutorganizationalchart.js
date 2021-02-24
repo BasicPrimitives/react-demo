@@ -2,7 +2,7 @@ import { OrgConfig, TemplateConfig, Size, Thickness, PageFitMode,
   Enabled, ShapeType, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
   ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
   AdviserPlacementType, TextOrientationType, GroupByType, ConnectorType,
-  ElbowType, PlacementType, NavigationMode, GraphicsType, ItemType} from 'basicprimitives';
+  ElbowType, PlacementType, NavigationMode, ItemType} from 'basicprimitives';
 
 const LOAD = 'redux-example/verticallayoutorganizationalchart/LOAD';
 const LOAD_SUCCESS = 'redux-example/verticallayoutorganizationalchart/LOAD_SUCCESS';
@@ -155,9 +155,6 @@ const initialState = {
     navigationMode: NavigationMode.Default,
     highlightGravityRadius: 40,
     enablePanning: true,
-
-    /* Graphics */
-    graphicsType: GraphicsType.SVG,
 
     scale: 1.0
   },

@@ -2867,10 +2867,10 @@ basicprimitives@6.2.2, basicprimitives@^6.2.2:
   resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-6.2.2.tgz#3ecbb4af074978f7909c43c5af33efa5d0c4ef0f"
   integrity sha512-UTA4aJ0D6owIQl+12NgglLZ3f9RGr5T6vN0UuYeGnI/u/uzaj4dX6hnGvrZJhqtWzLg7CgRoA6nPgTaCPbPPhQ==
 
-basicprimitivesreact@^6.2.2:
-  version "6.2.2"
-  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-6.2.2.tgz#62381d5f65571f498bb4b8212c0016e1dca6fbf2"
-  integrity sha512-vFm0yWjdVCs25Nz10fajEDhorZfJUbiOuU1P/UkFrNC0EL4gn76MbnfnggAzOOZyBZNYgHh626lCz/DSXQ/jtg==
+basicprimitivesreact@^6.2.3:
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/basicprimitivesreact/-/basicprimitivesreact-6.2.3.tgz#959c91d18d20453178ad71fac7625cf3d1704d12"
+  integrity sha512-8rXR1E4AvMkHmsmbgzfjrHlZ+3YbtJCfwuOPLfVlmYGxI/FdNAB975pksI2x0Emq+ZQhofOVJx5CDUs/Nw6O5A==
   dependencies:
     basicprimitives "6.2.2"
     resize-observer-polyfill "^1.5.1"

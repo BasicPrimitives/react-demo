@@ -1,5 +1,5 @@
 import {AdviserPlacementType,  ChildrenPlacementType,  Colors, ConnectorLabelPlacementType, ConnectorPlacementType,
-    ConnectorShapeType, ConnectorType, ElbowType, Enabled, GraphicsType, GroupByType, HorizontalAlignmentType,
+    ConnectorShapeType, ConnectorType, ElbowType, Enabled, GroupByType, HorizontalAlignmentType,
     LineType, LoopsLayoutMode, NavigationMode, NeighboursSelectionMode, OrientationType, PlacementType, SelectionPathMode,
     ShapeType, TextOrientationType, VerticalAlignmentType, Visibility, ZOrderType
 } from 'basicprimitives';
@@ -206,7 +206,6 @@ const RenderingOptions = {
     namespace: "config",
     options: [
         { optionType: "CaptionConfig", caption: "By default widget preferes SVG graphics mode. Use this property to enforce graphics mode programmatically." },
-        { optionType: "RadioBoxConfig", name: "graphicsType", caption: "Graphics", options: GraphicsType, valueType: "number" },
         { optionType: "CaptionConfig", caption: "In order to achive better greacefull degradation of your diagram use item templates of various sizes instead of CSS scale." },
         { optionType: "DropDownBoxConfig", name: "scale", caption: "CSS Scale", options: { "50%": 0.5, "60%": 0.6, "70%": 0.7, "80%": 0.8, "90%": 0.9, "100%": 1.0, "110%": 1.1, "120%": 1.2, "130%": 1.3, "140%": 1.4, "150%": 1.5, "160%": 1.6, "170%": 1.7, "180%": 1.8, "190%": 1.9, "200%": 2.0 }, valueType: "number" },
     ]

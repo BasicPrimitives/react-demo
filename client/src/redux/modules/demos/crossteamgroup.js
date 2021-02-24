@@ -2,7 +2,7 @@ import { OrgConfig, TemplateConfig, Size, Thickness, PageFitMode,
   Enabled, ShapeType, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
   ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
   AdviserPlacementType, TextOrientationType, GroupByType, ConnectorType,
-  ElbowType, PlacementType, NavigationMode, GraphicsType, AnnotationType} from 'basicprimitives';
+  ElbowType, PlacementType, NavigationMode, AnnotationType} from 'basicprimitives';
 
 const LOAD = 'redux-example/crossteamgroup/LOAD';
 const LOAD_SUCCESS = 'redux-example/crossteamgroup/LOAD_SUCCESS';
@@ -143,9 +143,6 @@ const initialState = {
 
     /* Frame */
     showFrame: true,
-
-    /* Graphics */
-    graphicsType: GraphicsType.SVG,
 
     scale: 1.0
   },
