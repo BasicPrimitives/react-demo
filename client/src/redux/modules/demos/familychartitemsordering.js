@@ -2,7 +2,7 @@ import { FamConfig, TemplateConfig, Size, Thickness, PageFitMode,
   Enabled, ShapeType, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
   ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
   AdviserPlacementType, TextOrientationType, GroupByType, ConnectorType,
-  ElbowType, PlacementType, NavigationMode, NeighboursSelectionMode, LoopsLayoutMode,
+  ElbowType, PlacementType, NavigationMode, NeighboursSelectionMode,
   AnnotationType, ZOrderType, ConnectorShapeType, ConnectorPlacementType, ConnectorLabelPlacementType
 } from 'basicprimitives';
 
@@ -110,7 +110,6 @@ const initialState = {
     /* Family Diagram Specific Options */
     neighboursSelectionMode: NeighboursSelectionMode.ParentsChildrenSiblingsAndSpouses,
     groupByType: GroupByType.Children,
-    loopsLayoutMode: LoopsLayoutMode.Optimized,
     alignBylevels: true,
     hideGrandParentsConnectors: false,
     enableMatrixLayout: false,

@@ -1,6 +1,6 @@
 import {AdviserPlacementType,  ChildrenPlacementType,  Colors, ConnectorLabelPlacementType, ConnectorPlacementType,
     ConnectorShapeType, ConnectorType, ElbowType, Enabled, GroupByType, HorizontalAlignmentType,
-    LineType, LoopsLayoutMode, NavigationMode, NeighboursSelectionMode, OrientationType, PlacementType, SelectionPathMode,
+    LineType, NavigationMode, NeighboursSelectionMode, OrientationType, PlacementType, SelectionPathMode,
     ShapeType, TextOrientationType, VerticalAlignmentType, Visibility, ZOrderType
 } from 'basicprimitives';
 import { phone, email } from 'utils/validation';
@@ -48,7 +48,6 @@ const FamilyLayoutOptions = {
         { optionType: "CaptionConfig", caption: "The following option hides direct connectors to grand parents. It helps reduce diagrams connectors layout complexity. This option should be used together with dynamic highlighting of connectors to grandparents via immidiate parents, so information is not lost." },
         { optionType: "CheckBoxConfig", name: "hideGrandParentsConnectors",  caption: "Hides grand parents connectors" },
         { optionType: "CaptionConfig", caption: "Chart optimizes items placement into layers, so the final diagram has minimal number of feedback loops between them. Use following option to disable that behaviour and place items in the same sequence as in source items collection." },
-        { optionType: "RadioBoxConfig", name: "loopsLayoutMode", caption: "Loops Layout Mode", options: LoopsLayoutMode, valueType: "number" },
         { optionType: "CaptionConfig", caption: "The following option enables natrix layout in family diagram. Nodes having the same set of parents and children are grouped into square shaped matrix in order to keep them visualy together." },
         { optionType: "CheckBoxConfig", name: "enableMatrixLayout",  caption: "Enable Matrix Layout" },
         { optionType: "DropDownBoxConfig", name: "minimumMatrixSize", caption: "Minimum number of nodes needed in order to be formed into matrix layout", options: [2, 3, 4, 5, 6, 7, 8, 9, 10], valueType: "number", isNullable: true },

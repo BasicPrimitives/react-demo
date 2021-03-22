@@ -11,7 +11,6 @@ const famdataCascade = require('./data/famdataCascade.js');
 const famdataLoops = require('./data/famdataLoops.js');
 const famdataLoopsTest = require('./data/famdataLoopsTest.js');
 const famdataWorld = require('./data/famdataWorld.js');
-const famSpouses = require('./data/famSpouses.js');
 const famdataCharless2 = require('./data/famdataCharless2.js');
 const simpleRombus = require('./data/simpleRombus.js');
 const simpleSandClock = require('./data/simpleSandClock.js');
@@ -40,7 +39,6 @@ function service(app) {
       Cascade: 'famdataCascade',
       Loops: 'famdataLoops',
       'World Dynamics': 'famdataWorld',
-      Spouses: 'famSpouses',
       'Inter Marriage': 'famdataCharless2',
       'Simple Rombus': 'simpleRombus',
       'Simple Sand Clock': 'simpleSandClock',
@@ -91,9 +89,6 @@ function service(app) {
         break;
       case 'famdataWorld':
         result = famdataWorld;
-        break;
-      case 'famSpouses':
-        result = famSpouses;
         break;
       case 'famdataCharless2':
         result = famdataCharless2;
