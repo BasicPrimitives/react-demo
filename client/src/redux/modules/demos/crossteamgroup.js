@@ -70,6 +70,7 @@ const initialState = {
     maximumColumnsInMatrix: 6,
     minimalVisibility: Visibility.Dot,
     selectionPathMode: SelectionPathMode.FullStack,
+    minimumVisibleLevels : 1,
 
     hasButtons: Enabled.Auto,
     hasSelectorCheckbox: Enabled.True,
@@ -99,6 +100,7 @@ const initialState = {
     dotItemsInterval: 7,
     lineItemsInterval: 5,
     cousinsIntervalMultiplier: 0,
+    padding: new Thickness(10, 10, 10, 10),
 
     /* Connectors */
     arrowsDirection: GroupByType.Children,

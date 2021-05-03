@@ -80,6 +80,8 @@ const initialState = {
     dotItemsInterval: 4,
     lineItemsInterval: 4,
     cousinsIntervalMultiplier: 0,
+    padding: new Thickness(10, 10, 10, 10),
+    minimumVisibleLevels: 1,
     buttonsPanelSize: 42,
     items: []
   },

@@ -39,6 +39,8 @@ const initialState = {
     hasSelectorCheckbox: Enabled.True,
     hasButtons: Enabled.Auto,
     buttonsPanelSize: 42,
+    padding: new Thickness(10, 10, 10, 10),
+    minimumVisibleLevels : 2,
     defaultTemplateName: 'defaultTemplate',
     templates: [
       {

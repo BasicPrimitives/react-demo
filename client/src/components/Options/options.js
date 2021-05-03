@@ -25,6 +25,7 @@ const AutoLayoutOptions = {
         { optionType: "CheckBoxConfig", name: "placeAssistantsAboveChildren",  caption: "Place children of assistants above their parent node children" },
         { optionType: "DropDownBoxConfig", name: "maximumColumnsInMatrix", caption: "Maximum columns number in matrix children layout", options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20], valueType: "number" },
         { optionType: "RadioBoxConfig", name: "minimalVisibility", caption: "Minimal nodes visibility", options: Visibility, valueType: "number" },
+        { optionType: "DropDownBoxConfig", name: "minimumVisibleLevels", caption: "Minimum visible levels", options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20], valueType: "number" },
         { optionType: "RadioBoxConfig", name: "selectionPathMode", caption: "Selection Path Mode sets visibility of items between cursor item and root", options: SelectionPathMode, valueType: "number" }
     ]
 };
@@ -136,7 +137,8 @@ const IntervalsOptions = {
         { optionType: "DropDownBoxConfig", name: "normalItemsInterval", caption: "Normal", options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40], valueType: "number" },
         { optionType: "DropDownBoxConfig", name: "dotItemsInterval", caption: "Dotted", options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40], valueType: "number" },
         { optionType: "DropDownBoxConfig", name: "lineItemsInterval", caption: "Lined", options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40], valueType: "number" },
-        { optionType: "DropDownBoxConfig", name: "cousinsIntervalMultiplier", caption: "Additional interval multiplier between cousins, it creates extra space between hierarchies", options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40], valueType: "number" }
+        { optionType: "DropDownBoxConfig", name: "cousinsIntervalMultiplier", caption: "Additional interval multiplier between cousins, it creates extra space between hierarchies", options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 30, 40], valueType: "number" },
+        { optionType: "ThicknessConfig", name: "padding", caption: "Padding", options: [5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100], valueType: "number" }
     ]
 };
 const ConnectorsOptions = { 

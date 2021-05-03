@@ -98,6 +98,7 @@ const initialState = {
     leavesPlacementType: ChildrenPlacementType.Horizontal,
     minimalVisibility: Visibility.Dot,
     selectionPathMode: SelectionPathMode.None,
+    minimumVisibleLevels: 0,
 
     hasButtons: Enabled.Auto,
     hasSelectorCheckbox: Enabled.Auto,
@@ -136,6 +137,7 @@ const initialState = {
     dotItemsInterval: 6,
     lineItemsInterval: 6,
     cousinsIntervalMultiplier: 1,
+    padding: new Thickness(10, 10, 10, 10),
 
     /* Connectors */
     arrowsDirection: GroupByType.Parents,

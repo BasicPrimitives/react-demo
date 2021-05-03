@@ -154,6 +154,7 @@ const initialState = {
     dotItemsInterval: 20,
     lineItemsInterval: 20,
     cousinsIntervalMultiplier: 1,
+    padding: new Thickness(10, 70, 10, 10),
 
     /* Connectors */
     arrowsDirection: GroupByType.Children,

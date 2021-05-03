@@ -39,6 +39,8 @@ const initialState = {
   config: {
     ...new OrgConfig(),
     defaultTemplateName: 'defaultTemplate',
+    padding: new Thickness(10, 10, 10, 10),
+    minimumVisibleLevels : 2,
     templates: [
       {
         ...new TemplateConfig(),
