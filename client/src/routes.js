@@ -5,6 +5,7 @@ import {
   Videos,
   Demos,
   LargeHierarchy,
+  CrossBranchAlignment,
   DynamicLoading,
   OrgEditor,
   VerticalLayout,
@@ -40,6 +41,7 @@ const routes =
       <LargeHierarchy path="largehierarchy" />
       <DynamicLoading path="dynamicloading" />
       <OrgEditor path="orgeditor" />
+      <CrossBranchAlignment path="crossbranchalignment" />
       <VerticalLayout path="verticallayout" />
       <CrossTeamGroup path="crossteamgroup" />
       <HighlightAnnotations path="highlightannotations" />

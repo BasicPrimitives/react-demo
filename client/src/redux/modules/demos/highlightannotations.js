@@ -36,6 +36,7 @@ const initialState = {
   config: {
     ...new OrgConfig(),
     pageFitMode: PageFitMode.FitToPage,
+    alignBranches: true,
     cursorItem: 0,
     hasSelectorCheckbox: Enabled.True,
     hasButtons: Enabled.Auto,

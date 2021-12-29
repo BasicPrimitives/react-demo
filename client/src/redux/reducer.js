@@ -1,5 +1,6 @@
 import notifs from './modules/notifs';
 import largeorganizationalchart from './modules/demos/largeorganizationalchart';
+import crossbranchalignment from './modules/demos/crossbranchalignment';
 import highlightannotations from './modules/demos/highlightannotations';
 import partners from './modules/demos/partners';
 import dynamicloading from './modules/demos/dynamicloading';
@@ -34,6 +35,7 @@ export default function createReducers() {
     reference,
     partners,
     largeorganizationalchart,
+    crossbranchalignment,
     dynamicloading,
     verticallayoutorganizationalchart,
     highlightannotations,

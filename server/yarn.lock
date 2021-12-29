@@ -419,10 +419,10 @@ basic-auth@~2.0.1:
   dependencies:
     safe-buffer "5.1.2"
 
-basicprimitives@6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-6.4.0.tgz#ee8c6a3a96243acf30fd2bdc2f3de343eaecfc71"
-  integrity sha512-NJbcLDin0jqpNB+FNEZ7xO7L0YTaMqBp0oB/FtjMH0NPSjelFr8LTv5tLKpYjpQ/o/6gowMEYqrj8Uz91gmhvw==
+basicprimitives@6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/basicprimitives/-/basicprimitives-6.5.1.tgz#9cd1a2de50e24497667b1561cac12aff5f776465"
+  integrity sha512-zwHeLl3DfpsLvjTSf2MYqfOSttCvGNGQhYEUVVL4u5lt5FgioCupK0V+B77TNW0uPlkf8hKhif29TvtlrnbFew==
 
 bcryptjs@^2.3.0:
   version "2.4.3"

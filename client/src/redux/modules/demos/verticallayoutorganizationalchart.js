@@ -63,6 +63,7 @@ const initialState = {
     ],
     /* Layout */
     pageFitMode: PageFitMode.FitToPage,
+    alignBranches: true,
     orientationType: OrientationType.Top,
     verticalAlignment: VerticalAlignmentType.Middle,
     horizontalAlignment: HorizontalAlignmentType.Left,

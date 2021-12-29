@@ -25,6 +25,7 @@ const initialState = {
             { pathname: '/largehierarchy', title: 'Large Hierarchy' },
             { pathname: '/dynamicloading', title: 'Dynamic Loading' },
             { pathname: '/orgeditor', title: 'Editor & Matrix Layout' },
+            { pathname: '/crossbranchalignment', title: 'Cross-Branch Alignment' },
             { pathname: '/verticallayout', title: 'Vertical Layout' },
             { pathname: '/crossteamgroup', title: 'Cross Functional Team' },
             { pathname: '/highlightannotations', title: 'Highlight & Connector Annotations' },

@@ -65,6 +65,7 @@ const initialState = {
     orientationType: OrientationType.Left,
     verticalAlignment: VerticalAlignmentType.Middle,
     horizontalAlignment: HorizontalAlignmentType.Left,
+    alignBranches: true,
     childrenPlacementType: ChildrenPlacementType.Horizontal,
     leavesPlacementType: ChildrenPlacementType.Horizontal,
     maximumColumnsInMatrix: 6,

@@ -19,6 +19,7 @@ const AutoLayoutOptions = {
         { optionType: "RadioBoxConfig", name: "orientationType",  caption: "Orientation Type", options: OrientationType, valueType: "number" },
         { optionType: "RadioBoxConfig", name: "verticalAlignment",  caption: "Items Vertical Alignment", options: VerticalAlignmentType, valueType: "number" },
         { optionType: "RadioBoxConfig", name: "horizontalAlignment",  caption: "Items Horizontal Alignment", options: HorizontalAlignmentType, valueType: "number" },
+        { optionType: "CheckBoxConfig", name: "alignBranches",  caption: "Enable Cross-Branch Children Alignment" },
         { optionType: "RadioBoxConfig", name: "childrenPlacementType",  caption: "Children placement", options: ChildrenPlacementType, valueType: "number" },
         { optionType: "RadioBoxConfig", name: "leavesPlacementType",  caption: "Leaves placement defines layout shape for items having no children", options: ChildrenPlacementType, valueType: "number" },
         { optionType: "CheckBoxConfig", name: "placeAdvisersAboveChildren",  caption: "Place children of advisers above their parent node children" },

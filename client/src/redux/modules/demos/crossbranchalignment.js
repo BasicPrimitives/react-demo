@@ -1,23 +1,19 @@
 import { OrgConfig, TemplateConfig, Size, Thickness, PageFitMode,
-  Enabled, ShapeType, LineType, OrientationType, VerticalAlignmentType, HorizontalAlignmentType,
-  ChildrenPlacementType, Visibility, SelectionPathMode, Colors,
-  AdviserPlacementType, TextOrientationType, GroupByType, ConnectorType,
-  ElbowType, PlacementType, NavigationMode} from 'basicprimitives';
+  Enabled, ShapeType, LineType, AnnotationType, Colors } from 'basicprimitives';
 
-const LOAD = 'redux-example/dynamicloading/LOAD';
-const LOAD_SUCCESS = 'redux-example/dynamicloading/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/dynamicloading/LOAD_FAIL';
-const LOAD_MARKDOWN = 'redux-example/dynamicloading/LOAD_MARKDOWN';
-const LOAD_MARKDOWN_SUCCESS = 'redux-example/dynamicloading/LOAD_SUCCESS_MARKDOWN';
-const LOAD_MARKDOWN_FAIL = 'redux-example/dynamicloading/LOAD_FAIL_MARKDOWN';
-const SETCURSORITEM = 'redux-example/dynamicloading/setCursorItem';
-const SETCURSORITEM_SUCCESS = 'redux-example/dynamicloading/SETCURSORITEM_SUCCESS';
-const SETSELECTEDITEMS = 'redux-example/dynamicloading/setSelectedItems';
-const SETCLICKEDBUTTON = 'redux-example/dynamicloading/setClickedButton';
-const SETCONFIGOPTION = 'redux-example/dynamicloading/setConfigOption';
-const SETTEMPLATEOPTION = 'redux-example/dynamicloading/setTemplateOption';
+const LOAD = 'redux-example/crossbranchalignment/LOAD';
+const LOAD_SUCCESS = 'redux-example/crossbranchalignment/LOAD_SUCCESS';
+const LOAD_FAIL = 'redux-example/crossbranchalignment/LOAD_FAIL';
+const LOAD_MARKDOWN = 'redux-example/crossbranchalignment/LOAD_MARKDOWN';
+const LOAD_MARKDOWN_SUCCESS = 'redux-example/crossbranchalignment/LOAD_SUCCESS_MARKDOWN';
+const LOAD_MARKDOWN_FAIL = 'redux-example/crossbranchalignment/LOAD_FAIL_MARKDOWN';
+const SETCURSORITEM = 'redux-example/crossbranchalignment/setCursorItem';
+const SETSELECTEDITEMS = 'redux-example/crossbranchalignment/setSelectedItems';
+const SETCLICKEDBUTTON = 'redux-example/crossbranchalignment/setClickedButton';
+const SETCONFIGOPTION = 'redux-example/crossbranchalignment/setConfigOption';
+const SETTEMPLATEOPTION = 'redux-example/crossbranchalignment/setTemplateOption';
 
-const chartName = 'largeorganizationalchart';
+const chartName = 'crossbranchalignment';
 
 export const UserActionType = {
   None: 0,
@@ -38,18 +34,25 @@ const initialState = {
   centerOnCursor: true,
   config: {
     ...new OrgConfig(),
-    defaultTemplateName: 'defaultTemplate',
+    pageFitMode: PageFitMode.None,
+    alignBranches: true,
+    cursorItem: 0,
+    hasSelectorCheckbox: Enabled.True,
+    hasButtons: Enabled.Auto,
+    buttonsPanelSize: 42,
     padding: new Thickness(10, 10, 10, 10),
     minimumVisibleLevels : 2,
+    defaultTemplateName: 'defaultTemplate',
+    itemTitleFirstFontColor: Colors.White,
+    itemTitleSecondFontColor: Colors.White,
     templates: [
       {
         ...new TemplateConfig(),
         name: 'defaultTemplate',
-        itemSize: new Size(180, 90),
-        minimizedItemCornerRadius: 10,
-        minimizedItemSize: new Size(10, 10),
-        highlightPadding: new Thickness(6, 6, 6, 6),
-        minimizedItemShapeType: ShapeType.Circle,
+        minimizedItemCornerRadius: null,
+        minimizedItemSize: new Size(4, 4),
+        highlightPadding: new Thickness(2, 2, 2, 2),
+        minimizedItemShapeType: ShapeType.None,
         minimizedItemLineWidth: 1,
         minimizedItemLineType: LineType.Solid,
         minimizedItemBorderColor: null,
@@ -62,90 +65,57 @@ const initialState = {
         itemSize: new Size(220, 120)
       }
     ],
-
-    pageFitMode: PageFitMode.FitToPage,
-    orientationType: OrientationType.Top,
-    verticalAlignment: VerticalAlignmentType.Middle,
-    horizontalAlignment: HorizontalAlignmentType.Center,
-    alignBranches: true,
-    childrenPlacementType: ChildrenPlacementType.Horizontal,
-    leavesPlacementType: ChildrenPlacementType.Horizontal,
-    maximumColumnsInMatrix: 6,
-    minimalVisibility: Visibility.Dot,
-    selectionPathMode: SelectionPathMode.FullStack,
-
-    hasButtons: Enabled.Auto,
-    hasSelectorCheckbox: Enabled.True,
-    selectCheckBoxLabel: 'Selected',
-    itemTitleFirstFontColor: Colors.White,
-    itemTitleSecondFontColor: Colors.White,
-    buttonsPanelSize: 42,
-    groupTitlePanelSize: 24,
-    checkBoxPanelSize: 24,
-
-    /* group title options */
-    groupTitlePlacementType: AdviserPlacementType.Left,
-    groupTitleOrientation: TextOrientationType.RotateRight,
-    groupTitleVerticalAlignment: VerticalAlignmentType.Middle,
-    groupTitleHorizontalAlignment: HorizontalAlignmentType.Center,
-    groupTitleFontSize: '12px',
-    groupTitleFontFamily: 'Arial',
-    groupTitleColor: Colors.RoyalBlue,
-    groupTitleFontWeight: 'normal',
-    groupTitleFontStyle: 'normal',
-
-    /* Intervals */
-    normalLevelShift: 20,
-    dotLevelShift: 20,
-    lineLevelShift: 10,
-    normalItemsInterval: 20,
-    dotItemsInterval: 6,
-    lineItemsInterval: 2,
-    cousinsIntervalMultiplier: 2,
-
-    /* Connectors */
-    arrowsDirection: GroupByType.None,
-    showExtraArrows: false,
-    extraArrowsMinimumSpace: 30,
-    connectorType: ConnectorType.Squared,
-    elbowType: ElbowType.None,
-    bevelSize: 4,
-    elbowDotSize: 4,
-    linesType: LineType.Solid,
-    linesColor: Colors.Silver,
-    linesWidth: 1,
-
-    /* Labels */
-    showLabels: Enabled.Auto,
-    labelSize: new Size(80, 24),
-    labelOrientation: TextOrientationType.Horizontal,
-    labelPlacement: PlacementType.Top,
-    labelOffset: 2,
-    labelFontSize: '10px',
-    labelFontFamily: 'Arial',
-    labelColor: Colors.Black,
-    labelFontWeight: 'normal',
-    labelFontStyle: 'normal',
-
-    /* Callout */
-    calloutMaximumVisibility: Visibility.Dot,
-    showCallout: true,
-    calloutPlacementOffset: 100,
-    calloutfillColor: '#000000',
-    calloutBorderColor: null,
-    calloutOffset: 4,
-    calloutCornerRadius: 4,
-    calloutPointerWidth: '10%',
-    calloutLineWidth: 1,
-    calloutOpacity: 0.2,
-
-    /* Interactivity */
-    navigationMode: NavigationMode.Default,
-    highlightGravityRadius: 40,
-    enablePanning: true,
-
-    cursorItem: 0,
-    items: []
+    items: [],
+    annotations: [
+      {
+          annotationType: AnnotationType.Level,
+          levels: [0],
+          title: "CEO",
+          titleColor: Colors.RoyalBlue,
+          offset: new Thickness(0, 0, 0, -1),
+          lineWidth: new Thickness(0, 0, 0, 0),
+          opacity: 0,
+          borderColor: Colors.Gray,
+          fillColor: Colors.Gray,
+          lineType: LineType.Dotted
+        },
+        {
+          annotationType: AnnotationType.Level,
+          levels: [1],
+          title: "Management",
+          titleColor: Colors.RoyalBlue,
+          offset: new Thickness(0, 0, 0, -1),
+          lineWidth: new Thickness(0, 0, 0, 0),
+          opacity: 0.08,
+          borderColor: Colors.Gray,
+          fillColor: Colors.Gray,
+          lineType: LineType.Dotted
+        },
+        {
+          annotationType: AnnotationType.Level,
+          levels: [2],
+          title: "Full Time",
+          titleColor: Colors.RoyalBlue,
+          offset: new Thickness(0, 0, 0, -1),
+          lineWidth: new Thickness(0, 0, 0, 0),
+          opacity: 0,
+          borderColor: Colors.Gray,
+          fillColor: Colors.Gray,
+          lineType: LineType.Dotted
+        },
+        {
+          annotationType: AnnotationType.Level,
+          levels: [3],
+          title: "Contract",
+          titleColor: Colors.RoyalBlue,
+          offset: new Thickness(0, 0, 0, -1),
+          lineWidth: new Thickness(0, 0, 0, 0),
+          opacity: 0.08,
+          borderColor: Colors.Gray,
+          fillColor: Colors.Gray,
+          lineType: LineType.Dotted
+        }
+      ]
   },
   itemsHash: {}
 };
@@ -209,7 +179,13 @@ export default function reducer(state = initialState, action = {}) {
 
     case LOAD_SUCCESS: {
       const { config: { scale } } = state;
-      const { config } = initialState;
+      const { config: defaultConfig } = initialState;
+      const config = action.result;
+      const newConfig = {
+        ...defaultConfig,
+        ...config,
+        scale
+      };
       return {
         ...state,
         userAction: {
@@ -221,14 +197,10 @@ export default function reducer(state = initialState, action = {}) {
         loading: false,
         loaded: true,
         ...getCursorItem(
-          {
-            ...config,
-            ...action.result,
-            scale
-          },
-          config.cursorItem
+          newConfig,
+          newConfig.cursorItem
         ),
-        ...getItemsHash(action.result.items)
+        ...getItemsHash(config.items)
       };
     }
 
@@ -239,7 +211,6 @@ export default function reducer(state = initialState, action = {}) {
         loaded: false,
         error: action.error
       };
-
 
     case LOAD_MARKDOWN: {
       return {
@@ -285,7 +256,7 @@ export default function reducer(state = initialState, action = {}) {
       const { templates, ...restConfig } = config;
       return {
         ...restState,
-        centerOnCursor: false,
+        c: false,
         config: {
           ...restConfig,
           templates: templates.map(template => {
@@ -306,25 +277,6 @@ export default function reducer(state = initialState, action = {}) {
         ...restState,
         ...getCursorItem(config, action.cursorItem),
         ...getUserAction(UserActionType.ChangedCursor)
-      };
-    }
-
-    case SETCURSORITEM_SUCCESS: {
-      const { config, ...restState } = state;
-      const { scale } = config;
-      return {
-        ...restState,
-        loading: false,
-        loaded: true,
-        ...getCursorItem(
-          {
-            ...config,
-            ...action.result,
-            scale
-          },
-          config.cursorItem
-        ),
-        ...getItemsHash(action.result.items)
       };
     }
 
@@ -353,37 +305,20 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-function params(data) {
-  return Object.keys(data)
-    .map(key => `${key}=${encodeURIComponent(data[key])}`)
-    .join('&');
-}
-
 export function isLoaded(globalState) {
-  return globalState.dynamicloading && globalState.dynamicloading.loaded;
+  return globalState.crossbranchalignment && globalState.crossbranchalignment.loaded;
 }
 
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: ({ client }) => client.get(`/load-demoorganizationalchart?name=${chartName}&depth=3`)
+    promise: ({ client }) => client.get(`/load-demoorganizationalchart?name=${chartName}`)
   };
 }
 
 export function setCursorItem(cursorItem) {
   return {
-    types: [SETCURSORITEM, SETCURSORITEM_SUCCESS, LOAD_FAIL],
-    promise: ({ client }, dispatch, getState) => {
-      const { dynamicloading } = getState();
-      const { selectedItems } = dynamicloading.config;
-      const data = {
-        name: chartName,
-        cursorItem,
-        depth: 3,
-        selectedItems: JSON.stringify(selectedItems)
-      };
-      return client.get(`/load-demoorganizationalchart?${params(data)}`);
-    },
+    type: SETCURSORITEM,
     cursorItem
   };
 }
@@ -423,6 +358,6 @@ export function setTemplateOption(templateName, name, value) {
 export function loadMarkdown() {
   return {
     types: [LOAD_MARKDOWN, LOAD_MARKDOWN_SUCCESS, LOAD_MARKDOWN_FAIL],
-    promise: ({ client }) => client.get(`/load-markdown?name=info-dynamicloading`)
+    promise: ({ client }) => client.get(`/load-markdown?name=info-crossbranchalignment`)
   };
 }

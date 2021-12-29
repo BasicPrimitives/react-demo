@@ -14,7 +14,7 @@ import docco from 'react-syntax-highlighter/dist/esm/styles/hljs/docco';
 
 import { faUserPlus, faUserSlash, faCoffee, faSitemap, faUser, faComment, faCog } from '@fortawesome/free-solid-svg-icons'
 import * as basicprimitives from 'basicprimitives';
-import { OrgDiagram, FamDiagram } from 'basicprimitivesreact';
+import { OrgDiagram, FamDiagram, RotatedText } from 'basicprimitivesreact';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { DndProvider, useDrag, useDrop, DropTarget, DragSource } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -70,6 +70,7 @@ function ReactHowToUse(props) {
             ...basicprimitives,
             OrgDiagram,
             FamDiagram,
+            RotatedText,
             DndProvider,
             DropTarget,
             DragSource,
