@@ -1,5 +1,6 @@
 ## Demoed features
-The main idea about this demo is the possibility to combine various children's formations within one diagram. It has just three levels in the hierarchy; the first one is the CEO. Then second is the vertically aligned group of managerial nodes, and then every manager has a horizontal row of direct reports attached to it. The diagram automatically defines the level's index based on the actual logical level of nodes in the hierarchy. You can see multiple repetitive management level annotations on the diagram's left side because the component resolved logical groups and duplicated annotation for every level in the visualization.
+The main idea of this demo is to combine various children's formations within one diagram. It has just three levels in the hierarchy; the first is the CEO. Then second is the vertically aligned group of managerial nodes, and then every manager has a horizontal row of direct reports attached to it. The diagram automatically defines the level's index based on the actual logical level of nodes in the hierarchy. You can see multiple repetitive management-level annotations on the diagram's left side because the component resolved logical groups and duplicated annotations for every visualization level.
+
 ### General
 * Diagram reset
 * PDF file generation
@@ -29,4 +30,8 @@ They can be set per node or globally for all chart nodes. The component has two 
 
 Read more details in reference.
 
-To change children's alignment relative to its parent connection line, use complimentary horizontal children alignment option: `horizontalAlignment`.
+To change children's alignment relative to its parent connection line, use the complimentary horizontal children alignment option: `horizontalAlignment`.
+
+### Sources
+* [UI Components](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/containers/VerticalLayout/VerticalLayout.js)
+* [Redux Store](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/redux/modules/demos/verticallayoutorganizationalchart.js)

@@ -4,7 +4,7 @@ Configuration may contain looped references between items, so control finds layo
 
 ### Layout Features
 * Dependency Loops 
-* Hiding direct grand parent relations
+* Hiding direct grandparent relations
 * Alignment by levels
 
 ### General
@@ -12,3 +12,6 @@ Configuration may contain looped references between items, so control finds layo
 * PDF file generation
 * Diagram options drawer
 
+### Sources
+* [UI Components](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/containers/MutualFinancialOwnership/MutualFinancialOwnership.js)
+* [redux Store](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/redux/modules/demos/mutualfinancialownership.js)

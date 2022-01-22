@@ -13,3 +13,7 @@ This alignment priority can then be used to create a full sequence, branch or ch
 * Diagram reset
 * PDF file generation
 * Diagram options drawer
+
+### Sources
+* [UI Components](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/containers/TechTree/TechTree.js)
+* [Redux Store](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/redux/modules/demos/techtree.js)

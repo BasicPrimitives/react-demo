@@ -10,3 +10,6 @@
 * PDF file generation
 * Diagram options drawer
 
+### Sources
+* [Ui Components](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/containers/FinancialOwnership/FinancialOwnership.js)
+* [Redux Store](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/redux/modules/demos/financialownership.js)

@@ -3,7 +3,7 @@
 * General partner
 * Limited Partner
 
-Organizational chart provides simplified support for multiple parents, multiple managers or multiple co-heads in hierarchy. Child item defined as General partner added to the same level as its parent item and logically shares children. General & Limited item types cannot have their own children, but may have Advisers & Assistants. Limited partner has no connection to parent but it shares children in hierarchy.
+The organizational chart control provides simplified support for multiple parents, managers, or co-heads in the hierarchy. If a child node item type is a general partner, the component places it at the same level as its logical parent item and visually shares children. General & limited item types cannot have their children but may have advisers & assistants. The limited partner has no connection to the parent node, but it shares children.
 
 ### Various Annotations
 * Connector Annotation
@@ -14,3 +14,7 @@ Organizational chart provides simplified support for multiple parents, multiple 
 * Diagram reset
 * PDF file generation
 * Diagram options drawer
+
+### Sources
+* [UI Components](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/containers/Partners/Partners.js)
+* [Redux Store](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/redux/modules/demos/partners.js)

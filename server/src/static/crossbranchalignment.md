@@ -6,3 +6,7 @@ In the Organizational Chart layout, the number of rows occupied by the immediate
 * Diagram reset
 * PDF file generation
 * Diagram options drawer
+
+### Sources
+* [UI Components](https://github.com/BasicPrimitives/react-demo/tree/master/client/src/containers/CrossBranchAlignment)
+* [Redux Store](https://github.com/BasicPrimitives/react-demo/blob/master/client/src/redux/modules/demos/crossbranchalignment.js)
