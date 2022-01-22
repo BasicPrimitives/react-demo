@@ -97,7 +97,7 @@ async function loadMarkdown(name) {
     const samples = [];
     match = match.replace(/(\!?)\[([\w ]+?)\]\(([\s\S]+?)\)/g, (str, sign, caption, url) => {
       if (sign == "") {
-        if ((url.endsWith('.html') && !url.startsWith('http')) || url.endsWith('.js')) {
+        if ((url.endsWith('.html') || url.endsWith('.js')) && !url.startsWith('http')) {
           samples.push({
             caption,
             url: getStaticUrl(url),
