@@ -23,6 +23,8 @@ import {
   UseCases,
   ReactHowToUse,
   HowToUse,
+  AngularUseCases,
+  AngularHowToUse,
   ApiReference,
   Reference,
   Changelog,
@@ -61,6 +63,9 @@ const routes =
     <ReactUseCases path="reactusecases">
       <ReactHowToUse path=":fileName" />
     </ReactUseCases>
+    <AngularUseCases path="angularusecases">
+      <AngularHowToUse path=":fileName" />
+    </AngularUseCases>
     <Reference path="reference">
       <ApiReference path=":fileName" />
     </Reference>

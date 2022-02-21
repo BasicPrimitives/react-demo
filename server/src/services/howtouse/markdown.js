@@ -13,6 +13,10 @@ const folders = [
     path: path.join(__dirname, '..', '..', 'static', 'react', 'docs')
   },
   {
+    name: 'angular',
+    path: path.join(__dirname, '..', '..', 'static', 'angular', 'docs')
+  },
+  {
     name: 'info',
     path: path.join(__dirname, '..', '..', 'static')
   },

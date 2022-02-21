@@ -58,6 +58,11 @@ const initialState = {
       title: 'ReactJS Use Cases',
       children: []
     },
+    {
+      pathname: '/angularusecases',
+      title: 'Angular Use Cases',
+      children: []
+    },
     { 
       pathname: '/reference', 
       title: 'API reference',
@@ -170,11 +175,12 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_SUCCESS: {
       const { result } = action;
       const { pages } = state;
-      const { javascript, react, reference, packageinfo } = result;
+      const { javascript, react, angular, reference, packageinfo } = result;
       const childPages = {
         reference: getAPIPages(reference.markdown, 'reference'),
         usecases: getSamplePages(javascript.markdown, 'usecases'),
-        reactusecases: getSamplePages(react.markdown, 'reactusecases')
+        reactusecases: getSamplePages(react.markdown, 'reactusecases'),
+        angularusecases: getSamplePages(angular.markdown, 'angularusecases')
       };
       return {
         ...state,
@@ -224,13 +230,15 @@ export function load() {
     promise: ({ client }) => Promise.all([
       client.get('/load-markdown?name=javascript-readme'), 
       client.get('/load-markdown?name=react-readme'),
+      client.get('/load-markdown?name=angular-readme'),
       client.get('/load-markdown?name=reference-readme'),
       client.get('/javascript/package.json')
     ]).then(results => ({
       javascript: results[0],
       react: results[1],
-      reference: results[2],
-      packageinfo: results[3]
+      angular: results[2],
+      reference: results[3],
+      packageinfo: results[4]
     }))
   };
 }

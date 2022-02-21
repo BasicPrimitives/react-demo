@@ -16,6 +16,7 @@ import techtree from './modules/demos/techtree';
 import orgeditor from './modules/demos/orgeditor';
 import howtouse from './modules/howtouse';
 import reacthowtouse from './modules/reacthowtouse';
+import angularhowtouse from './modules/angularhowtouse';
 import changelog from './modules/changelog';
 import downloads from './modules/downloads';
 import contact from './modules/contact';
@@ -50,6 +51,7 @@ export default function createReducers() {
     orgeditor,
     howtouse,
     reacthowtouse,
+    angularhowtouse,
     changelog,
     downloads,
     videos,

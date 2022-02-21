@@ -46,6 +46,11 @@ It contains JavaScript pre-build package. Use it if you need to include our libr
 
 [Download](files/BasicPrimitives6.zip) 
 
+## Basic Primitives Diagrams for Angular
+It is an Angular components library that implements organizational and multi-parent hierarchical charts. 
+
+[npm package](https://www.npmjs.com/package/ngx-basic-primitives) [GitHub](https://github.com/BasicPrimitives/angular) [GitHub Deployment](https://basicprimitives.github.io/angular/)
+
 ## Basic Primitives Diagrams for React
 It is a ReactJS components library that implements organizational and multi-parent hierarchical charts. It is a real ReactJS component, which does not direct DOM manipulations, and it renders content using JSX elements. It is compatible with React [Context](https://reactjs.org/docs/context.html) including popular [React DnD](https://react-dnd.github.io/react-dnd/about) library.
 
