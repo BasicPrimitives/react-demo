@@ -15,6 +15,7 @@ import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { FamDiagram } from 'basicprimitivesreact';
 import { ConnectorAnnotationConfig, Colors, AnnotationType, TemplateConfig, Size, Thickness, highestContrast } from 'basicprimitives';
+import { isMobile } from 'react-device-detect';
 import {
   load,
   loadMarkdown,
@@ -75,7 +76,7 @@ function TechTree() {
       dispatch((dispatch, getState) => {
           batch(() => {
             dispatch(load());
-            dispatch(setConfigOption('scale', (window.devicePixelRatio > 1 ? 0.5 : 1)));
+            dispatch(setConfigOption('scale', (isMobile ? 0.5 : 1)));
             dispatch(loadMarkdown());
           })
         }

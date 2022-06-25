@@ -20,6 +20,7 @@ import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { OrgDiagram } from 'basicprimitivesreact';
 import { HorizontalAlignmentType, Colors } from 'basicprimitives';
+import { isMobile } from 'react-device-detect';
 import {
   load,
   loadMarkdown,
@@ -79,7 +80,7 @@ function VerticalLayout() {
       dispatch((dispatch, getState) => {
           batch(() => {
             dispatch(load());
-            dispatch(setConfigOption('scale', (window.devicePixelRatio > 1 ? 0.5 : 1)));
+            dispatch(setConfigOption('scale', (isMobile ? 0.5 : 1)));
             dispatch(loadMarkdown());
           })
         }

@@ -273,6 +273,23 @@ function getMatrixedLeaves() {
     });
     items.push(manager);
 
+    if(counter % 2) {
+      counter++;
+      items.push(new OrgItemConfig({
+        id: counter,
+        parent: counter - 1,
+        title: GetNextName(),
+        description: "Assistant Description",
+        image: "/api/images/photos/" + groupKey.toLowerCase() + ".png",
+        itemType: ItemType.Assistant,
+        adviserPlacementType: AdviserPlacementType.Right,
+        phone: GetRandomPhone(),
+        email: GetRandomEmail("Assistant " + counter.toString()),
+        label: counter.toString(),
+        groupTitle: "Assistant"
+      }));
+    }
+
     for (var levelIndex = 0; levelIndex < group.levels.length; levelIndex += 1) {
       var levelSize = group.levels[levelIndex];
       for (var index = 0; index < levelSize; index += 1) {

@@ -31,6 +31,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MDReactComponent from 'markdown-react-js';
 import { OrgDiagram } from 'basicprimitivesreact';
+import { isMobile } from 'react-device-detect';
 import {
   load,
   loadMarkdown,
@@ -115,7 +116,7 @@ function OrgEditor() {
       dispatch((dispatch, getState) => {
           batch(() => {
             dispatch(load());
-            dispatch(setConfigOption('scale', (window.devicePixelRatio > 1 ? 0.5 : 1)));
+            dispatch(setConfigOption('scale', (isMobile ? 0.5 : 1)));
             dispatch(loadMarkdown());
           })
         }

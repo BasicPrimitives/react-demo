@@ -18,6 +18,7 @@ import { batch, useSelector, useDispatch } from 'react-redux';
 import MDReactComponent from 'markdown-react-js';
 import { FamDiagram } from 'basicprimitivesreact';
 import { Colors, AnnotationType } from 'basicprimitives';
+import { isMobile } from 'react-device-detect';
 import {
   load,
   loadMarkdown,
@@ -82,7 +83,7 @@ function FamilyChartWithAnnotations() {
       dispatch((dispatch, getState) => {
           batch(() => {
             dispatch(load(datasetName));
-            dispatch(setConfigOption('scale', (window.devicePixelRatio > 1 ? 0.5 : 1)));
+            dispatch(setConfigOption('scale', (isMobile ? 0.5 : 1)));
             dispatch(loadMarkdown());
           })
         }
