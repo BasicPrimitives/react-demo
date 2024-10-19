@@ -23,15 +23,13 @@ The package contains a standalone set of PDFkit plugins for the client and serve
 * Financial Ownership Demo
 * Mutual Financial Ownership Demo
 
-### Frameworks
-* [Webpack](https://webpack.js.org/)
+### 🔧 Technologies Used
+* [Webpack](https://webpack.js.org/) bundler
 * Webpack [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) support
 * Samples framework developed in JavaScript with [Bootstrap 5.0](https://getbootstrap.com/)
-* [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
-* [PDFKit](https://pdfkit.org/)
+* [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) support
+* [PDFKit](https://pdfkit.org/) plugin
 * [Jest](https://jestjs.io/) unit tests
-* Sample AngularJS Directive
-
 
 **Use yarn or npm to run samples framework**
 ```JavaScript
@@ -54,8 +52,8 @@ It is an Angular components library that implements organizational and multi-par
 ## Basic Primitives Diagrams for React
 It is a ReactJS components library that implements organizational and multi-parent hierarchical charts. It is a real ReactJS component, which does not direct DOM manipulations, and it renders content using JSX elements. It is compatible with React [Context](https://reactjs.org/docs/context.html) including popular [React DnD](https://react-dnd.github.io/react-dnd/about) library.
 
-### Frameworks
-* [Create React App](https://create-react-app.dev/) compatible project
+### 🔧 Technologies Used
+* [Vite](https://vite.dev/) – Fast build tool for modern web development.
 * Webpack [Tree Shaking](https://webpack.js.org/guides/tree-shaking/) support
 * [Virtual DOM](https://reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom) rendering
 * [JSX Templates](https://reactjs.org/docs/introducing-jsx.html) support
@@ -86,15 +84,14 @@ It contains sources of demos published at https://www.basicprimitives.com/. They
 * Financial Ownership Demo
 * Mutual Financial Ownership Demo
 
-### Frameworks
-* [Create React App](https://create-react-app.dev/)
-* [Material-UI](https://material-ui.com/)
-* [Hooks](https://reactjs.org/docs/hooks-intro.html)
-* [Redux](https://redux.js.org/)
-* [Reach Router](https://reach.tech/router/)
-* [React Final Form](https://github.com/final-form/react-final-form)
-* [React DnD](https://react-dnd.github.io/react-dnd/about)
-* [PDFKit](https://pdfkit.org/)
+### 🔧 Technologies Used
+* [Vite](https://vite.dev/) – Fast build tool for modern web development.
+* [Material-UI (MUI)](https://mui.com/material-ui/) – React UI framework for building sleek user interfaces.
+* [React Hooks](https://reactjs.org/docs/hooks-intro.html) – Leveraging React's hooks for state management and side effects.
+* [Redux](https://redux.js.org/) – State management library for React applications.
+* [React Router](https://reactrouter.com/) – Declarative routing for React.
+* [React Final Form](https://github.com/final-form/react-final-form) – Flexible form library for React.
+* [React DnD](https://react-dnd.github.io/react-dnd/about) – Drag and drop library for React.
 
 [Download](files/BasicPrimitivesReactDemo.zip) [GitHub](https://github.com/BasicPrimitives/react-demo)
 

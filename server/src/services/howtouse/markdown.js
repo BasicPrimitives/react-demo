@@ -65,7 +65,7 @@ async function getMarkdownFileContent(name) {
 async function getSampleFileContent(link) {
   const readFile = util.promisify(fs.readFile);
   let filePath = '';
-  if (link.endsWith('.js')) {
+  if (link.endsWith('.js') || link.endsWith('.jsx')) {
     filePath = path.join(__dirname, '..', '..', 'static', 'react', 'docs', `${link}`);
   } else {
     filePath = path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', `${link}`);
@@ -80,6 +80,7 @@ async function getSampleFileContent(link) {
   fileContent = fileContent.replace(/(\.\.\/\.\.\/css)/g, match => '/api/javascript/css');
   fileContent = fileContent.replace(/(\.\.\/images\/photos)/g, match => '/api/images/photos');
   fileContent = fileContent.replace(/(\.\.\/data\/photos)/g, match => '/api/data/photos');
+  fileContent = fileContent.replace(/(\.\/photos)/g, match => '/api/images/photos');
   fileContent = fileContent.replace(/(\'photos)/g, match => '\'/photos');
   fileContent = fileContent.replace(/(\"photos)/g, match => '\"/photos');
   fileContent = fileContent.replace(/(\(\.\/images)/g, match => '/api/images');
@@ -101,7 +102,7 @@ async function loadMarkdown(name) {
     const samples = [];
     match = match.replace(/(\!?)\[([\w ]+?)\]\(([\s\S]+?)\)/g, (str, sign, caption, url) => {
       if (sign == "") {
-        if ((url.endsWith('.html') || url.endsWith('.js')) && !url.startsWith('http')) {
+        if ((url.endsWith('.html') || url.endsWith('.js') || url.endsWith('.jsx')) && !url.startsWith('http')) {
           samples.push({
             caption,
             url: getStaticUrl(url),
