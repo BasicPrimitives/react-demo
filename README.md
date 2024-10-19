@@ -1,22 +1,23 @@
 # Basic Primitives Diagrams for React Demos
-This project is created for validation of effortless integration of Basic Primitives diagramming components into React application.
+This repository contains a demo project showcasing the effortless integration of **Basic Primitives** diagramming components into a **React** application.
 
-### Project references
-* [http://www.basicprimitives.com](https://www.basicprimitives.com) project home and React Live Demos.
-* [GitHub](https://github.com/BasicPrimitives) Github repositories.
-* [NPM](https://www.npmjs.com/package/basicprimitives) official - release packages.
-* [Basic Primitives for React Live Demos](https://basicprimitives.github.io/react/) - github live site
-* [Basic Primitives for JavaScript and PDFkit Live Demos & Samples](https://basicprimitives.github.io/javascript/) - github live site
+### 📖 References
 
-### Basics
+* [Basic Primitives Website](https://www.basicprimitives.com) – Home of the Basic Primitives project, with additional React Live Demos.
+* [GitHub Repositories](https://github.com/BasicPrimitives) – Access to all Basic Primitives repositories.
+* [NPM Package](https://www.npmjs.com/package/basicprimitives) – Official package for Basic Primitives.
+* [Basic Primitives for React Live Demos](https://basicprimitives.github.io/react/) – Live demo site hosted on GitHub.
+* [Basic Primitives for JavaScript and PDFkit Live Demos & Samples](https://basicprimitives.github.io/javascript/) – Additional core library demos and samples.
 
-* [Create React App](https://create-react-app.dev/)
-* [Material-UI](https://material-ui.com/)
-* [Hooks](https://reactjs.org/docs/hooks-intro.html)
-* [Redux](https://redux.js.org/)
-* [Reach Router](https://reach.tech/router/)
-* [React Final Form](https://github.com/final-form/react-final-form)
-* [React DnD](https://react-dnd.github.io/react-dnd/about)
+### 🔧 Technologies Used
+
+* [Vite](https://vite.dev/) – Fast build tool for modern web development.
+* [Material-UI (MUI)](https://mui.com/material-ui/) – React UI framework for building sleek user interfaces.
+* [React Hooks](https://reactjs.org/docs/hooks-intro.html) – Leveraging React's hooks for state management and side effects.
+* [Redux](https://redux.js.org/) – State management library for React applications.
+* [React Router](https://reactrouter.com/) – Declarative routing for React.
+* [React Final Form](https://github.com/final-form/react-final-form) – Flexible form library for React.
+* [React DnD](https://react-dnd.github.io/react-dnd/about) – Drag and drop library for React.
 
 ### Setup
 
@@ -40,11 +41,11 @@ yarn start
 
 ```bash
 cd client
-yarn start
+yarn dev
 ```
 
 ### License
 
-Copyright (c) 2013 - 2022 Basic Primitives Inc
+Copyright (c) 2013 - 2024 Basic Primitives Inc
 * [Non-commercial - Free](http://creativecommons.org/licenses/by-nc/3.0/)
 * [Commercial and government licenses](http://www.basicprimitives.com/license.pdf)

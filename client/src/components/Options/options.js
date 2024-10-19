@@ -3,7 +3,7 @@ import {AdviserPlacementType,  ChildrenPlacementType,  Colors, ConnectorLabelPla
     LineType, NavigationMode, NeighboursSelectionMode, OrientationType, PlacementType, SelectionPathMode,
     ShapeType, TextOrientationType, VerticalAlignmentType, Visibility, ZOrderType
 } from 'basicprimitives';
-import { phone, email } from 'utils/validation';
+import { phone, email } from '@/utils/validation';
 
 const images = 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((agg, imageChar) => {
     agg[imageChar.toUpperCase()] = `/api/images/photos/${imageChar}.png`;

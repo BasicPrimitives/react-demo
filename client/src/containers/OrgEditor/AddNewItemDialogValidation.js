@@ -1,4 +1,4 @@
-import { createValidator, required, email, phone } from 'utils/validation';
+import { createValidator, required, email, phone } from '@/utils/validation';
 
 const addNewItemDialogValidation = createValidator({
   title: [required],

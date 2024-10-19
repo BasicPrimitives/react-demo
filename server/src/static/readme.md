@@ -1,5 +1,5 @@
 # Markdown file not found
-The content of this page is rendered by `MDReactComponent`, in order to make it render the same content as you see at [Basic Primitives](https://www.basicprimitives.com/) you have to clone the following GitHub repositories:
+The content of this page is rendered by `ReactMarkdown`, in order to make it render the same content as you see at [Basic Primitives](https://www.basicprimitives.com/) you have to clone the following GitHub repositories:
 
 ### Clone [BasicPrimitives/javascript](https://github.com/BasicPrimitives/javascript) repository into `/server/src/static/javascript`
 ```

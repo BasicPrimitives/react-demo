@@ -8,8 +8,8 @@ import createReducers from './reducer';
 let devtools = (x) => x;
 
 if (
-  process.env.NODE_ENV !== 'production' &&
-  process.browser &&
+  import.meta.env.MODE !== 'production' &&
+  typeof window !== 'undefined' &&
   window.__REDUX_DEVTOOLS_EXTENSION__
 ) {
   devtools = window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -19,8 +19,8 @@ export default function create(initialState, helpers) {
   let middleware = [clientMiddleware(helpers)];
 
   if (
-    process.env.NODE_ENV !== 'production' &&
-    process.browser &&
+    import.meta.env.MODE !== 'production' &&
+    typeof window !== 'undefined' &&
     !window.__REDUX_DEVTOOLS_EXTENSION__ &&
     // redux-logger needs this feature
     Object.hasOwnProperty('assign')
