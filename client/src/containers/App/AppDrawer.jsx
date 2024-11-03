@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.primary.main,
     },
   },
-  // https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
   toolbarIe11: {
     display: 'flex',
   },
@@ -110,11 +109,11 @@ function getActivePages(tree, pathname) {
     }
   });
 
-  const activePages = {};
+  const activePages = [];
   if(activePage) {
-    activePages[activePage.id] = true;
-    tree.loopParents(this, activePage.id, function (parentid) {
-      activePages[parentid] = true;
+    activePages.push(activePage.id);
+    tree.loopParents(this, activePage.id, function (parentid, page) {
+      activePages.push(parentid.toString());
     });
   }
   return activePages;
@@ -127,28 +126,42 @@ function AppDrawer(props) {
   const pages = useSelector(state => state.pages.pages); 
   let { pathname, hash } = useLocation();
 
-  const tree = getPagesTree(pages);
-  
-  // Add support for leading / in development mode.
-  if (pathname !== '/') {
-    // The leading / is only added to support static hosting (resolve /index.html).
-    // We remove it to normalize the pathname.
-    // See `rewriteUrlForNextExport` on Next.js side.
-    pathname = pathname.replace(/\/$/, '');
-  }
+  const navigate = useNavigate();
 
-  const activePages = getActivePages(tree, `${pathname}${hash}`);
+  const [tree, setTree] = React.useState(getPagesTree(pages));
+  const [expandedItems, setExpandedItems] = React.useState([]);
+  const [selectedItem, setSelectedItem] = React.useState(null);
 
   useEffect(() => {
     if (!loaded) {
       dispatch(load());
+    } else {
+      setTree(getPagesTree(pages));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []/* run only once */);
-  const navigate = useNavigate();
+  }, [loaded, dispatch, pages]);
+
+  React.useEffect(() => {
+    // Add support for leading / in development mode.
+    if (pathname !== '/') {
+      // The leading / is only added to support static hosting (resolve /index.html).
+      // We remove it to normalize the pathname.
+      // See `rewriteUrlForNextExport` on Next.js side.
+      pathname = pathname.replace(/\/$/, '');
+    }
+
+    const activePages = getActivePages(tree, `${pathname}${hash}`);
+    setSelectedItem(activePages.length > 0 ? activePages[0] : null);
+    setExpandedItems(activePages);
+  }, [pathname, tree]);
+
+  const handleExpandedItemsChange = (event, itemIds) => {
+    setExpandedItems(itemIds);
+  };
+
   const children = {};
   tree.loopPostOrder(this, (pageid, page, parentid, parent) => {
-    const handleClick = () => {
+    const handleClick = (event, nodeId) => {
+      setSelectedItem(nodeId);
       props.onClose();
       navigate(page.pathname);
     };
@@ -156,7 +169,6 @@ function AppDrawer(props) {
       children[parentid] = children[parentid] || [];
       if (children[pageid]) {
         const title = pageToTitle(page);
-        const topLevel = activePages[pageid];
         children[parentid].push(
           <TreeItem 
             itemId={page.id}
@@ -186,7 +198,11 @@ function AppDrawer(props) {
 
   return (
     <PersistScroll>
-      <SimpleTreeView>
+      <SimpleTreeView
+        expandedItems={expandedItems}
+        selectedItems={selectedItem ? [selectedItem] : []}
+        onExpandedItemsChange={handleExpandedItemsChange}
+      >
         {children[0]}
       </SimpleTreeView>
     </PersistScroll>
