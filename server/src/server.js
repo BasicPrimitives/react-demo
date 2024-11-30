@@ -1,13 +1,12 @@
 #!/usr/bin/env node
-const express = require('@feathersjs/express');
-const feathers = require('@feathersjs/feathers');
+const express = require('express');
 const morgan = require('morgan');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const PrettyError = require('pretty-error');
 const config = require('./config');
-const services = require('./services');
+const services = require('./services'); // You may want to adjust or remove this if services rely on feathers
 require('newrelic');
 
 const pretty = new PrettyError();
@@ -16,9 +15,9 @@ process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at: Promise ', p, pretty.render(reason));
 });
 
-const fApp = express(feathers());
+const app = express();
 
-fApp.set('config', config)
+app.set('config', config)
   .use(morgan('dev'))
   .use(cookieParser())
   .use(
@@ -30,26 +29,21 @@ fApp.set('config', config)
     })
   )
   .use(bodyParser.urlencoded({ extended: true }))
-  .use(bodyParser.json())
-  // Core
-  .configure(express.rest())
-  .configure(services)
-  // Final handlers
-  .use(express.notFound())
-  .use(
-    express.errorHandler({
-      logger: {
-        error: error => {
-          if (error && error.code !== 404) {
-            console.error('API ERROR:', pretty.render(error));
-          }
-        }
-      }
-    })
-  );
+  .use(bodyParser.json());
 
-const app = express();
-app.use('/api', fApp);
+services('/api', app);
+
+// Final handlers
+app.use(express.static('public')); // Serve static files if needed
+app.use((req, res, next) => {
+  res.status(404).send('Not Found');
+});
+app.use((error, req, res, next) => {
+  if (error) {
+    console.error('API ERROR:', pretty.render(error));
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 if (process.env.APIPORT) {
   app.listen(process.env.APIPORT, err => {

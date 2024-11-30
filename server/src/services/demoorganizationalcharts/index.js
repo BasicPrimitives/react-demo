@@ -5,8 +5,8 @@ const CrossBranchAlignment = require('./data/crossbranchalignment.js');
 const MatrixLayout = require('./data/matrixlayout.js');
 const VerticalLayoutOrganizationalChart = require('./data/verticallayoutorganizationalchart.js');
 
-function service(app) {
-  app.use('/load-demoorganizationalchart', (req, res) => {
+function service(url, app) {
+  app.use(`${url}/load-demoorganizationalchart`, (req, res) => {
     let result = { message: `Chart ${req.name} not found!` };
 
     const { name } = req.query;

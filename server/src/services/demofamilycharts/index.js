@@ -24,8 +24,8 @@ const financialOwnership = require('./data/financialOwnership.js');
 const mutualFinancialOwnership = require('./data/mutualFinancialOwnership.js');
 const techTree = require('./data/techTree.js');
 
-function service(app) {
-  app.use('/load-demofamilychartslist', (req, res) => {
+function service(folder, app) {
+  app.use(`${folder}/load-demofamilychartslist`, (req, res) => {
     const names = {
       '2 Cross Relations': 'crossShape',
       '3 Cross Relations': 'famdata2',
@@ -49,7 +49,7 @@ function service(app) {
     return res.json(names);
   });
 
-  app.use('/load-demofamilychart', (req, res) => {
+  app.use(`${folder}/load-demofamilychart`, (req, res) => {
     let result = { message: `Chart ${req.name} not found!` };
 
     const { name } = req.query;

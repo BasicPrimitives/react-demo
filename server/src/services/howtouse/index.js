@@ -7,8 +7,8 @@ const newrelic = require('newrelic');
 const { loadMarkdown, getSampleFileContent } = require('./markdown');
 const { URL } = require('url');
 
-module.exports = function customService(app) {
-  app.use('/load-markdown', async (req, res, next) => {
+module.exports = function customService(folder, app) {
+  app.use(`${folder}/load-markdown`, async (req, res, next) => {
     let gclid = null;
     if(req.headers.referer != null) {
       let url = new URL(req.headers.referer);
@@ -28,12 +28,12 @@ module.exports = function customService(app) {
     }
   });
 
-  app.use('/get-sample', async (req, res) => {
+  app.use(`${folder}/get-sample`, async (req, res) => {
     const fileContent = await getSampleFileContent(req.query.name);
     return res.send(fileContent);
   });
 
-  app.use('/get-saved-sample', (req, res) => {
+  app.use(`${folder}/get-saved-sample`, (req, res) => {
     let fileContent = cache.get(req.query.name);
     if (fileContent == null) {
       fileContent = '<p>Sample expired in cache. Click Try button again.</p>';
@@ -41,7 +41,7 @@ module.exports = function customService(app) {
     return res.send(fileContent);
   });
 
-  app.use('/save-code', (req, res) => {
+  app.use(`${folder}/save-code`, (req, res) => {
     const id = uuid.v1();
     cache.put(id, req.body.content, 60000);
     return res.json({
@@ -49,11 +49,11 @@ module.exports = function customService(app) {
     });
   });
 
-  app.use('/images', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'images')));
-  app.use('/images', express.static(path.join(__dirname, '..', '..', 'static', 'react', 'docs', 'images')));
-  app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript')));
-  app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript' , 'dist')));
-  app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'static', 'javascript')));
-  app.use('/data', express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'data')));
-  app.use('/', express.static(path.join(__dirname, '..', '..', 'static')));
+  app.use(`${folder}/images`, express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'images')));
+  app.use(`${folder}/images`, express.static(path.join(__dirname, '..', '..', 'static', 'react', 'docs', 'images')));
+  app.use(`${folder}/javascript`, express.static(path.join(__dirname, '..', '..', 'static', 'javascript')));
+  app.use(`${folder}/javascript`, express.static(path.join(__dirname, '..', '..', 'static', 'javascript' , 'dist')));
+  app.use(`${folder}/javascript`, express.static(path.join(__dirname, '..', '..', 'static', 'javascript')));
+  app.use(`${folder}/data`, express.static(path.join(__dirname, '..', '..', 'static', 'javascript', 'samples', 'data')));
+  app.use(`${folder}/`, express.static(path.join(__dirname, '..', '..', 'static')));
 }
