@@ -88,8 +88,8 @@ const useStyles = makeStyles((theme) => ({
 const App = (props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const [open, setOpen] = React.useState(() => !isSmallScreen);
 
   const handleDrawerOpen = () => {
     setOpen(true);
