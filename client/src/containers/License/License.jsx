@@ -76,7 +76,7 @@ function License() {
                         </td>
                         <td rowSpan="1">&nbsp;</td>
                         <td>
-                          <form method="post" action={action}>
+                          <form method="get" action={action}>
                             <Button type="submit" variant="contained" color="primary">Buy</Button>
                           </form>
                         </td>
