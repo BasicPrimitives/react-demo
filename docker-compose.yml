@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: .
+    container_name: bp_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./letsencrypt:/etc/letsencrypt
+      - ./site/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: bp_certbot
+    volumes:
+      - ./letsencrypt:/etc/letsencrypt
+      - ./site:/var/www/html
+    # This container will attempt renewal in a loop. For first-time issuance run the "certonly" command below manually.
+    entrypoint: ["sh","-c","while :; do certbot renew --webroot -w /var/www/html --quiet || true; sleep 12h; done"]
+    restart: unless-stopped
+
+# Notes:
+# 1) For initial certificate issuance (run once from the host):
+#    docker-compose run --rm certbot certonly --webroot -w /var/www/html -d basicprimitives.com -d www.basicprimitives.com --email you@example.com --agree-tos --no-eff-email
+# 2) Add a host cron/systemd timer on the EC2 instance to run:
+#    docker-compose run --rm certbot renew --webroot -w /var/www/html --quiet && docker-compose exec nginx nginx -s reload
+#    (This will renew certs and reload nginx to pick up the new certs.)
+# 3) The ./letsencrypt directory stores certs and must be persisted between deploys. Ensure it is on a persistent volume on EC2.

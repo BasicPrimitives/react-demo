@@ -7,4 +7,5 @@ server/newrelic_agent.log
 Dockerfile
 .vscode
 site
-
+demo.tar.gz
+letsencrypt/
